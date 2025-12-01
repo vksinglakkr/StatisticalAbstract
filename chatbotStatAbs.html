@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>IGM Mitra – International Gita Mahotsav 2025</title>
+  <title>STATS SAHAYAK – Statistical Abstract Chatbot</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
  <style>
@@ -261,2455 +261,719 @@
   border-bottom: 1px solid #fed7aa;
 }
 
-@media (max-width: 640px) {
-  .query-type-selector {
-    padding: 16px 12px;
-  }
-  
-  .radio-option {
-    padding: 12px 12px;
-    min-height: 85px;
-  }
-  
-  .radio-option input[type="radio"] {
-    width: 20px;
-    height: 20px;
-    min-width: 20px;
-    margin-right: 10px;
-  }
-  
-  .radio-icon {
-    font-size: 24px;
-    min-width: 32px;
-    margin-right: 6px;
-  }
-  
-  .radio-label-title {
-    font-size: 16px;
-  }
-
-  .radio-label-desc {
-    font-size: 11px;
-    line-height: 1.35;
-  }
-  
-  .autocomplete-dropdown {
-    max-height: 250px;
-  }
-  
-  .autocomplete-item {
-    padding: 10px 12px;
-    font-size: 11px;
-  }
+/* MODAL STYLES */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.95);
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-@media (max-width: 360px) {
-  .radio-icon {
-    font-size: 22px;
-    min-width: 28px;
-  }
-  
-  .radio-label-title {
-    font-size: 14px;
-  }
-  
-  .radio-label-desc {
-    font-size: 10.5px;
-  }
-}
-  
-  .slide-fade-enter {
-    animation: slideFadeIn 0.5s ease-out;
-  }
-  @keyframes slideFadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  #userInput::placeholder {
-    font-size: 13px;
-    color: #b5b5b5;
-    font-weight: 400;
-    opacity: 0.8;
-  }
-  #userInput {
-    font-size: 17px !important;
-    font-weight: 600 !important;
-    color: #1f2937 !important;
-    line-height: 1.5;
-    vertical-align: bottom;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    display: block;
-  }
-  
-  @media (max-width: 768px) {
-    #userInput {
-      font-size: 16px !important;
-      padding: 12px !important;
-      padding-bottom: 48px !important;
-      min-height: 100px;
-    }
-    #userInput::placeholder {
-      font-size: 12px;
-    }
-    .mic-btn {
-      bottom: 8px !important;
-      right: 8px !important;
-    }
-  }
-  
-  .icon { display: inline-block; width: 1em; height: 1em; vertical-align: -0.125em; }
-  .btn-primary {
-    background: linear-gradient(135deg, #ff6b35, #f59e0b);
-    color: white;
-    font-weight: 700;
-    padding: 18px 32px;
-    border-radius: 16px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4);
-    position: relative;
-    overflow: hidden;
-  }
-  .btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s;
-  }
-  .btn-primary:hover::before { left: 100%; }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255, 107, 53, 0.5); }
-  .event-card {
-    border-radius: 20px;
-    padding: 20px;
-    transition: all 0.3s;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  .event-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,0.2); }
-  .quote-section {
-    background: linear-gradient(135deg, #eff6ff, #dbeafe);
-    border-left: 6px solid #3b82f6;
-    border-radius: 24px;
-    padding: 32px;
-    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15); 
-    position: relative;
-    overflow: hidden;
-  }
-  .quote-section::before {
-    content: '"';
-    position: absolute;
-    top: -20px; left: 20px;
-    font-size: 120px;
-    color: rgba(59, 130, 246, 0.1);
-    font-family: Georgia, serif;
-  }
-  input, textarea, select { transition: all 0.3s; }
-  input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
-  .modal-enter { animation: modalEnter 0.3s ease-out; }
-  @keyframes modalEnter {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  .floating { animation: floating 3s ease-in-out infinite; }
-  @keyframes floating {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-  .feedback-btn {
-    background: linear-gradient(135deg, #10b981, #059669);
-    color: white;
-    font-weight: 600;
-    padding: 12px 24px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-  }
-  
-  .feedback-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
-    background: linear-gradient(135deg, #059669, #047857);
-  }
-  
-  .feedback-btn-small {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
+.modal.hidden { display: none !important; }
 
-  #feedbackModal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 10000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-  }
-
-  #feedbackModal.show {
-    display: flex;
-  }
-
-  .feedback-modal-content {
-    background: white;
-    border-radius: 24px;
-    width: 100%;
-    max-width: 900px;
-    height: 90vh;
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  }
-
-  .feedback-modal-header {
-    background: linear-gradient(135deg, #10b981, #059669);
-    color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
-  .feedback-modal-close {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-  }
-
-  .feedback-modal-close:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: rotate(90deg);
-  }
-
-  #feedbackIframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: white;
-  }
-
-  .iframe-loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 1;
-  }
-
-  .spinner {
-    border: 4px solid #f3f4f6;
-    border-top: 4px solid #10b981;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 16px;
-  }
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  .om-symbol {
-    position: fixed;
-    font-size: 200px;
-    opacity: 0.05;
-    color: rgba(251, 191, 36, 0.3);
-    pointer-events: none;
-    user-select: none;
-    z-index: 0;
-  }
-  .om-top-right {
-    top: -50px;
-    right: -50px;
-  }
-  .om-bottom-left {
-    bottom: -50px;
-    left: -50px;
-    transform: rotate(180deg);
-  }
-  
-  .quiz-chatbot-btn {
-    background: linear-gradient(135deg, #8b5cf6, #6366f1);
-    color: white;
-    font-weight: 600;
-    padding: 10px 18px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .quiz-chatbot-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s;
-  }
-  
-  .quiz-chatbot-btn:hover::before {
-    left: 100%;
-  }
-  
-  .quiz-chatbot-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
-    background: linear-gradient(135deg, #7c3aed, #4f46e5);
-  }
-  
-  .quiz-chatbot-btn svg {
-    width: 20px;
-    height: 20px;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  }
-  
-  .music-control-btn {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background: linear-gradient(135deg, #10b981, #059669);
-    color: white;
-    font-weight: 600;
-    padding: 14px 20px;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    z-index: 1000;
-  }
-  
-  .music-control-btn:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
-  }
-  
-  @media (max-width: 768px) {
-    .music-control-btn {
-      bottom: 16px;
-      right: 16px;
-      padding: 12px 16px;
-      font-size: 13px;
-    }
-  }
-
-  #quizModal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 10001;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-  }
-
-  #quizModal.show {
-    display: flex;
-  }
-
-  .quiz-modal-content {
-    background: white;
-    border-radius: 24px;
-    width: 100%;
-    max-width: 1200px;
-    height: 92vh;
-    max-height: 92vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  }
-
-  .quiz-modal-header {
-    background: linear-gradient(135deg, #8b5cf6, #6366f1);
-    color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
-  .quiz-modal-close {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-  }
-
-  .quiz-modal-close:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: rotate(90deg);
-  }
-
-#quizIframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: white;
-  }
-  /* Live Telecast Button - Red Theme */
-.live-telecast-btn {
-  background: linear-gradient(135deg, #dc2626, #ef4444);
-  color: white;
-  font-weight: 600;
-  padding: 10px 18px;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
+.modal-content {
   position: relative;
+  background: linear-gradient(135deg, #ffffff, #fefce8);
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
-.live-telecast-btn::before {
-  content: '';
-  position: absolute;
+.modal-header {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-footer {
+  background: white;
+  border-top: 2px solid #e5e7eb;
+  padding: 16px 20px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+}
+
+.close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg) scale(1.1);
+}
+
+.question-box, .answer-box {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-left: 6px solid #f59e0b;
+}
+
+.question-box h3, .answer-box h3 {
+  color: #1e40af;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.question-text, .answer-text {
+  color: #1f2937;
+  font-size: 16px;
+  line-height: 1.8;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.answer-text {
+  font-size: 15px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (min-width: 768px) {
+  .modal-content {
+    margin: 2% auto;
+    width: 95%;
+    max-width: 900px;
+    height: auto;
+    max-height: 96vh;
+    border-radius: 24px;
+  }
+}
+
+/* Feedback Modal Styles */
+.feedback-modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
   top: 0;
-  left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: left 0.5s;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-.live-telecast-btn:hover::before {
-  left: 100%;
+.feedback-modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.live-telecast-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.5);
-  background: linear-gradient(135deg, #b91c1c, #dc2626);
-}
-
-.live-telecast-btn svg {
-  width: 20px;
-  height: 20px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-}
-
-/* Pulsing Dot for Live Indicator */
-.live-telecast-btn .pulse-dot {
-  width: 8px;
-  height: 8px;
+.feedback-modal-content {
+  position: relative;
   background: white;
+  margin: 20px;
+  padding: 0;
+  width: 95%;
+  max-width: 600px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.feedback-modal-header {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feedback-modal-body {
+  padding: 0;
+  height: 70vh;
+  max-height: 600px;
+  position: relative;
+}
+
+.feedback-modal iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.iframe-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: none;
+}
+
+.spinner {
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #f59e0b;
   border-radius: 50%;
-  animation: pulse-live 1.5s ease-in-out infinite;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
 }
 
-@keyframes pulse-live {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.2);
-  }
-}
-/* 
-  #categorySelect option:not([disabled]) {
-    padding: 12px 8px;
-    font-size: 15px;
-  }
-  
-  #categorySelect {
-    font-weight: 600;
-  }  
-   
-  #questionSelect {
-    font-weight: 600;
-  }
-
-
-  @media (max-width: 480px) {
-    #questionSelect {
-      font-size: 12px !important;
-    }
-    
-    #questionSelect option:not([disabled]) {
-      font-size: 12px !important;
-      padding: 8px 6px !important;
-    }
-  }
-  
-  #modalQuestion {
-    font-size: 18px !important;
-    line-height: 1.6 !important;
-  }
-  
-  @media (max-width: 768px) {
-    #modalQuestion {
-      font-size: 17px !important;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    #modalQuestion {
-      font-size: 16px !important;
-    }
-  }
-*/
-/* Question Select Dropdown - Options Font Size */
-#questionSelect option {
-  font-size: 13px !important;
-  padding: 8px !important;
-  line-height: 1.4;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-#questionSelect optgroup {
-  font-size: 14px !important;
-  font-weight: 600;
-  color: #1e40af;
-}
-
-/* Mobile ke liye aur bhi chhota */
-@media (max-width: 640px) {
-  #questionSelect option {
-    font-size: 12px !important;
-    padding: 6px !important;
-  }
-  
-  #questionSelect optgroup {
-    font-size: 13px !important;
-  }
-}
 </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4">
-  <div class="om-symbol om-top-right devanagari">ॐ</div>
-  <div class="om-symbol om-bottom-left devanagari">ॐ</div>
+<body>
 
-  <div class="container-main w-full max-w-5xl glass-card rounded-3xl shadow-2xl overflow-hidden">
-    <div class="relative bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 p-6 pb-4 text-center header-glow">
-      <div class="flex justify-between items-start mb-4 w-full">
- <button onclick="openLiveTelecast()" class="live-telecast-btn">
-    <span class="pulse-dot"></span>
-    <svg fill="currentColor" viewBox="0 0 24 24">
-      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-    </svg>
-    Live Telecast
-  </button>        <button onclick="openQuizChatbot()" class="quiz-chatbot-btn">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-          </svg>
-          IGM Quiz
-        </button>
-      </div>
+<div class="container-main min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-3xl">
+    
+    <!-- Header Section -->
+    <div class="header-glow text-center mb-8">
+      <h1 class="text-5xl md:text-6xl font-black mb-2 gradient-text playfair">
+        STATS SAHAYAK
+      </h1>
+      <p class="text-xl md:text-2xl text-amber-300 font-semibold tracking-wide devanagari">
+        Statistical Abstract Chatbot
+      </p>
+      <p class="text-sm text-blue-200 mt-2 font-medium">
+        Economic & Statistical Organisation, Haryana
+      </p>
+    </div>
+
+    <!-- Main Card -->
+    <div class="glass-card rounded-3xl shadow-2xl p-6 md:p-8">
       
-      <div class="floating">
-        <h1 class="text-5xl md:text-6xl font-black gradient-text mb-2 playfair tracking-tight">IGM Mitra</h1>
-      </div>
-      <p class="text-sm text-gray-600 font-semibold mb-3 tracking-wide">Gita Wisdom & Mahotsav Guide</p>
-      
-      <div class="w-full max-w-2xl mx-auto px-4">
-        <div class="bg-white rounded-2xl border-3 border-orange-400 py-2 px-4 shadow-xl transform hover:scale-105 transition-all duration-300">
-          <h2 class="text-sm sm:text-base md:text-lg font-black text-center bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 bg-clip-text text-transparent whitespace-nowrap">
-            International Gita Mahotsav 2025
-          </h2>
+      <!-- Language Toggle -->
+      <div class="flex justify-center mb-6">
+        <div class="lang-toggle">
+          <button id="langEnglish" class="active" onclick="switchLanguage('english')">English</button>
+          <button id="langHindi" onclick="switchLanguage('hindi')">हिंदी</button>
         </div>
       </div>
-     </div>
 
-    <div class="p-2">
+      <!-- Query Type Selection -->
       <div class="query-type-selector">
-        <h3 class="text-xl font-bold text-gray-900 mb-4 text-center flex items-center justify-center gap-2">
-          <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          Area of interest?
+        <h3 class="text-center text-lg font-bold text-gray-800 mb-4">
+          📊 Choose Your Query Type
         </h3>
         
-        <div class="radio-option" onclick="selectQueryType('gita')">
-          <input type="radio" name="queryType" id="gitaRadio" value="gita">
-          <span class="radio-icon">🕉️</span>
-          <label for="gitaRadio" class="radio-label cursor-pointer">
-            <span class="radio-label-title">Gita Guidance (गीता मार्गदर्शन)</span>
-            <span class="radio-label-desc">Life wisdom, spiritual questions, peace of mind, handling emotions</span>
-          </label>
-        </div>
-        
-        <div class="radio-option" onclick="selectQueryType('event')">
-          <input type="radio" name="queryType" id="eventRadio" value="event">
-          <span class="radio-icon">🎪</span>
-          <label for="eventRadio" class="radio-label cursor-pointer">
-            <span class="radio-label-title">Festival Information (महोत्सव की जानकारी)</span>
-            <span class="radio-label-desc">Events, schedule, facilities, transport, accommodation, tourist places</span>
-          </label>
-        </div>
+        <label class="radio-option" id="radioOption1">
+          <input type="radio" name="queryType" value="statistics" checked>
+          <span class="radio-icon">📚</span>
+          <div class="radio-label">
+            <span class="radio-label-title">Learn About Statistics</span>
+            <span class="radio-label-desc">Get explanations about statistical terms and concepts</span>
+          </div>
+        </label>
+
+        <label class="radio-option" id="radioOption2">
+          <input type="radio" name="queryType" value="data">
+          <span class="radio-icon">📈</span>
+          <div class="radio-label">
+            <span class="radio-label-title">Find Haryana Data</span>
+            <span class="radio-label-desc">Search for specific data from Haryana Statistical Abstract</span>
+          </div>
+        </label>
       </div>
 
-      <div id="questionSection" style="display: none;">
-        <div class="mb-8 slide-fade-enter">
-          <div class="relative autocomplete-container">
-            <textarea
-              id="userInput"
-              rows="3"
-              class="w-full rounded-2xl border-4 border-orange-400 p-4 pb-12 text-gray-900
-                     bg-gradient-to-br from-white to-orange-50 shadow-2xl resize-none
-                     focus:border-orange-500 focus:ring-4 focus:ring-orange-200 focus:shadow-2xl
-                     transition-all duration-300 leading-relaxed"
-              placeholder="Type your question here... (e.g., anger, fear, marriage)"
-            ></textarea>
-            <div id="autocompleteDropdown" class="autocomplete-dropdown" style="display: none;"></div>
-            <button
+      <!-- Input Section -->
+      <form id="chatForm" class="space-y-4">
+        <div class="autocomplete-container">
+          <div class="relative">
+            <input 
+              type="text" 
+              id="userInput" 
+              placeholder="Ask your question..."
+              class="w-full px-5 py-4 pr-16 text-gray-800 text-lg bg-white/90 border-3 border-amber-400 rounded-2xl focus:outline-none focus:ring-4 focus:ring-amber-300 focus:border-amber-500 transition-all shadow-lg"
+              autocomplete="off"
+              required
+            />
+            <button 
+              type="button"
               id="voiceBtn"
-              class="mic-btn absolute bottom-3 right-3 text-orange-500 hover:text-orange-700 transition-all duration-300 hover:scale-110 bg-white rounded-full p-3 shadow-lg border-2 border-orange-300"
+              class="mic-btn absolute right-3 top-1/2 -translate-y-1/2 bg-gradient-to-br from-orange-500 to-amber-500 text-white p-3 rounded-xl border-2 border-orange-400 hover:shadow-xl"
               title="Click to speak"
             >
-              <svg id="micIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
               </svg>
             </button>
           </div>
-        </div>
-
-        <div class="mb-8 slide-fade-enter" id="quickQuestionsSection">
-          <div class="flex items-center justify-between mb-4">
-            <label class="text-lg font-bold text-gray-800">Quick help👇</label>
-              <div class="flex justify-end mb-2">
-                <div class="lang-toggle">
-                  <button class="langBtn active" data-lang="English">English</button>
-                  <button class="langBtn" data-lang="Hindi">हिंदी</button>
-                </div>
-              </div>  
-          </div>
-          <div class="space-y-4">
-            <select id="categorySelect" class="block w-full px-5 py-4 text-base border-2 border-gray-200 focus:outline-none focus:ring-3 focus:ring-blue-500 focus:border-blue-500 rounded-2xl bg-white shadow-md transition-all duration-300 font-medium">
-              <option value="" selected disabled>Select Topic</option>
-            </select>
-            <select id="questionSelect" class="block w-full px-5 py-4 text-base border-2 border-gray-200 focus:outline-none focus:ring-3 focus:ring-blue-500 focus:border-blue-500 rounded-2xl bg-white shadow-md transition-all duration-300 font-medium" disabled>
-                <option value="" selected disabled>Select Question</option>
-            </select> 
-          </div>
+          
+          <!-- Autocomplete Dropdown -->
+          <div id="autocompleteDropdown" class="autocomplete-dropdown" style="display: none;"></div>
         </div>
 
         <button 
-          id="submitBtn" 
-          class="w-full mt-4 btn-primary flex items-center justify-center gap-3 text-xl slide-fade-enter"
+          type="submit"
+          class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-8 rounded-2xl transition-all transform hover:scale-105 hover:shadow-2xl text-lg shadow-xl border-2 border-blue-500"
         >
-          <svg class="icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+          <span class="flex items-center justify-center gap-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            Get Answer
+          </span>
+        </button>
+      </form>
+
+      <!-- Quick Action Buttons -->
+      <div class="mt-6 flex flex-wrap gap-3 justify-center">
+        <button 
+          onclick="openFeedback()"
+          class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-2.5 px-5 rounded-xl transition-all transform hover:scale-105 shadow-lg text-sm border-2 border-green-400 flex items-center gap-2"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
           </svg>
-          Submit
+          Feedback
         </button>
       </div>
 
-
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 md:gap-6 mb-4 mt-4 px-2">
-  <!-- Craft Fair Card -->
-  <div class="event-card bg-gradient-to-br from-blue-50 to-blue-100 border-l-4 border-blue-600 shadow-lg rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:scale-105">
-    <div class="flex items-center gap-3 mb-3">
-      <svg class="w-10 h-10 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-      </svg>
-      <div class="flex-1">
-        <p class="font-bold text-gray-900 text-lg">Craft Fair</p>
-        <p class="text-sm text-gray-600 font-medium">हस्तशिल्प मेला</p>
+      <!-- Footer Info -->
+      <div class="mt-6 text-center">
+        <p class="text-xs text-gray-600">
+          Last Updated: <span id="lastModified"></span>
+        </p>
+        <p class="text-xs text-gray-500 mt-2">
+          Powered by AI • Government of Haryana
+        </p>
       </div>
-    </div>
-    <div class="ml-13 space-y-1">
-      <p class="text-sm text-gray-700 font-semibold flex items-center gap-2">
-        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-        </svg>
-        15 Nov – 5 Dec 2025
-      </p>
-      <p class="text-xs text-gray-500">Traditional handicrafts from across India</p>
-    </div>
-  </div>
-
-  <!-- Cultural Programs Card -->
-  <div class="event-card bg-gradient-to-br from-green-50 to-green-100 border-l-4 border-green-600 shadow-lg rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:scale-105">
-    <div class="flex items-center gap-3 mb-3">
-      <svg class="w-10 h-10 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
-      </svg>
-      <div class="flex-1">
-        <p class="font-bold text-gray-900 text-lg">Cultural Programs</p>
-        <p class="text-sm text-gray-600 font-medium">सांस्कृतिक कार्यक्रम</p>
-      </div>
-    </div>
-    <div class="ml-13 space-y-1">
-      <p class="text-sm text-gray-700 font-semibold flex items-center gap-2">
-        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-        </svg>
-        24 Nov – 1 Dec 2025
-      </p>
-      <p class="text-xs text-gray-500">Evening performances & celebrations</p>
     </div>
   </div>
 </div>
 
-      <div class="quote-section mb-1">
-        <p class="text-1xl devanagari text-gray-900 text-center leading-relaxed mb-0.0 relative z-10 font-semibold">
-          "ज्ञानं तेऽहं सविज्ञानमिदं वक्ष्याम्यशेषतः।<br>यज्ज्ञात्वा नेह भूयोऽन्यज्ज्ञातव्यमवशिष्यते।।"
-        </p>
-       <p class="text-right text-gray-600 text-sm mb-1 mt-1 devanagari font-medium">  – श्रीमद्भगवद्गीता, अध्याय 7, श्लोक 2</p>
-        <p class="text-center text-sm text-gray-800  mb-0 mt-1 font-light leading-relaxed italic">
-         <span style="line-height: 1.2; display: block;"> "I shall now declare to you in full this knowledge with realization,<br>knowing which nothing else remains to be known in this world."
-         </span></p>
-      </div>
+<!-- AI Response Modal -->
+<div id="aiModal" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="text-2xl font-bold flex items-center gap-3">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+        </svg>
+        STATS SAHAYAK Response
+      </h2>
+      <button class="close-btn" id="closeBtn">&times;</button>
+    </div>
 
-      <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <button onclick="openFeedback()" class="feedback-btn">
+    <div class="modal-body">
+      <div class="question-box">
+        <h3>
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
-          Feedback
-        </button>
-        
-        <a href="https://internationalgitamahotsav.in/" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold transition-all hover:scale-105">
-          <svg class="icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          Your Question
+        </h3>
+        <p class="question-text" id="modalQuestion"></p>
+      </div>
+
+      <div class="answer-box">
+        <h3>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
-          Return to Main Page
-        </a>
+          Answer
+        </h3>
+        <p class="answer-text" id="modalAnswer">Loading...</p>
       </div>
     </div>
-    
-  <div class="border-t-2 border-gray-200 px-6 py-4 text-center bg-gradient-to-b from-gray-50 to-white">
-       <p class="text-sm text-gray-700 mb-2 font-medium">AI Chatbot powered by <span class="font-bold text-orange-600">Groq + Llama 3.3</span></p>
-    <p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified"></span></p>
-      <div class="flex flex-wrap justify-center items-center gap-6">
-        <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/haryana-logo.jpg" alt="Haryana" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
-        <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/kdb-logo.png" alt="KDB" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
-      </div>
-    </div>
-  </div>
 
-  <div id="aiModal" class="hidden fixed inset-0 flex items-center justify-center p-2" style="z-index: 9999; background: rgba(0,0,0,0.92);">
-    <div class="bg-white rounded-3xl shadow-2xl w-full mx-2 modal-enter overflow-hidden" style="max-width: 850px; max-height: 92vh;">
-      <div class="flex justify-between items-center px-5 py-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-        <h2 class="text-xl font-bold flex items-center gap-2">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-          AI Response
-        </h2>
-        <button id="closeModal" class="hover:bg-white/20 p-2 rounded-full transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>
+    <div class="modal-footer">
+      <button 
+        id="ttsToggle"
+        class="tts-btn bg-gradient-to-r from-purple-500 to-purple-600 text-white hover:from-purple-600 hover:to-purple-700 shadow-lg"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+        </svg>
+        <span id="ttsLabel">Listen</span>
+      </button>
 
-      <div class="p-5 overflow-y-auto bg-gray-50" style="max-height: calc(92vh - 180px);">
-        <div class="mb-5">
-          <div class="flex items-center gap-2 mb-2">
-            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <p class="font-bold text-gray-900">Question:</p>
-          </div>
-          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-2xl border-l-4 border-blue-500">
-            <pre id="modalQuestion" class="whitespace-pre-wrap text-gray-800 leading-relaxed"></pre> 
-          </div>
-        </div>
+      <button 
+        id="copyBtn"
+        class="tts-btn bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 shadow-lg"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        Copy
+      </button>
 
-        <div>
-          <div class="flex items-center justify-between mb-2 flex-wrap gap-2">
-            <div class="flex items-center gap-2">
-              <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-              <p class="font-bold text-gray-900">Answer:</p>
-            </div>
-            <button id="ttsToggle" class="tts-btn bg-gradient-to-r from-orange-500 to-orange-600 text-white">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
-              <span id="ttsLabel">Listen</span>
-            </button>
-          </div>
-          <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-4 rounded-2xl border-l-4 border-orange-500">
-            <pre id="modalAnswer" class="whitespace-pre-wrap text-gray-800 text-sm leading-loose devanagari"></pre>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-t-2 border-gray-200 p-3 bg-white flex justify-center gap-2">
-        <button id="copyBtn" class="flex items-center gap-1 px-4 py-2 bg-white border-2 border-gray-300 rounded-xl hover:bg-gray-50 transition text-sm font-semibold">
-          <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-          Copy
-        </button>
-        <button onclick="openFeedback()" class="feedback-btn feedback-btn-small">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-          </svg>
-          Rate Us
-        </button>
-        <button id="closeBtn" class="flex items-center gap-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-5 py-2 rounded-xl hover:from-blue-700 hover:to-blue-800 transition text-sm font-bold shadow-lg">
-          Close
-        </button>
-      </div>
+      <button 
+        id="closeModal"
+        class="tts-btn bg-gradient-to-r from-gray-500 to-gray-600 text-white hover:from-gray-600 hover:to-gray-700 shadow-lg"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+        Close
+      </button>
     </div>
   </div>
+</div>
 
-  <div id="feedbackModal">
-    <div class="feedback-modal-content">
-      <div class="feedback-modal-header">
-        <h2 class="text-xl font-bold flex items-center gap-1">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-          </svg>
-          Feedback
-        </h2>
-        <button onclick="closeFeedback()" class="feedback-modal-close">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
+<!-- Feedback Modal -->
+<div id="feedbackModal" class="feedback-modal">
+  <div class="feedback-modal-content">
+    <div class="feedback-modal-header">
+      <h2 class="text-xl font-bold">📝 Share Your Feedback</h2>
+      <button class="close-btn" onclick="closeFeedback()" style="width: 36px; height: 36px; font-size: 24px;">&times;</button>
+    </div>
+    <div class="feedback-modal-body">
+      <div id="iframeLoader" class="iframe-loader">
+        <div class="spinner"></div>
+        <p style="color: #64748b; font-weight: 600;">Loading feedback form...</p>
       </div>
-      
-      <div style="position: relative; flex: 1;">
-        <div id="iframeLoader" class="iframe-loader" style="display: none;">
-          <div class="spinner"></div>
-          <p style="color: #64748b; font-weight: 600;">Loading feedback form...</p>
-        </div>
-        <iframe id="feedbackIframe" src=""></iframe>
-      </div>
+      <iframe id="feedbackIframe" frameborder="0"></iframe>
     </div>
   </div>
-
-  <div id="quizModal">
-    <div class="quiz-modal-content">
-      <div class="quiz-modal-header">
-        <h2 class="text-xl font-bold flex items-center gap-2">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-          </svg>
-          Gita Quiz Chatbot
-        </h2>
-        <button onclick="closeQuizChatbot()" class="quiz-modal-close">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
-      
-      <div style="position: relative; flex: 1;">
-        <div id="quizIframeLoader" class="iframe-loader" style="display: none;">
-          <div class="spinner"></div>
-          <p style="color: #64748b; font-weight: 600;">Loading Quiz Chatbot...</p>
-        </div>
-        <iframe id="quizIframe" src=""></iframe>
-      </div>
-    </div>
-  </div>
-
-  <button id="musicToggle" class="music-control-btn">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
-    </svg>
-    <span id="musicLabel">Play Flute</span>
-  </button>
-
-  <audio id="fluteMusic" loop>
-    <source src="https://vksinglakkr.github.io/IGM2025/audio/gentle-flute.mp3" type="audio/mpeg">
-  </audio>
+</div>
 
   <script>
-const gitaQuestions = {
-  '📖 GITA WISDOM': {
-    '🌟 BASIC TEACHINGS': [
-      "What is the main message of Bhagavad Gita?",
-      "Who spoke the Bhagavad Gita and to whom?",
-      "Where was the Bhagavad Gita spoken?",
-      "What is Karma according to Gita?",
-      "What is Dharma in simple words?",
-      "What does Gita say about soul?",
-      "What is the difference between body and soul?",
-      "What are the three paths taught in Gita?",
-      "What is Yoga according to Gita?",
-      "What does Gita teach about mind control?"
+// Sample Questions Database for Autocomplete
+const SAMPLE_QUESTIONS = {
+  statistics: {
+    "Statistical Concepts & Definitions": [
+      "What is a Price Index?",
+      "Explain Consumer Price Index (CPI) in simple terms",
+      "What is the difference between mean, median, and mode?",
+      "What does fertility rate indicate?",
+      "How is population density calculated?",
+      "What is Gross Domestic Product (GDP)?",
+      "Explain what literacy rate means",
+      "What is infant mortality rate and why is it important?",
+      "What does per capita income signify?",
+      "What is the difference between rural and urban population?"
+    ],
+    "Statistical Methods & Interpretation": [
+      "How do you calculate growth rate?",
+      "What is the base year in index numbers?",
+      "How to interpret percentage changes in statistics?",
+      "What is meant by constant prices vs current prices?",
+      "How is workforce participation rate calculated?",
+      "What does cropped area mean in agricultural statistics?",
+      "How do you measure industrial production?",
+      "What is the difference between gross and net area?",
+      "How to understand irrigation statistics?",
+      "What does enumeration mean in census?"
+    ],
+    "Economic & Development Indicators": [
+      "What are key indicators of economic development?",
+      "How is poverty measured statistically?",
+      "What role do statistics play in policy making?",
+      "How do we measure employment and unemployment?",
+      "What is meant by capital formation?",
+      "Explain bank deposit and credit statistics",
+      "What are cooperative society statistics?",
+      "How is agricultural productivity measured?",
+      "What do education enrollment ratios indicate?",
+      "How is health infrastructure assessed statistically?"
+    ],
+    "Data Collection & Census": [
+      "What is a census and how is it conducted?",
+      "What is the difference between census and survey?",
+      "How often is population census conducted in India?",
+      "What is sample registration system?",
+      "How are vital statistics collected?",
+      "What is meant by scheduled castes and tribes in census?",
+      "How is economic census different from population census?",
+      "What data is collected in agricultural census?",
+      "How are crime statistics compiled?",
+      "What is civil registration system?"
     ]
   },
-  
-  '🌅 DAILY LIFE': {
-    '💡 PRACTICAL WISDOM': [
-      "How to stay peaceful in difficult times?",
-      "What to do when we fail in something?",
-      "How to control anger according to Gita?",
-      "What does Gita say about hard work?",
-      "Should we worry about results of our actions?",
-      "How to be happy according to Gita?",
-      "What is the right way to do our duty?",
-      "How to handle fear according to Gita?",
-      "What does Gita say about self-confidence?",
-      "How to stay focused on our goals?"
-    ]
-  },
-  
-  '❤️ RELATIONSHIPS': {
-    '👨‍👩‍👧‍👦 FAMILY AND FRIENDS': [
-      "How should we treat our parents?",
-      "What does Gita say about respecting elders?",
-      "How to be a good friend according to Gita?",
-      "What to do when someone hurts us?",
-      "Should we forgive others per Gita?",
-      "How to help people in need?",
-      "What does Gita say about kindness?",
-      "How to handle disagreements with friends?",
-      "What is true love according to Gita?",
-      "How to maintain good relationships?"
-    ]
-  },
-  
-  '📚 STUDIES AND WORK': {
-    '✍️ LEARNING AND EFFORT': [
-      "What does Gita teach about learning?",
-      "How to handle exam stress per Gita?",
-      "What to do when studies feel difficult?",
-      "How to stay disciplined in studies?",
-      "What does Gita say about hard work?",
-      "Should we compete with others?",
-      "How to handle failure in exams?",
-      "What is the value of knowledge per Gita?",
-      "How to balance studies and play?",
-      "What makes a true teacher according to Gita?"
-    ]
-  },
-  
-  '💭 EMOTIONS': {
-    '🎭 FEELINGS AND MIND': [
-      "How to control negative thoughts?",
-      "What to do when feeling sad?",
-      "How to overcome jealousy per Gita?",
-      "What does Gita say about patience?",
-      "How to develop positive thinking?",
-      "What is the cause of sadness per Gita?",
-      "How to deal with disappointment?",
-      "What does Gita teach about courage?",
-      "How to build inner strength?",
-      "What is peace of mind according to Gita?"
-    ]
-  },
-  
-  '🕉️ SPIRITUALITY': {
-    '🙏 SPIRITUAL BASICS': [
-      "Who is God according to Bhagavad Gita?",
-      "What is devotion or Bhakti?",
-      "How to pray according to Gita?",
-      "What is meditation in simple words?",
-      "Why should we read holy books?",
-      "What is the purpose of life per Gita?",
-      "What happens after death according to Gita?",
-      "What are good qualities to develop?",
-      "What is true happiness per Gita?",
-      "How to become a better person?"
+  data: {
+    "Population & Demographics": [
+      "What is the total population of Haryana?",
+      "Show me district-wise population distribution",
+      "What is the literacy rate in Haryana?",
+      "Give me rural and urban population breakdown",
+      "What is the sex ratio in Haryana districts?",
+      "Show scheduled caste population statistics",
+      "What is the population density in Ambala district?",
+      "How many villages and towns are in Haryana?",
+      "What is the working population in Haryana?",
+      "Show me age distribution of population"
+    ],
+    "Agriculture & Irrigation": [
+      "What is the total cropped area in Haryana?",
+      "Show me foodgrain production statistics",
+      "What is the irrigated area in Haryana?",
+      "Give me district-wise wheat production data",
+      "How many tubewells are there in Haryana?",
+      "What is the fertilizer consumption in the state?",
+      "Show me area under rice cultivation",
+      "What is the livestock population in Haryana?",
+      "Give me data on dairy production",
+      "What is the area under horticulture crops?"
+    ],
+    "Industry & Economy": [
+      "How many registered factories are in Haryana?",
+      "Show me industrial production data",
+      "What is the per capita income of Haryana?",
+      "Give me banking statistics for Haryana",
+      "How many workers are employed in factories?",
+      "Show me district-wise industrial units",
+      "What is the state domestic product?",
+      "Give me cooperative society statistics",
+      "What is the power consumption by industries?",
+      "Show me small scale industries data"
+    ],
+    "Infrastructure & Services": [
+      "How many schools are there in Haryana?",
+      "Give me electricity consumption statistics",
+      "How many hospitals and dispensaries exist?",
+      "What is the road network length in Haryana?",
+      "Show me village electrification data",
+      "How many banking offices are in the state?",
+      "What is the number of registered vehicles?",
+      "Give me data on postal services",
+      "What is the housing construction statistics?",
+      "Show me telecommunication infrastructure data"
+    ],
+    "Education & Health": [
+      "What is the student enrollment in schools?",
+      "How many colleges are in Haryana?",
+      "Give me teacher-student ratio statistics",
+      "What is the enrollment ratio by districts?",
+      "Show me data on technical education institutions",
+      "How many hospital beds are available?",
+      "What is the infant mortality rate?",
+      "Give me family welfare statistics",
+      "What is the birth and death rate?",
+      "Show me data on medical institutions"
+    ],
+    "Revenue & Finance": [
+      "What is the tax revenue of Haryana government?",
+      "Show me expenditure on development schemes",
+      "What is the budget allocation by departments?",
+      "Give me data on state government employees",
+      "What are the small savings collections?",
+      "Show me municipal corporation finances",
+      "What is the stamp duty collection?",
+      "Give me data on public debt",
+      "What is the capital expenditure?",
+      "Show me GST collection statistics"
+    ],
+    "Transport & Communication": [
+      "How many vehicles are registered in Haryana?",
+      "What is the total road length in the state?",
+      "Show me district-wise vehicle registration",
+      "How many road accidents occurred?",
+      "What is the progress of Haryana Roadways?",
+      "Give me data on national highways",
+      "How many driving licenses were issued?",
+      "Show me railway statistics for Haryana",
+      "What is the rural connectivity status?",
+      "Give me data on motor vehicle taxation"
+    ],
+    "Employment & Labor": [
+      "What is the employment in organized sector?",
+      "How many people registered at employment exchanges?",
+      "Show me industrial dispute statistics",
+      "What are the average wages in different sectors?",
+      "Give me data on trade unions",
+      "What is the vocational training enrollment?",
+      "Show me occupation-wise employment data",
+      "What is the worker participation rate?",
+      "Give me data on registered establishments",
+      "What are the earnings in factories?"
     ]
   }
 };
-const gitaQuestionsHindi = {
-  '📖 गीता ज्ञान': {
-    '🌟 मूल शिक्षाएं': [
-      "भगवद गीता का मुख्य संदेश क्या है?",
-      "भगवद गीता किसने और किसको सुनाई?",
-      "भगवद गीता कहां बोली गई थी?",
-      "गीता के अनुसार कर्म क्या है?",
-      "सरल शब्दों में धर्म क्या है?",
-      "आत्मा के बारे में गीता क्या कहती है?",
-      "शरीर और आत्मा में क्या अंतर है?",
-      "गीता में बताए गए तीन मार्ग कौन से हैं?",
-      "गीता के अनुसार योग क्या है?",
-      "मन पर नियंत्रण के बारे में गीता क्या सिखाती है?"
-    ]
-  },
-  
-  '🌅 दैनिक जीवन': {
-    '💡 व्यावहारिक ज्ञान': [
-      "कठिन समय में शांत कैसे रहें?",
-      "जब हम किसी चीज में असफल हों तो क्या करें?",
-      "गीता के अनुसार क्रोध को कैसे नियंत्रित करें?",
-      "मेहनत के बारे में गीता क्या कहती है?",
-      "क्या हमें परिणाम की चिंता करनी चाहिए?",
-      "गीता के अनुसार खुश कैसे रहें?",
-      "कर्तव्य करने का सही तरीका क्या है?",
-      "गीता के अनुसार डर से कैसे निपटें?",
-      "आत्मविश्वास के बारे में गीता क्या कहती है?",
-      "अपने लक्ष्य पर कैसे केंद्रित रहें?"
-    ]
-  },
-  
-  '❤️ संबंध': {
-    '👨‍👩‍👧‍👦 परिवार और मित्र': [
-      "हमें अपने माता-पिता के साथ कैसा व्यवहार करना चाहिए?",
-      "बड़ों का सम्मान करने के बारे में गीता क्या कहती है?",
-      "गीता के अनुसार अच्छा मित्र कैसे बनें?",
-      "जब कोई हमें दुख पहुंचाए तो क्या करें?",
-      "क्या हमें दूसरों को माफ करना चाहिए?",
-      "जरूरतमंद लोगों की मदद कैसे करें?",
-      "दयालुता के बारे में गीता क्या कहती है?",
-      "दोस्तों से असहमति को कैसे संभालें?",
-      "गीता के अनुसार सच्चा प्यार क्या है?",
-      "अच्छे संबंध कैसे बनाए रखें?"
-    ]
-  },
-  
-  '📚 पढ़ाई और काम': {
-    '✍️ सीखना और प्रयास': [
-      "सीखने के बारे में गीता क्या सिखाती है?",
-      "परीक्षा के तनाव को कैसे संभालें?",
-      "जब पढ़ाई मुश्किल लगे तो क्या करें?",
-      "पढ़ाई में अनुशासित कैसे रहें?",
-      "मेहनत के बारे में गीता क्या कहती है?",
-      "क्या हमें दूसरों से प्रतिस्पर्धा करनी चाहिए?",
-      "परीक्षा में असफलता को कैसे संभालें?",
-      "गीता के अनुसार ज्ञान का मूल्य क्या है?",
-      "पढ़ाई और खेल में संतुलन कैसे बनाएं?",
-      "गीता के अनुसार सच्चा गुरु कौन है?"
-    ]
-  },
-  
-  '💭 भावनाएं': {
-    '🎭 भावनाएं और मन': [
-      "नकारात्मक विचारों को कैसे नियंत्रित करें?",
-      "उदास महसूस होने पर क्या करें?",
-      "गीता के अनुसार ईर्ष्या पर कैसे काबू पाएं?",
-      "धैर्य के बारे में गीता क्या कहती है?",
-      "सकारात्मक सोच कैसे विकसित करें?",
-      "गीता के अनुसार दुख का कारण क्या है?",
-      "निराशा से कैसे निपटें?",
-      "साहस के बारे में गीता क्या सिखाती है?",
-      "आंतरिक शक्ति कैसे बनाएं?",
-      "गीता के अनुसार मन की शांति क्या है?"
-    ]
-  },
-  
-  '🕉️ आध्यात्मिकता': {
-    '🙏 आध्यात्मिक मूल बातें': [
-      "भगवद गीता के अनुसार भगवान कौन हैं?",
-      "भक्ति क्या है?",
-      "गीता के अनुसार प्रार्थना कैसे करें?",
-      "सरल शब्दों में ध्यान क्या है?",
-      "हमें पवित्र पुस्तकें क्यों पढ़नी चाहिए?",
-      "गीता के अनुसार जीवन का उद्देश्य क्या है?",
-      "गीता के अनुसार मृत्यु के बाद क्या होता है?",
-      "कौन से अच्छे गुण विकसित करने चाहिए?",
-      "गीता के अनुसार सच्ची खुशी क्या है?",
-      "बेहतर इंसान कैसे बनें?"
-    ]
-  }
-};
-// ========================================
-// UPDATED EVENT QUESTIONS - IGM 2025
-// Based on actual festival data (Nov 15 - Dec 5, 2025)
-// ========================================
 
-const eventQuestions = {
-  '🕉️ Events-related Information': {
-    '🕉️ Religious & Spiritual Events': [
-  "🕉️ When is Srimad Bhagavad Gita recitation (Paath) and Yagya?",
-  "🕉️ When is Srimad Bhagavad Gita Yagya and Gita Poojan?",
-  "🔥 When is the final oblation (Ahuti) of the Gita Yagya and the worship of the Banyan tree?",
-  "📘 When is the International Gita Seminar?",
-  "🏃‍♂️ When is the Gita Run?",
-  "🚩 When is the Gita Sadbhavana Yatra?",
-  "🎶 When are the Bhajan Sandhya and Maha Aarti?",
-  "🪔 When is the Deep Daan ceremony?",
-  "🎓 When is the 18,000 students’ Gita Vaishvik Path?",
-  "🚩 When is the Gita Shobha Yatra?",
-  "🌏 When is the 48 Kos Tirth Sammelan?",
-  "🛕 When is the Virat Sant Sammelan?",
-  "🕉️ When is Swami Rambhadracharya's discourse?",
-  "📚 When is the Bhagavat Katha?",
-  "🎓 When are the Gita Shloka recitation, speech, essay writing, painting, rangoli, and craft competitions for students?",
-  "🎓 Student competitions: Gita Shloka recitation, speech, essay writing, painting, rangoli, and craft — when are they held?",
-  "🕉️ Who will deliver the Gita Panchamrit discourse?",
-  "🕉️ When is Swami Rambhadracharya's discourse?",
-  "📖 When will the Bhagavat Katha take place?",
-  "🕉️ Iskcon Srimad Bhagavad Gita Katha?",
-  "🕉️ Iskcon Srimad Bhagavatam Katha?",
-  "🕉️ Gita Yajna ISKCON?",
-  "🕉️ ISKCON Pravachan?",
-  "🕉️ ISKCON Jyotisar events?",
-  "🕉️ Daily Harinam Sankirtan?",
-  "🕉️ ISKCON Gita Exhibition?",
-  "🕉️ ISKCON December 1?",
-  "🌊 Events held at Brahma Sarovar",
-  "🌊 Events held at Sannihit Sarovar",
-  "🛕 Events held at Jyotisar",
-  "🎓 Events held at Kurukshetra University",
-  "🏢 Events held at KDB Office (Opp.)",
-  "🌿 Events held at Keshav Park",
-  "🌏 Events held at 48 Kos Kurukshetra Bhumi"      
-    ],
- 
-'🎭 Cultural Programs': [
-  "🎭 When is the Cultural Program?",
-  "🌐💡 When is the Light and Sound Show on 'Vishwaroop' through 3D Mapping?",
-  "💡🎶 When is the Light and Sound Show based on Mahabharata and Gita?",
-   "🏛️ When are the State Level Exhibitions?"
-],
-  '📅 Datewise Events': [
-      "Events on 15th Nov.?",
-      "Events on 16th Nov.?",
-      "Events on 17th Nov.?",
-      "Events on 18th Nov.?",
-      "Events on 19th Nov.?",
-      "Events on 20th Nov.?",
-      "Events on 21st Nov.?",
-      "Events on 22nd Nov.?",
-      "Events on 23rd Nov.?",
-      "Events on 24th Nov.?",
-      "Events on 25th Nov.?",
-      "Events on 26th Nov.?",
-      "Events on 27th Nov.?",
-      "Events on 28th Nov.?",
-      "Events on 29th Nov.?",
-      "Events on 30th Nov.?",
-      "Events on 1st Dec.?",
-      "Events on 2nd Dec.?",
-      "Events on 3rd Dec.?",
-      "Events on 4th Dec.?",
-      "Events on 5th Dec.?"
-    ],
-    
-  '🎪 Inaugural Events': [
-    "🌐 When is the International Gita Seminar inauguration?",
-    "🛕 When is the Virat Sant Sammelan inauguration?",
-    "🕉️ When will the Panchamrit discourse begin?",
-    "📖 When does the Bhagavat Katha start?",
-    "🏛️ When are the State Level Exhibitions inaugurated?",
-    "🌍 When will the pavilions of Haryana, MP, and partner countries open?",
-    "🎨 When does the Crafts Mela begin?"
-  ]},
-  '🎭 Evening Cultural Programme': {
-  '🎭 Evening Cultural Programme': [
-    "🎭 Evening cultural programme on 24th November?",
-    "🎭 Evening cultural programme on 25th November?",
-    "🎭 Evening cultural programme on 26th November?",
-    "🎭 Evening cultural programme on 27th November?",
-    "🎭 Evening cultural programme on 28th November?",
-    "🎭 Evening cultural programme on 29th November?",
-    "🎭 Evening cultural programme on 30th November?",
-    "🎭 Evening cultural programme on 1st December?",
-    "🎭 When is Padmini Kolhapure performing?",
-    "🎭 Krishna Natya Prastuti timing?",
-    "🎭 When is Kanwar Singh Grewal coming?",
-    "🎭 Sufi music performance date?",
-    "🎭 Punjabi folk music programme?",
-    "🎭 When is Puneet Issar performing?",
-    "🎭 When is Suresh Wadkar singing?",
-    "🎭 When is Ramayana Manchan?",
-    "🎭 Ravi Mohan Group performance?",
-    "🎭 Ramayana theatrical performance?",
-    "🎭 When is Dr. Hariom Panwar coming?",
-    "🎭 Poetry recitation programme?",
-    "🎭 When is Sadhvi Purnima Ji?",
-    "🎭 Bhajan Sandhya schedule?",
-    "🎭 When is Anup Jalota performing?",
-  ]
-}, 
+let selectedLanguage = 'english';
+let selectedQueryType = 'statistics';
 
-'🏥 Facilities': {
-  '🏥 Facilities': [
-    "🅿️ Where to park?",
-    "🚻 Where is toilet?",
-    "💧 Drinking water?",
-    "🍽️ Where to eat?",
-    "☕ Tea/Snacks available?",
-    "🏥 Medical facility?",
-    "🏧 ATM location?",
-    "🚗 Car parking?",
-    "🚌 Bus parking?",
-    "📍 Facilities near Brahma Sarovar?"
-  ]
-},
-
-  '🚨 Emergency': {
-  '🚨 Emergency': [
-    "🚨 Emergency helpline?",
-    "🚑 Rescue team contact?",
-    "🔥 Fire emergency?",
-    "🏥 Medical emergency?",
-    "🏥 Ambulance?",
-    "👮 Police contact?",
-    "👶 Lost my child",
-    "📞 Child helpline number?",
-    "🔍 Lost and found?",
-    "ℹ️ Tourist helpline?"
-  ]},
-"🛍️ Shopping & Stalls": {
-  "🥫 Food Products": [
-    "Where to buy pickles?",
-    "Achaar stalls location?",
-    "Muraba shops?",
-    "Food products stalls?"
-  ],
-  "🎨 Handicrafts & Artisan": [
-    "Handicraft stalls location?",
-    "Where to find handmade items?",
-    "Artisan work shops?",
-    "Traditional handicrafts?",
-    "Best handicraft stalls?"
-  ],
-  "👗 Textiles & Garments": [
-    "Garment stalls?",
-    "Readymade clothes shops?",
-    "Saree stalls location?",
-    "Handloom sarees?",
-    "Traditional textile stalls?"
-  ],
-  "💍 Jewelry & Accessories": [
-    "Artificial jewelry stalls?",
-    "Where to buy jewelry?",
-    "Ornaments shops?",
-    "Fashion accessories?"
-  ],
-  "🧵 Embroidery Work": [
-    "Embroidery work stalls?",
-    "Where to find embroidery?",
-    "Hand embroidery shops?",
-    "Zari work stalls?",
-    "Phulkari stalls?"
-  ],
-  "👞 Leather Products": [
-    "Leather products stalls?",
-    "Where to buy jutti?",
-    "Leather bags shops?",
-    "Footwear stalls?"
-  ],
-  "🧣 Woolen Items": [
-    "Woolen shawls?",
-    "Where to buy shawl?",
-    "Pashmina stalls?",
-    "Winter wear shops?"
-  ],
-  "🪵 Wood & Bamboo": [
-    "Wood carving stalls?",
-    "Wooden handicrafts?",
-    "Bamboo products?",
-    "Cane work shops?"
-  ],
-  "🖼️ Painting & Art": [
-    "Madhubani painting stalls?",
-    "Pattachitra shops?",
-    "Kalamkari stalls?",
-    "Traditional art?"
-  ],
-  "🏠 Home & Kitchen": [
-    "Crockery stalls?",
-    "Kitchen items shops?",
-    "Utensils stalls?",
-    "Household items?"
-  ],
-  "🧸 Toys & Kids": [
-    "Toy stalls location?",
-    "Where to buy toys?",
-    "Kids items shops?"
-  ],
-  "📋 Category Based": [
-    "SARAS stalls list?",
-    "Where are SARAS stalls?",
-    "NZCC stalls location?",
-    "Commercial shops?",
-    "National awardee stalls?",
-    "Artisan card holder stalls?"
-  ],
-  "🗺️ State Based": [
-    "Haryana stalls?",
-    "Uttar Pradesh handicrafts?",
-    "Tamil Nadu products?",
-    "Rajasthan stalls?",
-    "Gujarat mirror work?",
-    "West Bengal handloom?",
-    "Punjab phulkari?",
-    "Kashmir pashmina?"
-  ],
-  "✨ Specialty Items": [
-    "Block printing stalls?",
-    "Zari work shops?",
-    "Hand painting work?",
-    "Bamboo crafts?",
-    "Pottery stalls?"
-  ],
-  "🔢 Stall Numbers": [
-    "Stall number 768?",
-    "What is in stall 190?",
-    "Shop number 15 details?"
-  ],
-  "🛒 Shopping Guide": [
-    "What to buy at festival?",
-    "Shopping guide?",
-    "Best items to buy?",
-    "Famous items?",
-    "Popular stalls?",
-    "Must visit stalls?"
-  ]
-},
-  'ℹ️ IGM Basic Information': {
-    '📅 Event Dates': [
-      "When is International Gita Mahotsav 2025?",
-      "When does IGM start?",
-      "When does IGM end?",
-      "How many days is the festival?",
-      "What are the dates of Gita Mahotsav?",
-      "When is Gita Jayanti?",
-      "What is the main day?",
-      "Duration of IGM 2025?"
-    ],
-    
-    'ℹ️ About IGM': [
-      "What is International Gita Mahotsav?",
-      "Why is it celebrated?",
-      "What happens at IGM?",
-      "What is this festival about?",
-      "Why do people come here?"
-    ],
-    
-    '🎫 Entry & Fees': [
-      "Is entry free?",
-      "Do I need a ticket?",
-      "How much is the entry fee?",
-      "Do I need to register?",
-      "Can I enter without registration?"
-    ],
-    
-    '⏰ Timings': [
-      "What time does it open?",
-      "What time does it close?",
-      "What are the timings?",
-      "When does Aarti start?",
-      "What time are cultural programs?",
-      "When is Light & Sound show?",
-      "Is it open daily?"
-    ]
-  },
+// Initialize radio button states
+document.addEventListener('DOMContentLoaded', () => {
+  updateRadioSelection();
   
-  '🕉️ Religious Significance': {
-    '🕉️ Hindu Significance': [
-      "Why is Kurukshetra important for Hindus?",
-      "What is religious importance of Kurukshetra?",
-      "Why is Kurukshetra holy?",
-      "What is Dharma Kshetra?",
-      "Why is Kurukshetra sacred?",
-      "Why do Hindus visit Kurukshetra?"
-    ],
-    
-    '🪯 Sikh Connection': [
-      "Why is Kurukshetra important for Sikhs?",
-      "Did Guru Nanak visit Kurukshetra?"
-    ],
-    
-    '☸️ Buddhism & Jainism': [
-      "Is Kurukshetra important for Buddhists?",
-      "Did Buddha visit Kurukshetra?",
-      "Is it important for Jains?",
-      "Buddhist significance of Kurukshetra?"
-    ]
-  },
-  
-  '🗺️ Sacred Places': {
-    '🌊 Brahma Sarovar': [
-      "What is Brahma Sarovar?",
-      "Where is Brahma Sarovar?",
-      "Why is Brahma Sarovar important?",
-      "Can I take bath in Brahma Sarovar?",
-      "What is the main venue?",
-      "Is it open all day?",
-      "What is at Brahma Sarovar?"
-    ],
-    
-    '💧 Sannihit Sarovar': [
-      "What is Sannihit Sarovar?",
-      "Where is Sannihit Sarovar?",
-      "How far is Sannihit Sarovar?",
-      "Can I do Pind Daan here?",
-      "What is confluence of seven Saraswatis?",
-      "Why is Sannihit important?"
-    ],
-    
-    '🌳 Jyotisar': [
-      "Where was Gita spoken?",
-      "Where is Jyotisar?",
-      "Where did Krishna speak Gita?",
-      "Where is the banyan tree?",
-      "Where is Krishna Arjuna chariot?",
-      "Is there Light & Sound show at Jyotisar?"
-    ],
-    
-    '🏛️ Museums': [
-      "Are there museums?",
-      "What museums can I visit?",
-      "Where is Panorama?",
-      "What is Kurukshetra Panorama?",
-      "Is there Krishna Museum?",
-      "Where is Sheikh Chilli's Tomb?",
-      "Is there planetarium?",
-      "What are museum timings?",
-      "What is museum entry fee?"
-    ]
-  },
-  
-  '📜 Historical & Spiritual': {
-    '⚔️ Mahabharata War': [
-      "What happened in Kurukshetra?",
-      "What is Mahabharata war?",
-      "Who fought the war?",
-      "How long was the war?",
-      "Who were Pandavas and Kauravas?",
-      "Why was war fought here?"
-    ],
-    
-    '📖 Bhagavad Gita': [
-      "What is Bhagavad Gita?",
-      "Where was Gita spoken?",
-      "When was Gita spoken?",
-      "Who spoke the Gita?",
-      "Gita teachings?"
-    ],
-    
-    '🕰️ Ancient History': [
-      "What is history of Kurukshetra?",
-      "What are ancient names of Kurukshetra?",
-      "What is Brahma Kshetra?",
-      "How old is Kurukshetra?",
-      "What is Vedic connection?",
-      "Historical background?"
-    ],
-    
-    '🚶 48 Kos Parikrama': [
-      "What is 48 Kos?",
-      "What is 48 Kos Parikrama?",
-      "How long is parikrama?",
-      "What is the distance of parikrama?",
-      "How many tirthas are there?",
-      "When to do parikrama?"
-    ]
-  },
-  
-  '🚗 Visitor Information': {
-    '🛣️ How to Reach': [
-      "How to reach Kurukshetra?",
-      "How to reach from Delhi?",
-      "How to reach from Chandigarh?",
-      "Which is nearest airport?",
-      "Which railway station?",
-      "Are there buses?",
-      "Can I come by car?",
-      "Which highway to take?",
-      "How far from Delhi?",
-      "How far from Chandigarh?"
-    ],
-    
-    '🌤️ Weather & Clothing': [
-      "What is the weather in December?",
-      "Is it cold?",
-      "What should I wear?",
-      "Do I need warm clothes?",
-      "Should I bring jacket?",
-      "What temperature in December?",
-      "Will it be foggy?",
-      "Will it rain?"
-    ],
-    
-    '🍽️ Food Options': [
-      "Where can I eat?",
-      "Is food available?",
-      "Is free food available?",
-      "Where is langar?",
-      "Are there restaurants?",
-      "What food is available?",
-      "Is non-veg allowed?",
-      "Is alcohol allowed?",
-      "What is Haryana special food?"
-    ],
-    
-    '📋 Safety & Rules': [
-      "What are the rules?",
-      "What is not allowed?",
-      "Can I smoke?",
-      "Can I bring plastic bags?",
-      "Are pets allowed?",
-      "Can I take photos?",
-      "Do I need ID card?",
-      "What should I not do?",
-      "What to do if I lose something?",
-      "Where to report lost items?",
-      "What are emergency numbers?"
-    ]
-  },
-  
-  '🎭 Activities & Programs': {
-    '🏆 Competitions': [
-      "What competitions are there?",
-      "Is there Gita quiz?",
-      "What activities are organized?",
-      "Are there cultural programs?",
-      "Is there dance performance?",
-      "Are there exhibitions?",
-      "Can I participate in competitions?",
-      "Is there yoga session?",
-      "Are there workshops?"
-    ],
-    
-    '⏱️ Trip Planning': [
-      "How many days needed?",
-      "How many days should I plan?",
-      "What is minimum time?",
-      "Can I cover in one day?",
-      "Should I stay overnight?",
-      "What to see first?",
-      "What is best day to visit?"
-    ]
-  },  
-  
-  '🏨 Accommodation (Dharamshalas)': {
-  '🏨 Accommodation (Dharamshalas)': [
-    "🏠 Dharamshalas available?",
-    "💰 Free / Donation-based accommodation?",
-    "🛏️ Single Bedroom?",
-    "🛏️ Double Bedroom?",
-    "🛏️ Dormitory Bedroom?",
-    "❄️ AC rooms available?",
-    "🅿️ Parking available?",
-    "🍽️ Food available?",
-    "🚿 Hot water available?",
-    "⚡ Generator available?",
-    "💧 Drinking water facility?",
-    "🕉️ Temple in dharamshala?",
-    "📺 TV in rooms?",
-    "🔄 Dharamshala with basic facilities?",
-    "🔄 AC and food both available?",
-    "🏘️ Aggarwal Dharamshala where?",
-    "🏘️ Jaat Dharamshala?",
-    "🕉️ Gurudwara accommodation?",
-    "🎪 Hall for gathering?"
-  ]
-}};
-
-const eventQuestionsHindi = {
-  '🕉️ कार्यक्रम से संबंधित जानकारी': {
-    '🕉️ धार्मिक कार्यक्रम': [
-    "🕉️ श्रीमद्भागवत गीता पाठ एवं यज्ञ कब है?",
-    "🕉️ श्री मद्भगवद्गीता यज्ञ एवं गीता पूजन कब है?",  
-    "🔥 गीता यज्ञ की पूर्ण आहूति एवं वट-वृक्ष पूजन कब है?",
-    "🌐 अन्तर्राष्ट्रीय गीता संगोष्ठी कब है?",
-    "🏃‍♂️ Gita Run कब है?",
-    "🚶‍♀️ गीता सद्भावना यात्रा कब है?",   
-    "🎶 भजन संध्या और महाआरती का समय क्या है?",
-    "👧👦 18000 विद्यार्थियों का वैश्विक गीता पाठ कब है?",
-    "🛕 गीता शोभा यात्रा कब है?",
-    "🪔 दीप दान समारोह कब है?",
-    "🌏 48 कोस तीर्थ सम्मेलन कब है?",
-    "🛕 विराट संत सम्मेलन कब है?",
-    "📿 गीता पंचामृत प्रवचन कौन दे रहे हैं?",
-    "🕉️ स्वामी रामभद्राचार्य जी का प्रवचन कब है?",
-    "📖 भागवत कथा कब है?",
-    "🎓 विद्यार्थियों के लिए गीता श्लोकोच्चारण, भाषण, निबंध लेखन, चित्रकला, रंगोली एवं क्रॉफ्ट प्रतियोगिताएं कब हैं?"
-],
-    '🎭 सांस्कृतिक कार्यक्रम': [
-  "🎭 सांस्कृतिक कार्यक्रम कब है?",
-  "💡🎶 महाभारत एवं गीता पर आधारित लाइट एंड साउंड शो कब है?",
-  "🌐💡 3D मैपिंग के माध्यम से 'विश्वरूप' पर लाईट एंड साउंड शो कब है?"
-],
-    '📅 तिथि-वार कार्यक्रम': [
-      "15 नवम्बर के कार्यक्रम?",
-      "16 नवम्बर के कार्यक्रम?",
-      "17 नवम्बर के कार्यक्रम?",
-      "18 नवम्बर के कार्यक्रम?",
-      "19 नवम्बर के कार्यक्रम?",
-      "20 नवम्बर के कार्यक्रम?",
-      "21 नवम्बर के कार्यक्रम?",
-      "22 नवम्बर के कार्यक्रम?",
-      "23 नवम्बर के कार्यक्रम?",
-      "24 नवम्बर के कार्यक्रम?",
-      "25 नवम्बर के कार्यक्रम?",
-      "26 नवम्बर के कार्यक्रम?",
-      "27 नवम्बर के कार्यक्रम?",
-      "28 नवम्बर के कार्यक्रम?",
-      "29 नवम्बर के कार्यक्रम?",
-      "30 नवम्बर के कार्यक्रम?",
-      "1 दिसम्बर के कार्यक्रम?",
-      "2 दिसम्बर के कार्यक्रम?",
-      "3 दिसम्बर के कार्यक्रम?",
-      "4 दिसम्बर के कार्यक्रम?",
-      "5 दिसम्बर के कार्यक्रम?"
-    ],
-  '🌐 स्थलवार कार्यक्रम': [
-    "🌊 ब्रह्मसरोवर पर आयोजित कार्यक्रम",
-    "🌊 सन्निहित सरोवर पर आयोजित कार्यक्रम",
-    "🛕 ज्योतिसर पर आयोजित कार्यक्रम",
-    "🎓 कुरुक्षेत्र विश्वविद्यालय में आयोजित कार्यक्रम",
-    "🏢 केडीबी कार्यालय (सामने) पर आयोजित कार्यक्रम",
-    "🌿 केशव पार्क में आयोजित कार्यक्रम",
-    "🌏 48 कोस कुरुक्षेत्र भूमि पर आयोजित कार्यक्रम"
-  ],
-  '📚 शैक्षिक कार्यशालाएँ': [
-    "📘 अंतर्राष्ट्रीय गीता संगोष्ठी कब आयोजित होगी?",
-    "🎓 छात्रों के लिए गीता श्लोक वाचन, भाषण, निबंध लेखन, चित्रकला, रंगोली और क्राफ्ट प्रतियोगिताएँ कब होंगी?",
-    "🕉️ गीता पंचामृत प्रवचन कौन देंगे?",
-    "🕉️ स्वामी रामभद्राचार्य जी का प्रवचन कब होगा?",
-    "📖 भागवत कथा कब आयोजित होगी?"
-  ],
-  '🎪 उद्घाटन कार्यक्रम': [
-    "🌐 अंतर्राष्ट्रीय गीता संगोष्ठी का उद्घाटन कब है?",
-    "🛕 विराट संत सम्मेलन का उद्घाटन कब होगा?",
-    "🕉️ पंचामृत प्रवचन का आरंभ कब होगा?",
-    "📖 भागवत कथा का शुभारंभ कब है?",
-    "🏛️ राज्य स्तरीय प्रदर्शनियों का उद्घाटन कब है?",
-    "🌍 हरियाणा, मध्यप्रदेश तथा सहभागी देशों के पवेलियनों का उद्घाटन कब है?",
-    "🎨 क्राफ्ट्स मेला कब शुरू होगा?"
-  ],
-
-  '🏛️ प्रदर्शनियाँ': [
-    "🏛️ राज्य स्तरीय प्रदर्शनियाँ कब आयोजित होंगी?"
-  ]},
-  '🎭 शाम का सांस्कृतिक कार्यक्रम': {
-  '🎭 शाम का सांस्कृतिक कार्यक्रम': [
-    "🎭 24 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
-    "🎭 25 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
-    "🎭 26 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
-    "🎭 27 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
-    "🎭 28 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
-    "🎭 29 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
-    "🎭 30 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
-    "🎭 1 दिसम्बर को सायं सांस्कृतिक कार्यक्रम?",
-    "🎭 पद्मिनी कोल्हापुरे कब आ रही हैं?",
-    "🎭 कृष्ण नाट्य प्रस्तुति कब है?",
-    "🎭 कंवर सिंह ग्रेवाल कब आ रहे हैं?",
-    "🎭 सूफी संगीत कार्यक्रम?",
-    "🎭 पंजाबी लोक संगीत कब है?",
-    "🎭 पुनीत इस्सर कब आ रहे हैं?",
-    "🎭 सुरेश वाडकर का संगीत कार्यक्रम?",
-    "🎭 रामायण मंचन कब है?",
-    "🎭 रवि मोहन ग्रुप का कार्यक्रम?",
-    "🎭 रामायण नाटक कब है?",
-    "🎭 डॉ हरिओम पंवार कब आएंगे?",
-    "🎭 कविता पाठ कार्यक्रम?",
-    "🎭 साध्वी पूर्णिमा जी कब आ रही हैं?",
-    "🎭 भजन संध्या कब है?",
-    "🎭 अनूप जलोटा कब आ रहे हैं?",
-  ],
-}, 
-'🏥 इस्कॉन': {
-'🏥 इस्कॉन': [
-"इस्कॉन श्रीमद् भगवद्गीता कथा?",
-"इस्कॉन श्रीमद् भागवतम् कथा?",
-"गीता यज्ञ इस्कॉन?",
-"इस्कॉन प्रवचन?",
-"इस्कॉन ज्योतिसर कार्यक्रम?",
-"दैनिक हरिनाम संकीर्तन?",
-"इस्कॉन गीता प्रदर्शनी?",
-"इस्कॉन 1 दिसंबर कार्यक्रम?"
-]
-},
-'🏥 सुविधाएं': {
-  '🏥 सुविधाएं': [
-    "🅿️ कहाँ पार्क करें?",
-    "🚻 शौचालय कहाँ है?",
-    "💧 पीने का पानी कहाँ मिलेगा?",
-    "🍽️ खाना कहाँ मिलेगा?",
-    "☕ चाय/नाश्ता कहाँ मिलेगा?",
-    "🏥 चिकित्सा सुविधा कहाँ है?",
-    "🏧 एटीएम कहाँ है?",
-    "🚗 कार पार्किंग?",
-    "🚌 बस पार्किंग?",
-    "📍 ब्रह्म सरोवर के पास सुविधाएं?"
-  ]},
-
-'🚨 आपातकालीन': {
-  '🚨 आपातकालीन': [
-    "🔥 आग लगी है?",
-    "🚨 आपातकालीन हेल्पलाइन?",
-    "👮 पुलिस संपर्क?",
-    "🏥 चिकित्सा आपातकाल?",
-    "🏥 एम्बुलेंस?",    
-    "🚑 बचाव दल संपर्क?",
-    "📞 बाल हेल्पलाइन नंबर?",
-    "👶 मेरा बच्चा खो गया",
-    "🔍 खोया पाया?",
-    "ℹ️ पर्यटक हेल्पलाइन?"
-  ]},
-  "🛍️ खरीदारी और स्टॉल": {
-  "खाद्य उत्पाद": [
-    "अचार कहाँ से खरीदें?",
-    "अचार के स्टॉल कहाँ हैं?",
-    "मुरब्बे की दुकानें?",
-    "खाद्य उत्पादों के स्टॉल?"
-  ],
-  "हस्तशिल्प और कारीगर": [
-    "हस्तशिल्प स्टॉल कहाँ हैं?",
-    "हस्तनिर्मित वस्तुएं कहाँ मिलेंगी?",
-    "कारीगर की दुकानें?",
-    "पारंपरिक हस्तशिल्प?",
-    "सबसे अच्छे हस्तशिल्प स्टॉल?"
-  ],
-  "वस्त्र और परिधान": [
-    "परिधान स्टॉल?",
-    "रेडीमेड कपड़ों की दुकानें?",
-    "साड़ी स्टॉल कहाँ हैं?",
-    "हथकरघा साड़ियाँ?",
-    "पारंपरिक वस्त्र स्टॉल?"
-  ],
-  "आभूषण और सहायक वस्तुएं": [
-    "कृत्रिम आभूषण स्टॉल?",
-    "गहने कहाँ से खरीदें?",
-    "आभूषणों की दुकानें?",
-    "फैशन एक्सेसरीज?"
-  ],
-  "कढ़ाई का काम": [
-    "कढ़ाई के स्टॉल?",
-    "कढ़ाई कहाँ मिलेगी?",
-    "हाथ की कढ़ाई की दुकानें?",
-    "जरी के काम के स्टॉल?",
-    "फुलकारी स्टॉल?"
-  ],
-  "चमड़े के उत्पाद": [
-    "चमड़े के उत्पादों के स्टॉल?",
-    "जूती कहाँ से खरीदें?",
-    "चमड़े के बैग की दुकानें?",
-    "जूते-चप्पल के स्टॉल?"
-  ],
-  "ऊनी वस्तुएं": [
-    "ऊनी शॉल?",
-    "शॉल कहाँ से खरीदें?",
-    "पश्मीना स्टॉल?",
-    "सर्दियों के कपड़ों की दुकानें?"
-  ],
-  "लकड़ी और बांस": [
-    "लकड़ी की नक्काशी के स्टॉल?",
-    "लकड़ी के हस्तशिल्प?",
-    "बांस के उत्पाद?",
-    "बेंत के काम की दुकानें?"
-  ],
-  "चित्रकला और कला": [
-    "मधुबनी पेंटिंग स्टॉल?",
-    "पट्टचित्र की दुकानें?",
-    "कलमकारी स्टॉल?",
-    "पारंपरिक कला?"
-  ],
-  "घर और रसोई": [
-    "बर्तनों के स्टॉल?",
-    "रसोई के सामान की दुकानें?",
-    "बर्तन स्टॉल?",
-    "घरेलू सामान?"
-  ],
-  "खिलौने और बच्चों का सामान": [
-    "खिलौने के स्टॉल कहाँ हैं?",
-    "खिलौने कहाँ से खरीदें?",
-    "बच्चों के सामान की दुकानें?"
-  ],
-  "श्रेणी आधारित": [
-    "सरस स्टॉल की सूची?",
-    "सरस स्टॉल कहाँ हैं?",
-    "एनजेडसीसी स्टॉल कहाँ हैं?",
-    "व्यावसायिक दुकानें?",
-    "राष्ट्रीय पुरस्कार विजेता स्टॉल?",
-    "कारीगर कार्ड धारक स्टॉल?"
-  ],
-  "राज्य आधारित": [
-    "हरियाणा स्टॉल?",
-    "उत्तर प्रदेश हस्तशिल्प?",
-    "तमिलनाडु उत्पाद?",
-    "राजस्थान स्टॉल?",
-    "गुजरात दर्पण का काम?",
-    "पश्चिम बंगाल हथकरघा?",
-    "पंजाब फुलकारी?",
-    "कश्मीर पश्मीना?"
-  ],
-  "विशेष वस्तुएं": [
-    "ब्लॉक प्रिंटिंग स्टॉल?",
-    "जरी के काम की दुकानें?",
-    "हाथ की पेंटिंग का काम?",
-    "बांस के शिल्प?",
-    "मिट्टी के बर्तनों के स्टॉल?"
-  ],
-  "स्टॉल नंबर": [
-    "स्टॉल नंबर 768?",
-    "स्टॉल 190 में क्या है?",
-    "दुकान नंबर 15 का विवरण?"
-  ],
-  "खरीदारी गाइड": [
-    "मेले में क्या खरीदें?",
-    "खरीदारी गाइड?",
-    "खरीदने के लिए सबसे अच्छी वस्तुएं?",
-    "प्रसिद्ध वस्तुएं?",
-    "लोकप्रिय स्टॉल?",
-    "जरूर देखने योग्य स्टॉल?"
-  ]
-},
-'ℹ️ IGM बुनियादी जानकारी': {
-    '📅 कार्यक्रम की तारीखें': [
-      "अंतर्राष्ट्रीय गीता महोत्सव 2025 कब है?",
-      "IGM कब शुरू होता है?",
-      "IGM कब समाप्त होता है?",
-      "त्योहार कितने दिनों का है?",
-      "गीता महोत्सव की तारीखें क्या हैं?",
-      "गीता जयंती कब है?",
-      "मुख्य दिन कौन सा है?",
-      "IGM 2025 की अवधि?"
-    ],
-    
-    'ℹ️ IGM के बारे में': [
-      "अंतर्राष्ट्रीय गीता महोत्सव क्या है?",
-      "यह क्यों मनाया जाता है?",
-      "IGM में क्या होता है?",
-      "यह त्योहार किस बारे में है?",
-      "लोग यहां क्यों आते हैं?"
-    ],
-    
-    '🎫 प्रवेश और शुल्क': [
-      "क्या प्रवेश निःशुल्क है?",
-      "क्या मुझे टिकट चाहिए?",
-      "प्रवेश शुल्क कितना है?",
-      "क्या मुझे पंजीकरण करना होगा?",
-      "क्या मैं बिना पंजीकरण प्रवेश कर सकता हूं?",
-      "क्या कोई शुल्क है?",
-      "IGM के लिए प्रवेश शुल्क?"
-    ],
-    
-    '⏰ समय': [
-      "यह किस समय खुलता है?",
-      "यह किस समय बंद होता है?",
-      "समय क्या है?",
-      "आरती कब शुरू होती है?",
-      "सांस्कृतिक कार्यक्रम किस समय हैं?",
-      "लाइट एंड साउंड शो कब है?",
-      "क्या यह रोज खुला रहता है?"
-    ]
-  },
-  
-  '🕉️ धार्मिक महत्व': {
-    '🕉️ हिंदू महत्व': [
-      "कुरुक्षेत्र हिंदुओं के लिए क्यों महत्वपूर्ण है?",
-      "कुरुक्षेत्र का धार्मिक महत्व क्या है?",
-      "कुरुक्षेत्र पवित्र क्यों है?",
-      "धर्म क्षेत्र क्या है?",
-      "कुरुक्षेत्र पवित्र क्यों है?",
-      "हिंदू कुरुक्षेत्र क्यों जाते हैं?"
-    ],
-    
-    '🪯 सिख संबंध': [
-      "कुरुक्षेत्र सिखों के लिए क्यों महत्वपूर्ण है?",
-      "क्या गुरु नानक ने कुरुक्षेत्र का दौरा किया?"
-    ],
-    
-    '☸️ बौद्ध और जैन धर्म': [
-      "क्या कुरुक्षेत्र बौद्धों के लिए महत्वपूर्ण है?",
-      "क्या बुद्ध ने कुरुक्षेत्र का दौरा किया?",
-      "क्या यह जैनियों के लिए महत्वपूर्ण है?",
-      "कुरुक्षेत्र का बौद्ध महत्व?"
-    ]
-  },
-  
-  '🗺️ पवित्र स्थान': {
-    '🌊 ब्रह्म सरोवर': [
-      "ब्रह्म सरोवर क्या है?",
-      "ब्रह्म सरोवर कहां है?",
-      "ब्रह्म सरोवर महत्वपूर्ण क्यों है?",
-      "क्या मैं ब्रह्म सरोवर में स्नान कर सकता हूं?",
-      "मुख्य स्थान कौन सा है?",
-      "क्या यह पूरे दिन खुला है?",
-      "ब्रह्म सरोवर में क्या है?"
-    ],
-    
-    '💧 सन्निहित सरोवर': [
-      "सन्निहित सरोवर क्या है?",
-      "सन्निहित सरोवर कहां है?",
-      "सन्निहित सरोवर कितनी दूर है?",
-      "क्या मैं यहां पिंड दान कर सकता हूं?",
-      "सात सरस्वतियों का संगम क्या है?",
-      "सन्निहित महत्वपूर्ण क्यों है?"
-    ],
-    
-    '🌳 ज्योतिसर': [
-      "गीता कहां बोली गई थी?",
-      "ज्योतिसर कहां है?",
-      "कृष्ण ने गीता कहां बोली?",
-      "बरगद का पेड़ कहां है?",
-      "कृष्ण अर्जुन का रथ कहां है?",
-      "क्या ज्योतिसर में लाइट एंड साउंड शो है?"
-    ],
-    
-    '🏛️ संग्रहालय': [
-      "क्या संग्रहालय हैं?",
-      "मैं कौन से संग्रहालय देख सकता हूं?",
-      "पैनोरमा कहां है?",
-      "कुरुक्षेत्र पैनोरमा क्या है?",
-      "क्या कृष्ण संग्रहालय है?",
-      "शेख चिल्ली का मकबरा कहां है?",
-      "क्या तारामंडल है?",
-      "संग्रहालय का समय क्या है?",
-      "संग्रहालय प्रवेश शुल्क क्या है?"
-    ]
-  },
-  
-  '📜 ऐतिहासिक और आध्यात्मिक': {
-    '⚔️ महाभारत युद्ध': [
-      "कुरुक्षेत्र में क्या हुआ?",
-      "महाभारत युद्ध क्या है?",
-      "युद्ध किसने लड़ा?",
-      "युद्ध कितने समय तक चला?",
-      "पांडव और कौरव कौन थे?",
-      "यहां युद्ध क्यों लड़ा गया?"
-    ],
-    
-    '📖 भगवद गीता': [
-      "भगवद गीता क्या है?",
-      "गीता कहां बोली गई?",
-      "गीता कब बोली गई?",
-      "गीता किसने बोली?",
-      "गीता की शिक्षाएं?"
-    ],
-    
-    '🕰️ प्राचीन इतिहास': [
-      "कुरुक्षेत्र का इतिहास क्या है?",
-      "कुरुक्षेत्र के प्राचीन नाम क्या हैं?",
-      "ब्रह्म क्षेत्र क्या है?",
-      "कुरुक्षेत्र कितना पुराना है?",
-      "वैदिक संबंध क्या है?",
-      "ऐतिहासिक पृष्ठभूमि?"
-    ],
-    
-    '🚶 48 कोस परिक्रमा': [
-      "48 कोस क्या है?",
-      "48 कोस परिक्रमा क्या है?",
-      "परिक्रमा कितनी लंबी है?",
-      "परिक्रमा की दूरी क्या है?",
-      "कितने तीर्थ हैं?",
-      "परिक्रमा कब करें?"
-    ]
-  },
-  
-  '🚗 आगंतुक जानकारी': {
-    '🛣️ कैसे पहुंचें': [
-      "कुरुक्षेत्र कैसे पहुंचें?",
-      "दिल्ली से कैसे पहुंचें?",
-      "चंडीगढ़ से कैसे पहुंचें?",
-      "निकटतम हवाई अड्डा कौन सा है?",
-      "कौन सा रेलवे स्टेशन?",
-      "क्या बसें हैं?",
-      "क्या मैं कार से आ सकता हूं?",
-      "कौन सा राजमार्ग लें?",
-      "दिल्ली से कितनी दूर?",
-      "चंडीगढ़ से कितनी दूर?"
-    ],
-    
-    '🌤️ मौसम और कपड़े': [
-      "दिसंबर में मौसम कैसा है?",
-      "क्या ठंड है?",
-      "मुझे क्या पहनना चाहिए?",
-      "क्या मुझे गर्म कपड़े चाहिए?",
-      "क्या मुझे जैकेट लानी चाहिए?",
-      "दिसंबर में तापमान क्या है?",
-      "क्या कोहरा होगा?",
-      "क्या बारिश होगी?"
-    ],
-    
-    '🍽️ खाने के विकल्प': [
-      "मैं कहां खा सकता हूं?",
-      "क्या खाना उपलब्ध है?",
-      "क्या मुफ्त भोजन उपलब्ध है?",
-      "लंगर कहां है?",
-      "क्या रेस्तरां हैं?",
-      "क्या खाना उपलब्ध है?",
-      "क्या नॉन-वेज की अनुमति है?",
-      "क्या शराब की अनुमति है?",
-      "हरियाणा का विशेष भोजन क्या है?"
-    ],
-    
-    '📋 सुरक्षा और नियम': [
-      "नियम क्या हैं?",
-      "क्या अनुमति नहीं है?",
-      "क्या मैं धूम्रपान कर सकता हूं?",
-      "क्या मैं प्लास्टिक बैग ला सकता हूं?",
-      "क्या पालतू जानवरों की अनुमति है?",
-      "क्या मैं फोटो ले सकता हूं?",
-      "क्या मुझे आईडी कार्ड चाहिए?",
-      "मुझे क्या नहीं करना चाहिए?",
-      "यदि मैं कुछ खो दूं तो क्या करूं?",
-      "खोई हुई वस्तुओं की रिपोर्ट कहां करें?",
-      "आपातकालीन नंबर क्या हैं?"
-    ]
-  },
-  
-  '🎭 गतिविधियां और कार्यक्रम': {
-    '🏆 प्रतियोगिताएं': [
-      "कौन सी प्रतियोगिताएं हैं?",
-      "क्या गीता क्विज है?",
-      "कौन सी गतिविधियां आयोजित की जाती हैं?",
-      "क्या सांस्कृतिक कार्यक्रम हैं?",
-      "क्या नृत्य प्रदर्शन है?",
-      "क्या प्रदर्शनियां हैं?",
-      "क्या मैं प्रतियोगिताओं में भाग ले सकता हूं?",
-      "क्या योग सत्र है?",
-      "क्या कार्यशालाएं हैं?"
-    ],
-    
-    '⏱️ यात्रा योजना': [
-      "कितने दिन चाहिए?",
-      "मुझे कितने दिनों की योजना बनानी चाहिए?",
-      "न्यूनतम समय क्या है?",
-      "क्या मैं एक दिन में घूम सकता हूं?",
-      "क्या मुझे रात रुकना चाहिए?",
-      "पहले क्या देखें?",
-      "यात्रा के लिए सबसे अच्छा दिन कौन सा है?"
-    ]
-  },  
-  
-'🏨 आवास (धर्मशालाएं)': {
-  '🏨 आवास (धर्मशालाएं)': [
-    "🏠 धर्मशाला उपलब्ध है?",
-    "💰 मुफ्त / दान आधारित आवास?",
-    "🛏️ एक बेड वाला कमरा?",
-    "🛏️ डबल बेड वाला कमरा?",
-    "🛏️ सामूहिक कमरा?",
-    "❄️ एसी कमरे उपलब्ध हैं?",
-    "🅿️ पार्किंग उपलब्ध है?",
-    "🍽️ खाना उपलब्ध है?",
-    "🚿 गरम पानी उपलब्ध है?",
-    "⚡ जनरेटर उपलब्ध है?",
-    "💧 पीने का पानी की सुविधा?",
-    "🕉️ धर्मशाला में मंदिर?",
-    "📺 कमरों में टीवी?",
-    "🔄 बुनियादी सुविधाओं वाली धर्मशाला?",
-    "🔄 एसी और खाना दोनों उपलब्ध?",
-    "🏘️ अग्रवाल धर्मशाला कहाँ है?",
-    "🏘️ जाट धर्मशाला कहाँ है?",
-    "🕉️ गुरुद्वारे में आवास?",
-    "🎪 सभा के लिए हॉल?"
-  ]
-}
-};
-let selectedQueryType = null;
-let selectedLanguage = 'English';
-let currentQuestions = {};
-let allQuestions = [];
-
-const categorySelect = document.getElementById('categorySelect');
-const questionSelect = document.getElementById('questionSelect');
-const questionSection = document.getElementById('questionSection');
-const userInput = document.getElementById('userInput');
-const autocompleteDropdown = document.getElementById('autocompleteDropdown');
-
-function selectQueryType(type) {
-  selectedQueryType = type;
-  
-  document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
-  const clickedOption = type === 'gita' ? 
-    document.querySelector('.radio-option:first-of-type') : 
-    document.querySelector('.radio-option:last-of-type');
-  clickedOption.classList.add('selected');
-  
-  if (type === 'gita') {
-    document.getElementById('gitaRadio').checked = true;
-  } else {
-    document.getElementById('eventRadio').checked = true;
-  }
-  
-  loadCategories();
-  buildAllQuestionsList();
-  questionSection.style.display = 'block';
-}
-
-function loadCategories() {
-  categorySelect.innerHTML = '<option value="" selected disabled>Select Topic</option>';
-  questionSelect.innerHTML = '<option value="" selected disabled>Select Question</option>';
-  questionSelect.disabled = true;
-  
-  currentQuestions = selectedQueryType === 'gita' ? 
-    (selectedLanguage === 'Hindi' ? gitaQuestionsHindi : gitaQuestions) :
-    (selectedLanguage === 'Hindi' ? eventQuestionsHindi : eventQuestions);
-  
-  Object.keys(currentQuestions).forEach(category => {
-    const option = document.createElement('option');
-    option.value = category;
-    option.textContent = formatCategoryName(category);
-    
-    // Add special color classes to specific categories
-    if (category.includes('Cultural') || category.includes('सांस्कृतिक')) {
-      option.classList.add('category-cultural');
-    } else if (category.includes('Religious') || category.includes('धार्मिक')) {
-      option.classList.add('category-religious');
-    } else if (category.includes('Date') || category.includes('तारीख')) {
-      option.classList.add('category-date');
-    }
-    
-    categorySelect.appendChild(option);
-  });
-}
-function buildAllQuestionsList() {
-  allQuestions = [];
-  currentQuestions = selectedQueryType === 'gita' ? 
-    (selectedLanguage === 'Hindi' ? gitaQuestionsHindi : gitaQuestions) :
-    (selectedLanguage === 'Hindi' ? eventQuestionsHindi : eventQuestions);
-  
-  Object.keys(currentQuestions).forEach(mainCategory => {
-    const subcategories = currentQuestions[mainCategory];
-    
-    // Loop through subcategories
-    Object.keys(subcategories).forEach(subcategory => {
-      subcategories[subcategory].forEach(question => {
-        allQuestions.push({
-          question: question,
-          category: formatCategoryName(mainCategory),
-          subcategory: subcategory
-        });
-      });
+  // Add event listeners to radio buttons
+  document.querySelectorAll('input[name="queryType"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      selectedQueryType = e.target.value;
+      updateRadioSelection();
+      
+      // Clear autocomplete when switching query type
+      const autocompleteDropdown = document.getElementById('autocompleteDropdown');
+      autocompleteDropdown.style.display = 'none';
+      
+      // Clear input
+      document.getElementById('userInput').value = '';
     });
   });
+});
+
+function updateRadioSelection() {
+  document.querySelectorAll('.radio-option').forEach(option => {
+    const radio = option.querySelector('input[type="radio"]');
+    if (radio.checked) {
+      option.classList.add('selected');
+    } else {
+      option.classList.remove('selected');
+    }
+  });
 }
 
-function formatCategoryName(category) {
-  // Just remove underscores and return as-is to preserve original capitalization
-  // including parentheses content like (Dharamshalas)
-  return category.replace(/_/g, ' ');
+function switchLanguage(lang) {
+  selectedLanguage = lang;
+  document.getElementById('langEnglish').classList.toggle('active', lang === 'english');
+  document.getElementById('langHindi').classList.toggle('active', lang === 'hindi');
 }
 
 // AUTOCOMPLETE FUNCTIONALITY
-function highlightMatch(text, query) {
-  const regex = new RegExp(`(${query})`, 'gi');
-  return text.replace(regex, '<mark>$1</mark>');
-}
+const userInput = document.getElementById('userInput');
+const autocompleteDropdown = document.getElementById('autocompleteDropdown');
 
-function filterQuestions(query) {
-  if (!query || query.length < 1) {
-    return [];
-  }
-  
-  query = query.toLowerCase().trim();
-  const keywords = query.split(/\s+/);
-  
-  return allQuestions.filter(item => {
-    const questionLower = item.question.toLowerCase();
-    
-    // Better matching for 3-4 character searches
-    if (query.length >= 3 && query.length <= 4) {
-      const wordBoundaryMatch = new RegExp(`\\b${query}`, 'i').test(questionLower);
-      const consecutiveMatch = questionLower.includes(query);
-      return wordBoundaryMatch || consecutiveMatch;
-    }
-    
-    return keywords.some(keyword => questionLower.includes(keyword));
-  }).slice(0, 8); // Show max 8 suggestions
-}
-
-userInput.addEventListener('input', function() {
-  const query = this.value.trim();
+userInput.addEventListener('input', (e) => {
+  const query = e.target.value.trim().toLowerCase();
   
   if (query.length < 2) {
     autocompleteDropdown.style.display = 'none';
     return;
   }
   
-  const matches = filterQuestions(query);
+  const questions = SAMPLE_QUESTIONS[selectedQueryType];
+  let matches = [];
+  
+  // Search through all categories
+  for (const [category, questionList] of Object.entries(questions)) {
+    const categoryMatches = questionList.filter(q => 
+      q.toLowerCase().includes(query)
+    );
+    
+    if (categoryMatches.length > 0) {
+      matches.push({ category, questions: categoryMatches });
+    }
+  }
   
   if (matches.length === 0) {
-    autocompleteDropdown.innerHTML = '<div class="autocomplete-no-results">No matching questions found. Try different keywords.</div>';
+    autocompleteDropdown.innerHTML = '<div class="autocomplete-no-results">No matching questions found</div>';
     autocompleteDropdown.style.display = 'block';
     return;
   }
   
+  // Build HTML
   let html = '';
-  let lastCategory = '';
-  
-  matches.forEach(item => {
-    if (item.category !== lastCategory) {
-      html += `<div class="autocomplete-category">${item.category}</div>`;
-      lastCategory = item.category;
-    }
-    
-    const highlightedQuestion = highlightMatch(item.question, query);
-    html += `<div class="autocomplete-item" data-question="${item.question}">${highlightedQuestion}</div>`;
+  matches.forEach(({ category, questions }) => {
+    html += `<div class="autocomplete-category">${category}</div>`;
+    questions.forEach(question => {
+      const highlighted = question.replace(
+        new RegExp(query, 'gi'),
+        match => `<mark>${match}</mark>`
+      );
+      html += `<div class="autocomplete-item" data-question="${question}">${highlighted}</div>`;
+    });
   });
   
   autocompleteDropdown.innerHTML = html;
   autocompleteDropdown.style.display = 'block';
   
-  // Add click handlers
+  // Add click listeners
   document.querySelectorAll('.autocomplete-item').forEach(item => {
-    item.addEventListener('click', function() {
-      userInput.value = this.getAttribute('data-question');
+    item.addEventListener('click', () => {
+      userInput.value = item.dataset.question;
       autocompleteDropdown.style.display = 'none';
     });
   });
 });
 
-// Close dropdown when clicking outside
-document.addEventListener('click', function(e) {
-  if (!userInput.contains(e.target) && !autocompleteDropdown.contains(e.target)) {
+// Close autocomplete when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.autocomplete-container')) {
     autocompleteDropdown.style.display = 'none';
   }
 });
 
-// Close dropdown on ESC key
-userInput.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    autocompleteDropdown.style.display = 'none';
-  }
-});
-
-categorySelect.addEventListener('change', function() {
-  questionSelect.innerHTML = '<option value="" selected disabled>Select Question</option>';
-  questionSelect.disabled = false;
-  
-  const selectedCategory = this.value;
-  const categoryData = currentQuestions[selectedCategory];
-  
-  if (categoryData) {
-    // categoryData is now an object with subcategories
-    Object.keys(categoryData).forEach(subcategory => {
-      // Add optgroup for subcategory
-      const optgroup = document.createElement('optgroup');
-      optgroup.label = subcategory;
-      
-      // Add questions under this subcategory
-      categoryData[subcategory].forEach(question => {
-        const option = document.createElement('option');
-        option.value = question;
-        option.textContent = question;
-        optgroup.appendChild(option);
-      });
-      
-      questionSelect.appendChild(optgroup);
-    });
-  }
-});
-
-questionSelect.addEventListener('change', function() {
-  userInput.value = this.value;
-  autocompleteDropdown.style.display = 'none';
-});
-
-document.querySelectorAll('.langBtn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    selectedLanguage = this.getAttribute('data-lang');
-    document.querySelectorAll('.langBtn').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    loadCategories();
-    buildAllQuestionsList();
-  });
-});
-
+// TEXT-TO-SPEECH FUNCTIONALITY
 let isSpeaking = false;
-let ttsUtterance = null;
-let manualStop = false;
-const ttsBtn = document.getElementById('ttsToggle');
-const ttsLabel = document.getElementById('ttsLabel');
+let currentUtterance = null;
 
-ttsBtn.addEventListener('click', () => {
-  if (isSpeaking) {
-    manualStop = true;
-    speechSynthesis.cancel();
-    isSpeaking = false;
-    ttsBtn.classList.remove('speaking');
-    ttsLabel.textContent = 'Listen';
-    return;
-  }
-  
-  manualStop = false;
+document.getElementById('ttsToggle').addEventListener('click', () => {
   const answerText = document.getElementById('modalAnswer').textContent;
   
-  if (!answerText || answerText === 'Thinking...') {
-    alert('No answer to read yet!');
-    return;
-  }
-  
-  if (!('speechSynthesis' in window)) {
-    alert('Text-to-speech is not supported in your browser.');
-    return;
-  }
-  
-  ttsUtterance = new SpeechSynthesisUtterance(answerText);
-  ttsUtterance.rate = 0.9;
-  ttsUtterance.pitch = 1;
-  ttsUtterance.volume = 1;
-  
-// ========================================================================
-  // SMART TTS WITH LANGUAGE DETECTION - Lines 1760-1824 Replacement
-  // ========================================================================
-  
-  const voices = speechSynthesis.getVoices();
-  
-  // ========================================================================
-  // DETECT LANGUAGE (Hindi vs English)
-  // ========================================================================
-  function detectLanguage(text) {
-    const cleanText = text.replace(/[।॥.,!?;:\-\_\n\r]/g, ' ').trim();
-    const hindiCharCount = (cleanText.match(/[\u0900-\u097F]/g) || []).length;
-    const englishCharCount = (cleanText.match(/[a-zA-Z]/g) || []).length;
-    const totalChars = hindiCharCount + englishCharCount;
-    
-    if (totalChars === 0) return 'en';
-    const hindiPercentage = (hindiCharCount / totalChars) * 100;
-    
-    return hindiPercentage > 30 ? 'hi' : 'en';
-  }
-  
-  const detectedLang = detectLanguage(answerText);
-  console.log('🔍 Detected Language:', detectedLang);
-  
-  // ========================================================================
-  // VERSION 24 STYLE - Auto-working TTS (No voice installation needed!)
-  // ========================================================================
-  
-  // Set language HINT - let browser choose best voice automatically
-  if (detectedLang === 'hi') {
-    ttsUtterance.lang = 'hi-IN';  // Hint: This is Hindi text
-    console.log('📢 Language hint: Hindi');
-  } else {
-    ttsUtterance.lang = 'en-US';  // Hint: This is English text
-    console.log('📢 Language hint: English');
-  }
-  
-  // OPTIONAL: Try to use better voice if available, but DON'T FORCE
-  // (voices already declared above at line 1797)
-  console.log('📊 Available voices:', voices.length);
-  
-  if (voices.length > 0 && detectedLang === 'hi') {
-    // Try to find Hindi voice (optional enhancement)
-    const hindiVoice = voices.find(voice => 
-      voice.lang === 'hi-IN' || 
-      (voice.lang && voice.lang.startsWith('hi'))
-    );
-    
-    if (hindiVoice) {
-      ttsUtterance.voice = hindiVoice;
-      console.log('✅ Using installed Hindi voice:', hindiVoice.name);
-    } else {
-      // NO HINDI VOICE - Don't force English voice!
-      // Leave voice undefined → browser uses multilingual system default
-      console.log('ℹ️ No Hindi voice found - using system default (multilingual TTS)');
-      console.log('   System will read Hindi reasonably using phonetic rules');
-    }
-  } else if (voices.length > 0 && detectedLang === 'en') {
-    // For English, try to find best English voice
-    const englishVoice = voices.find(v => 
-      v.lang === 'en-US' || v.lang === 'en-GB' || v.lang === 'en-IN'
-    ) || voices.find(v => v.lang && v.lang.startsWith('en'));
-    
-    if (englishVoice) {
-      ttsUtterance.voice = englishVoice;
-      console.log('✅ Using English voice:', englishVoice.name);
-    }
-  }
-  
-  console.log('🎤 Final TTS settings:');
-  console.log('   Voice:', ttsUtterance.voice?.name || 'System Default (Multilingual)');
-  console.log('   Language:', ttsUtterance.lang);
-  console.log('   Text length:', answerText.length, 'characters');
-  
-  // ========================================================================
-  // KEY: If no specific voice set, browser uses system default
-  // System default is multilingual - can read Hindi without voice pack!
-  // ========================================================================
-  
-  // Event handlers
-  ttsUtterance.onstart = () => {
-    isSpeaking = true;
-    ttsBtn.classList.add('speaking');
-    ttsLabel.textContent = 'Stop';
-  };
-  
-  ttsUtterance.onend = () => {
-    if (!manualStop) {
-      isSpeaking = false;
-      ttsBtn.classList.remove('speaking');
-      ttsLabel.textContent = 'Listen';
-    }
-  };
-  
-  ttsUtterance.onerror = (e) => {
-    if (manualStop) {
-      manualStop = false;
-      return;
-    }
-    
+  if (isSpeaking) {
+    speechSynthesis.cancel();
     isSpeaking = false;
-    ttsBtn.classList.remove('speaking');
-    ttsLabel.textContent = 'Listen';
+    document.getElementById('ttsToggle').classList.remove('speaking');
+    document.getElementById('ttsLabel').textContent = 'Listen';
+  } else {
+    currentUtterance = new SpeechSynthesisUtterance(answerText);
+    currentUtterance.lang = selectedLanguage === 'hindi' ? 'hi-IN' : 'en-US';
+    currentUtterance.rate = 0.9;
+    currentUtterance.pitch = 1;
     
-    let errorMsg = 'Speech failed. ';
-    if (e.error === 'canceled' || e.error === 'interrupted') {
-      return;
-    } else if (e.error === 'not-allowed') {
-      errorMsg += 'Please enable speech in browser settings.';
-    } else if (e.error === 'language-unavailable') {
-      errorMsg += 'Voice not available on your device.';
-    } else {
-      errorMsg += 'Please try again.';
-    }
-    alert(errorMsg);
-  };
-  
-  try {
-    speechSynthesis.speak(ttsUtterance);
-  } catch (error) {
-    alert('Text-to-speech is not available on your device.');
+    currentUtterance.onstart = () => {
+      isSpeaking = true;
+      document.getElementById('ttsToggle').classList.add('speaking');
+      document.getElementById('ttsLabel').textContent = 'Stop';
+    };
+    
+    currentUtterance.onend = () => {
+      isSpeaking = false;
+      document.getElementById('ttsToggle').classList.remove('speaking');
+      document.getElementById('ttsLabel').textContent = 'Listen';
+    };
+    
+    speechSynthesis.speak(currentUtterance);
   }
 });
-    
-document.getElementById('submitBtn').addEventListener('click', async () => {
+
+// FORM SUBMISSION
+document.getElementById('chatForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
   const question = userInput.value.trim();
-  
-  if (!selectedQueryType) {
-    alert('Please select either "Gita Guidance" or "Festival Information" first!');
-    return;
-  }
-  
-  if (!question) {
-    alert('Please enter your question!');
-    return;
-  }
+  if (!question) return;
 
   const mainContainer = document.querySelector('.container-main');
   if (mainContainer) mainContainer.style.visibility = 'hidden';
@@ -2740,7 +1004,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
       body: JSON.stringify({
         question: question,
         language: selectedLanguage,
-        queryType: selectedQueryType === 'gita' ? 'PHILOSOPHICAL_AI_QUERY' : 'PRACTICAL_INFO_QUERY',
+        queryType: selectedQueryType === 'statistics' ? 'STATISTICAL_CONCEPT_QUERY' : 'STATISTICAL_DATA_QUERY',
         mobNo: 'anonymous',
         deviceType: deviceType,
         browser: browser,
@@ -2864,22 +1128,6 @@ function fallbackCopyText(text) {
   document.body.removeChild(textArea);
 }
 
-const fluteMusic = document.getElementById('fluteMusic');
-const musicToggle = document.getElementById('musicToggle');
-const musicLabel = document.getElementById('musicLabel');
-
-musicToggle.addEventListener('click', () => {
-  if (fluteMusic.paused) {
-    fluteMusic.play().catch(e => {
-      alert("Please interact with the page first, then click to play music.");
-    });
-    musicLabel.textContent = "Pause Flute";
-  } else {
-    fluteMusic.pause();
-    musicLabel.textContent = "Play Flute";
-  }
-});
-
 window.addEventListener('DOMContentLoaded', () => {
   const lastModifiedDate = new Date(document.lastModified);
   const element = document.getElementById("lastModified");
@@ -2926,49 +1174,6 @@ function closeFeedback() {
 document.getElementById('feedbackModal').addEventListener('click', function(e) {
   if (e.target === this) {
     closeFeedback();
-  }
-});
-
-function openLiveTelecast() {
-  window.open('https://www.youtube.com/live/My5T4LiHBdw', '_blank', 'noopener,noreferrer');
-}    
-function openQuizChatbot() {
-/*
-  const quizModal = document.getElementById('quizModal');
-  const quizIframe = document.getElementById('quizIframe');
-  const quizIframeLoader = document.getElementById('quizIframeLoader');
-  
-  quizModal.classList.add('show');
-  quizIframeLoader.style.display = 'block';
-  
-  quizIframe.src = 'https://igmquiz.in/webloginkkr.aspx';
-  
-  quizIframe.onload = function() {
-    quizIframeLoader.style.display = 'none';
-  };
-  
-  quizIframe.onerror = function() {
-    quizIframeLoader.innerHTML = '<p style="color: #ef4444; font-weight: 600;">Failed to load Quiz Chatbot</p>';
-  };
-*/
-window.open('https://igmquiz.in/webloginkkr.aspx', '_blank');
-}
-
-function closeQuizChatbot() {
-  const quizModal = document.getElementById('quizModal');
-  const quizIframe = document.getElementById('quizIframe');
-  const quizIframeLoader = document.getElementById('quizIframeLoader');
-  
-  quizModal.classList.remove('show');
-  quizIframe.src = '';
-  
-  quizIframeLoader.style.display = 'none';
-  quizIframeLoader.innerHTML = '<div class="spinner"></div><p style="color: #64748b; font-weight: 600;">Loading Quiz Chatbot...</p>';
-}
-
-document.getElementById('quizModal').addEventListener('click', function(e) {
-  if (e.target === this) {
-    closeQuizChatbot();
   }
 });
   </script>
