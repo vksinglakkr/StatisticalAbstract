@@ -1326,7 +1326,7 @@ function selectQueryType(type) {
   if (type === 'statistics') {
     document.getElementById('statisticsRadio').checked = true;
   } else {
-    document.getElementById('eventRadio').checked = true;
+    document.getElementById('dataRadio').checked = true;
   }
   
   loadCategories();
@@ -1341,7 +1341,7 @@ function loadCategories() {
   
   currentQuestions = selectedQueryType === 'statistics' ? 
     (selectedLanguage === 'Hindi' ? statsQuestionsHindi : statsQuestions) :
-    (selectedLanguage === 'Hindi' ? eventQuestionsHindi : eventQuestions);
+    (selectedLanguage === 'Hindi' ? statsQuestionsHindi : statsQuestions);
   
   Object.keys(currentQuestions).forEach(category => {
     const option = document.createElement('option');
@@ -1364,7 +1364,7 @@ function buildAllQuestionsList() {
   allQuestions = [];
   currentQuestions = selectedQueryType === 'statistics' ? 
     (selectedLanguage === 'Hindi' ? statsQuestionsHindi : statsQuestions) :
-    (selectedLanguage === 'Hindi' ? eventQuestionsHindi : eventQuestions);
+    (selectedLanguage === 'Hindi' ? statsQuestionsHindi : statsQuestions);
   
   Object.keys(currentQuestions).forEach(mainCategory => {
     const subcategories = currentQuestions[mainCategory];
