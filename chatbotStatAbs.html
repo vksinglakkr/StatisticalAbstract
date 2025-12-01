@@ -850,7 +850,18 @@
   <div class="container-main w-full max-w-5xl glass-card rounded-3xl shadow-2xl overflow-hidden">
     <div class="relative bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 p-6 pb-4 text-center header-glow">
       <div class="flex justify-between items-start mb-4 w-full">
-         
+ <button onclick="openLiveTelecast()" class="live-telecast-btn">
+    <span class="pulse-dot"></span>
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+    </svg>
+    Live Telecast
+  </button>        <button onclick="openQuizChatbot()" class="quiz-chatbot-btn">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+          IGM Quiz
+        </button>
       </div>
       
       <div class="floating">
@@ -950,10 +961,61 @@
       </div>
 
 
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 md:gap-6 mb-4 mt-4 px-2">
+  <!-- Craft Fair Card -->
+  <div class="event-card bg-gradient-to-br from-blue-50 to-blue-100 border-l-4 border-blue-600 shadow-lg rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:scale-105">
+    <div class="flex items-center gap-3 mb-3">
+      <svg class="w-10 h-10 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+      </svg>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 text-lg">Craft Fair</p>
+        <p class="text-sm text-gray-600 font-medium">हस्तशिल्प मेला</p>
+      </div>
+    </div>
+    <div class="ml-13 space-y-1">
+      <p class="text-sm text-gray-700 font-semibold flex items-center gap-2">
+        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        15 Nov – 5 Dec 2025
+      </p>
+      <p class="text-xs text-gray-500">Traditional handicrafts from across India</p>
+    </div>
+  </div>
 
+  <!-- Cultural Programs Card -->
+  <div class="event-card bg-gradient-to-br from-green-50 to-green-100 border-l-4 border-green-600 shadow-lg rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:scale-105">
+    <div class="flex items-center gap-3 mb-3">
+      <svg class="w-10 h-10 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+      </svg>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 text-lg">Cultural Programs</p>
+        <p class="text-sm text-gray-600 font-medium">सांस्कृतिक कार्यक्रम</p>
+      </div>
+    </div>
+    <div class="ml-13 space-y-1">
+      <p class="text-sm text-gray-700 font-semibold flex items-center gap-2">
+        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        24 Nov – 1 Dec 2025
+      </p>
+      <p class="text-xs text-gray-500">Evening performances & celebrations</p>
+    </div>
+  </div>
 </div>
 
-      
+      <div class="quote-section mb-1">
+        <p class="text-1xl devanagari text-gray-900 text-center leading-relaxed mb-0.0 relative z-10 font-semibold">
+          "ज्ञानं तेऽहं सविज्ञानमिदं वक्ष्याम्यशेषतः।<br>यज्ज्ञात्वा नेह भूयोऽन्यज्ज्ञातव्यमवशिष्यते।।"
+        </p>
+       <p class="text-right text-gray-600 text-sm mb-1 mt-1 devanagari font-medium">  – श्रीमद्भगवद्गीता, अध्याय 7, श्लोक 2</p>
+        <p class="text-center text-sm text-gray-800  mb-0 mt-1 font-light leading-relaxed italic">
+         <span style="line-height: 1.2; display: block;"> "I shall now declare to you in full this knowledge with realization,<br>knowing which nothing else remains to be known in this world."
+         </span></p>
+      </div>
 
       <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
         <button onclick="openFeedback()" class="feedback-btn">
@@ -963,7 +1025,12 @@
           Feedback
         </button>
         
-        
+        <a href="https://internationalgitamahotsav.in/" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold transition-all hover:scale-105">
+          <svg class="icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          Return to Main Page
+        </a>
       </div>
     </div>
     
@@ -972,7 +1039,7 @@
     <p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified"></span></p>
       <div class="flex flex-wrap justify-center items-center gap-6">
         <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/haryana-logo.jpg" alt="Haryana" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
-        
+        <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/kdb-logo.png" alt="KDB" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
       </div>
     </div>
   </div>
@@ -1061,9 +1128,42 @@
     </div>
   </div>
 
-  
+  <div id="quizModal">
+    <div class="quiz-modal-content">
+      <div class="quiz-modal-header">
+        <h2 class="text-xl font-bold flex items-center gap-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+          Gita Quiz Chatbot
+        </h2>
+        <button onclick="closeQuizChatbot()" class="quiz-modal-close">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div style="position: relative; flex: 1;">
+        <div id="quizIframeLoader" class="iframe-loader" style="display: none;">
+          <div class="spinner"></div>
+          <p style="color: #64748b; font-weight: 600;">Loading Quiz Chatbot...</p>
+        </div>
+        <iframe id="quizIframe" src=""></iframe>
+      </div>
+    </div>
+  </div>
 
-  
+  <button id="musicToggle" class="music-control-btn">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+    </svg>
+    <span id="musicLabel">Play Flute</span>
+  </button>
+
+  <audio id="fluteMusic" loop>
+    <source src="https://vksinglakkr.github.io/IGM2025/audio/gentle-flute.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
 const statsQuestions = {
@@ -1303,6 +1403,987 @@ const statsQuestionsHindi = {
 };
 
 // ========================================
+// UPDATED EVENT QUESTIONS - IGM 2025
+// Based on actual festival data (Nov 15 - Dec 5, 2025)
+// ========================================
+
+const statsQuestions = {
+  '🕉️ Events-related Information': {
+    '🕉️ Religious & Spiritual Events': [
+  "🕉️ When is Srimad Bhagavad Gita recitation (Paath) and Yagya?",
+  "🕉️ When is Srimad Bhagavad Gita Yagya and Gita Poojan?",
+  "🔥 When is the final oblation (Ahuti) of the Gita Yagya and the worship of the Banyan tree?",
+  "📘 When is the International Gita Seminar?",
+  "🏃‍♂️ When is the Gita Run?",
+  "🚩 When is the Gita Sadbhavana Yatra?",
+  "🎶 When are the Bhajan Sandhya and Maha Aarti?",
+  "🪔 When is the Deep Daan ceremony?",
+  "🎓 When is the 18,000 students’ Gita Vaishvik Path?",
+  "🚩 When is the Gita Shobha Yatra?",
+  "🌏 When is the 48 Kos Tirth Sammelan?",
+  "🛕 When is the Virat Sant Sammelan?",
+  "🕉️ When is Swami Rambhadracharya's discourse?",
+  "📚 When is the Bhagavat Katha?",
+  "🎓 When are the Gita Shloka recitation, speech, essay writing, painting, rangoli, and craft competitions for students?",
+  "🎓 Student competitions: Gita Shloka recitation, speech, essay writing, painting, rangoli, and craft — when are they held?",
+  "🕉️ Who will deliver the Gita Panchamrit discourse?",
+  "🕉️ When is Swami Rambhadracharya's discourse?",
+  "📖 When will the Bhagavat Katha take place?",
+  "🕉️ Iskcon Srimad Bhagavad Gita Katha?",
+  "🕉️ Iskcon Srimad Bhagavatam Katha?",
+  "🕉️ Gita Yajna ISKCON?",
+  "🕉️ ISKCON Pravachan?",
+  "🕉️ ISKCON Jyotisar events?",
+  "🕉️ Daily Harinam Sankirtan?",
+  "🕉️ ISKCON Gita Exhibition?",
+  "🕉️ ISKCON December 1?",
+  "🌊 Events held at Brahma Sarovar",
+  "🌊 Events held at Sannihit Sarovar",
+  "🛕 Events held at Jyotisar",
+  "🎓 Events held at Kurukshetra University",
+  "🏢 Events held at KDB Office (Opp.)",
+  "🌿 Events held at Keshav Park",
+  "🌏 Events held at 48 Kos Kurukshetra Bhumi"      
+    ],
+ 
+'🎭 Cultural Programs': [
+  "🎭 When is the Cultural Program?",
+  "🌐💡 When is the Light and Sound Show on 'Vishwaroop' through 3D Mapping?",
+  "💡🎶 When is the Light and Sound Show based on Mahabharata and Gita?",
+   "🏛️ When are the State Level Exhibitions?"
+],
+  '📅 Datewise Events': [
+      "Events on 15th Nov.?",
+      "Events on 16th Nov.?",
+      "Events on 17th Nov.?",
+      "Events on 18th Nov.?",
+      "Events on 19th Nov.?",
+      "Events on 20th Nov.?",
+      "Events on 21st Nov.?",
+      "Events on 22nd Nov.?",
+      "Events on 23rd Nov.?",
+      "Events on 24th Nov.?",
+      "Events on 25th Nov.?",
+      "Events on 26th Nov.?",
+      "Events on 27th Nov.?",
+      "Events on 28th Nov.?",
+      "Events on 29th Nov.?",
+      "Events on 30th Nov.?",
+      "Events on 1st Dec.?",
+      "Events on 2nd Dec.?",
+      "Events on 3rd Dec.?",
+      "Events on 4th Dec.?",
+      "Events on 5th Dec.?"
+    ],
+    
+  '🎪 Inaugural Events': [
+    "🌐 When is the International Gita Seminar inauguration?",
+    "🛕 When is the Virat Sant Sammelan inauguration?",
+    "🕉️ When will the Panchamrit discourse begin?",
+    "📖 When does the Bhagavat Katha start?",
+    "🏛️ When are the State Level Exhibitions inaugurated?",
+    "🌍 When will the pavilions of Haryana, MP, and partner countries open?",
+    "🎨 When does the Crafts Mela begin?"
+  ]},
+  '🎭 Evening Cultural Programme': {
+  '🎭 Evening Cultural Programme': [
+    "🎭 Evening cultural programme on 24th November?",
+    "🎭 Evening cultural programme on 25th November?",
+    "🎭 Evening cultural programme on 26th November?",
+    "🎭 Evening cultural programme on 27th November?",
+    "🎭 Evening cultural programme on 28th November?",
+    "🎭 Evening cultural programme on 29th November?",
+    "🎭 Evening cultural programme on 30th November?",
+    "🎭 Evening cultural programme on 1st December?",
+    "🎭 When is Padmini Kolhapure performing?",
+    "🎭 Krishna Natya Prastuti timing?",
+    "🎭 When is Kanwar Singh Grewal coming?",
+    "🎭 Sufi music performance date?",
+    "🎭 Punjabi folk music programme?",
+    "🎭 When is Puneet Issar performing?",
+    "🎭 When is Suresh Wadkar singing?",
+    "🎭 When is Ramayana Manchan?",
+    "🎭 Ravi Mohan Group performance?",
+    "🎭 Ramayana theatrical performance?",
+    "🎭 When is Dr. Hariom Panwar coming?",
+    "🎭 Poetry recitation programme?",
+    "🎭 When is Sadhvi Purnima Ji?",
+    "🎭 Bhajan Sandhya schedule?",
+    "🎭 When is Anup Jalota performing?",
+  ]
+}, 
+
+'🏥 Facilities': {
+  '🏥 Facilities': [
+    "🅿️ Where to park?",
+    "🚻 Where is toilet?",
+    "💧 Drinking water?",
+    "🍽️ Where to eat?",
+    "☕ Tea/Snacks available?",
+    "🏥 Medical facility?",
+    "🏧 ATM location?",
+    "🚗 Car parking?",
+    "🚌 Bus parking?",
+    "📍 Facilities near Brahma Sarovar?"
+  ]
+},
+
+  '🚨 Emergency': {
+  '🚨 Emergency': [
+    "🚨 Emergency helpline?",
+    "🚑 Rescue team contact?",
+    "🔥 Fire emergency?",
+    "🏥 Medical emergency?",
+    "🏥 Ambulance?",
+    "👮 Police contact?",
+    "👶 Lost my child",
+    "📞 Child helpline number?",
+    "🔍 Lost and found?",
+    "ℹ️ Tourist helpline?"
+  ]},
+"🛍️ Shopping & Stalls": {
+  "🥫 Food Products": [
+    "Where to buy pickles?",
+    "Achaar stalls location?",
+    "Muraba shops?",
+    "Food products stalls?"
+  ],
+  "🎨 Handicrafts & Artisan": [
+    "Handicraft stalls location?",
+    "Where to find handmade items?",
+    "Artisan work shops?",
+    "Traditional handicrafts?",
+    "Best handicraft stalls?"
+  ],
+  "👗 Textiles & Garments": [
+    "Garment stalls?",
+    "Readymade clothes shops?",
+    "Saree stalls location?",
+    "Handloom sarees?",
+    "Traditional textile stalls?"
+  ],
+  "💍 Jewelry & Accessories": [
+    "Artificial jewelry stalls?",
+    "Where to buy jewelry?",
+    "Ornaments shops?",
+    "Fashion accessories?"
+  ],
+  "🧵 Embroidery Work": [
+    "Embroidery work stalls?",
+    "Where to find embroidery?",
+    "Hand embroidery shops?",
+    "Zari work stalls?",
+    "Phulkari stalls?"
+  ],
+  "👞 Leather Products": [
+    "Leather products stalls?",
+    "Where to buy jutti?",
+    "Leather bags shops?",
+    "Footwear stalls?"
+  ],
+  "🧣 Woolen Items": [
+    "Woolen shawls?",
+    "Where to buy shawl?",
+    "Pashmina stalls?",
+    "Winter wear shops?"
+  ],
+  "🪵 Wood & Bamboo": [
+    "Wood carving stalls?",
+    "Wooden handicrafts?",
+    "Bamboo products?",
+    "Cane work shops?"
+  ],
+  "🖼️ Painting & Art": [
+    "Madhubani painting stalls?",
+    "Pattachitra shops?",
+    "Kalamkari stalls?",
+    "Traditional art?"
+  ],
+  "🏠 Home & Kitchen": [
+    "Crockery stalls?",
+    "Kitchen items shops?",
+    "Utensils stalls?",
+    "Household items?"
+  ],
+  "🧸 Toys & Kids": [
+    "Toy stalls location?",
+    "Where to buy toys?",
+    "Kids items shops?"
+  ],
+  "📋 Category Based": [
+    "SARAS stalls list?",
+    "Where are SARAS stalls?",
+    "NZCC stalls location?",
+    "Commercial shops?",
+    "National awardee stalls?",
+    "Artisan card holder stalls?"
+  ],
+  "🗺️ State Based": [
+    "Haryana stalls?",
+    "Uttar Pradesh handicrafts?",
+    "Tamil Nadu products?",
+    "Rajasthan stalls?",
+    "Gujarat mirror work?",
+    "West Bengal handloom?",
+    "Punjab phulkari?",
+    "Kashmir pashmina?"
+  ],
+  "✨ Specialty Items": [
+    "Block printing stalls?",
+    "Zari work shops?",
+    "Hand painting work?",
+    "Bamboo crafts?",
+    "Pottery stalls?"
+  ],
+  "🔢 Stall Numbers": [
+    "Stall number 768?",
+    "What is in stall 190?",
+    "Shop number 15 details?"
+  ],
+  "🛒 Shopping Guide": [
+    "What to buy at festival?",
+    "Shopping guide?",
+    "Best items to buy?",
+    "Famous items?",
+    "Popular stalls?",
+    "Must visit stalls?"
+  ]
+},
+  'ℹ️ IGM Basic Information': {
+    '📅 Event Dates': [
+      "When is Department of Economic and Statistical Analysis, Haryana?",
+      "When does IGM start?",
+      "When does IGM end?",
+      "How many days is the festival?",
+      "What are the dates of Gita Mahotsav?",
+      "When is Gita Jayanti?",
+      "What is the main day?",
+      "Duration of IGM 2025?"
+    ],
+    
+    'ℹ️ About IGM': [
+      "What is International Gita Mahotsav?",
+      "Why is it celebrated?",
+      "What happens at IGM?",
+      "What is this festival about?",
+      "Why do people come here?"
+    ],
+    
+    '🎫 Entry & Fees': [
+      "Is entry free?",
+      "Do I need a ticket?",
+      "How much is the entry fee?",
+      "Do I need to register?",
+      "Can I enter without registration?"
+    ],
+    
+    '⏰ Timings': [
+      "What time does it open?",
+      "What time does it close?",
+      "What are the timings?",
+      "When does Aarti start?",
+      "What time are cultural programs?",
+      "When is Light & Sound show?",
+      "Is it open daily?"
+    ]
+  },
+  
+  '🕉️ Religious Significance': {
+    '🕉️ Hindu Significance': [
+      "Why is Kurukshetra important for Hindus?",
+      "What is religious importance of Kurukshetra?",
+      "Why is Kurukshetra holy?",
+      "What is Dharma Kshetra?",
+      "Why is Kurukshetra sacred?",
+      "Why do Hindus visit Kurukshetra?"
+    ],
+    
+    '🪯 Sikh Connection': [
+      "Why is Kurukshetra important for Sikhs?",
+      "Did Guru Nanak visit Kurukshetra?"
+    ],
+    
+    '☸️ Buddhism & Jainism': [
+      "Is Kurukshetra important for Buddhists?",
+      "Did Buddha visit Kurukshetra?",
+      "Is it important for Jains?",
+      "Buddhist significance of Kurukshetra?"
+    ]
+  },
+  
+  '🗺️ Sacred Places': {
+    '🌊 Brahma Sarovar': [
+      "What is Brahma Sarovar?",
+      "Where is Brahma Sarovar?",
+      "Why is Brahma Sarovar important?",
+      "Can I take bath in Brahma Sarovar?",
+      "What is the main venue?",
+      "Is it open all day?",
+      "What is at Brahma Sarovar?"
+    ],
+    
+    '💧 Sannihit Sarovar': [
+      "What is Sannihit Sarovar?",
+      "Where is Sannihit Sarovar?",
+      "How far is Sannihit Sarovar?",
+      "Can I do Pind Daan here?",
+      "What is confluence of seven Saraswatis?",
+      "Why is Sannihit important?"
+    ],
+    
+    '🌳 Jyotisar': [
+      "Where was Gita spoken?",
+      "Where is Jyotisar?",
+      "Where did Krishna speak Gita?",
+      "Where is the banyan tree?",
+      "Where is Krishna Arjuna chariot?",
+      "Is there Light & Sound show at Jyotisar?"
+    ],
+    
+    '🏛️ Museums': [
+      "Are there museums?",
+      "What museums can I visit?",
+      "Where is Panorama?",
+      "What is Kurukshetra Panorama?",
+      "Is there Krishna Museum?",
+      "Where is Sheikh Chilli's Tomb?",
+      "Is there planetarium?",
+      "What are museum timings?",
+      "What is museum entry fee?"
+    ]
+  },
+  
+  '📜 Historical & Spiritual': {
+    '⚔️ Mahabharata War': [
+      "What happened in Kurukshetra?",
+      "What is Mahabharata war?",
+      "Who fought the war?",
+      "How long was the war?",
+      "Who were Pandavas and Kauravas?",
+      "Why was war fought here?"
+    ],
+    
+    '📖 Bhagavad Gita': [
+      "What is Bhagavad Gita?",
+      "Where was Gita spoken?",
+      "When was Gita spoken?",
+      "Who spoke the Gita?",
+      "Gita teachings?"
+    ],
+    
+    '🕰️ Ancient History': [
+      "What is history of Kurukshetra?",
+      "What are ancient names of Kurukshetra?",
+      "What is Brahma Kshetra?",
+      "How old is Kurukshetra?",
+      "What is Vedic connection?",
+      "Historical background?"
+    ],
+    
+    '🚶 48 Kos Parikrama': [
+      "What is 48 Kos?",
+      "What is 48 Kos Parikrama?",
+      "How long is parikrama?",
+      "What is the distance of parikrama?",
+      "How many tirthas are there?",
+      "When to do parikrama?"
+    ]
+  },
+  
+  '🚗 Visitor Information': {
+    '🛣️ How to Reach': [
+      "How to reach Kurukshetra?",
+      "How to reach from Delhi?",
+      "How to reach from Chandigarh?",
+      "Which is nearest airport?",
+      "Which railway station?",
+      "Are there buses?",
+      "Can I come by car?",
+      "Which highway to take?",
+      "How far from Delhi?",
+      "How far from Chandigarh?"
+    ],
+    
+    '🌤️ Weather & Clothing': [
+      "What is the weather in December?",
+      "Is it cold?",
+      "What should I wear?",
+      "Do I need warm clothes?",
+      "Should I bring jacket?",
+      "What temperature in December?",
+      "Will it be foggy?",
+      "Will it rain?"
+    ],
+    
+    '🍽️ Food Options': [
+      "Where can I eat?",
+      "Is food available?",
+      "Is free food available?",
+      "Where is langar?",
+      "Are there restaurants?",
+      "What food is available?",
+      "Is non-veg allowed?",
+      "Is alcohol allowed?",
+      "What is Haryana special food?"
+    ],
+    
+    '📋 Safety & Rules': [
+      "What are the rules?",
+      "What is not allowed?",
+      "Can I smoke?",
+      "Can I bring plastic bags?",
+      "Are pets allowed?",
+      "Can I take photos?",
+      "Do I need ID card?",
+      "What should I not do?",
+      "What to do if I lose something?",
+      "Where to report lost items?",
+      "What are emergency numbers?"
+    ]
+  },
+  
+  '🎭 Activities & Programs': {
+    '🏆 Competitions': [
+      "What competitions are there?",
+      "Is there Gita quiz?",
+      "What activities are organized?",
+      "Are there cultural programs?",
+      "Is there dance performance?",
+      "Are there exhibitions?",
+      "Can I participate in competitions?",
+      "Is there yoga session?",
+      "Are there workshops?"
+    ],
+    
+    '⏱️ Trip Planning': [
+      "How many days needed?",
+      "How many days should I plan?",
+      "What is minimum time?",
+      "Can I cover in one day?",
+      "Should I stay overnight?",
+      "What to see first?",
+      "What is best day to visit?"
+    ]
+  },  
+  
+  '🏨 Accommodation (Dharamshalas)': {
+  '🏨 Accommodation (Dharamshalas)': [
+    "🏠 Dharamshalas available?",
+    "💰 Free / Donation-based accommodation?",
+    "🛏️ Single Bedroom?",
+    "🛏️ Double Bedroom?",
+    "🛏️ Dormitory Bedroom?",
+    "❄️ AC rooms available?",
+    "🅿️ Parking available?",
+    "🍽️ Food available?",
+    "🚿 Hot water available?",
+    "⚡ Generator available?",
+    "💧 Drinking water facility?",
+    "🕉️ Temple in dharamshala?",
+    "📺 TV in rooms?",
+    "🔄 Dharamshala with basic facilities?",
+    "🔄 AC and food both available?",
+    "🏘️ Aggarwal Dharamshala where?",
+    "🏘️ Jaat Dharamshala?",
+    "🕉️ Gurudwara accommodation?",
+    "🎪 Hall for gathering?"
+  ]
+}};
+
+const statsQuestionsHindi = {
+  '🕉️ कार्यक्रम से संबंधित जानकारी': {
+    '🕉️ धार्मिक कार्यक्रम': [
+    "🕉️ श्रीमद्भागवत गीता पाठ एवं यज्ञ कब है?",
+    "🕉️ श्री मद्भगवद्गीता यज्ञ एवं गीता पूजन कब है?",  
+    "🔥 गीता यज्ञ की पूर्ण आहूति एवं वट-वृक्ष पूजन कब है?",
+    "🌐 अन्तर्राष्ट्रीय गीता संगोष्ठी कब है?",
+    "🏃‍♂️ Gita Run कब है?",
+    "🚶‍♀️ गीता सद्भावना यात्रा कब है?",   
+    "🎶 भजन संध्या और महाआरती का समय क्या है?",
+    "👧👦 18000 विद्यार्थियों का वैश्विक गीता पाठ कब है?",
+    "🛕 गीता शोभा यात्रा कब है?",
+    "🪔 दीप दान समारोह कब है?",
+    "🌏 48 कोस तीर्थ सम्मेलन कब है?",
+    "🛕 विराट संत सम्मेलन कब है?",
+    "📿 गीता पंचामृत प्रवचन कौन दे रहे हैं?",
+    "🕉️ स्वामी रामभद्राचार्य जी का प्रवचन कब है?",
+    "📖 भागवत कथा कब है?",
+    "🎓 विद्यार्थियों के लिए गीता श्लोकोच्चारण, भाषण, निबंध लेखन, चित्रकला, रंगोली एवं क्रॉफ्ट प्रतियोगिताएं कब हैं?"
+],
+    '🎭 सांस्कृतिक कार्यक्रम': [
+  "🎭 सांस्कृतिक कार्यक्रम कब है?",
+  "💡🎶 महाभारत एवं गीता पर आधारित लाइट एंड साउंड शो कब है?",
+  "🌐💡 3D मैपिंग के माध्यम से 'विश्वरूप' पर लाईट एंड साउंड शो कब है?"
+],
+    '📅 तिथि-वार कार्यक्रम': [
+      "15 नवम्बर के कार्यक्रम?",
+      "16 नवम्बर के कार्यक्रम?",
+      "17 नवम्बर के कार्यक्रम?",
+      "18 नवम्बर के कार्यक्रम?",
+      "19 नवम्बर के कार्यक्रम?",
+      "20 नवम्बर के कार्यक्रम?",
+      "21 नवम्बर के कार्यक्रम?",
+      "22 नवम्बर के कार्यक्रम?",
+      "23 नवम्बर के कार्यक्रम?",
+      "24 नवम्बर के कार्यक्रम?",
+      "25 नवम्बर के कार्यक्रम?",
+      "26 नवम्बर के कार्यक्रम?",
+      "27 नवम्बर के कार्यक्रम?",
+      "28 नवम्बर के कार्यक्रम?",
+      "29 नवम्बर के कार्यक्रम?",
+      "30 नवम्बर के कार्यक्रम?",
+      "1 दिसम्बर के कार्यक्रम?",
+      "2 दिसम्बर के कार्यक्रम?",
+      "3 दिसम्बर के कार्यक्रम?",
+      "4 दिसम्बर के कार्यक्रम?",
+      "5 दिसम्बर के कार्यक्रम?"
+    ],
+  '🌐 स्थलवार कार्यक्रम': [
+    "🌊 ब्रह्मसरोवर पर आयोजित कार्यक्रम",
+    "🌊 सन्निहित सरोवर पर आयोजित कार्यक्रम",
+    "🛕 ज्योतिसर पर आयोजित कार्यक्रम",
+    "🎓 कुरुक्षेत्र विश्वविद्यालय में आयोजित कार्यक्रम",
+    "🏢 केडीबी कार्यालय (सामने) पर आयोजित कार्यक्रम",
+    "🌿 केशव पार्क में आयोजित कार्यक्रम",
+    "🌏 48 कोस कुरुक्षेत्र भूमि पर आयोजित कार्यक्रम"
+  ],
+  '📚 शैक्षिक कार्यशालाएँ': [
+    "📘 अंतर्राष्ट्रीय गीता संगोष्ठी कब आयोजित होगी?",
+    "🎓 छात्रों के लिए गीता श्लोक वाचन, भाषण, निबंध लेखन, चित्रकला, रंगोली और क्राफ्ट प्रतियोगिताएँ कब होंगी?",
+    "🕉️ गीता पंचामृत प्रवचन कौन देंगे?",
+    "🕉️ स्वामी रामभद्राचार्य जी का प्रवचन कब होगा?",
+    "📖 भागवत कथा कब आयोजित होगी?"
+  ],
+  '🎪 उद्घाटन कार्यक्रम': [
+    "🌐 अंतर्राष्ट्रीय गीता संगोष्ठी का उद्घाटन कब है?",
+    "🛕 विराट संत सम्मेलन का उद्घाटन कब होगा?",
+    "🕉️ पंचामृत प्रवचन का आरंभ कब होगा?",
+    "📖 भागवत कथा का शुभारंभ कब है?",
+    "🏛️ राज्य स्तरीय प्रदर्शनियों का उद्घाटन कब है?",
+    "🌍 हरियाणा, मध्यप्रदेश तथा सहभागी देशों के पवेलियनों का उद्घाटन कब है?",
+    "🎨 क्राफ्ट्स मेला कब शुरू होगा?"
+  ],
+
+  '🏛️ प्रदर्शनियाँ': [
+    "🏛️ राज्य स्तरीय प्रदर्शनियाँ कब आयोजित होंगी?"
+  ]},
+  '🎭 शाम का सांस्कृतिक कार्यक्रम': {
+  '🎭 शाम का सांस्कृतिक कार्यक्रम': [
+    "🎭 24 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
+    "🎭 25 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
+    "🎭 26 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
+    "🎭 27 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
+    "🎭 28 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
+    "🎭 29 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
+    "🎭 30 नवंबर को सायं सांस्कृतिक कार्यक्रम?",
+    "🎭 1 दिसम्बर को सायं सांस्कृतिक कार्यक्रम?",
+    "🎭 पद्मिनी कोल्हापुरे कब आ रही हैं?",
+    "🎭 कृष्ण नाट्य प्रस्तुति कब है?",
+    "🎭 कंवर सिंह ग्रेवाल कब आ रहे हैं?",
+    "🎭 सूफी संगीत कार्यक्रम?",
+    "🎭 पंजाबी लोक संगीत कब है?",
+    "🎭 पुनीत इस्सर कब आ रहे हैं?",
+    "🎭 सुरेश वाडकर का संगीत कार्यक्रम?",
+    "🎭 रामायण मंचन कब है?",
+    "🎭 रवि मोहन ग्रुप का कार्यक्रम?",
+    "🎭 रामायण नाटक कब है?",
+    "🎭 डॉ हरिओम पंवार कब आएंगे?",
+    "🎭 कविता पाठ कार्यक्रम?",
+    "🎭 साध्वी पूर्णिमा जी कब आ रही हैं?",
+    "🎭 भजन संध्या कब है?",
+    "🎭 अनूप जलोटा कब आ रहे हैं?",
+  ],
+}, 
+'🏥 इस्कॉन': {
+'🏥 इस्कॉन': [
+"इस्कॉन श्रीमद् भगवद्गीता कथा?",
+"इस्कॉन श्रीमद् भागवतम् कथा?",
+"गीता यज्ञ इस्कॉन?",
+"इस्कॉन प्रवचन?",
+"इस्कॉन ज्योतिसर कार्यक्रम?",
+"दैनिक हरिनाम संकीर्तन?",
+"इस्कॉन गीता प्रदर्शनी?",
+"इस्कॉन 1 दिसंबर कार्यक्रम?"
+]
+},
+'🏥 सुविधाएं': {
+  '🏥 सुविधाएं': [
+    "🅿️ कहाँ पार्क करें?",
+    "🚻 शौचालय कहाँ है?",
+    "💧 पीने का पानी कहाँ मिलेगा?",
+    "🍽️ खाना कहाँ मिलेगा?",
+    "☕ चाय/नाश्ता कहाँ मिलेगा?",
+    "🏥 चिकित्सा सुविधा कहाँ है?",
+    "🏧 एटीएम कहाँ है?",
+    "🚗 कार पार्किंग?",
+    "🚌 बस पार्किंग?",
+    "📍 ब्रह्म सरोवर के पास सुविधाएं?"
+  ]},
+
+'🚨 आपातकालीन': {
+  '🚨 आपातकालीन': [
+    "🔥 आग लगी है?",
+    "🚨 आपातकालीन हेल्पलाइन?",
+    "👮 पुलिस संपर्क?",
+    "🏥 चिकित्सा आपातकाल?",
+    "🏥 एम्बुलेंस?",    
+    "🚑 बचाव दल संपर्क?",
+    "📞 बाल हेल्पलाइन नंबर?",
+    "👶 मेरा बच्चा खो गया",
+    "🔍 खोया पाया?",
+    "ℹ️ पर्यटक हेल्पलाइन?"
+  ]},
+  "🛍️ खरीदारी और स्टॉल": {
+  "खाद्य उत्पाद": [
+    "अचार कहाँ से खरीदें?",
+    "अचार के स्टॉल कहाँ हैं?",
+    "मुरब्बे की दुकानें?",
+    "खाद्य उत्पादों के स्टॉल?"
+  ],
+  "हस्तशिल्प और कारीगर": [
+    "हस्तशिल्प स्टॉल कहाँ हैं?",
+    "हस्तनिर्मित वस्तुएं कहाँ मिलेंगी?",
+    "कारीगर की दुकानें?",
+    "पारंपरिक हस्तशिल्प?",
+    "सबसे अच्छे हस्तशिल्प स्टॉल?"
+  ],
+  "वस्त्र और परिधान": [
+    "परिधान स्टॉल?",
+    "रेडीमेड कपड़ों की दुकानें?",
+    "साड़ी स्टॉल कहाँ हैं?",
+    "हथकरघा साड़ियाँ?",
+    "पारंपरिक वस्त्र स्टॉल?"
+  ],
+  "आभूषण और सहायक वस्तुएं": [
+    "कृत्रिम आभूषण स्टॉल?",
+    "गहने कहाँ से खरीदें?",
+    "आभूषणों की दुकानें?",
+    "फैशन एक्सेसरीज?"
+  ],
+  "कढ़ाई का काम": [
+    "कढ़ाई के स्टॉल?",
+    "कढ़ाई कहाँ मिलेगी?",
+    "हाथ की कढ़ाई की दुकानें?",
+    "जरी के काम के स्टॉल?",
+    "फुलकारी स्टॉल?"
+  ],
+  "चमड़े के उत्पाद": [
+    "चमड़े के उत्पादों के स्टॉल?",
+    "जूती कहाँ से खरीदें?",
+    "चमड़े के बैग की दुकानें?",
+    "जूते-चप्पल के स्टॉल?"
+  ],
+  "ऊनी वस्तुएं": [
+    "ऊनी शॉल?",
+    "शॉल कहाँ से खरीदें?",
+    "पश्मीना स्टॉल?",
+    "सर्दियों के कपड़ों की दुकानें?"
+  ],
+  "लकड़ी और बांस": [
+    "लकड़ी की नक्काशी के स्टॉल?",
+    "लकड़ी के हस्तशिल्प?",
+    "बांस के उत्पाद?",
+    "बेंत के काम की दुकानें?"
+  ],
+  "चित्रकला और कला": [
+    "मधुबनी पेंटिंग स्टॉल?",
+    "पट्टचित्र की दुकानें?",
+    "कलमकारी स्टॉल?",
+    "पारंपरिक कला?"
+  ],
+  "घर और रसोई": [
+    "बर्तनों के स्टॉल?",
+    "रसोई के सामान की दुकानें?",
+    "बर्तन स्टॉल?",
+    "घरेलू सामान?"
+  ],
+  "खिलौने और बच्चों का सामान": [
+    "खिलौने के स्टॉल कहाँ हैं?",
+    "खिलौने कहाँ से खरीदें?",
+    "बच्चों के सामान की दुकानें?"
+  ],
+  "श्रेणी आधारित": [
+    "सरस स्टॉल की सूची?",
+    "सरस स्टॉल कहाँ हैं?",
+    "एनजेडसीसी स्टॉल कहाँ हैं?",
+    "व्यावसायिक दुकानें?",
+    "राष्ट्रीय पुरस्कार विजेता स्टॉल?",
+    "कारीगर कार्ड धारक स्टॉल?"
+  ],
+  "राज्य आधारित": [
+    "हरियाणा स्टॉल?",
+    "उत्तर प्रदेश हस्तशिल्प?",
+    "तमिलनाडु उत्पाद?",
+    "राजस्थान स्टॉल?",
+    "गुजरात दर्पण का काम?",
+    "पश्चिम बंगाल हथकरघा?",
+    "पंजाब फुलकारी?",
+    "कश्मीर पश्मीना?"
+  ],
+  "विशेष वस्तुएं": [
+    "ब्लॉक प्रिंटिंग स्टॉल?",
+    "जरी के काम की दुकानें?",
+    "हाथ की पेंटिंग का काम?",
+    "बांस के शिल्प?",
+    "मिट्टी के बर्तनों के स्टॉल?"
+  ],
+  "स्टॉल नंबर": [
+    "स्टॉल नंबर 768?",
+    "स्टॉल 190 में क्या है?",
+    "दुकान नंबर 15 का विवरण?"
+  ],
+  "खरीदारी गाइड": [
+    "मेले में क्या खरीदें?",
+    "खरीदारी गाइड?",
+    "खरीदने के लिए सबसे अच्छी वस्तुएं?",
+    "प्रसिद्ध वस्तुएं?",
+    "लोकप्रिय स्टॉल?",
+    "जरूर देखने योग्य स्टॉल?"
+  ]
+},
+'ℹ️ IGM बुनियादी जानकारी': {
+    '📅 कार्यक्रम की तारीखें': [
+      "अंतर्राष्ट्रीय गीता महोत्सव 2025 कब है?",
+      "IGM कब शुरू होता है?",
+      "IGM कब समाप्त होता है?",
+      "त्योहार कितने दिनों का है?",
+      "गीता महोत्सव की तारीखें क्या हैं?",
+      "गीता जयंती कब है?",
+      "मुख्य दिन कौन सा है?",
+      "IGM 2025 की अवधि?"
+    ],
+    
+    'ℹ️ IGM के बारे में': [
+      "अंतर्राष्ट्रीय गीता महोत्सव क्या है?",
+      "यह क्यों मनाया जाता है?",
+      "IGM में क्या होता है?",
+      "यह त्योहार किस बारे में है?",
+      "लोग यहां क्यों आते हैं?"
+    ],
+    
+    '🎫 प्रवेश और शुल्क': [
+      "क्या प्रवेश निःशुल्क है?",
+      "क्या मुझे टिकट चाहिए?",
+      "प्रवेश शुल्क कितना है?",
+      "क्या मुझे पंजीकरण करना होगा?",
+      "क्या मैं बिना पंजीकरण प्रवेश कर सकता हूं?",
+      "क्या कोई शुल्क है?",
+      "IGM के लिए प्रवेश शुल्क?"
+    ],
+    
+    '⏰ समय': [
+      "यह किस समय खुलता है?",
+      "यह किस समय बंद होता है?",
+      "समय क्या है?",
+      "आरती कब शुरू होती है?",
+      "सांस्कृतिक कार्यक्रम किस समय हैं?",
+      "लाइट एंड साउंड शो कब है?",
+      "क्या यह रोज खुला रहता है?"
+    ]
+  },
+  
+  '🕉️ धार्मिक महत्व': {
+    '🕉️ हिंदू महत्व': [
+      "कुरुक्षेत्र हिंदुओं के लिए क्यों महत्वपूर्ण है?",
+      "कुरुक्षेत्र का धार्मिक महत्व क्या है?",
+      "कुरुक्षेत्र पवित्र क्यों है?",
+      "धर्म क्षेत्र क्या है?",
+      "कुरुक्षेत्र पवित्र क्यों है?",
+      "हिंदू कुरुक्षेत्र क्यों जाते हैं?"
+    ],
+    
+    '🪯 सिख संबंध': [
+      "कुरुक्षेत्र सिखों के लिए क्यों महत्वपूर्ण है?",
+      "क्या गुरु नानक ने कुरुक्षेत्र का दौरा किया?"
+    ],
+    
+    '☸️ बौद्ध और जैन धर्म': [
+      "क्या कुरुक्षेत्र बौद्धों के लिए महत्वपूर्ण है?",
+      "क्या बुद्ध ने कुरुक्षेत्र का दौरा किया?",
+      "क्या यह जैनियों के लिए महत्वपूर्ण है?",
+      "कुरुक्षेत्र का बौद्ध महत्व?"
+    ]
+  },
+  
+  '🗺️ पवित्र स्थान': {
+    '🌊 ब्रह्म सरोवर': [
+      "ब्रह्म सरोवर क्या है?",
+      "ब्रह्म सरोवर कहां है?",
+      "ब्रह्म सरोवर महत्वपूर्ण क्यों है?",
+      "क्या मैं ब्रह्म सरोवर में स्नान कर सकता हूं?",
+      "मुख्य स्थान कौन सा है?",
+      "क्या यह पूरे दिन खुला है?",
+      "ब्रह्म सरोवर में क्या है?"
+    ],
+    
+    '💧 सन्निहित सरोवर': [
+      "सन्निहित सरोवर क्या है?",
+      "सन्निहित सरोवर कहां है?",
+      "सन्निहित सरोवर कितनी दूर है?",
+      "क्या मैं यहां पिंड दान कर सकता हूं?",
+      "सात सरस्वतियों का संगम क्या है?",
+      "सन्निहित महत्वपूर्ण क्यों है?"
+    ],
+    
+    '🌳 ज्योतिसर': [
+      "गीता कहां बोली गई थी?",
+      "ज्योतिसर कहां है?",
+      "कृष्ण ने गीता कहां बोली?",
+      "बरगद का पेड़ कहां है?",
+      "कृष्ण अर्जुन का रथ कहां है?",
+      "क्या ज्योतिसर में लाइट एंड साउंड शो है?"
+    ],
+    
+    '🏛️ संग्रहालय': [
+      "क्या संग्रहालय हैं?",
+      "मैं कौन से संग्रहालय देख सकता हूं?",
+      "पैनोरमा कहां है?",
+      "कुरुक्षेत्र पैनोरमा क्या है?",
+      "क्या कृष्ण संग्रहालय है?",
+      "शेख चिल्ली का मकबरा कहां है?",
+      "क्या तारामंडल है?",
+      "संग्रहालय का समय क्या है?",
+      "संग्रहालय प्रवेश शुल्क क्या है?"
+    ]
+  },
+  
+  '📜 ऐतिहासिक और आध्यात्मिक': {
+    '⚔️ महाभारत युद्ध': [
+      "कुरुक्षेत्र में क्या हुआ?",
+      "महाभारत युद्ध क्या है?",
+      "युद्ध किसने लड़ा?",
+      "युद्ध कितने समय तक चला?",
+      "पांडव और कौरव कौन थे?",
+      "यहां युद्ध क्यों लड़ा गया?"
+    ],
+    
+    '📖 भगवद गीता': [
+      "भगवद गीता क्या है?",
+      "गीता कहां बोली गई?",
+      "गीता कब बोली गई?",
+      "गीता किसने बोली?",
+      "गीता की शिक्षाएं?"
+    ],
+    
+    '🕰️ प्राचीन इतिहास': [
+      "कुरुक्षेत्र का इतिहास क्या है?",
+      "कुरुक्षेत्र के प्राचीन नाम क्या हैं?",
+      "ब्रह्म क्षेत्र क्या है?",
+      "कुरुक्षेत्र कितना पुराना है?",
+      "वैदिक संबंध क्या है?",
+      "ऐतिहासिक पृष्ठभूमि?"
+    ],
+    
+    '🚶 48 कोस परिक्रमा': [
+      "48 कोस क्या है?",
+      "48 कोस परिक्रमा क्या है?",
+      "परिक्रमा कितनी लंबी है?",
+      "परिक्रमा की दूरी क्या है?",
+      "कितने तीर्थ हैं?",
+      "परिक्रमा कब करें?"
+    ]
+  },
+  
+  '🚗 आगंतुक जानकारी': {
+    '🛣️ कैसे पहुंचें': [
+      "कुरुक्षेत्र कैसे पहुंचें?",
+      "दिल्ली से कैसे पहुंचें?",
+      "चंडीगढ़ से कैसे पहुंचें?",
+      "निकटतम हवाई अड्डा कौन सा है?",
+      "कौन सा रेलवे स्टेशन?",
+      "क्या बसें हैं?",
+      "क्या मैं कार से आ सकता हूं?",
+      "कौन सा राजमार्ग लें?",
+      "दिल्ली से कितनी दूर?",
+      "चंडीगढ़ से कितनी दूर?"
+    ],
+    
+    '🌤️ मौसम और कपड़े': [
+      "दिसंबर में मौसम कैसा है?",
+      "क्या ठंड है?",
+      "मुझे क्या पहनना चाहिए?",
+      "क्या मुझे गर्म कपड़े चाहिए?",
+      "क्या मुझे जैकेट लानी चाहिए?",
+      "दिसंबर में तापमान क्या है?",
+      "क्या कोहरा होगा?",
+      "क्या बारिश होगी?"
+    ],
+    
+    '🍽️ खाने के विकल्प': [
+      "मैं कहां खा सकता हूं?",
+      "क्या खाना उपलब्ध है?",
+      "क्या मुफ्त भोजन उपलब्ध है?",
+      "लंगर कहां है?",
+      "क्या रेस्तरां हैं?",
+      "क्या खाना उपलब्ध है?",
+      "क्या नॉन-वेज की अनुमति है?",
+      "क्या शराब की अनुमति है?",
+      "हरियाणा का विशेष भोजन क्या है?"
+    ],
+    
+    '📋 सुरक्षा और नियम': [
+      "नियम क्या हैं?",
+      "क्या अनुमति नहीं है?",
+      "क्या मैं धूम्रपान कर सकता हूं?",
+      "क्या मैं प्लास्टिक बैग ला सकता हूं?",
+      "क्या पालतू जानवरों की अनुमति है?",
+      "क्या मैं फोटो ले सकता हूं?",
+      "क्या मुझे आईडी कार्ड चाहिए?",
+      "मुझे क्या नहीं करना चाहिए?",
+      "यदि मैं कुछ खो दूं तो क्या करूं?",
+      "खोई हुई वस्तुओं की रिपोर्ट कहां करें?",
+      "आपातकालीन नंबर क्या हैं?"
+    ]
+  },
+  
+  '🎭 गतिविधियां और कार्यक्रम': {
+    '🏆 प्रतियोगिताएं': [
+      "कौन सी प्रतियोगिताएं हैं?",
+      "क्या गीता क्विज है?",
+      "कौन सी गतिविधियां आयोजित की जाती हैं?",
+      "क्या सांस्कृतिक कार्यक्रम हैं?",
+      "क्या नृत्य प्रदर्शन है?",
+      "क्या प्रदर्शनियां हैं?",
+      "क्या मैं प्रतियोगिताओं में भाग ले सकता हूं?",
+      "क्या योग सत्र है?",
+      "क्या कार्यशालाएं हैं?"
+    ],
+    
+    '⏱️ यात्रा योजना': [
+      "कितने दिन चाहिए?",
+      "मुझे कितने दिनों की योजना बनानी चाहिए?",
+      "न्यूनतम समय क्या है?",
+      "क्या मैं एक दिन में घूम सकता हूं?",
+      "क्या मुझे रात रुकना चाहिए?",
+      "पहले क्या देखें?",
+      "यात्रा के लिए सबसे अच्छा दिन कौन सा है?"
+    ]
+  },  
+  
+'🏨 आवास (धर्मशालाएं)': {
+  '🏨 आवास (धर्मशालाएं)': [
+    "🏠 धर्मशाला उपलब्ध है?",
+    "💰 मुफ्त / दान आधारित आवास?",
+    "🛏️ एक बेड वाला कमरा?",
+    "🛏️ डबल बेड वाला कमरा?",
+    "🛏️ सामूहिक कमरा?",
+    "❄️ एसी कमरे उपलब्ध हैं?",
+    "🅿️ पार्किंग उपलब्ध है?",
+    "🍽️ खाना उपलब्ध है?",
+    "🚿 गरम पानी उपलब्ध है?",
+    "⚡ जनरेटर उपलब्ध है?",
+    "💧 पीने का पानी की सुविधा?",
+    "🕉️ धर्मशाला में मंदिर?",
+    "📺 कमरों में टीवी?",
+    "🔄 बुनियादी सुविधाओं वाली धर्मशाला?",
+    "🔄 एसी और खाना दोनों उपलब्ध?",
+    "🏘️ अग्रवाल धर्मशाला कहाँ है?",
+    "🏘️ जाट धर्मशाला कहाँ है?",
+    "🕉️ गुरुद्वारे में आवास?",
+    "🎪 सभा के लिए हॉल?"
+  ]
+}
+};
 let selectedQueryType = null;
 let selectedLanguage = 'English';
 let currentQuestions = {};
@@ -1318,15 +2399,15 @@ function selectQueryType(type) {
   selectedQueryType = type;
   
   document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
-  const clickedOption = type === 'statistics' ? 
+  const clickedOption = type === 'gita' ? 
     document.querySelector('.radio-option:first-of-type') : 
     document.querySelector('.radio-option:last-of-type');
   clickedOption.classList.add('selected');
   
-  if (type === 'statistics') {
-    document.getElementById('statisticsRadio').checked = true;
+  if (type === 'gita') {
+    document.getElementById('gitaRadio').checked = true;
   } else {
-    document.getElementById('dataRadio').checked = true;
+    document.getElementById('eventRadio').checked = true;
   }
   
   loadCategories();
@@ -1675,7 +2756,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
   const question = userInput.value.trim();
   
   if (!selectedQueryType) {
-    alert('Please select either "Learn About Statistics" or "Find Haryana Data" first!');
+    alert('Please select either "Gita Guidance" or "Festival Information" first!');
     return;
   }
   
@@ -1873,7 +2954,7 @@ function openFeedback() {
   feedbackModal.classList.add('show');
   iframeLoader.style.display = 'block';
   
-  feedbackIframe.src = 'https://forms.google.com/your-feedback-form-id';
+  feedbackIframe.src = 'https://vksinglakkr.github.io/IGM2025/feedback_igm_chatbot.html';
   
   feedbackIframe.onload = function() {
     iframeLoader.style.display = 'none';
@@ -1902,8 +2983,23 @@ document.getElementById('feedbackModal').addEventListener('click', function(e) {
   }
 });
 
-    
-;
+function openLiveTelecast() {
+  window.open('https://www.youtube.com/live/My5T4LiHBdw', '_blank', 'noopener,noreferrer');
+}    
+function openQuizChatbot() {
+/*
+  const quizModal = document.getElementById('quizModal');
+  const quizIframe = document.getElementById('quizIframe');
+  const quizIframeLoader = document.getElementById('quizIframeLoader');
+  
+  quizModal.classList.add('show');
+  quizIframeLoader.style.display = 'block';
+  
+  quizIframe.src = 'https://igmquiz.in/webloginkkr.aspx';
+  
+  quizIframe.onload = function() {
+    quizIframeLoader.style.display = 'none';
+  };
   
   quizIframe.onerror = function() {
     quizIframeLoader.innerHTML = '<p style="color: #ef4444; font-weight: 600;">Failed to load Quiz Chatbot</p>';
@@ -1912,9 +3008,23 @@ document.getElementById('feedbackModal').addEventListener('click', function(e) {
 window.open('https://igmquiz.in/webloginkkr.aspx', '_blank');
 }
 
+function closeQuizChatbot() {
+  const quizModal = document.getElementById('quizModal');
+  const quizIframe = document.getElementById('quizIframe');
+  const quizIframeLoader = document.getElementById('quizIframeLoader');
+  
+  quizModal.classList.remove('show');
+  quizIframe.src = '';
+  
+  quizIframeLoader.style.display = 'none';
+  quizIframeLoader.innerHTML = '<div class="spinner"></div><p style="color: #64748b; font-weight: 600;">Loading Quiz Chatbot...</p>';
+}
 
-
-
+document.getElementById('quizModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeQuizChatbot();
+  }
+});
   </script>
 </body>
 </html>
