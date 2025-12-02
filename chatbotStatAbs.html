@@ -1418,15 +1418,15 @@ function selectQueryType(type) {
   selectedQueryType = type;
   
   document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
-  const clickedOption = type === 'gita' ? 
+  const clickedOption = type === 'statistics' ? 
     document.querySelector('.radio-option:first-of-type') : 
     document.querySelector('.radio-option:last-of-type');
   clickedOption.classList.add('selected');
   
-  if (type === 'gita') {
-    document.getElementById('gitaRadio').checked = true;
+  if (type === 'statistics') {
+    document.getElementById('statisticsRadio').checked = true;
   } else {
-    document.getElementById('eventRadio').checked = true;
+    document.getElementById('dataRadio').checked = true;
   }
   
   loadCategories();
