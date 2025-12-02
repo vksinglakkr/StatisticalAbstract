@@ -888,7 +888,7 @@
         
         <div class="radio-option" onclick="selectQueryType('statistics')">
           <input type="radio" name="queryType" id="statisticsRadio" value="statistics">
-          <span class="radio-icon">🕉️</span>
+          <span class="radio-icon">📖</span>
           <label for="statisticsRadio" class="radio-label cursor-pointer">
             <span class="radio-label-title">Learn About Statistics</span>
             <span class="radio-label-desc">Get explanations about statistical terms and concepts</span>
@@ -897,7 +897,7 @@
         
         <div class="radio-option" onclick="selectQueryType('data')">
           <input type="radio" name="queryType" id="dataRadio" value="data">
-          <span class="radio-icon">🎪</span>
+          <span class="radio-icon">📊</span>
           <label for="dataRadio" class="radio-label cursor-pointer">
             <span class="radio-label-title">Find Haryana Data</span>
             <span class="radio-label-desc">Search for specific data from Haryana Statistical Abstract</span>
@@ -2171,15 +2171,29 @@ musicToggle.addEventListener('click', () => {
   }
 });
 
-window.addEventListener('DOMContentLoaded', () => {
-  const lastModifiedDate = new Date(document.lastModified);
-  const element = document.getElementById("lastModified");
-  if (element) {
-    element.textContent = lastModifiedDate.toLocaleDateString('en-US', {
-      year: 'numeric', month: 'long', day: 'numeric'
-    }) + ' at ' + lastModifiedDate.toLocaleTimeString('en-US', {
-      hour: '2-digit', minute: '2-digit'
-    });
+// Last Updated timestamp
+window.addEventListener('DOMContentLoaded', function() {
+  try {
+    const lastModifiedDate = new Date(document.lastModified);
+    const element = document.getElementById("lastModified");
+    if (element) {
+      const dateStr = lastModifiedDate.toLocaleDateString('en-US', {
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric'
+      });
+      const timeStr = lastModifiedDate.toLocaleTimeString('en-US', {
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: true
+      });
+      element.textContent = dateStr + ' at ' + timeStr;
+      console.log('Last Updated:', dateStr + ' at ' + timeStr);
+    } else {
+      console.error('lastModified element not found');
+    }
+  } catch (error) {
+    console.error('Error updating last modified date:', error);
   }
 });
 
