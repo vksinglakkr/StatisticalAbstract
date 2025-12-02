@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STATS SAHAYAK - Tutorial Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .tutorial-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .tutorial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            color: #667eea;
+            font-weight: 600;
+            margin: 16px 0;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-5xl mx-auto">
+        <!-- Header -->
+        <div class="bg-white rounded-2xl shadow-2xl p-8 mb-8 text-center">
+            <h1 class="text-5xl font-bold mb-2" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                STATS SAHAYAK
+            </h1>
+            <h2 class="text-2xl text-gray-700 mb-4">Statistical Abstract Chatbot</h2>
+            <p class="text-gray-600 text-lg">Complete Tutorial Guide</p>
+            <div class="mt-4 text-sm text-gray-500">
+                Department of Economic and Statistical Analysis, Haryana
+            </div>
+        </div>
+
+        <!-- Quick Navigation -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">📑 Quick Navigation</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="#getting-started" class="text-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition">
+                    <div class="text-3xl mb-2">🚀</div>
+                    <div class="font-semibold text-blue-700">Getting Started</div>
+                </a>
+                <a href="#two-options" class="text-center p-4 bg-green-50 rounded-lg hover:bg-green-100 transition">
+                    <div class="text-3xl mb-2">🎯</div>
+                    <div class="font-semibold text-green-700">Two Options</div>
+                </a>
+                <a href="#features" class="text-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition">
+                    <div class="text-3xl mb-2">✨</div>
+                    <div class="font-semibold text-purple-700">Features</div>
+                </a>
+                <a href="#tips" class="text-center p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition">
+                    <div class="text-3xl mb-2">💡</div>
+                    <div class="font-semibold text-orange-700">Tips & Tricks</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Getting Started -->
+        <div id="getting-started" class="tutorial-card">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="step-number">1</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">🚀 Getting Started</h2>
+                    <p class="text-gray-600">Let's begin using STATS SAHAYAK chatbot</p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-900 mb-2">Step 1: Open the Chatbot</h4>
+                    <p class="text-gray-700">Open the STATS SAHAYAK chatbot in your web browser. You'll see a beautiful interface with the chatbot title and two main options.</p>
+                </div>
+
+                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-bold text-green-900 mb-2">Step 2: Choose Your Option</h4>
+                    <p class="text-gray-700">You'll see two radio buttons at the top. Select the one that matches what you need.</p>
+                </div>
+
+                <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+                    <h4 class="font-bold text-purple-900 mb-2">Step 3: Ask Your Question</h4>
+                    <p class="text-gray-700">Type your question in the text box or use the Quick Help dropdowns to select a pre-written question.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two Main Options -->
+        <div id="two-options" class="tutorial-card">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="step-number">2</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">🎯 Understanding Two Options</h2>
+                    <p class="text-gray-600">The chatbot has two distinct modes</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Option 1 -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border-2 border-blue-300">
+                    <div class="text-center mb-4">
+                        <div class="text-6xl mb-3">📖</div>
+                        <h3 class="text-2xl font-bold text-blue-900">Learn About Statistics</h3>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg mb-4">
+                        <h4 class="font-bold text-blue-800 mb-2">Use this for:</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• Understanding statistical concepts</li>
+                            <li>• Learning about terms and definitions</li>
+                            <li>• Statistical methods and formulas</li>
+                            <li>• General statistical knowledge</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-blue-900 text-white p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">Example Questions:</h4>
+                        <ul class="space-y-1 text-sm">
+                            <li>• What is GDP?</li>
+                            <li>• Explain literacy rate</li>
+                            <li>• How to calculate population density?</li>
+                            <li>• What is infant mortality rate?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Option 2 -->
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border-2 border-green-300">
+                    <div class="text-center mb-4">
+                        <div class="text-6xl mb-3">📊</div>
+                        <h3 class="text-2xl font-bold text-green-900">Find Haryana Data</h3>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg mb-4">
+                        <h4 class="font-bold text-green-800 mb-2">Use this for:</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>• Finding specific Haryana data</li>
+                            <li>• District-wise information</li>
+                            <li>• Statistical reports and numbers</li>
+                            <li>• Real data from Statistical Abstract</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-green-900 text-white p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">Example Questions:</h4>
+                        <ul class="space-y-1 text-sm">
+                            <li>• Show district-wise population</li>
+                            <li>• What is literacy rate in Ambala?</li>
+                            <li>• Agricultural production data</li>
+                            <li>• Number of hospitals in Haryana</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Features -->
+        <div id="features" class="tutorial-card">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="step-number">3</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">✨ Key Features</h2>
+                    <p class="text-gray-600">Explore all the powerful features</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="text-center p-6 bg-purple-50 rounded-xl">
+                    <div class="feature-icon">🎤</div>
+                    <h4 class="font-bold text-purple-900 mb-2">Voice Input</h4>
+                    <p class="text-gray-700 text-sm">Click the microphone icon to speak your question instead of typing it.</p>
+                </div>
+
+                <div class="text-center p-6 bg-blue-50 rounded-xl">
+                    <div class="feature-icon">🔊</div>
+                    <h4 class="font-bold text-blue-900 mb-2">Text-to-Speech</h4>
+                    <p class="text-gray-700 text-sm">Click the speaker icon to hear the chatbot's response read aloud.</p>
+                </div>
+
+                <div class="text-center p-6 bg-green-50 rounded-xl">
+                    <div class="feature-icon">🌐</div>
+                    <h4 class="font-bold text-green-900 mb-2">Language Toggle</h4>
+                    <p class="text-gray-700 text-sm">Switch between English and हिंदी for sample questions.</p>
+                </div>
+
+                <div class="text-center p-6 bg-orange-50 rounded-xl">
+                    <div class="feature-icon">📋</div>
+                    <h4 class="font-bold text-orange-900 mb-2">Copy Response</h4>
+                    <p class="text-gray-700 text-sm">Click the copy icon to copy the answer to your clipboard.</p>
+                </div>
+
+                <div class="text-center p-6 bg-pink-50 rounded-xl">
+                    <div class="feature-icon">👇</div>
+                    <h4 class="font-bold text-pink-900 mb-2">Quick Help</h4>
+                    <p class="text-gray-700 text-sm">Use dropdown menus to select pre-written sample questions.</p>
+                </div>
+
+                <div class="text-center p-6 bg-indigo-50 rounded-xl">
+                    <div class="feature-icon">💬</div>
+                    <h4 class="font-bold text-indigo-900 mb-2">Feedback</h4>
+                    <p class="text-gray-700 text-sm">Share your experience and help us improve the chatbot.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step-by-Step Usage -->
+        <div class="tutorial-card">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="step-number">4</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">📝 Step-by-Step Usage</h2>
+                    <p class="text-gray-600">Follow these steps to use the chatbot</p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xl">1</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800 mb-2">Select Radio Button</h4>
+                        <p class="text-gray-700">Click on either "Learn About Statistics" (📖) or "Find Haryana Data" (📊) based on your need.</p>
+                        <div class="mt-3 p-3 bg-blue-50 rounded text-sm text-blue-900">
+                            <strong>Tip:</strong> The placeholder text in the search box will change based on your selection!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center font-bold text-xl">2</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800 mb-2">Type or Select Your Question</h4>
+                        <p class="text-gray-700 mb-2">You have two ways to ask:</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li><strong>Type directly:</strong> Write your question in the text box</li>
+                            <li><strong>Use Quick Help:</strong> Select from dropdown menus (Topic → Question)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-xl">3</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800 mb-2">Click Submit Button</h4>
+                        <p class="text-gray-700">Press the orange "Submit" button with the send icon to get your answer.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold text-xl">4</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800 mb-2">Read the Response</h4>
+                        <p class="text-gray-700">A modal window will open with the AI-generated response. You can:</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                            <li>Read the text response</li>
+                            <li>Click speaker icon to hear it</li>
+                            <li>Click copy icon to copy it</li>
+                            <li>Close the modal when done</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tips and Tricks -->
+        <div id="tips" class="tutorial-card">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="step-number">5</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">💡 Tips for Best Results</h2>
+                    <p class="text-gray-600">Get the most out of STATS SAHAYAK</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-gradient-to-r from-green-50 to-green-100 p-4 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-bold text-green-900 mb-2">✓ Be Specific</h4>
+                    <p class="text-gray-700 text-sm">Instead of "population", ask "district-wise population of Haryana"</p>
+                </div>
+
+                <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-900 mb-2">✓ Use Keywords</h4>
+                    <p class="text-gray-700 text-sm">Include district names, years, or specific indicators in your question</p>
+                </div>
+
+                <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-4 rounded-lg border-l-4 border-purple-500">
+                    <h4 class="font-bold text-purple-900 mb-2">✓ Try Quick Help</h4>
+                    <p class="text-gray-700 text-sm">Browse sample questions to see what types of queries work best</p>
+                </div>
+
+                <div class="bg-gradient-to-r from-orange-50 to-orange-100 p-4 rounded-lg border-l-4 border-orange-500">
+                    <h4 class="font-bold text-orange-900 mb-2">✓ Rephrase if Needed</h4>
+                    <p class="text-gray-700 text-sm">If you don't get the desired answer, try asking in a different way</p>
+                </div>
+
+                <div class="bg-gradient-to-r from-pink-50 to-pink-100 p-4 rounded-lg border-l-4 border-pink-500">
+                    <h4 class="font-bold text-pink-900 mb-2">✓ Choose Right Option</h4>
+                    <p class="text-gray-700 text-sm">Use 📖 for concepts, 📊 for actual Haryana data</p>
+                </div>
+
+                <div class="bg-gradient-to-r from-indigo-50 to-indigo-100 p-4 rounded-lg border-l-4 border-indigo-500">
+                    <h4 class="font-bold text-indigo-900 mb-2">✓ Use Voice Input</h4>
+                    <p class="text-gray-700 text-sm">Long questions? Use the microphone for easier input</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistical Resources -->
+        <div class="tutorial-card">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="step-number">6</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">📊 Statistical Resources</h2>
+                    <p class="text-gray-600">Quick links to important data sources</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <a href="https://esaharyana.gov.in/statistical-wing-publication-reports/" target="_blank" 
+                   class="block p-6 bg-blue-50 rounded-lg border-2 border-blue-300 hover:border-blue-500 transition">
+                    <div class="text-4xl mb-3">📄</div>
+                    <h4 class="font-bold text-blue-900 mb-2">Haryana Statistical Abstract</h4>
+                    <p class="text-gray-700 text-sm">Official statistical reports and publications from Haryana</p>
+                </a>
+
+                <a href="https://www.mospi.gov.in/publications-reports" target="_blank" 
+                   class="block p-6 bg-green-50 rounded-lg border-2 border-green-300 hover:border-green-500 transition">
+                    <div class="text-4xl mb-3">🌍</div>
+                    <h4 class="font-bold text-green-900 mb-2">India Statistics (MoSPI)</h4>
+                    <p class="text-gray-700 text-sm">Ministry of Statistics publications and India-wide data</p>
+                </a>
+
+                <a href="https://censusindia.gov.in/" target="_blank" 
+                   class="block p-6 bg-purple-50 rounded-lg border-2 border-purple-300 hover:border-purple-500 transition">
+                    <div class="text-4xl mb-3">👥</div>
+                    <h4 class="font-bold text-purple-900 mb-2">Census Data</h4>
+                    <p class="text-gray-700 text-sm">Official census data and demographic information</p>
+                </a>
+
+                <a href="https://data.gov.in/" target="_blank" 
+                   class="block p-6 bg-orange-50 rounded-lg border-2 border-orange-300 hover:border-orange-500 transition">
+                    <div class="text-4xl mb-3">💾</div>
+                    <h4 class="font-bold text-orange-900 mb-2">Open Data Portal</h4>
+                    <p class="text-gray-700 text-sm">Government of India's open data platform</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- Troubleshooting -->
+        <div class="tutorial-card">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="step-number">7</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">🔧 Troubleshooting</h2>
+                    <p class="text-gray-600">Common issues and solutions</p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded">
+                    <h4 class="font-bold text-red-900 mb-2">❌ Chatbot not responding</h4>
+                    <p class="text-gray-700"><strong>Solution:</strong> Check your internet connection and refresh the page</p>
+                </div>
+
+                <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded">
+                    <h4 class="font-bold text-yellow-900 mb-2">⚠️ Voice input not working</h4>
+                    <p class="text-gray-700"><strong>Solution:</strong> Enable microphone permissions in your browser and use HTTPS</p>
+                </div>
+
+                <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded">
+                    <h4 class="font-bold text-blue-900 mb-2">ℹ️ Sample questions not showing</h4>
+                    <p class="text-gray-700"><strong>Solution:</strong> Make sure you've selected one of the two radio buttons first</p>
+                </div>
+
+                <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded">
+                    <h4 class="font-bold text-green-900 mb-2">✓ Getting wrong type of answer</h4>
+                    <p class="text-gray-700"><strong>Solution:</strong> Verify you selected the correct radio button (📖 for concepts, 📊 for data)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Need More Help?</h3>
+            <p class="text-gray-600 mb-6">Visit the Department of Economic and Statistical Analysis website for more information</p>
+            <a href="https://esaharyana.gov.in/" target="_blank" 
+               class="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition">
+                Visit ESA Haryana →
+            </a>
+            
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <p class="text-sm text-gray-500">
+                    © 2024 Department of Economic and Statistical Analysis, Haryana<br>
+                    AI Chatbot powered by Groq + Llama 3.3
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
