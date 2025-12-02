@@ -854,7 +854,7 @@
     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
     </svg>
-    User Guide (PDF)
+    Tutorial Guide
   </button>
   <button onclick="openTutorialVideos()" class="quiz-chatbot-btn">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2237,7 +2237,7 @@ document.getElementById('feedbackModal').addEventListener('click', function(e) {
 function openLiveTelecast() {
   window.open('https://www.youtube.com/live/My5T4LiHBdw', '_blank', 'noopener,noreferrer');
 }    
-function openQuizChatbot() {
+function openTutorialVideos() {
 /*
   const quizModal = document.getElementById('quizModal');
   const quizIframe = document.getElementById('quizIframe');
@@ -2257,6 +2257,12 @@ function openQuizChatbot() {
   };
 */
 window.open('https://igmquiz.in/webloginkkr.aspx', '_blank');
+
+function openPDFGuide() {
+  // Open HTML tutorial directly
+  window.open('STATS_SAHAYAK_Tutorial.html', '_blank');
+}
+
 }
 
 function closeQuizChatbot() {
@@ -2276,6 +2282,31 @@ document.getElementById('quizModal').addEventListener('click', function(e) {
     closeQuizChatbot();
   }
 });
-  </script>
+  
+
+// === LAST UPDATED CODE - SIMPLE VERSION ===
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    const elem = document.getElementById('lastModified');
+    if (elem) {
+      const now = new Date();
+      const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const dateStr = months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
+      let hours = now.getHours();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      const minutes = now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes();
+      const timeStr = hours + ':' + minutes + ' ' + ampm;
+      elem.textContent = dateStr + ' at ' + timeStr;
+      elem.style.display = 'inline';
+      console.log('Last Updated set to:', elem.textContent);
+    } else {
+      console.error('lastModified element NOT FOUND');
+    }
+  }, 100);
+});
+
+</script>
 </body>
 </html>
