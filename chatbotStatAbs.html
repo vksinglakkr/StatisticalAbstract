@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>STATS SAHAYAK – Statistical Abstract Chatbot</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Functions need to be defined before they're called in HTML
+    function openPDFGuide() {
+      window.open('STATS_SAHAYAK_Tutorial.html', '_blank');
+    }
+    
+    function openTutorialVideos() {
+      window.open('https://www.youtube.com/watch?v=YOUR_VIDEO_ID', '_blank');
+    }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
  <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -2209,14 +2219,7 @@ function openFeedback() {
   
   feedbackIframe.onload = function() {
     iframeLoader.style.display = 'none';
-  };
-
-function openPDFGuide() {
-  window.open('STATS_SAHAYAK_Tutorial.html', '_blank');
-}
-
-  
-  feedbackIframe.onerror = function() {
+  };feedbackIframe.onerror = function() {
     iframeLoader.innerHTML = '<p style="color: #ef4444; font-weight: 600;">Failed to load feedback form</p>';
   };
 }
@@ -2262,12 +2265,6 @@ function openTutorialVideos() {
   };
 */
 window.open('https://igmquiz.in/webloginkkr.aspx', '_blank');
-
-function openPDFGuide() {
-  // Open HTML tutorial directly
-  window.open('STATS_SAHAYAK_Tutorial.html', '_blank');
-}
-
 }
 
 function closeQuizChatbot() {
