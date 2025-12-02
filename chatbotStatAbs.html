@@ -994,7 +994,7 @@
       </div>
     </div>
     <div class="ml-13 space-y-1">
-      <a href="https://www.mospi.gov.in/" target="_blank" 
+      <a href="https://www.mospi.gov.in/publications-reports" target="_blank" 
          class="inline-block bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition-colors mt-2">
         Visit MoSPI →
       </a>
@@ -1641,8 +1641,10 @@ function selectQueryType(type) {
   
   if (type === 'statistics') {
     document.getElementById('statisticsRadio').checked = true;
+    document.getElementById('userInput').placeholder = 'Ask about statistical concepts... (e.g., What is GDP? Explain literacy rate)';
   } else {
     document.getElementById('dataRadio').checked = true;
+    document.getElementById('userInput').placeholder = 'Search Haryana data... (e.g., Show district-wise population, Agricultural production data)';
   }
   
   loadCategories();
