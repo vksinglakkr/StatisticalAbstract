@@ -2210,6 +2210,11 @@ function openFeedback() {
   feedbackIframe.onload = function() {
     iframeLoader.style.display = 'none';
   };
+
+function openPDFGuide() {
+  window.open('STATS_SAHAYAK_Tutorial.html', '_blank');
+}
+
   
   feedbackIframe.onerror = function() {
     iframeLoader.innerHTML = '<p style="color: #ef4444; font-weight: 600;">Failed to load feedback form</p>';
@@ -2308,5 +2313,33 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
+
+<script>
+// Last Updated Timestamp
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var elem = document.getElementById('lastModified');
+    if (elem) {
+      var d = new Date();
+      var months = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+      var dateStr = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+      var h = d.getHours();
+      var ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12;
+      h = h ? h : 12;
+      var m = d.getMinutes();
+      m = m < 10 ? '0' + m : m;
+      var timeStr = h + ':' + m + ' ' + ampm;
+      elem.textContent = dateStr + ' at ' + timeStr;
+      elem.style.display = 'inline';
+      console.log('✅ Last Updated successfully set to:', elem.textContent);
+    } else {
+      console.error('❌ Element with id=lastModified not found in DOM');
+    }
+  }, 200);
+});
+</script>
+
 </body>
 </html>
