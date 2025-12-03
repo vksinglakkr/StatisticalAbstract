@@ -1,0 +1,751 @@
+Chp_Code	Chapter_Name	sec_code	part_code
+1	Governor and Council of Ministers and their Portfolios	Admin_Stru	SS
+1	Haryana Subordinate Services Selection Board	Admin_Stru	SS
+2	State Planning Board, Haryana	Admin_Stru	SS
+3	Judges of Punjab and Haryana High Court	Admin_Stru	SS
+4	Public Service Commission, Haryana	Admin_Stru	SS
+5	Haryana Staff Selection Commission	Admin_Stru	SS
+6	Universities and their Vice-Chancellors in Haryana	Admin_Stru	SS
+7	Commissioners and Deputy Commissioners in Haryana	Admin_Stru	SS
+8	Divisions, Sub-Divisions, Districts, Tahsils, Sub- Tahsils and Blocks in Haryana	Admin_Stru	SS
+1	Classification of area in Haryana	Agricultre	ES
+2	Total area and classification of area in India	Agricultre	ES
+3	Districtwise number and area of Operational Holdings by size in Haryana	Agricultre	ES
+4	Number and area of Operational Holdings by Ownership in Haryana	Agricultre	ES
+5	Statewise number and area of Operational Holdings in India	Agricultre	ES
+6	Area and production of Foodgrains in Haryana	Agricultre	ES
+7	Area, production and average yield per hectare of principal crops in Haryana	Agricultre	ES
+8	Area under high yielding varieties of Foodgrains in Haryana	Agricultre	ES
+9	Area under fruit and vegetables in Haryana.	Agricultre	ES
+10	Districtwise percentage distribution of principal crops in Haryana.	Agricultre	ES
+11	Various Index Numbers relating to Agriculture in Haryana	Agricultre	ES
+12	Index Number of area under Crops in Haryana	Agricultre	ES
+13	Index of agricultural production in Haryana	Agricultre	ES
+14	Area under principal crops-Comparative position with other States	Agricultre	ES
+15	Production of principal crops in India by States	Agricultre	ES
+16	Average yield of important crops in India by States.	Agricultre	ES
+17	Fertilizer consumption in Haryana(Nutrients)	Agricultre	ES
+18	Consumption of pesticides in Haryana (Technical Grade)	Agricultre	ES
+19	Districtwise consumption of pesticides (Technical Grade)	Agricultre	ES
+20	Agricultural Machinery and implements in Haryana	Agricultre	ES
+21	Number of Tractors in Haryana	Agricultre	ES
+22	Number of villages repartitioned in Haryana	Agricultre	ES
+23	Area repartitioned in Haryana	Agricultre	ES
+24	Receipt and distribution of fertilizers in Haryana	Agricultre	ES
+25	Incidence of Land Revenue assessment on area in Haryana (District-wise)	Agricultre	ES
+26	Sample households engaged in cultivation in Haryana	Agricultre	ES
+27	Index Number of Agricultural Production in Haryana and India	Agricultre	ES
+30	Land not available for cultivation (Districtwise)	Agricultre	ES
+31	Other uncultivated Land excluding fallow land (Districtwise)	Agricultre	ES
+32	Fallow land (district-wise)	Agricultre	ES
+33	Net Area Sown (District-wise)	Agricultre	ES
+34	Net Area Sown more than once (District-wise)	Agricultre	ES
+35	Total Cropped Area (District-wise)	Agricultre	ES
+36	Number of Equipments used in livestock Sector	Agricultre	ES
+37	Area and production of Fruit Crops	Agricultre	ES
+38	Area and production of Vegitable Crops	Agricultre	ES
+39	Area and production of Spices Crops	Agricultre	ES
+40	Area and production of Medicinal Crops	Agricultre	ES
+41	Area and production of Mushroom Crops	Agricultre	ES
+42	Area and production of Flower Crops	Agricultre	ES
+1	Livestock and Poultry in Haryana.	Animal_Hus	ES
+2	Cattle in Haryana.	Animal_Hus	ES
+3	Buffaloes in Haryana.	Animal_Hus	ES
+4	Horses & Ponies in Haryana.	Animal_Hus	ES
+6	Donkeys and Mules in Haryana.	Animal_Hus	ES
+7	Sheep in Haryana	Animal_Hus	ES
+8	Goats, Camels and Pigs in Haryana	Animal_Hus	ES
+9	Fowls, Ducks, Turkeys and other Poultry in Haryana.	Animal_Hus	ES
+10	Number of Cattle and Poultry in Haryana per square Kilometer	Animal_Hus	ES
+11	Number of Cattle and Poultry in Haryana per thousand human beings	Animal_Hus	ES
+12	Number of Livestock and Poultry in various States of India.	Animal_Hus	ES
+13	Working Cattle in various States of India.	Animal_Hus	ES
+14	Veterinary Institution functioning	Animal_Hus	ES
+15	Staff of Veterinary Institutions in Haryana	Animal_Hus	ES
+16	Work done in Veterinary Institutions in Haryana	Animal_Hus	ES
+17	Mortality amongst livestock due to contagious diseases in Haryana	Animal_Hus	ES
+18	Number of bulls kept in Artificial Insemination Centres and the work done under A.I. Scheme in Haryana	Animal_Hus	ES
+19	Intensive Cattle Development Projects in Haryana	Animal_Hus	ES
+20	Development of Gaushalas and cattle catching operations in Haryana	Animal_Hus	ES
+21	Number of Recognised Slaughter Houses and Livestock slaughtered therein in Haryana	Animal_Hus	ES
+22	Number of Government Poultry Farms in Haryana	Animal_Hus	ES
+23	Poultry birds in Government Poultry Farms in Haryana	Animal_Hus	ES
+24	Egg production in Government Poultry Farms in Haryana.	Animal_Hus	ES
+25	Procurement of Milk, number of Milk Plants and Milk Chilling Centres in Haryana	Animal_Hus	ES
+26	Estimated production of milk and per capita availability of milk per day in Haryana	Animal_Hus	ES
+27	Livestock Development Centres in Haryana	Animal_Hus	ES
+28	Puregersey Breeding Units & gersoy cross Breeding Schemes	Animal_Hus	ES
+29	Agricultural Machinery and Implements	Animal_Hus	ES
+30	Pigs in the State	Animal_Hus	ES
+1	Area and Population of Haryana	Area_Popul	SS
+2	Growth of Total Population in Haryana	Area_Popul	SS
+3	Increase in population since ……. by districts	Area_Popul	SS
+4	Number of Villages and Towns in Haryana in ……... and ……… Census	Area_Popul	SS
+5	Area and population by districts	Area_Popul	SS
+6	Rural and Urban Population by Sex- Districtwise	Area_Popul	SS
+7	Tahsil-wise Population and No. of Village and Towns in Haryana	Area_Popul	SS
+8	Blockwise Population and Number of Villages ……….. Census	Area_Popul	SS
+9	Number of Household and Persons per household in Haryana ……….. Census	Area_Popul	SS
+10	Number of uses of Census houses in Haryana:……..	Area_Popul	SS
+11	Villages classified by various population ranges in Haryana ……….	Area_Popul	SS
+12	Towns classified by various population ranges in Haryana	Area_Popul	SS
+13	Area, population and density in the towns of Haryana	Area_Popul	SS
+14	Trend in population of towns	Area_Popul	SS
+15	Cities/Urban Agglomerations with a Population of 1,00,000 and above	Area_Popul	SS
+16	Rural and Urban Workers and non-workers by districts	Area_Popul	SS
+17	Number and percentage distribution of workers (Main + Marginal) by Broad industrial Categories	Area_Popul	SS
+18	Working population (Main + Marginal) classified into Broad industrial categories	Area_Popul	SS
+19	Age distribution of Urban and Rural population in Haryana	Area_Popul	SS
+20	Population by Religion in Haryana	Area_Popul	SS
+21	District-wise distribution of population by Languages	Area_Popul	SS
+22	Scheduled Castes by districts	Area_Popul	SS
+23	Scheduled Castes working population classified into Broad Industrial categories	Area_Popul	SS
+24	Literacy in Haryana by districts	Area_Popul	SS
+25	Literacy among Scheduled Castes in Haryana	Area_Popul	SS
+26	Disabled Population by District	Area_Popul	SS
+27	Area and population in various States in India	Area_Popul	SS
+28	Working Population according to ……… Census (By States)	Area_Popul	SS
+29	Scheduled Castes Population, literacy and works in various States in India according to ……….. Census	Area_Popul	SS
+30	Estimated Population of Haryana	Area_Popul	SS
+31	Districtwise Estimated population and Density (As on 1st October)	Area_Popul	SS
+32	Estimated Population of India(1st October)*	Area_Popul	SS
+33	Statewise Population by major Religious communities	Area_Popul	SS
+34	Statewise Population of Scheduled Castes and Scheduled Tribes	Area_Popul	SS
+35	Number of Residential houses, persons per occupied house and houseless population in Haryana	Area_Popul	SS
+36	Worker and non-worker by districts	Area_Popul	SS
+37	Working population classified into agricultural and other worker	Area_Popul	SS
+38	Area, Population and Census houses in the town of Haryana	Area_Popul	SS
+39	Town classified by various population range in Haryana	Area_Popul	SS
+41	Working population classified into nine industrial categories	Area_Popul	SS
+42	District-wise Rural urban population by sex	Area_Popul	SS
+43	Statewise workers in india	Area_Popul	SS
+44	Growth of Population in Haryana from 1901-2011 Census	Area_Popul	SS
+1	Banking Development in Haryana	Banking123	ES
+2	Districtwise Deposits and Credits of Scheduled Commercial Bank in Haryana	Banking123	ES
+3	Deposits and Credits of Scheduled Commercial Banks in India.	Banking123	ES
+4	Number of Banking offices in various states per thousand square kilometres of area and per lakh of population	Banking123	ES
+5	Number of Banking offices in various places of Haryana	Banking123	ES
+6	Number of Banking offices in various places of Haryana by population ranges	Banking123	ES
+7	District-wise development of Banking offices in the State of Haryana as on 31st March	Banking123	ES
+8	Districtwise number of urban and rural Banking offices in Haryana	Banking123	ES
+9	Deposit Advances of scheduled commercial Banks in Haryana	Banking123	ES
+1	Basic Statistics of Haryana	Basic_Stat	SS
+8	Divisions, Sub-Divisions, Districts, Tahsils, Sub- Tahsils and Blocks in Haryana	Basic_Stat	SS
+9	Haryana economic and social indicators A Quick look	Basic_Stat	SS
+3	Selected Statistics of all Co-operative Societies in Haryana	Coperation	ES
+4	Co-operative Societies and Bank classified by type in Haryana	Coperation	ES
+5	Selected Statistics of Primary Non-Agricultural Credit Societies in Haryana	Coperation	ES
+6	Selected Statistics of Primary Land Development Banks in Haryana	Coperation	ES
+7	Selected Statistics of Central Co-operative Banks in Haryana	Coperation	ES
+8	Selected Statistics of Apex State Marketing Federation in Haryana	Coperation	ES
+9	Selected Statistics of Central Consumer Stores in Haryana	Coperation	ES
+10	Selected Statistics of Labour and Consumer Societies in Haryana	Coperation	ES
+11	Selected Statistics of Housing Co-operative Societies in Haryana	Coperation	ES
+12	Selected Statistics of Dairy and Milk Supply Co- operative Societies in Haryana	Coperation	ES
+13	Selected Statistics of Women Co-operative Societies in Haryana	Coperation	ES
+14	Selected Statistics of Industrial Co-operative Societies in Haryana	Coperation	ES
+15	Selected Statistics of Primary Agricultural Credit and Services Societies in Haryana	Coperation	ES
+1	Number of Recognised institutions in Haryana	Education1	SS
+2	Classification of Colleges by Management and nature of education imparted in Haryana	Education1	SS
+3	Classification of Colleges by Management and nature of education imparted in Haryana (Districtwise)	Education1	SS
+4	Number of Scholars in recognised Colleges for General Education (Arts, Science and Home Science) in Haryana (Districtwise)	Education1	SS
+5	Classification of Recognised High/Senior Secondary School by Management in Haryana	Education1	SS
+6	Number of Scholars in recognised school in Haryana	Education1	SS
+7	Number of Scheduled Caste Scholars in recognised schools in Haryana	Education1	SS
+8	Number of Teachers in recognised Schools in Haryana According to type of institutions	Education1	SS
+9	Number of Students in school of Haryana (Classwise)	Education1	SS
+10	Intake Capacity in Degree Courses in Engineering by Department	Education1	SS
+11	Expenditure incurred on Educational Institutions by type of education in Haryana	Education1	SS
+12	Teacher Pupil Ratio	Education1	SS
+13	Recognised Educational Institutions in India.	Education1	SS
+14	Number of Teachers in recognised Schools in India.	Education1	SS
+15	Scholars on roll in recognised Schools in India.	Education1	SS
+16	Statewise Enrolment Ratio in classes I-V and VI-VIII of Recognised Schools for General Education in India	Education1	SS
+17	Statewise Enrolment Ratio of students belonging to Scheduled Castes in recognized Schools in India	Education1	SS
+18	Number of Teacher in recognised Schools for General Education in Haryana	Education1	SS
+19	Number of Teacher in recognised Schools for General Education according to qualification in Haryana	Education1	SS
+20	Number of Teacher in recognised Schools for General Education according to qualification in Haryana(Districtwise)	Education1	SS
+21	Percentage of School going Childern in India States and age groups	Education1	SS
+22	Recognised Educational Institutions in India State & Specialisation-Wise Number of Universities	Education1	SS
+23	Recognised Educational Institutions in India State & Specialisation-Wise Number of Colleges	Education1	SS
+24	Recognised Educational Institutions in India State-Wise Number of Private & Government colleges	Education1	SS
+25	Recognised Educational Institutions in India State-Wise Enrolment in Private & Government colleges	Education1	SS
+26	Recognised Educational Institutions in India Estimated State-Wise Enrolment in Various Social Categories	Education1	SS
+27	Recognised Educational Institutions in India by Type and Status	Education1	SS
+28	Students on Roll in Recognised Schools/Educational Institutions, Total Number of Teachers and Pupil Teachers Ratio in India	Education1	SS
+29	Enrolment Ratio in Classes I—V, VI—VIII, IX-X and XI-XII of Recognised Schools for General Education in India	Education1	SS
+30	Recognised Educational Institutions in India by Type and Status	Education1	SS
+31	Number of Teachers in Recognised Schools in India	Education1	SS
+32	Students on Roll in Recognised Schools/Educational Institutions in India	Education1	SS
+33	Recognised Educational Institutions in India State-Wise Number of teachers and pupils teacher ratio in higher education	Education1	SS
+34	Recognised Educational Institutions in India State & Type wise Number of Universities	Education1	SS
+35	Number of teachers in all mangement schools in Haryana	Education1	SS
+36	Teacher by gender in education department and all management schools in Haryana	Education1	SS
+37	Percentage of recognised educational institutional in India by type and status	Education1	SS
+38	Recognised educational Institutions in Rural Area by category in India	Education1	SS
+39	Enrolment by Education level in India	Education1	SS
+40	Gross Enrolment Ratio by Education level in India	Education1	SS
+41	Comparative Gross Enrolment ratio for Scheduled Castes by Education Level in India	Education1	SS
+42	Number of students in all management schools class wise in Haryana	Education1	SS
+43	Number of Institutions, Teachers & Enrolment in School Education	Education1	SS
+44	Enrollment of Boys & Girls by social category and State of School Education	Education1	SS
+45	Percentage Enrolment of Boys & Girls by social category in School Education	Education1	SS
+46	Enrolment in recognised Educational Institutions by Type and Status in India	Education1	SS
+47	Percentage distribution of Schools by washroom facility/Functional Girls Toilets/All facility by School category in recognised education institution in India	Education1	SS
+48	Percentage distribution of Schools (District wise) by facility in Haryana	Education1	SS
+49	Percentage of School with Toilet for Boys by School catogery in India	Education1	SS
+50	Percentage of School with Toilet for Girls by School catogery in India	Education1	SS
+51	Number of Recognised Schools in Haryana	Education1	SS
+1	L.T. and 11 K.V. Lines in Haryana	Elec_Power	ES
+2	Consumption of electricity in Haryana	Elec_Power	ES
+3	Number of connection in Haryana	Elec_Power	ES
+4	Number of pending applications for electric connections by used and period	Elec_Power	ES
+5	Number of Tubewells energised in Haryana	Elec_Power	ES
+6	Units sold and per capital consumption of electricity	Elec_Power	ES
+7	Installed generation capacity and power availability in Haryana	Elec_Power	ES
+8	Installed Plant capacity, electricity generated and utilised in India (Statewise)	Elec_Power	ES
+9	Statewise Installed plant capacity and energy consumed per square Kilometre and per thousand population in India (Statewise)	Elec_Power	ES
+10	Annual per capital consumption of electricity in India (Statewise)	Elec_Power	ES
+11	Number of villages electrified in various States	Elec_Power	ES
+12	Number of Towns/Villages electrified in Haryana	Elec_Power	ES
+13	Population covered by electrification in Haryana	Elec_Power	ES
+14	Number of villages electrified in Haryana by Population groups	Elec_Power	ES
+16	Number of consumers served for various purpose in Haryana	Elec_Power	ES
+17	Consumption of Electricity connected K.W.H.(category wise)	Elec_Power	ES
+18	Number of consumers in Haryana	Elec_Power	ES
+20	Number of consumers served (District-wise) in Haryana	Elec_Power	ES
+21	Installation of solar pumps under PM-KUSAM	Elec_Power	ES
+22	Indicates the progress of renewable energy capacity	Elec_Power	ES
+1	Number of Electors, Seats (Lok Sabha and Vidhan Sabha) in Haryana	Elect_Stat	OS
+2	Name of elected members for Parliament from Haryana Parliamentary Constituencies in General Elections.	Elect_Stat	OS
+3	Name of elected members of Haryana Vidhan Sabha in General Election.	Elect_Stat	OS
+4	Number of Electors and Votes Polled in Haryana Vidhan Sabha Election.	Elect_Stat	OS
+5	Number of votes polled on Haryana During ……… General Election to Lok Sabha	Elect_Stat	OS
+6	Number of Lok Sabha and Vidhan sabha Seats (in India) (Statewise)/Number of Parliamentary and State Assembly Constituencies in India	Elect_Stat	OS
+7	District-wise number of votes Polled and seats won in Haryana during General Elections	Elect_Stat	OS
+8	Number of Elected Members of Vidhan Sabha in Haryana in Mid-term elections	Elect_Stat	OS
+9	Number of Electoral seats (Lok Sabha and Vidhan Sabha) in Haryana during the General Elections	Elect_Stat	OS
+10	Number of Lok Sabha and Vidhan Sabha seats : General Elections (State-wise)	Elect_Stat	OS
+1	Monthly Average Rainfall by districts	Envir_Stat	SS
+2	Monthly Normal Rainfall by districts-Average of 5 years	Envir_Stat	SS
+3	Average Annual Rainfall by districts	Envir_Stat	SS
+4	Monthly rainfall at Selected Station- Actual and Normal for the years	Envir_Stat	SS
+5	Temperature (°C) at Selected Stations during	Envir_Stat	SS
+6	Mean wind speed recorded at Selected Stations.	Envir_Stat	SS
+7	Main Relative Humidity at Selected Stations in Haryana during	Envir_Stat	SS
+1	Number of Assessees and Tax realised in Haryana	Excise_STS	ES
+2	Consumption of Liquor and Opium in Haryana	Excise_STS	ES
+3	Receipts from Entertainment Tax and Show Tax	Excise_STS	ES
+4	Entertainment Places	Excise_STS	ES
+5	Rates of Excise Duty on Liquors, Opium and other drugs in Haryana	Excise_STS	ES
+6	Tax realised in Haryana under Passenger and Goods Tax Act, 1952 and Motor Spirit Sales Tax Act, 1939	Excise_STS	ES
+7	Tax collected in Haryana under immovable Property Tax Act, 1940	Excise_STS	ES
+8	Medical Opium issued	Excise_STS	ES
+9	Basic Statistics (SGST)	Excise_STS	ES
+1	Fisheries Development in Haryana	Fisheries1	ES
+2	Disposition of fish catch during the year.	Fisheries1	ES
+3	Area developed under Shrimp Culture in Haryana	Fisheries1	ES
+4	Species wise Fish production in Haryana	Fisheries1	ES
+5	RAS units in Haryana	Fisheries1	ES
+6	Fish production in notified waters in Haryana	Fisheries1	ES
+7	Fish markets in Haryana	Fisheries1	ES
+8	Resource wise no and area of Fish production in Haryana	Fisheries1	ES
+1	Area Under Forests in Haryana	Forests123	ES
+2	Percentage of Area Under Forests & Forest Area Per Lakh of Population in Haryana	Forests123	ES
+3	Quantity & Value of Major Forests Produce in Haryana (State Forests only)/Major Forests Produce Out-Turn from State-Owned Forests	Forests123	ES
+4	Minor Forests in Haryana (State Forests Only)	Forests123	ES
+5	Forest Area Protected from Fire and cattle Grazing	Forests123	ES
+6	Revenue and Expenditure of Forest Department	Forests123	ES
+7	Percentage of land area under Forests and per capita Forest area in Haryana	Forests123	ES
+8	Out-turn of forest produce in Haryana	Forests123	ES
+1	Estimates of Gross Fixed Capital Formation in Haryana by Industry of Use (At Current price)	GF_Capt_FR	ES
+2	Estimates of Gross Fixed Capital Formation in Haryana by Industry of Use At Constant price	GF_Capt_FR	ES
+3	Estimates of Gross Fixed Capital formation in Haryana by Type of Institutions (At Current Prices)	GF_Capt_FR	ES
+4	Estimates of Gross Fixed Capital Formation in Haryana by Type of Institutions At Constant Prices	GF_Capt_FR	ES
+5	Estimates of Gross Fixed Capital Formation in Haryana by Type of Assets (At Current Prices)	GF_Capt_FR	ES
+6	Estimates of Gross Fixed Capital Formation in Haryana by Type of Assets At Constant Prices	GF_Capt_FR	ES
+1	Hospitals, Dispensaries and Health Centres in Haryana	Health_F_W	SS
+2	Number of Medical (Allopathic) Institutions in Haryana (Rural and Urban)	Health_F_W	SS
+3	Medical staff in Haryana	Health_F_W	SS
+4	Patients treated and Beds available in Haryana	Health_F_W	SS
+5	Number of Indoor & Outdoor Patients Treated by diseases in Government Institutions in Haryana	Health_F_W	SS
+6	Area covered per institution and beds per lakh of population	Health_F_W	SS
+7	Ayurvedic, Homoeopathic and Unani Institution and their staff in Haryana	Health_F_W	SS
+8	Number of Sterilization Operations in Haryana	Health_F_W	SS
+9	Achievements of various Family Welfare Methods and Equivalent Sterilization in Haryana.	Health_F_W	SS
+10	Number of villages provided with safe Drinking Water Supply in Haryana	Health_F_W	SS
+11	Number of Family Welfare Clinics in Haryana	Health_F_W	SS
+12	Percentage of eligible couples protected by sterilization operations/IUD insertions/conventional contraceptive methods	Health_F_W	SS
+13	Type of Attention at Birth as per Civil Registration System in Haryana	Health_F_W	SS
+14	Population served by institutions and beds	Health_F_W	SS
+15	Births and Deaths in Haryana	Health_F_W	SS
+16	Births and Deaths per thousand Population	Health_F_W	SS
+17	Target functional households tap connection along with achieved tap connections covered under safe drinking water in Haryana	Health_F_W	SS
+1	Number of Registered factories and workers employed (districtwise) in Haryana	Industries	ES
+2	Size and distribution of registered working factories in Haryana	Industries	ES
+3	Size and distribution of registered working Factories (Districtwise) in Haryana	Industries	ES
+4	Number of working factories, industrywise and districtwise as on 31 December ……….	Industries	ES
+5	Estimated workers employed in working factories, districtwise and industrywise	Industries	ES
+6	Industrial Production in Haryana	Industries	ES
+7	Cotton/Man-made Fiber (Non-SSI) Textile Mills, in Haryana State	Industries	ES
+8	Index of Industrial Production according to Industrial Classification	Industries	ES
+9	Index of Industrial Production Major Groups.	Industries	ES
+10	Classification of loans (Amountwise) sanctioned by the Financial Corporation in the State of Haryana	Industries	ES
+11	Industrywise Classification of applications received, sanctioned otherwise	Industries	ES
+12	Classification of loans and advances in Haryana (districtwise)	Industries	ES
+13	Production, sale and employment in different village Industries in Haryana	Industries	ES
+14	Amount of grants and loans disbursed to the various industries in Haryana by Khadi and Village Industries Board	Industries	ES
+15	Groupwise Margin Money released under Prime Minister employment Generation Programme (PMEGP) by Khadi & Village Industries Board	Industries	ES
+16	Statewise Length of Highways (Surfaced ) in India	Industries	ES
+17	Groupwise main characteristics of Annual Survey of Industries (Registered manufacturing sector)	Industries	ES
+18	District-wise main characteristics of Annual Survey of Industries (Registered manufacturing sector)	Industries	ES
+19	Shows the District-wise and Industrywise break up of registered working factories.	Industries	ES
+20	Number of Industrial Units in Haryana	Industries	ES
+21	Cotton Textile Mills, Spindels and looms in Haryana	Industries	ES
+22	Loan application received, sanctioned, rejected, withdrawn or lapsed and amount actually disbursed (Industry-wise) by Haryana Financial corporation (from Corporation Funds) during the year ending in the state of Haryana	Industries	ES
+23	Loan Sanctioned and disbursed by the Haryana Financial corporation under the agency scheme (from Government funds) during the year in the state of Haryana	Industries	ES
+24	Persons Trained in different village industries in Haryana	Industries	ES
+25	Training Centres in different village industries in Haryana	Industries	ES
+1	Net area irrigation in Haryana	Irrigation	ES
+2	Net area under irrigation in India.	Irrigation	ES
+3	Gross area irrigated in Haryana	Irrigation	ES
+4	Gross area irrigated in Haryana (Cropwise)	Irrigation	ES
+5	Gross area under Irrigation in India by States (Cropwise).	Irrigation	ES
+6	Tubewells and pumping sets	Irrigation	ES
+7	Principal Results of operation of Irrigation Works in Haryana	Irrigation	ES
+8	Gross area irrigated by Canal in Haryana	Irrigation	ES
+9	Tubewells and other wells in Haryana	Irrigation	ES
+10	Area Irrigated in Haryana	Irrigation	ES
+11	Gross Irrigated area as percentage of total cropped Area	Irrigation	ES
+12	Net area Irrigation in Haryana (District-wise)	Irrigation	ES
+13	District-wise Gross Area Irrigated in Haryana	Irrigation	ES
+14	Crop-wise Gross Area irrigated	Irrigation	ES
+15	Crop-wise Gross area Irrigation in India by States	Irrigation	ES
+16	Gross area irrigated and gross croped area in haryana (Districtwise)	Irrigation	ES
+1	Companies registered in Haryana.	JS_Company	OS
+2	Number of Companies (Public and Private Limited) operating in Haryana	JS_Company	OS
+3	Distribution of new joint Stock Companies registered in Haryana according to size, pattern and industrial classification	JS_Company	OS
+4	Number and paid-up capital of Joint Stock Companies Limited by Shares at work in India	JS_Company	OS
+5	Companies (Public and Private Limited) ceased operating in Haryana	JS_Company	OS
+6	Companies (Public and Private Limited) ceased working in Haryana	JS_Company	OS
+1	Length of sentences of convicts admitted in Jails and Subsidiary	Judicial12	OS
+2	Number and disposal of convict by sex in Jails and subsidiary Jails	Judicial12	OS
+3	Offences committed by the convicts and punishment inflicted on them	Judicial12	OS
+4	Sickness and mortality among prisoners of all classes in Jails and Subsidiary Jails	Judicial12	OS
+5	Convicts classified as 'habituals' admitted into Jails by sex	Judicial12	OS
+6	Working of remission system in the Jails of Haryana	Judicial12	OS
+7	Conditions of Prisoners discharged from Jails and Subsidiary jails	Judicial12	OS
+8	Cognizable Crime -Class I to V including Abetment and Criminal conspiracy- Number of cases and persons concerned-Part I- Return of Cases	Judicial12	OS
+9	Cognizable Crime -Class I to V including Abetment and Criminal conspiracy- Number of cases and persons concerned-Part II- Return of persons concerned in Cases	Judicial12	OS
+10	Cognizable Crime -Class VI(other offences) including offences under Special and local laws - Number of cases and persons concerned-Part I- Return of Cases	Judicial12	OS
+11	Cognizable Crime -Class VI(other offences) including offences under Special and local laws - Number of cases and persons concerned-Part II- Return of persons concerned in Cases	Judicial12	OS
+12	Property stolen and recovered	Judicial12	OS
+13	Non-Cognizable Crime -Class I to V including Abetment and Criminal conspiracy- Number of cases and persons concerned-Part I- Return of Cases	Judicial12	OS
+14	Non-Cognizable Crime -Class I to V including Abetment and Criminal conspiracy- Number of cases and persons concerned-Part II- Return of persons	Judicial12	OS
+15	Non-Cognizable Crime -Class VI(other offences) including offences under Special and local laws - Number of cases and persons concerned-Part I- Return of Cases	Judicial12	OS
+17	Equipment, discipline and general management of Police Force	Judicial12	OS
+18	Principal Police offences : Number of cases in the State	Judicial12	OS
+19	Expenditure incurred in guarding and maintaining prisoners in Jails and Subsidiary Jails in Haryana	Judicial12	OS
+20	Crimes - Murder cases, Kidnapping cases, Dacoity cases, Robbery cases	Judicial12	OS
+21	Murder-persons prosecuted	Judicial12	OS
+22	Kidnapping- persons prosecuted	Judicial12	OS
+23	Dacoity- persons prosecuted	Judicial12	OS
+16	Non-Cognizable Crime -Class VI(other offences) including offences under Special and local laws - Number of cases and persons concerned-Part II- Return of persons concerned in Cases	Judicial12	OS
+24	Robbery- persons prosecuted	Judicial12	OS
+1	Number of Shops, commercial establishments, hotels, restaurants and persons employed	Labour_Emp	ES
+2	Average per capita annual money earnings of persons employed in factories in India	Labour_Emp	ES
+3	Number of Industrial Disputes in Haryana	Labour_Emp	ES
+4	Industrial disputes resulting in strikes and lock-outs by causes	Labour_Emp	ES
+5	Trade unions under the Trade Union Act, 1926 in Haryana	Labour_Emp	ES
+6	Classification of Trade Unions in Haryana according to membership.	Labour_Emp	ES
+7	Party affiliation of registered Trade unions in Haryana	Labour_Emp	ES
+8	Workmen's Compensation (Compensation paid in lieu of accidents under Workmen's compensation Act, 1923 in Haryana	Labour_Emp	ES
+9	Wages paid to agricultural and skilled labourers (men)	Labour_Emp	ES
+10	Registration and placings by Employment Exchanges in Haryana	Labour_Emp	ES
+11	Occupational distribution of persons on the Live Register of Employment Exchanges in Haryana	Labour_Emp	ES
+12	Employment in the Organised Sector in Haryana	Labour_Emp	ES
+13	Estimated Employment in Private and Public Sector in India (Statewise)	Labour_Emp	ES
+14	Number of applicants on the Live Register of Employment Exchanges classified by Broad Occupational Groups	Labour_Emp	ES
+15	Vocational guidance programme in Employment Exchanges in Haryana	Labour_Emp	ES
+16	Average Annual earnings in various industries in Haryana	Labour_Emp	ES
+17	Number of boy students on roll in government industrial and Technical institutions	Labour_Emp	ES
+18	Number of girl students on roll in government industrial and Technical institutions	Labour_Emp	ES
+19	Average per Capita annual earnings of Factory Workers in various Industries in Haryana	Labour_Emp	ES
+21	Registration and placing by Employment Exchange in Haryana	Labour_Emp	ES
+22	Employment in the Organised Sector in India	Labour_Emp	ES
+1	Number, Population, Income and Expenditure of Municipal committees/Councils/Corporations in Haryana (Districtwise)	Local_Body	OS
+2	Population, Income and Expenditure of Municipal committees/Councils/Corporations in Haryana (Districtwise)	Local_Body	OS
+3	Income of Municipal committees/Councils/Corporations in Haryana	Local_Body	OS
+4	Expenditure of Municipal committees/Councils/Corporations in Haryana	Local_Body	OS
+5	Number of Gram Panchayats, Panchayat Samities and Zila Parishads by Districts in Haryana	Local_Body	OS
+6	Area, population, constitution, Income and expenditure of Zila Parishads (Districtwise)	Local_Body	OS
+7	Income of Zila parishads in Haryana (by heads)	Local_Body	OS
+8	Expenditure of Zila parishads in Haryana (by heads)	Local_Body	OS
+1	Principal Agricultural Markets in Haryana	Market_Sto	ES
+2	Districtwise number of Markets in Haryana	Market_Sto	ES
+3	Market arrivals of Agricultural produce in Haryana	Market_Sto	ES
+4	Capacity of State-owned storages in Haryana	Market_Sto	ES
+5	Districtwise capacity of State-owned Warehouse in Haryana	Market_Sto	ES
+6	Districtwise Number of Cold-storages with capacity in Haryana	Market_Sto	ES
+7	Procurement of Wheat and Paddy in Haryana	Market_Sto	ES
+8	Districtwise procurement of wheat and paddy by agencies in Haryana	Market_Sto	ES
+9	Procurement of important crops in Haryana	Market_Sto	ES
+1	Printing Presses in Haryana	Mass_Commu	OS
+2	Number of Newspapers, Periodicals and Books published	Mass_Commu	OS
+3	Number of unilingual Books published in different Indian Languages in Haryana	Mass_Commu	OS
+1	Production of minerals in Haryana	Mining_Qua	ES
+2	Districtwise production of Minerals in Haryana	Mining_Qua	ES
+1	Money Supply with the Public in India	Miscellane	OS
+2	India's Foreign Exchange reserves	Miscellane	OS
+3	India's Foreign Trade	Miscellane	OS
+4	Number of houses completed/allotted by the Housing Board, Haryana according to economic strata	Miscellane	OS
+5	Post Offices, Telegraph Offices, Telephone Exchanges etc. in Haryana	Miscellane	OS
+6	Districtwise Employees of Haryana Government	Miscellane	OS
+7	Classwise Number of Haryana Government Employees as on 31st March	Miscellane	OS
+8	Distribution of Haryana Government Employees according to Basic Pay Ranges and Classes	Miscellane	OS
+9	Distribution of Haryana Government Employees according to Total Emoluments Ranges and Class	Miscellane	OS
+10	Distribution of Haryana Government Employees according to Districts and Classes	Miscellane	OS
+11	Distribution of Haryana Government Employees according to Districts and Departments	Miscellane	OS
+12	Distribution of Haryana Government Employees according to various departments and Classes.	Miscellane	OS
+13	Number of Haryana Government Employees belonging to Scheduled Castes, Backward Classes, Ex-Serviceman, Ad-hoc (Sexwise) and Handicapped	Miscellane	OS
+14	Religion-wise number of Haryana Government Employees	Miscellane	OS
+15	Distribution of Haryana Government Employees according to different Departments and Sex	Miscellane	OS
+16	District and Sexwise distribution of Haryana Government Employees	Miscellane	OS
+17	Wage bill and Monthly wage per employee of the Haryana Government Employees	Miscellane	OS
+18	Estimated Expenditure on Basic Pay of Haryana Government Employees during the year ……. - ….	Miscellane	OS
+19	Estimated Expenditure on Dearness Allowance of Haryana Government Employees during the year ……..-….	Miscellane	OS
+20	No. of Seats in Technical Institution in Haryana	Miscellane	OS
+21	Number of Boy and Girl students in Government/Private Industrial and Technical Institutes	Miscellane	OS
+22	Sanctioned Seats in Government Vocational Education Institutes	Miscellane	OS
+23	Sanctioned Seats in Government Industrial Training Institutes	Miscellane	OS
+24	Number of Girl Students on Rolls in Government Industrial Training Institutes (Women Wing) in Haryana	Miscellane	OS
+25	Sanctioned Seats under Craftsman Training Scheme for Girls	Miscellane	OS
+26	District-wise distribution of establishments and employment in Haryana (Final results of Economic census 2005)	Miscellane	OS
+27	Statewise Number of Establishments (Non-agricultural and Agricultural)	Miscellane	OS
+28	Statewise Number of Enterprises own Account Establishments	Miscellane	OS
+29	Statewise Number of persons usually working in enterprises	Miscellane	OS
+30	Statewise enterprises with selected characteristics (Final results of Economic census 2005)	Miscellane	OS
+31	Comparative Statistics of Haryana and India	Miscellane	OS
+32	Number of Television Sets installed in Haryana under Community Television Installation Scheme	Miscellane	OS
+33	District Red Cross Branches and their membership, Junior Red Cross groups and their membership and First-aid posts run by Red Cross Society in Haryana	Miscellane	OS
+34	Red Cross Maternity Services in Haryana	Miscellane	OS
+35	Units of Blood collected in Haryana	Miscellane	OS
+36	Ambulance Training- Haryana	Miscellane	OS
+37	Income and Expenditure of Red Cross Societies in Haryana	Miscellane	OS
+38	Working of various Housing Schemes in Haryana	Miscellane	OS
+39	Plots sold and private construction activity at Chandigarh	Miscellane	OS
+40	Income assessed by status and by income in Haryana	Miscellane	OS
+41	Number of Returns and Net Income by range of Net Income in Haryana	Miscellane	OS
+42	Gross Income and Gross Tax by Source of Income	Miscellane	OS
+43	Deductions, Rebates and Reliefs by nature of deduction	Miscellane	OS
+44	Economics Census, 1980- Number of Enterprises	Miscellane	OS
+45	Economics Census, 1980- Number of persons usually working in non-agricultural enterprises and establishments	Miscellane	OS
+46	Economics Census, 1980- Percentage of enterprises with selected characteristics	Miscellane	OS
+47	Economics Census, 1980- Statement showing the district which account for 50 percent of the number of non-agricultural establishments in the States	Miscellane	OS
+49	First Aid Posts and number of Persons Trained in First Aid and Home Nursing in Haryana	Miscellane	OS
+50	Blood Transfusion Service- Haryana	Miscellane	OS
+51	Number of Radio Sets installed in Haryana under Community Listening Scheme up to 31st March	Miscellane	OS
+52	Broadcast receiving licences issued in Haryana	Miscellane	OS
+53	Television Licence issued in Haryana	Miscellane	OS
+54	Classification of Income Tax demand according to the class of assessees in Haryana	Miscellane	OS
+55	Sanctioned seats for girls in Government Industrial Institute/Schools	Miscellane	OS
+56	Sanctioned seats for girls in Private Recognised Industrial Schools in Haryana	Miscellane	OS
+57	Sanctioned seats in Rural Artisan/Industrial Training Centres	Miscellane	OS
+58	Govenment construction at chandigarh	Miscellane	OS
+59	Private Recognised Indutrial Schools in Haryana for Girls	Miscellane	OS
+60	Haryana Govt. Employees according to Sex	Miscellane	OS
+61	Plots created, sold and private construction activity	Miscellane	OS
+62	Seating capacity in Government Industrial Institutes (Craftsmen Training Schemes)	Miscellane	OS
+63	Seating capacity in Government Industrial Institute/Schools/Centres	Miscellane	OS
+64	Number of Boy students on roll in Government Industrial and Technical Institutions	Miscellane	OS
+65	Number of Girl students on roll in Government Industrial and Technical Institutes in Haryana of different years	Miscellane	OS
+66	Techinical Institutions in Haryana	Miscellane	OS
+67	Government Industrial Institutions/Schools for Boys	Miscellane	OS
+68	Industrial Training Centres run for Schedule Castes and Backward Classes	Miscellane	OS
+69	Government Industrial Institutions/Schools for Girls	Miscellane	OS
+70	Private Recognised Indutrial Schools in Haryana	Miscellane	OS
+71	Classification of Income Tax demand according to the class of assessees in Haryana (erstwhile)	Miscellane	OS
+72	State-wise Number of Establishments by Location and Type of Establishments in India (Sixth Economic Census)	Miscellane	OS
+73	District-wise Number of Persons Employed by Location and Type of Establishments in Haryana (Sixth Economic Census)	Miscellane	OS
+74	District-wise Number of Establishments by Location and Type of Establishments in Haryana (Sixth Economic Census)	Miscellane	OS
+75	Selected Characteristics of Establishments in Haryana (Sixth Economic Census)	Miscellane	OS
+76	Distribution of Establishments and Persons Employed therein by Location and Type of Establishments in Haryana (Sixth Economic Census)	Miscellane	OS
+77	Economic Census, 1998—District-wise distribution of enterprises, establishments and employment	Miscellane	OS
+78	Economic Census, 1998—Statewise Number of Enterprises (Non-agricultural and Agricultural)	Miscellane	OS
+79	Economic Census, 1998—Statewise Number of Enterprises (own Account Enterprises and Establishments)	Miscellane	OS
+80	Economic Census, 1998—Statewise Number of persons usually working in enterprises	Miscellane	OS
+81	Economic Census, 1998—Statewise enterprises with selected characteristics	Miscellane	OS
+82	Comparative Statistics of Haryana and India	Miscellane	OS
+83	Statewise percentage Distribution of Establishments and Employment by Location in India (Sixth Economic Census)	Miscellane	OS
+84	Distribution of Haryana Government Employees according to Districts and Classes	Miscellane	OS
+85	Distribution of Haryana Government Employees according to Districts and Department	Miscellane	OS
+86	Distribution of Haryana Government Employees according to different classes and Deptt.	Miscellane	OS
+87	Distribution of Haryana Government Employees according to sex, classes, category and Religion-Wise	Miscellane	OS
+1	Plan of Haryana	Plan_Hry12	ES
+1	Outlay and Expenditure under Five Year/Annual Plans	Plan_Hry14	ES
+2	Funds released under Decentralised Plan and District Plan in Haryana	Plan_Hry15	ES
+1	Consumer Price Index Numbers of Working Class at Yamunanagar	Prices1234	ES
+2	Consumer Price Index Numbers of Working Class for important centres of Haryana( old series)	Prices1234	ES
+3	Consumer Price Index Numbers of Working Class for important centres of Haryana	Prices1234	ES
+4	Consumer Price Index Numbers of Working Class in Haryana	Prices1234	ES
+5	Index Numbers of wholesale prices of 21 important aggricultural commodities in Haryana	Prices1234	ES
+6	Consumer Price Index Numbers for Working Class in India( Base year 1949=100)	Prices1234	ES
+7	Consumer Price Index Numbers for Working Class in India( Base year 1960=100)	Prices1234	ES
+8	Consumer Price Index Numbers for urban non-manual employees	Prices1234	ES
+9	Consumer Price Index Numbers of Working Class for important centres in Haryana (Old Series)	Prices1234	ES
+10	Annual Wholesale prices per quintal in Haryana	Prices1234	ES
+11	Consumer Price Index Numbers for Agricultural Labourers (Interim Series) in the Punjab and Haryana State	Prices1234	ES
+12	Harvest Prices in Haryana	Prices1234	ES
+13	Weighted Index Numbers of harvest (Wholesale) Prices of Agricultural commodities in Haryana	Prices1234	ES
+14	Annual Wholesale Prices in Haryana Average of weekly quotation from important Mandies	Prices1234	ES
+15	All-India Index Numbers of Wholesale Prices by groups-(Base 1952-53=100)	Prices1234	ES
+16	All-India Index Numbers of Wholesale Prices by groups-(Base 1961-62=100)	Prices1234	ES
+17	All-India Index Numbers of Wholesale Prices-(Base 1970-71=100)	Prices1234	ES
+18	All-India Index Numbers of Wholesale Prices-(Base 1981-82=100)	Prices1234	ES
+19	Consumer Price Index Number for the Industrial Workers (All India and Selected Centres)-(Base 1960=100)	Prices1234	ES
+20	Consumer Price Index Number for the Industrial Workers (All India and Selected Centres)-(Base 1982=100)	Prices1234	ES
+21	All India consumer Price Index Number for the Industrial Workers-(Base 1982=100)	Prices1234	ES
+22	Consumer price Index Number of working class at Yamunanagar and Faridabad-(Base 1982=100)	Prices1234	ES
+23	Consumer price Index Number of working class in Haryana-(Base 1982=100)	Prices1234	ES
+24	Index Number of Wholesale Prices of 20 important Agricultural Commodities in Haryana- (Base 1980-81=100)	Prices1234	ES
+25	Consumer Price Index Numbers for Agricultural and Rural Labourers in Haryana-(Base 1986-87=100)	Prices1234	ES
+26	Consumer Price Indices of selected Commodities for rural Areas in Haryana-(Base 1988-89=100)	Prices1234	ES
+27	Consumer Price index Numbers for urban non-manual employees-(Base 1960=100)	Prices1234	ES
+28	Consumer Price index Numbers for urban non-manual employees-(Base 1984-85=100)	Prices1234	ES
+29	Commoditywise Procurement prices in Haryana	Prices1234	ES
+1	Number of Units and Loans advanced by Haryana Financial Corporation to various by Industry	Pub_UndTak	OS
+2	Purposewise loans advanced to weaker sections and priority sectors in Haryana by Financial Corporation.	Pub_UndTak	OS
+3	Loans Received and Houses constructed by Housing Board, Haryana	Pub_UndTak	OS
+4	Statistics relating to selected achievements of Haryana Agro-Industries Corporation	Pub_UndTak	OS
+5	Number of Tubewells installed and Water Courses lined by Haryana State Minor Irrigation Tubewells Corporation	Pub_UndTak	OS
+6	Year-wise progress of deep tubewells in Haryana	Pub_UndTak	OS
+7	Loans Received and Houses constructed by the Haryana Housing Board	Pub_UndTak	OS
+1	Tax Revenue of Haryana Government	Public_Fin	ES
+2	Non-Tax Revenue of Haryana Government	Public_Fin	ES
+3	Developmental Revenue Expenditure of Haryana Government	Public_Fin	ES
+4	Non-Developmental Revenue Expenditure of Haryana Government	Public_Fin	ES
+5	Capital Receipts of Haryana Government	Public_Fin	ES
+6	Capital Expenditure of Haryana Government	Public_Fin	ES
+7	Public Account of Haryana Government (Receipts)/Loans Account of the State Government (Receipts)	Public_Fin	ES
+8	Public Account of Haryana Government (Disbursement)/Loans Account of the State Government (Disbursement)	Public_Fin	ES
+9	Financial position of Haryana Government	Public_Fin	ES
+10	Budgetary Expenditure of Administrative Departments of Haryana Government- Purpose Classification	Public_Fin	ES
+11	Haryana Government Budgetary Expenditure-Economic Classification	Public_Fin	ES
+12	Net Receipts of Small Saving Schemes in Haryana	Public_Fin	ES
+13	Number of accounts opened under Recurring Deposits Scheme in Haryana	Public_Fin	ES
+14	Number of accounts opened under Cumulative Time Deposits Scheme in Haryana	Public_Fin	ES
+15	Net Receipt of Small Savings Scheme/Securities in India during	Public_Fin	ES
+16	Haryan Government Revenue	Public_Fin	ES
+17	Expenditure met from revenue	Public_Fin	ES
+18	Expenditure on development and social services (Revenue account)	Public_Fin	ES
+19	Capital Account outside the revenue account	Public_Fin	ES
+20	Budgetary position of Hayana (Revenue account)	Public_Fin	ES
+21	Capital Budget of Haryana	Public_Fin	ES
+22	Total Expenditure of state government (including departmental commercial undertakings)	Public_Fin	ES
+23	Net capital formation out of budgeatry resources of the state govrnment	Public_Fin	ES
+24	Gross and net saving of the state government	Public_Fin	ES
+25	Net profits of departmental commercial undertakings	Public_Fin	ES
+26	Total income generated by the state government	Public_Fin	ES
+27	Revenue account	Public_Fin	ES
+28	Receipt (Revenue Account)	Public_Fin	ES
+29	Expenditure (Revenue Account)	Public_Fin	ES
+30	Capital account (other states of India)	Public_Fin	ES
+31	Capital account in respect of other states	Public_Fin	ES
+33	per Capita Direct and Indirect Tax Revenue of the State Government	Public_Fin	ES
+34	per Capita Non-Tax Revenue of the State Government	Public_Fin	ES
+35	Heads of Revenue as Percentage to Total Revenue	Public_Fin	ES
+36	Per Capita Development and Non-Development Revenue Expenditure of the State Government	Public_Fin	ES
+37	per Capita Expenditure of the State Government	Public_Fin	ES
+38	Tax Collection Charges in Haryana	Public_Fin	ES
+39	Over-all Budgetary position of the State Government	Public_Fin	ES
+40	Non development expenditure of Haryana	Public_Fin	ES
+41	Small Savings Schemes in Haryana	Public_Fin	ES
+1	Number and Description of Registered Documents and value of Property Transferred in Haryana	Registratn	OS
+1	Government Expenditure on Community Development Programme in Haryana	Rural_Deve	ES
+2	People's Contribution in the Community Development programme in Haryana	Rural_Deve	ES
+3	Selected Statistics of all Co-operative Societies in Haryana	Rural_Deve	ES
+4	Co-operative Societies and Bank classified by type in Haryana	Rural_Deve	ES
+5	Selected Statistics of Primary Non-Agricultural Credit Societies in Haryana	Rural_Deve	ES
+6	Selected Statistics of Primary Land Development Banks in Haryana	Rural_Deve	ES
+7	Selected Statistics of Central Co-operative Banks in Haryana	Rural_Deve	ES
+8	Selected Statistics of Apex State Marketing Federation in Haryana	Rural_Deve	ES
+9	Selected Statistics of Central Consumer Stores in Haryana	Rural_Deve	ES
+10	Selected Statistics of Labour and Consumer Societies in Haryana	Rural_Deve	ES
+11	Selected Statistics of Housing Co-operative Societies in Haryana	Rural_Deve	ES
+12	Selected Statistics of Dairy and Milk Supply Co- operative Societies in Haryana	Rural_Deve	ES
+13	Selected Statistics of Women Co-operative Societies in Haryana	Rural_Deve	ES
+14	Selected Statistics of Industrial Co-operative Societies in Haryana	Rural_Deve	ES
+15	Selected Statistics of Primary Agricultural Credit and Services Societies in Haryana	Rural_Deve	ES
+16	District wise general progress for the year	Rural_Deve	ES
+17	Loans transactions by primary Co-operative Societies	Rural_Deve	ES
+18	Primary Credit Societies, Number, Membership, Assests and Liabilities	Rural_Deve	ES
+19	Industrial Co-operative Societies in Haryana	Rural_Deve	ES
+20	Number of Office, Membership, ownership of Capital, Deposits, Assests, etc of Co-operative Banks,	Rural_Deve	ES
+21	Central Co-operative Banks, office, membership, capital and deposits in Haryana	Rural_Deve	ES
+22	Central Co-operative Banks, liabilities and assets	Rural_Deve	ES
+23	Number and Membership by type of societies in Haryana	Rural_Deve	ES
+24	Co-opration societies and banks(districtwise)	Rural_Deve	ES
+1	Decennial Population Growth Rate	S_Indcator	OS
+2	Density of Population per Sq. Km.	S_Indcator	OS
+3	Workers Force** as percentage of total Population	S_Indcator	OS
+4	Percentage of Cultivators, Agricultural labourers, Agricultural Workers and Non-agricultural Workers to total working force	S_Indcator	OS
+5	The Position of Weaker sections in Haryana	S_Indcator	OS
+6	Number of workers per lakh of population employed in Registered Factories	S_Indcator	OS
+7	Percentage of area sown more than once to Net area sown	S_Indcator	OS
+8	Percentage of Gross irrigated area to Gross area sown	S_Indcator	OS
+9	Percentage of Gross Area sown under foodgrain crops.	S_Indcator	OS
+10	Percentage of Area under Commercial crops to total cropped Area	S_Indcator	OS
+11	Percentage of net area irrigated to net area sown	S_Indcator	OS
+12	Value of Agricultural produce per hectare as current prices	S_Indcator	OS
+13	Gross Value of agricultural output per capita (Rural) at current prices	S_Indcator	OS
+14	Foodgrains as Percentage of gross value of Agricultural output.	S_Indcator	OS
+15	Non-Foodgrains as Percentage of gross value of Agricultural output (others)	S_Indcator	OS
+16	Fertilizer consumption on terms of Nutrients	S_Indcator	OS
+17	Per Capita Value added by (registered) manufacturing.	S_Indcator	OS
+18	Percentage consumption of electric power purposewise	S_Indcator	OS
+19	Metalled (Surfaced) Road (length in Kms.)	S_Indcator	OS
+20	Regulated Markets per lakh Hectares of Net area sown	S_Indcator	OS
+21	Percentage of School-going children	S_Indcator	OS
+22	Percentage of School-going children in various age-groups	S_Indcator	OS
+23	Number of Pupils per teacher	S_Indcator	OS
+24	Number of School per 1,000 School-going children	S_Indcator	OS
+25	Percentage of Literacy	S_Indcator	OS
+26	Number of Seats per lakh of population for Technical Training	S_Indcator	OS
+27	Number of Hospitals per five lakh of population	S_Indcator	OS
+28	Number of beds per lakh of Population	S_Indcator	OS
+29	Number of Family Welfare Centres per lakh of Population	S_Indcator	OS
+30	Percentage of problem villages provided with safe drinking water supply	S_Indcator	OS
+31	Number of persons per bank	S_Indcator	OS
+32	Per Capita Deposits of Scheduled commercial Banks	S_Indcator	OS
+33	Number of Post Office per lakh of Population	S_Indcator	OS
+34	Number of Commercial Vehicles per lakh of Population	S_Indcator	OS
+35	Statewise Indicators	S_Indcator	OS
+36	Number of Workers engaged in Agriculture including Agricultural Labourers as Percentage of Total Workers	S_Indcator	OS
+37	Area in sq. Kms. ------- Census (Provisional)	S_Indcator	OS
+38	Population	S_Indcator	OS
+39	Total Working Force	S_Indcator	OS
+40	Number of Cultivators, Agricultural Labourers, Agricultural Workers and Manufacturing Industrial Workers	S_Indcator	OS
+41	Area under Cultivation	S_Indcator	OS
+42	Cultivable Waste	S_Indcator	OS
+43	Area under Forests	S_Indcator	OS
+44	Gross Area sown	S_Indcator	OS
+45	Net Area sown	S_Indcator	OS
+46	Net area irrigated (000 Hectares)	S_Indcator	OS
+47	Percentage of Villages electrified	S_Indcator	OS
+48	Circlewise Consumption of electricity (Lakh K.W.H.)	S_Indcator	OS
+49	Length of Surfaced Roads	S_Indcator	OS
+50	Metalled (Sarfaced) Roads per 100 Sq. Kms.	S_Indcator	OS
+51	Number of Villages connected with Metalled Roads	S_Indcator	OS
+52	Percentage of Villages connected with Metalled Roads	S_Indcator	OS
+53	Number of Regulated Markets in Haryana	S_Indcator	OS
+54	Hospital Beds per Lakh of Population	S_Indcator	OS
+55	Number of Dispensaries per Lakh of Urban/Rural Population	S_Indcator	OS
+56	Birth Rate per thousand of Population	S_Indcator	OS
+57	Death rate per thousand of Population	S_Indcator	OS
+58	Infant Mortality Rate per thousand live Births	S_Indcator	OS
+59	Number of villages provided with safe drinking water supply	S_Indcator	OS
+60	Distribution of deposits of scheduled Commercial banks	S_Indcator	OS
+61	Number of Radio Licences per lakh of population	S_Indcator	OS
+62	Number of Commercial Vehicles on Road	S_Indcator	OS
+63	Cultivable area per agricultural worker	S_Indcator	OS
+64	Net Area sown per agricultural worker	S_Indcator	OS
+65	Number of electricity connections for industrial purposes	S_Indcator	OS
+66	Number of workers per lakh of population employed in registered factories	S_Indcator	OS
+67	Number of Seats per million population for technical training.	S_Indcator	OS
+68	per Capita Gross Value of Agricultural output (Rural Population)	S_Indcator	OS
+69	Estimated Population and Density of Population	S_Indcator	OS
+70	Persons per Square Kilometer & Female per 1,000 Male in Haryana	S_Indcator	OS
+71	District-wise Sex Ratio of Births as per Civil Registration Scheme in Haryana	S_Indcator	OS
+72	Number of Police Station per Five Lakh of Population in Haryana	S_Indcator	OS
+73	Persons Enrolled under Pradhan Mantri Suraksha Bima Yojana (PMSBY), Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY) and Atal Pension Yojana (APY) in Haryana	S_Indcator	OS
+74	Account Opened and Case Sanctioned under Pradhan Mantri MUDRA Yojna (PMMY), Shishu, Kishore and Tarun Scheme in Haryana	S_Indcator	OS
+75	Account Opened under Pradhan Mantri Jan Dhan Yojana (PMJDY) and RuPay Cards Issued & Activated and Micro ATM States in Haryana	S_Indcator	OS
+76	District-wise Progress of Stand Up India Programme in Haryana	S_Indcator	OS
+77	District wise Important Indicators	S_Indcator	OS
+1	Strength of Civil Police in Haryana	S_SecS_Def	SS
+2	Number of Police Station and Police Post in Haryana	S_SecS_Def	SS
+3	Districtwise Incidence of Crimes in Haryana	S_SecS_Def	SS
+4	Convicts by Age, Sex and Literacy	S_SecS_Def	SS
+5	Places of confinement in Haryana	S_SecS_Def	SS
+6	Number of Prisoners in Haryana (classwise)	S_SecS_Def	SS
+7	Expenditure incurred on maintaining prisoners in Jails and Subsidiary Jails in Haryana	S_SecS_Def	SS
+8	Progress of Jail Industry in Haryana	S_SecS_Def	SS
+1	Loans and grants disbursed to persons belonging to Scheduled Caste Community by purpose and source in Haryana	Social_Wel	SS
+2	Progress of Old Age Pension,Widow Pension, Handicapped Pension and Ladli Pension Schemes in Haryana	Social_Wel	SS
+3	Loans Advanced by Haryana Financial Corporation to various industries	Social_Wel	SS
+4	Houses Constructed by the Housing Board, Haryana	Social_Wel	SS
+5	Financial assistance of destitute Children, Kashmiri Migrants, Non School going Differently abled children Eunuch Dwarf and Acid Attack Victims	Social_Wel	SS
+1	Movement of Gross and Net State Domestic Product at factor cost at current and constant (2004-05) Prices	Sta_Income	ES
+2	Gross State Domestic Product of Haryana by Industry of origin (at current prices)	Sta_Income	ES
+3	Gross State Domestic Product of Haryana by Industry of origin at constant (2004 -2005) Prices	Sta_Income	ES
+4	Net State Domestic Product of Haryana by Industry of Origin (at current price)	Sta_Income	ES
+5	Net State Domestic Product of Haryana by Industry of Origin at constant at (2004-2005)	Sta_Income	ES
+6	Indices of Net State Domestic Product at Factor Cost by Major Sources in Haryana (2004-05=100)	Sta_Income	ES
+7	Percentage change in Gross State Domestic Product over the previous year at (2004-2005=100)	Sta_Income	ES
+8	Per Capita Income of various States and Indian Union at current prices	Sta_Income	ES
+9	Per Capita Income of various States and Indian Union at constant prices	Sta_Income	ES
+10	State Income of Haryana by Industry origin (at current prices)	Sta_Income	ES
+11	State Income of Haryana by Industry of origin (at constant prices)	Sta_Income	ES
+12	Percentage change in Net Domestic Product over the previous year	Sta_Income	ES
+13	State Income of Haryana by Industry of origin at (1960-61 price)	Sta_Income	ES
+14	Net State domestic Product (at factor cost) and per capita Net product (at current Prices)	Sta_Income	ES
+15	State Income of Haryana by Industry origin and Percentage distribution (at current prices)	Sta_Income	ES
+16	Indices of Net State Domestic Products (2011-12) by Broad Sectors	Sta_Income	ES
+17	Percentage Change in GSVA of Haryana by Broad Sectors At Constant ( ……….) Prices	Sta_Income	ES
+18	Gross State Value Added by Economic Activity at Current Prices	Sta_Income	ES
+19	Gross State Value Added by Economic Activity at Constant(………) Prices	Sta_Income	ES
+20	Net State Value Added by Economic Activity at Current Prices	Sta_Income	ES
+21	Net State Value Added by Economic Activity at Constant Prices	Sta_Income	ES
+1	Number of Tourist sports and tourists visited by districts in Haryana	Tourism_CA	ES
+2	Number of Flying Clubs, Planes and Persons trained in Haryana	Tourism_CA	ES
+1	Exports from Haryana to other States in India (By Rail Only)	Trade12345	ES
+2	Imports into Haryana from other States in India (By Rail only)	Trade12345	ES
+3	Imports into and exports from Haryana to other states in india(By Rail only)	Trade12345	ES
+4	Imports into and exports from Haryana to other states in india(By Motor only)	Trade12345	ES
+5	Imports into and exports from erstwhile Punjab including Haryana to other states in india(Rail and River borne)	Trade12345	ES
+1	Number of different types of Motor Vehicles registered in Haryana districtwise	Transport1	ES
+2	Number of different types of Motor Vehicles on road in Haryana	Transport1	ES
+3	Road accident in Haryana	Transport1	ES
+4	Number of driving licences in Haryana (districtwise)	Transport1	ES
+5	Progress of Haryana Roadways (Commercial Wing)	Transport1	ES
+6	Registered Vehicles in use (Taxed and tax exempted)	Transport1	ES
+7	Number of Motor vehicles in various States of India in Relation to area and population	Transport1	ES
+8	Road length maintained by the Public Works Department in Haryana	Transport1	ES
+9	Road length maintained by the Public Works Department (B & R) and Local Bodies in Haryana	Transport1	ES
+10	Road length by types maintained by P.W.D (B.&R.) in Haryana	Transport1	ES
+11	Length of Metalled Roads in Haryana	Transport1	ES
+12	Number of villages connected with Metalled Roads	Transport1	ES
+13	Percentage of villages connected with Metalled Roads	Transport1	ES
+14	Total length of different Highways in India (Statewise)	Transport1	ES
+15	Statewise length of different surfaced metalled Road Highways in India	Transport1	ES
+16	Road Length per 100 Square kilometres of area and per lakh of Population in different States of india.	Transport1	ES
+17	Railway route Kilometres.	Transport1	ES
+18	Number of wagons loaded with important commodities on broad gauge	Transport1	ES
+19	Statewise Length of Highways (Surfaced) in India	Transport1	ES
+20	Number of Motor Vehicles, Population and Motor Vehicles per lakh of popultaion in India and other selected countries	Transport1	ES
+21	Statewise Road Length maintained by the Public Works Department and Local Bodies	Transport1	ES
+22	Road Length per 100 square kilometres of area and per lakh of population in different States of India and different countries	Transport1	ES
+23	Number of different types of Motor Vehicles on road in States and Union Territories in India	Transport1	ES
+24	Statewise length of different surfaced Highways in India	Transport1	ES
+25	Number of Motor-vehicles in India and other countries in relation to Road Length area and Population	Transport1	ES
+26	Number of Motor-vehicles in various State of India in relation to Road Length area and Population	Transport1	ES
+27	Revenue from road transport and expenditure on roads for various states in India	Transport1	ES
+28	Percentage of nationalised buses in various states.	Transport1	ES
+29	Road Length maintained by PWD in various states of India	Transport1	ES
+30	Numbers of Passangers originating and earnings accruing therefrom	Transport1	ES
+32	Number of Motor-vehicles in various States and Union Territories of India and other countries in relation to Road Length area and Population	Transport1	ES
+33	Goods Booked on Broad gauge	Transport1	ES
+34	Road Length maintained by the PWD and Local Bodies in India	Transport1	ES
+35	Number of registered Motor vehicles (Category-wise) in India	Transport1	ES
+36	Number of registered Motor vehicles (Category-wise) in Million Plus Cities of India	Transport1	ES
+37	Number of Non Transport Vehicles registered in State	Transport1	ES
+38	Number of Transport and non Transport registered Motor vehicles (Category-wise) in India	Transport1	ES
+1	Birth Rate, Death Rate and Infant Mortality Rate as per Sample Registration Scheme in Haryana	Vital_Stat	SS
+2	Number of Births and Sex Ratio as per civil Registration Scheme in Haryana	Vital_Stat	SS
+3	Deaths as per Civil Registration Scheme in Haryana	Vital_Stat	SS
+4	Deaths classified according to causes as per Civil Registration Scheme in Haryana	Vital_Stat	SS
+5	Deaths in different season as per civil Registration Scheme in Haryana	Vital_Stat	SS
+6	Deaths according to Age and Sex in Haryana as per Civil Registration Scheme in Haryana	Vital_Stat	SS
+7	Distribution of Infant Deaths in Haryana	Vital_Stat	SS
+8	Estimated age Specific death in Haryana and India during the year	Vital_Stat	SS
+9	Infant Mortality indicators in Haryana	Vital_Stat	SS
