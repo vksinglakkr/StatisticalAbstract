@@ -1411,6 +1411,7 @@ const statsQuestionsDataHindi = {
 };
 
 let selectedLanguage = 'English';
+let selectedQueryType = 'statistics'; // ⚠️ FIX: Missing variable for radio buttons
 let currentQuestions = {};
 let allQuestions = [];
 // ═══════════════════════════════════════════════════════════════════
@@ -2317,23 +2318,13 @@ document.addEventListener('click', function(e) {
   }
 });
 // ═══════════════════════════════════════════════════════════════════
-// Last Updated Timestamp - Immediate Execution
+// Last Updated Timestamp - FIXED DATE
 // ═══════════════════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', function() {
   var elem = document.getElementById('lastModified');
   if (elem) {
-    var d = new Date();
-    var months = ['January','February','March','April','May','June',
-                  'July','August','September','October','November','December'];
-    var dateStr = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-    var h = d.getHours();
-    var ampm = h >= 12 ? 'PM' : 'AM';
-    h = h % 12;
-    h = h ? h : 12;
-    var m = d.getMinutes();
-    m = m < 10 ? '0' + m : m;
-    var timeStr = h + ':' + m + ' ' + ampm;
-    elem.textContent = dateStr + ' at ' + timeStr;
+    // Fixed date - Update this manually when you make changes
+    elem.textContent = 'December 4, 2024';
     elem.style.display = 'inline';
   }
 });
