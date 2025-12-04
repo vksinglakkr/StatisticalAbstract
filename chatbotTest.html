@@ -1575,14 +1575,20 @@ function initUserInputListener() {
   if (!userInput) initDOMElements();
   
   userInput.addEventListener('input', function() {
-  const query = this.value.trim();
-  
-  if (query.length < 2) {
-    autocompleteDropdown.style.display = 'none';
-    return;
-  }
-  
-  const matches = filterQuestions(query);
+    const query = this.value.trim();
+    
+    if (query.length < 2) {
+      autocompleteDropdown.style.display = 'none';
+      return;
+    }
+    
+    // Check which mode we're in
+    if (selectedQueryType === 'data') {
+      // DATA MODE - Search in masterFileData (Google Sheets)
+      performFileSearch(query);
+    } else {
+      // STATISTICS MODE - Search in hardcoded questions
+      const matches = filterQuestions(query);
   
   if (matches.length === 0) {
     autocompleteDropdown.innerHTML = '<div class="autocomplete-no-results">No matching questions found. Try different keywords.</div>';
@@ -1613,7 +1619,8 @@ function initUserInputListener() {
       autocompleteDropdown.style.display = 'none';
     });
   });
-});
+    } // End of statistics mode
+  }); // End of input event listener
 
   // Close dropdown on ESC key
   userInput.addEventListener('keydown', function(e) {
@@ -2157,21 +2164,15 @@ async function loadMasterFileData() {
 let fileSearchTimeout;
 
 function initFileSearchListener() {
-  const fileSearchInput = document.getElementById('fileSearchInput');
+  if (!userInput) initDOMElements();
   
-  if (fileSearchInput) {
-    fileSearchInput.addEventListener('input', function() {
-      clearTimeout(fileSearchTimeout);
-      fileSearchTimeout = setTimeout(() => {
-        performFileSearch(this.value);
-      }, 300);
-    });
-    console.log('✅ File search autocomplete initialized');
-  }
+  // We use the SAME userInput for both modes
+  // The autocomplete behavior changes based on selectedQueryType
+  console.log('✅ File search uses userInput field');
 }
 
 function performFileSearch(query) {
-  const dropdown = document.getElementById('fileAutocompleteDropdown');
+  const dropdown = document.getElementById('autocompleteDropdown'); // Use same dropdown
   
   if (!query || query.length < 2) {
     dropdown.style.display = 'none';
@@ -2184,24 +2185,22 @@ function performFileSearch(query) {
   ).slice(0, 15);
   
   if (results.length > 0) {
-    displayFileAutocomplete(results);
+    displayFileAutocomplete(results, dropdown);
   } else {
-    dropdown.innerHTML = '<div class="p-4 text-center text-gray-500">No matching files found</div>';
+    dropdown.innerHTML = '<div class="autocomplete-no-results">No matching questions found in Google Sheets</div>';
     dropdown.style.display = 'block';
   }
 }
 
-function displayFileAutocomplete(results) {
-  const dropdown = document.getElementById('fileAutocompleteDropdown');
+function displayFileAutocomplete(results, dropdown) {
   let html = '';
   
   results.forEach(item => {
-    const itemData = JSON.stringify(item).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     html += `
-      <div class="file-autocomplete-item" onclick='selectFileItem(${itemData})'>
-        <div class="file-autocomplete-item-title">${item.chapter_name}</div>
-        <div class="file-autocomplete-item-meta">
-          📁 ${item.sec_code} | 📄 Ch.${item.chp_code} | 📊 ${item.part_code}
+      <div class="autocomplete-item" data-question="${item.chapter_name}" data-item='${JSON.stringify(item)}'>
+        <div style="font-weight: 600;">${item.chapter_name}</div>
+        <div style="font-size: 0.75rem; color: #666; margin-top: 4px;">
+          📁 ${item.sec_code} | 📄 Ch.${item.chp_code}
         </div>
       </div>
     `;
@@ -2209,13 +2208,23 @@ function displayFileAutocomplete(results) {
   
   dropdown.innerHTML = html;
   dropdown.style.display = 'block';
+  
+  // Add click handlers
+  document.querySelectorAll('.autocomplete-item').forEach(element => {
+    element.addEventListener('click', function() {
+      const itemData = JSON.parse(this.getAttribute('data-item'));
+      selectFileItem(itemData);
+      userInput.value = itemData.chapter_name;
+      dropdown.style.display = 'none';
+    });
+  });
 }
 
 function selectFileItem(item) {
   selectedFileItem = item;
   
   document.getElementById('fileSearchInput').value = item.chapter_name;
-  document.getElementById('fileAutocompleteDropdown').style.display = 'none';
+  document.getElementById('autocompleteDropdown').style.display = 'none';
   
   document.getElementById('fileSelectedDisplay').innerHTML = `
     <strong>📋 Selected:</strong> ${item.chapter_name}<br>
@@ -2324,7 +2333,7 @@ function displayNoFileResults(selectedItem, filePrefix) {
 // Close file autocomplete when clicking outside
 document.addEventListener('click', function(e) {
   const fileInput = document.getElementById('fileSearchInput');
-  const fileDropdown = document.getElementById('fileAutocompleteDropdown');
+  const fileDropdown = document.getElementById('autocompleteDropdown');
   
   if (fileInput && fileDropdown) {
     if (!fileInput.contains(e.target) && !fileDropdown.contains(e.target)) {
