@@ -1430,19 +1430,31 @@ console.log('══════════════════════�
 console.log('🔍 STATS SAHAYAK DEBUG MODE');
 console.log('════════════════════════════════════════════════════════');
 console.log('✓ Script loading started');
-console.log('✓ TSV_FILE_PATH:', TSV_FILE_PATH);
+console.log('✓ GOOGLE_SHEET_URL:', GOOGLE_SHEET_URL);
 console.log('✓ Document ready state:', document.readyState);
 console.log('════════════════════════════════════════════════════════');
 
 const FILE_API_ENDPOINT = 'https://n8n-workflow-test.duckdns.org/webhook/stat-abstract'; // ⚠️ ADD YOUR N8N WEBHOOK URL    
 
-const categorySelect = document.getElementById('categorySelect');
-const questionSelect = document.getElementById('questionSelect');
-const questionSection = document.getElementById('questionSection');
-const userInput = document.getElementById('userInput');
-const autocompleteDropdown = document.getElementById('autocompleteDropdown');
+// DOM elements - will be accessed when needed (after page loads)
+let categorySelect;
+let questionSelect;
+let questionSection;
+let userInput;
+let autocompleteDropdown;
+
+// Initialize DOM elements after page loads
+function initDOMElements() {
+  categorySelect = document.getElementById('categorySelect');
+  questionSelect = document.getElementById('questionSelect');
+  questionSection = document.getElementById('questionSection');
+  userInput = document.getElementById('userInput');
+  autocompleteDropdown = document.getElementById('autocompleteDropdown');
+}
 
 function selectQueryType(type) {
+  if (!categorySelect) initDOMElements(); // Initialize if not done yet
+  
   selectedQueryType = type;
   
   document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
@@ -2321,6 +2333,10 @@ document.addEventListener('click', function(e) {
 // Last Updated Timestamp - FIXED DATE
 // ═══════════════════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', function() {
+  // Initialize DOM elements
+  initDOMElements();
+  
+  // Set last modified date
   var elem = document.getElementById('lastModified');
   if (elem) {
     // Fixed date - Update this manually when you make changes
