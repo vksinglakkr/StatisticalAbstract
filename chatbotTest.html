@@ -1413,16 +1413,13 @@ const statsQuestionsDataHindi = {
 let selectedLanguage = 'English';
 let currentQuestions = {};
 let allQuestions = [];
-// File Search Variables - HARDCODED
-let masterFileData = [
-  {
-    chp_code: '01',
-    chapter_name: 'Classification of area in Haryana',
-    sec_code: 'Agriculture',
-    part_code: '',
-    search_text: 'classification of area in haryana'
-  }
-];
+// ═══════════════════════════════════════════════════════════════════
+// GOOGLE SHEETS CONFIGURATION
+// ═══════════════════════════════════════════════════════════════════
+const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/17mpGz4-lw-xBYqDiHj7RV1z0w_5k8lEmSmVqsxS36ro/export?format=tsv&gid=740242886';
+
+// File Search Variables - LOADED FROM GOOGLE SHEETS (TSV FORMAT)
+let masterFileData = [];
 let selectedFileItem = null;
     
 // ═══════════════════════════════════════════════════════════════════
@@ -1436,7 +1433,7 @@ console.log('✓ TSV_FILE_PATH:', TSV_FILE_PATH);
 console.log('✓ Document ready state:', document.readyState);
 console.log('════════════════════════════════════════════════════════');
 
-const FILE_API_ENDPOINT = 'YOUR_N8N_WEBHOOK_URL_HERE'; // ⚠️ ADD YOUR WEBHOOK URL    
+const FILE_API_ENDPOINT = 'https://n8n-workflow-test.duckdns.org/webhook/stat-abstract'; // ⚠️ ADD YOUR N8N WEBHOOK URL    
 
 const categorySelect = document.getElementById('categorySelect');
 const questionSelect = document.getElementById('questionSelect');
@@ -2082,8 +2079,66 @@ document.getElementById('quizModal').addEventListener('click', function(e) {
 // ═══════════════════════════════════════════════════════════════════
 
 async function loadMasterFileData() {
-  // Data hardcoded above
-  console.log('✅ Using hardcoded data: 1 question');
+  try {
+    console.log('🔄 Loading questions from Google Sheets (TSV)...');
+    console.log('   URL:', GOOGLE_SHEET_URL);
+    
+    const response = await fetch(GOOGLE_SHEET_URL);
+    console.log('   📡 Response status:', response.status, response.statusText);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const tsvText = await response.text();
+    console.log('   📄 TSV text length:', tsvText.length, 'characters');
+    
+    const lines = tsvText.split('\n');
+    console.log('   📄 Total lines:', lines.length);
+    
+    masterFileData = []; // Clear existing data
+    
+    // Parse TSV - Skip header row (index 0)
+    for (let i = 1; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line) continue;
+      
+      // Split by TAB (TSV format) - supports commas in questions
+      const columns = line.split('\t');
+      
+      // Expected format: Question [TAB] sec_code [TAB] chp_code
+      if (columns.length >= 3) {
+        const question = columns[0].trim();
+        const sec_code = columns[1].trim();
+        const chp_code = columns[2].trim();
+        
+        if (question && sec_code && chp_code) {
+          masterFileData.push({
+            chp_code: chp_code.padStart(2, '0'),
+            chapter_name: question,
+            sec_code: sec_code,
+            part_code: '',
+            search_text: question.toLowerCase()
+          });
+        }
+      }
+    }
+    
+    console.log(`✅ Loaded ${masterFileData.length} questions from Google Sheets`);
+    console.log('   Sample data:', masterFileData.slice(0, 3));
+    
+  } catch (error) {
+    console.error('❌ Error loading Google Sheets data:', error);
+    console.error('   Error details:', error.message);
+    
+    // Fallback to empty array
+    masterFileData = [];
+    
+    alert('⚠️ Could not load questions from Google Sheets. Please check:\n' +
+          '1. Sheet is published to web (TSV format)\n' +
+          '2. Sheet is publicly accessible\n' +
+          '3. URL is correct');
+  }
 }
 
 // File Search Input Handler
@@ -2174,6 +2229,7 @@ async function searchStatFiles() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        type: 'file_search',  // ⚠️ REQUIRED FOR N8N ROUTING
         filePrefix: filePrefix,
         question: selectedFileItem.chapter_name,
         sec_code: selectedFileItem.sec_code,
