@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Autocomplete Test</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    #userInput { width: 100%; padding: 10px; font-size: 16px; }
+    #dropdown { border: 1px solid #ccc; max-height: 200px; overflow-y: auto; display: none; }
+    .item { padding: 10px; cursor: pointer; border-bottom: 1px solid #eee; }
+    .item:hover { background: #f0f0f0; }
+    .status { margin: 10px 0; padding: 10px; background: #e7f3ff; }
+  </style>
+</head>
+<body>
+  <h2>🧪 SIMPLE AUTOCOMPLETE TEST</h2>
+  
+  <div class="status" id="status">Loading...</div>
+  
+  <label>
+    <input type="radio" name="mode" value="data" checked> Data Mode (Google Sheets)
+  </label>
+  <label>
+    <input type="radio" name="mode" value="stats"> Statistics Mode
+  </label>
+  
+  <br><br>
+  
+  <input type="text" id="userInput" placeholder="Type here...">
+  <div id="dropdown"></div>
+  
+  <div style="margin-top: 20px;">
+    <strong>Last Updated:</strong> <span id="lastModified"></span>
+  </div>
+
+  <script>
+    const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/17mpGz4-lw-xBYqDiHj7RV1z0w_5k8lEmSmVqsxS36ro/export?format=tsv&gid=740242886';
+    
+    let masterFileData = [];
+    let selectedQueryType = 'data';
+    
+    // Load Google Sheets
+    async function loadData() {
+      try {
+        document.getElementById('status').textContent = 'Loading Google Sheets...';
+        const response = await fetch(GOOGLE_SHEET_URL);
+        const tsvText = await response.text();
+        const lines = tsvText.split('\n');
+        
+        for (let i = 1; i < lines.length; i++) {
+          const line = lines[i].trim();
+          if (!line) continue;
+          
+          const columns = line.split('\t');
+          if (columns.length >= 3) {
+            const question = columns[0].trim();
+            const sec_code = columns[1].trim();
+            const chp_code = columns[2].trim();
+            
+            if (question && sec_code && chp_code) {
+              masterFileData.push({
+                chapter_name: question,
+                sec_code: sec_code,
+                chp_code: chp_code,
+                search_text: question.toLowerCase()
+              });
+            }
+          }
+        }
+        
+        document.getElementById('status').innerHTML = `✅ <strong>Loaded ${masterFileData.length} questions!</strong>`;
+        console.log('Sample:', masterFileData.slice(0, 3));
+      } catch (error) {
+        document.getElementById('status').innerHTML = `❌ Error: ${error.message}`;
+      }
+    }
+    
+    // Autocomplete
+    const userInput = document.getElementById('userInput');
+    const dropdown = document.getElementById('dropdown');
+    
+    userInput.addEventListener('input', function() {
+      const query = this.value.trim().toLowerCase();
+      
+      if (query.length < 2) {
+        dropdown.style.display = 'none';
+        return;
+      }
+      
+      if (selectedQueryType === 'data') {
+        // Search Google Sheets data
+        const results = masterFileData.filter(item => 
+          item.search_text.includes(query)
+        ).slice(0, 10);
+        
+        if (results.length > 0) {
+          let html = '';
+          results.forEach(item => {
+            html += `<div class="item">${item.chapter_name}<br><small>${item.sec_code} | Ch.${item.chp_code}</small></div>`;
+          });
+          dropdown.innerHTML = html;
+          dropdown.style.display = 'block';
+        } else {
+          dropdown.innerHTML = '<div class="item">No results</div>';
+          dropdown.style.display = 'block';
+        }
+      } else {
+        // Statistics mode
+        dropdown.innerHTML = '<div class="item">Statistics mode - not implemented in test</div>';
+        dropdown.style.display = 'block';
+      }
+    });
+    
+    // Radio buttons
+    document.querySelectorAll('input[name="mode"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        selectedQueryType = this.value;
+        userInput.placeholder = selectedQueryType === 'data' ? 
+          'Type to search 750 questions...' : 
+          'Statistics mode';
+        dropdown.style.display = 'none';
+        userInput.value = '';
+      });
+    });
+    
+    // Last modified
+    document.getElementById('lastModified').textContent = 'December 4, 2024';
+    
+    // Load on start
+    loadData();
+  </script>
+</body>
+</html>
