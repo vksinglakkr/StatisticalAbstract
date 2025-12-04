@@ -270,106 +270,7 @@
   letter-spacing: 0.5px;
   border-bottom: 1px solid #fed7aa;
 }
-   
-/* FILE SEARCH STYLES */
-.file-search-wrapper {
-  display: none;
-  margin-bottom: 2rem;
-}
 
-.file-search-input-container {
-  position: relative;
-  margin-bottom: 1rem;
-}
-
-.file-autocomplete-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
-  border: 2px solid #f97316;
-  border-top: none;
-  border-radius: 0 0 16px 16px;
-  max-height: 350px;
-  overflow-y: auto;
-  z-index: 1000;
-  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
-  margin-top: -8px;
-  display: none;
-}
-
-.file-autocomplete-item {
-  padding: 14px 16px;
-  cursor: pointer;
-  border-bottom: 1px solid #f3f4f6;
-  transition: all 0.2s;
-}
-
-.file-autocomplete-item:hover {
-  background: linear-gradient(135deg, #fff7ed, #fed7aa);
-}
-
-.file-autocomplete-item-title {
-  font-weight: 600;
-  color: #1f2937;
-  font-size: 14px;
-  margin-bottom: 4px;
-}
-
-.file-autocomplete-item-meta {
-  font-size: 11px;
-  color: #6b7280;
-}
-
-.file-selected-display {
-  display: none;
-  padding: 12px 16px;
-  background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
-  border-left: 5px solid #f97316;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  font-size: 14px;
-}
-
-.file-results-area {
-  margin-top: 1.5rem;
-}
-
-.file-year-group {
-  margin-bottom: 1.5rem;
-  padding: 20px;
-  background: #f9fafb;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-}
-
-.file-year-group h4 {
-  font-size: 18px;
-  font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 12px;
-}
-
-.file-download-link {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 6px 6px 6px 0;
-  background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 14px;
-  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
-  transition: all 0.3s;
-}
-
-.file-download-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
-}
-   
 @media (max-width: 640px) {
   .query-type-selector {
     padding: 16px 12px;
@@ -1058,47 +959,6 @@
             </select> 
           </div>
         </div>
-        <!-- FILE SEARCH SECTION (for Find Haryana Data mode) -->
-        <div class="mb-8 slide-fade-enter file-search-wrapper" id="fileSearchSection">
-          <div class="bg-gradient-to-br from-orange-50 to-amber-50 p-6 rounded-xl border-2 border-orange-200 shadow-md">
-            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-              </svg>
-              Search Statistical Abstract Files
-            </h3>
-            
-            <div class="file-search-input-container">
-              <input 
-                type="text" 
-                id="fileSearchInput"
-                class="w-full rounded-xl border-2 border-orange-400 p-4 text-gray-900 bg-white shadow-lg 
-                       focus:border-orange-500 focus:ring-4 focus:ring-orange-200 transition-all duration-300"
-                placeholder="🔍 Type to search files... (e.g., Haryana Staff Selection, Population, Agriculture)"
-                autocomplete="off"
-              />
-              <div id="fileAutocompleteDropdown" class="file-autocomplete-dropdown"></div>
-            </div>
-            
-            <div id="fileSelectedDisplay" class="file-selected-display"></div>
-            
-            <button 
-              onclick="searchStatFiles()"
-              class="w-full py-4 px-6 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold 
-                     rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all 
-                     duration-300 flex items-center justify-center gap-2"
-            >
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-              </svg>
-              Find Data Files
-            </button>
-            
-            <div id="fileResultsArea" class="file-results-area"></div>
-          </div>
-        </div>
-
-        
 
         <button 
           id="submitBtn" 
@@ -1773,11 +1633,6 @@ const statsQuestionsDataHindi = {
 let selectedLanguage = 'English';
 let currentQuestions = {};
 let allQuestions = [];
-// File Search Variables
-let masterFileData = [];
-let selectedFileItem = null;
-const TSV_FILE_PATH = '/data/MainFile.tsv';
-const FILE_API_ENDPOINT = 'https://n8n-workflow-test.duckdns.org/webhook/search-files';    
 
 const categorySelect = document.getElementById('categorySelect');
 const questionSelect = document.getElementById('questionSelect');
@@ -1797,30 +1652,15 @@ function selectQueryType(type) {
   if (type === 'statistics') {
     document.getElementById('statisticsRadio').checked = true;
     document.getElementById('userInput').placeholder = 'Ask about statistical concepts... (e.g., What is GDP? Explain literacy rate)';
-    
-    // Show quick questions, hide file search
-    document.getElementById('quickQuestionsSection').style.display = 'block';
-    document.getElementById('fileSearchSection').style.display = 'none';
-    
   } else {
     document.getElementById('dataRadio').checked = true;
-    document.getElementById('userInput').placeholder = 'Search for data files or ask questions...';
-    
-    // Hide quick questions, show file search
-    document.getElementById('quickQuestionsSection').style.display = 'none';
-    document.getElementById('fileSearchSection').style.display = 'block';
-    
-    // Load master file data if not loaded
-    if (masterFileData.length === 0) {
-      loadMasterFileData();
-    }
+    document.getElementById('userInput').placeholder = 'Search Haryana data... (e.g., Show district-wise population, Agricultural production data)';
   }
   
   loadCategories();
   buildAllQuestionsList();
   questionSection.style.display = 'block';
 }
-
 
 function loadCategories() {
   categorySelect.innerHTML = '<option value="" selected disabled>Select Topic</option>';
@@ -2468,213 +2308,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }, 100);
 });
-// ═══════════════════════════════════════════════════════════════════
-// FILE SEARCH SYSTEM
-// ═══════════════════════════════════════════════════════════════════
 
-async function loadMasterFileData() {
-  try {
-    const response = await fetch(TSV_FILE_PATH);
-    const text = await response.text();
-    const lines = text.split('\n');
-    
-    for (let i = 1; i < lines.length; i++) {
-      const line = lines[i].trim();
-      if (!line) continue;
-      
-      const [Chp_Code, Chapter_Name, sec_code, part_code] = line.split('\t');
-      
-      if (Chapter_Name && sec_code && Chp_Code) {
-        masterFileData.push({
-          chp_code: Chp_Code.trim().padStart(2, '0'),
-          chapter_name: Chapter_Name.trim(),
-          sec_code: sec_code.trim(),
-          part_code: part_code ? part_code.trim() : '',
-          search_text: Chapter_Name.toLowerCase()
-        });
-      }
-    }
-    
-    console.log(`✅ Loaded ${masterFileData.length} chapters from MainFile.tsv`);
-  } catch (error) {
-    console.error('❌ Error loading master file data:', error);
-  }
-}
+</script>
 
-// File Search Input Handler
-const fileSearchInput = document.getElementById('fileSearchInput');
-let fileSearchTimeout;
-
-if (fileSearchInput) {
-  fileSearchInput.addEventListener('input', function() {
-    clearTimeout(fileSearchTimeout);
-    fileSearchTimeout = setTimeout(() => {
-      performFileSearch(this.value);
-    }, 300);
-  });
-}
-
-function performFileSearch(query) {
-  const dropdown = document.getElementById('fileAutocompleteDropdown');
-  
-  if (!query || query.length < 2) {
-    dropdown.style.display = 'none';
-    return;
-  }
-  
-  const searchTerm = query.toLowerCase();
-  const results = masterFileData.filter(item => 
-    item.search_text.includes(searchTerm)
-  ).slice(0, 15);
-  
-  if (results.length > 0) {
-    displayFileAutocomplete(results);
-  } else {
-    dropdown.innerHTML = '<div class="p-4 text-center text-gray-500">No matching files found</div>';
-    dropdown.style.display = 'block';
-  }
-}
-
-function displayFileAutocomplete(results) {
-  const dropdown = document.getElementById('fileAutocompleteDropdown');
-  let html = '';
-  
-  results.forEach(item => {
-    const itemData = JSON.stringify(item).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-    html += `
-      <div class="file-autocomplete-item" onclick='selectFileItem(${itemData})'>
-        <div class="file-autocomplete-item-title">${item.chapter_name}</div>
-        <div class="file-autocomplete-item-meta">
-          📁 ${item.sec_code} | 📄 Ch.${item.chp_code} | 📊 ${item.part_code}
-        </div>
-      </div>
-    `;
-  });
-  
-  dropdown.innerHTML = html;
-  dropdown.style.display = 'block';
-}
-
-function selectFileItem(item) {
-  selectedFileItem = item;
-  
-  document.getElementById('fileSearchInput').value = item.chapter_name;
-  document.getElementById('fileAutocompleteDropdown').style.display = 'none';
-  
-  document.getElementById('fileSelectedDisplay').innerHTML = `
-    <strong>📋 Selected:</strong> ${item.chapter_name}<br>
-    <small>Section: ${item.sec_code} | Chapter: ${item.chp_code}</small>
-  `;
-  document.getElementById('fileSelectedDisplay').style.display = 'block';
-  
-  console.log('✅ Selected file item:', item);
-}
-
-async function searchStatFiles() {
-  if (!selectedFileItem) {
-    alert('⚠️ Please select a question from the dropdown first!');
-    return;
-  }
-  
-  const resultsDiv = document.getElementById('fileResultsArea');
-  resultsDiv.innerHTML = '<div class="text-center py-8 text-gray-600">🔍 Searching for files...</div>';
-  
-  const filePrefix = selectedFileItem.sec_code + selectedFileItem.chp_code;
-  console.log('🔍 Searching for files with prefix:', filePrefix);
-  
-  try {
-    const response = await fetch(FILE_API_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        filePrefix: filePrefix,
-        question: selectedFileItem.chapter_name,
-        sec_code: selectedFileItem.sec_code,
-        chp_code: selectedFileItem.chp_code
-      })
-    });
-    
-    const data = await response.json();
-    
-    if (data.success && data.files && data.files.length > 0) {
-      displayFileResults(data.files, selectedFileItem);
-    } else {
-      displayNoFileResults(selectedFileItem, filePrefix);
-    }
-    
-  } catch (error) {
-    console.error('❌ Error:', error);
-    resultsDiv.innerHTML = '<div class="text-center py-8 text-red-600">❌ Error searching files. Please try again.</div>';
-  }
-}
-
-function displayFileResults(files, selectedItem) {
-  const resultsDiv = document.getElementById('fileResultsArea');
-  
-  const filesByYear = {};
-  files.forEach(file => {
-    if (!filesByYear[file.year]) {
-      filesByYear[file.year] = [];
-    }
-    filesByYear[file.year].push(file);
-  });
-  
-  const years = Object.keys(filesByYear).sort().reverse();
-  
-  let html = `
-    <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-5 rounded-xl mb-5 border-2 border-green-200">
-      <h3 class="text-lg font-bold text-gray-800 mb-2">✅ Found ${files.length} file(s)</h3>
-      <p class="text-gray-700 font-semibold text-sm">${selectedItem.chapter_name}</p>
-      <p class="text-xs text-gray-600 mt-1">Section: ${selectedItem.sec_code} | Chapter: ${selectedItem.chp_code}</p>
-    </div>
-  `;
-  
-  years.forEach(year => {
-    html += `
-      <div class="file-year-group">
-        <h4>📅 Year: ${year}</h4>
-    `;
-    
-    filesByYear[year].forEach(file => {
-      const icon = file.extension === 'pdf' ? '📕' : '📊';
-      html += `
-        <a href="${file.url}" target="_blank" class="file-download-link">
-          ${icon} ${file.filename}
-        </a>
-      `;
-    });
-    
-    html += `</div>`;
-  });
-  
-  resultsDiv.innerHTML = html;
-}
-
-function displayNoFileResults(selectedItem, filePrefix) {
-  const resultsDiv = document.getElementById('fileResultsArea');
-  resultsDiv.innerHTML = `
-    <div class="text-center py-12 bg-yellow-50 rounded-xl border-2 border-yellow-200">
-      <div class="text-6xl mb-4">📭</div>
-      <h4 class="text-lg font-bold text-gray-800 mb-2">No files found</h4>
-      <p class="text-gray-600 text-sm">No data files found for: <strong>${selectedItem.chapter_name}</strong></p>
-      <p class="text-xs text-gray-500 mt-2">File prefix: ${filePrefix}</p>
-    </div>
-  `;
-}
-
-// Close file autocomplete when clicking outside
-document.addEventListener('click', function(e) {
-  const fileInput = document.getElementById('fileSearchInput');
-  const fileDropdown = document.getElementById('fileAutocompleteDropdown');
-  
-  if (fileInput && fileDropdown) {
-    if (!fileInput.contains(e.target) && !fileDropdown.contains(e.target)) {
-      fileDropdown.style.display = 'none';
-    }
-  }
-});
+<script>
 // Last Updated Timestamp
 window.addEventListener('load', function() {
   setTimeout(function() {
