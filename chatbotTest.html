@@ -1413,10 +1413,17 @@ const statsQuestionsDataHindi = {
 let selectedLanguage = 'English';
 let currentQuestions = {};
 let allQuestions = [];
-// File Search Variables
-let masterFileData = [];
+// File Search Variables - HARDCODED
+let masterFileData = [
+  {
+    chp_code: '01',
+    chapter_name: 'Classification of area in Haryana',
+    sec_code: 'Agriculture',
+    part_code: '',
+    search_text: 'classification of area in haryana'
+  }
+];
 let selectedFileItem = null;
-const TSV_FILE_PATH = 'https://raw.githubusercontent.com/vksinglakkr/StatisticalAbstract/main/data/MainFile.tsv';
     
 // ═══════════════════════════════════════════════════════════════════
 // COMPREHENSIVE DEBUG LOGGING
@@ -1429,7 +1436,7 @@ console.log('✓ TSV_FILE_PATH:', TSV_FILE_PATH);
 console.log('✓ Document ready state:', document.readyState);
 console.log('════════════════════════════════════════════════════════');
 
-const FILE_API_ENDPOINT = 'https://n8n-workflow-test.duckdns.org/webhook/search-files';    
+const FILE_API_ENDPOINT = 'YOUR_N8N_WEBHOOK_URL_HERE'; // ⚠️ ADD YOUR WEBHOOK URL    
 
 const categorySelect = document.getElementById('categorySelect');
 const questionSelect = document.getElementById('questionSelect');
@@ -2075,48 +2082,8 @@ document.getElementById('quizModal').addEventListener('click', function(e) {
 // ═══════════════════════════════════════════════════════════════════
 
 async function loadMasterFileData() {
-  console.log('🔄 loadMasterFileData() called');
-  console.log('   TSV Path:', TSV_FILE_PATH);
-  
-  try {
-    console.log('   📡 Fetching TSV file...');
-    const response = await fetch(TSV_FILE_PATH);
-    console.log('   📡 Response status:', response.status, response.statusText);
-    
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
-    
-    const text = await response.text();
-    console.log('   📄 TSV text length:', text.length, 'characters');
-    
-    const lines = text.split('\n');
-    console.log('   📄 Total lines:', lines.length);
-    
-    for (let i = 1; i < lines.length; i++) {
-      const line = lines[i].trim();
-      if (!line) continue;
-      
-      const [Chp_Code, Chapter_Name, sec_code, part_code] = line.split('\t');
-      
-      if (Chapter_Name && sec_code && Chp_Code) {
-        masterFileData.push({
-          chp_code: Chp_Code.trim().padStart(2, '0'),
-          chapter_name: Chapter_Name.trim(),
-          sec_code: sec_code.trim(),
-          part_code: part_code ? part_code.trim() : '',
-          search_text: Chapter_Name.toLowerCase()
-        });
-      }
-    }
-    
-    console.log(`✅ Loaded ${masterFileData.length} chapters from MainFile.tsv`);
-    console.log('   Sample data:', masterFileData.slice(0, 3));
-  } catch (error) {
-    console.error('❌ Error loading master file data:', error);
-    console.error('   Error details:', error.message);
-    console.error('   Error stack:', error.stack);
-  }
+  // Data hardcoded above
+  console.log('✅ Using hardcoded data: 1 question');
 }
 
 // File Search Input Handler
