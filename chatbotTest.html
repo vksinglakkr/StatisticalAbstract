@@ -1571,7 +1571,10 @@ function filterQuestions(query) {
   }); // Show ALL matching suggestions (no limit)
 }
 
-userInput.addEventListener('input', function() {
+function initUserInputListener() {
+  if (!userInput) initDOMElements();
+  
+  userInput.addEventListener('input', function() {
   const query = this.value.trim();
   
   if (query.length < 2) {
@@ -1612,19 +1615,15 @@ userInput.addEventListener('input', function() {
   });
 });
 
-// Close dropdown when clicking outside
-document.addEventListener('click', function(e) {
-  if (!userInput.contains(e.target) && !autocompleteDropdown.contains(e.target)) {
-    autocompleteDropdown.style.display = 'none';
-  }
-});
-
-// Close dropdown on ESC key
-userInput.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    autocompleteDropdown.style.display = 'none';
-  }
-});
+  // Close dropdown on ESC key
+  userInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      autocompleteDropdown.style.display = 'none';
+    }
+  });
+  
+  console.log('✅ User input autocomplete initialized');
+}
 
 categorySelect.addEventListener('change', function() {
   questionSelect.innerHTML = '<option value="" selected disabled>Select Question</option>';
@@ -2154,17 +2153,21 @@ async function loadMasterFileData() {
   }
 }
 
-// File Search Input Handler
-const fileSearchInput = document.getElementById('fileSearchInput');
+// File Search Input Handler - Initialize after DOM loads
 let fileSearchTimeout;
 
-if (fileSearchInput) {
-  fileSearchInput.addEventListener('input', function() {
-    clearTimeout(fileSearchTimeout);
-    fileSearchTimeout = setTimeout(() => {
-      performFileSearch(this.value);
-    }, 300);
-  });
+function initFileSearchListener() {
+  const fileSearchInput = document.getElementById('fileSearchInput');
+  
+  if (fileSearchInput) {
+    fileSearchInput.addEventListener('input', function() {
+      clearTimeout(fileSearchTimeout);
+      fileSearchTimeout = setTimeout(() => {
+        performFileSearch(this.value);
+      }, 300);
+    });
+    console.log('✅ File search autocomplete initialized');
+  }
 }
 
 function performFileSearch(query) {
@@ -2335,6 +2338,10 @@ document.addEventListener('click', function(e) {
 window.addEventListener('DOMContentLoaded', function() {
   // Initialize DOM elements
   initDOMElements();
+  
+  // Initialize autocomplete listeners
+  initUserInputListener();
+  initFileSearchListener();
   
   // Set last modified date
   var elem = document.getElementById('lastModified');
