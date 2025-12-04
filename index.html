@@ -1774,25 +1774,21 @@ let selectedLanguage = 'English';
 let currentQuestions = {};
 let allQuestions = [];
 // File Search Variables
-// ═══════════════════════════════════════════════════════════════════
-// EMBEDDED MASTER FILE DATA - No network required!
-// ═══════════════════════════════════════════════════════════════════
-let masterFileData = [
-  // Data will be embedded here - see instructions below
-  {chp_code: "01", chapter_name: "Governor and Council of Ministers", sec_code: "Admin_Stru", part_code: "SS", search_text: "governor and council of ministers"},
-  {chp_code: "02", chapter_name: "State Legislature", sec_code: "Admin_Stru", part_code: "SS", search_text: "state legislature"},
-  {chp_code: "03", chapter_name: "State Judiciary", sec_code: "Admin_Stru", part_code: "SS", search_text: "state judiciary"},
-  {chp_code: "04", chapter_name: "Haryana Administrative Services", sec_code: "Admin_Stru", part_code: "SS", search_text: "haryana administrative services"},
-  {chp_code: "05", chapter_name: "Haryana Staff Selection Commission", sec_code: "Admin_Stru", part_code: "SS", search_text: "haryana staff selection commission"},
-  {chp_code: "06", chapter_name: "Haryana Subordinate Services Selection Board", sec_code: "Admin_Stru", part_code: "SS", search_text: "haryana subordinate services selection board"},
-  {chp_code: "07", chapter_name: "Haryana Public Service Commission", sec_code: "Admin_Stru", part_code: "SS", search_text: "haryana public service commission"}
-  // ADD ALL YOUR 750 RECORDS HERE IN THE SAME FORMAT
-  // Format: {chp_code: "XX", chapter_name: "Name", sec_code: "Code", part_code: "XX", search_text: "lowercase name"}
-];
-
-console.log('✅ Master File Data Embedded: ' + masterFileData.length + ' chapters loaded');
-
+let masterFileData = [];
 let selectedFileItem = null;
+const TSV_FILE_PATH = 'https://raw.githubusercontent.com/vksinglakkr/StatisticalAbstract/main/data/MainFile.tsv';
+    
+// ═══════════════════════════════════════════════════════════════════
+// COMPREHENSIVE DEBUG LOGGING
+// ═══════════════════════════════════════════════════════════════════
+console.log('════════════════════════════════════════════════════════');
+console.log('🔍 STATS SAHAYAK DEBUG MODE');
+console.log('════════════════════════════════════════════════════════');
+console.log('✓ Script loading started');
+console.log('✓ TSV_FILE_PATH:', TSV_FILE_PATH);
+console.log('✓ Document ready state:', document.readyState);
+console.log('════════════════════════════════════════════════════════');
+
 const FILE_API_ENDPOINT = 'https://n8n-workflow-test.duckdns.org/webhook/search-files';    
 
 const categorySelect = document.getElementById('categorySelect');
@@ -1826,8 +1822,10 @@ function selectQueryType(type) {
     document.getElementById('quickQuestionsSection').style.display = 'none';
     document.getElementById('fileSearchSection').style.display = 'block';
     
-    // Data is already embedded - no need to load!
-    console.log('📊 File search ready with ' + masterFileData.length + ' chapters');
+    // Load master file data if not loaded
+    if (masterFileData.length === 0) {
+      loadMasterFileData();
+    }
   }
   
   loadCategories();
@@ -2435,8 +2433,53 @@ document.getElementById('quizModal').addEventListener('click', function(e) {
   
 
 // ═══════════════════════════════════════════════════════════════════
-// FILE SEARCH SYSTEM - Data is now embedded, no loading needed!
+// FILE SEARCH SYSTEM
 // ═══════════════════════════════════════════════════════════════════
+
+async function loadMasterFileData() {
+  console.log('🔄 loadMasterFileData() called');
+  console.log('   TSV Path:', TSV_FILE_PATH);
+  
+  try {
+    console.log('   📡 Fetching TSV file...');
+    const response = await fetch(TSV_FILE_PATH);
+    console.log('   📡 Response status:', response.status, response.statusText);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const text = await response.text();
+    console.log('   📄 TSV text length:', text.length, 'characters');
+    
+    const lines = text.split('\n');
+    console.log('   📄 Total lines:', lines.length);
+    
+    for (let i = 1; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line) continue;
+      
+      const [Chp_Code, Chapter_Name, sec_code, part_code] = line.split('\t');
+      
+      if (Chapter_Name && sec_code && Chp_Code) {
+        masterFileData.push({
+          chp_code: Chp_Code.trim().padStart(2, '0'),
+          chapter_name: Chapter_Name.trim(),
+          sec_code: sec_code.trim(),
+          part_code: part_code ? part_code.trim() : '',
+          search_text: Chapter_Name.toLowerCase()
+        });
+      }
+    }
+    
+    console.log(`✅ Loaded ${masterFileData.length} chapters from MainFile.tsv`);
+    console.log('   Sample data:', masterFileData.slice(0, 3));
+  } catch (error) {
+    console.error('❌ Error loading master file data:', error);
+    console.error('   Error details:', error.message);
+    console.error('   Error stack:', error.stack);
+  }
+}
 
 // File Search Input Handler
 const fileSearchInput = document.getElementById('fileSearchInput');
@@ -2616,9 +2659,19 @@ document.addEventListener('click', function(e) {
 // Last Updated Timestamp
 // ═══════════════════════════════════════════════════════════════════
 (function() {
+  console.log('🕐 Last Update: IIFE starting...');
+  console.log('   Document ready state:', document.readyState);
+  
   function setLastUpdated() {
+    console.log('🕐 setLastUpdated() called');
     var elem = document.getElementById('lastModified');
+    console.log('   Element found:', elem ? 'YES ✓' : 'NO ✗');
+    
     if (elem) {
+      console.log('   Element innerHTML before:', elem.innerHTML);
+      console.log('   Element textContent before:', elem.textContent);
+      console.log('   Element display style:', window.getComputedStyle(elem).display);
+      
       var d = new Date();
       var months = ['January','February','March','April','May','June',
                     'July','August','September','October','November','December'];
@@ -2631,16 +2684,25 @@ document.addEventListener('click', function(e) {
       m = m < 10 ? '0' + m : m;
       var timeStr = h + ':' + m + ' ' + ampm;
       elem.textContent = dateStr + ' at ' + timeStr;
+      
+      console.log('   Element textContent after:', elem.textContent);
       console.log('✅ Last Updated: ' + elem.textContent);
     } else {
-      console.error('❌ lastModified element not found');
+      console.error('❌ lastModified element not found in DOM');
+      console.error('   All elements with id:', document.querySelectorAll('[id]').length);
+      console.error('   Body children:', document.body ? document.body.children.length : 'NO BODY');
     }
   }
   
   // Try immediately
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setLastUpdated);
+    console.log('🕐 Document still loading, waiting for DOMContentLoaded...');
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('🕐 DOMContentLoaded event fired');
+      setLastUpdated();
+    });
   } else {
+    console.log('🕐 Document already loaded, running immediately');
     setLastUpdated();
   }
 })();
