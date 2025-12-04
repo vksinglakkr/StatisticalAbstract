@@ -1774,9 +1774,25 @@ let selectedLanguage = 'English';
 let currentQuestions = {};
 let allQuestions = [];
 // File Search Variables
-let masterFileData = [];
+// ═══════════════════════════════════════════════════════════════════
+// EMBEDDED MASTER FILE DATA - No network required!
+// ═══════════════════════════════════════════════════════════════════
+let masterFileData = [
+  // Data will be embedded here - see instructions below
+  {chp_code: "01", chapter_name: "Governor and Council of Ministers", sec_code: "Admin_Stru", part_code: "SS", search_text: "governor and council of ministers"},
+  {chp_code: "02", chapter_name: "State Legislature", sec_code: "Admin_Stru", part_code: "SS", search_text: "state legislature"},
+  {chp_code: "03", chapter_name: "State Judiciary", sec_code: "Admin_Stru", part_code: "SS", search_text: "state judiciary"},
+  {chp_code: "04", chapter_name: "Haryana Administrative Services", sec_code: "Admin_Stru", part_code: "SS", search_text: "haryana administrative services"},
+  {chp_code: "05", chapter_name: "Haryana Staff Selection Commission", sec_code: "Admin_Stru", part_code: "SS", search_text: "haryana staff selection commission"},
+  {chp_code: "06", chapter_name: "Haryana Subordinate Services Selection Board", sec_code: "Admin_Stru", part_code: "SS", search_text: "haryana subordinate services selection board"},
+  {chp_code: "07", chapter_name: "Haryana Public Service Commission", sec_code: "Admin_Stru", part_code: "SS", search_text: "haryana public service commission"}
+  // ADD ALL YOUR 750 RECORDS HERE IN THE SAME FORMAT
+  // Format: {chp_code: "XX", chapter_name: "Name", sec_code: "Code", part_code: "XX", search_text: "lowercase name"}
+];
+
+console.log('✅ Master File Data Embedded: ' + masterFileData.length + ' chapters loaded');
+
 let selectedFileItem = null;
-const TSV_FILE_PATH = 'https://raw.githubusercontent.com/vksinglakkr/StatisticalAbstract/main/data/MainFile.tsv';
 const FILE_API_ENDPOINT = 'https://n8n-workflow-test.duckdns.org/webhook/search-files';    
 
 const categorySelect = document.getElementById('categorySelect');
@@ -1810,10 +1826,8 @@ function selectQueryType(type) {
     document.getElementById('quickQuestionsSection').style.display = 'none';
     document.getElementById('fileSearchSection').style.display = 'block';
     
-    // Load master file data if not loaded
-    if (masterFileData.length === 0) {
-      loadMasterFileData();
-    }
+    // Data is already embedded - no need to load!
+    console.log('📊 File search ready with ' + masterFileData.length + ' chapters');
   }
   
   loadCategories();
@@ -2421,37 +2435,8 @@ document.getElementById('quizModal').addEventListener('click', function(e) {
   
 
 // ═══════════════════════════════════════════════════════════════════
-// FILE SEARCH SYSTEM
+// FILE SEARCH SYSTEM - Data is now embedded, no loading needed!
 // ═══════════════════════════════════════════════════════════════════
-
-async function loadMasterFileData() {
-  try {
-    const response = await fetch(TSV_FILE_PATH);
-    const text = await response.text();
-    const lines = text.split('\n');
-    
-    for (let i = 1; i < lines.length; i++) {
-      const line = lines[i].trim();
-      if (!line) continue;
-      
-      const [Chp_Code, Chapter_Name, sec_code, part_code] = line.split('\t');
-      
-      if (Chapter_Name && sec_code && Chp_Code) {
-        masterFileData.push({
-          chp_code: Chp_Code.trim().padStart(2, '0'),
-          chapter_name: Chapter_Name.trim(),
-          sec_code: sec_code.trim(),
-          part_code: part_code ? part_code.trim() : '',
-          search_text: Chapter_Name.toLowerCase()
-        });
-      }
-    }
-    
-    console.log(`✅ Loaded ${masterFileData.length} chapters from MainFile.tsv`);
-  } catch (error) {
-    console.error('❌ Error loading master file data:', error);
-  }
-}
 
 // File Search Input Handler
 const fileSearchInput = document.getElementById('fileSearchInput');
