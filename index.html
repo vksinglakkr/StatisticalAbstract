@@ -1219,7 +1219,7 @@
     
   <div class="border-t-2 border-gray-200 px-6 py-4 text-center bg-gradient-to-b from-gray-50 to-white">
        <p class="text-sm text-gray-700 mb-2 font-medium">AI Chatbot powered by <span class="font-bold text-orange-600">Groq + Llama 3.3</span></p>
-    <p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified"></span></p>
+    <p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified" style="display: inline;">Loading...</span></p>
       <div class="flex flex-wrap justify-center items-center gap-6">
         <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/haryana-logo.jpg" alt="Haryana" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
         <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/kdb-logo.png" alt="KDB" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
@@ -2341,32 +2341,6 @@ musicToggle.addEventListener('click', () => {
   }
 });
 
-// Last Updated timestamp
-window.addEventListener('DOMContentLoaded', function() {
-  try {
-    const lastModifiedDate = new Date(document.lastModified);
-    const element = document.getElementById("lastModified");
-    if (element) {
-      const dateStr = lastModifiedDate.toLocaleDateString('en-US', {
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric'
-      });
-      const timeStr = lastModifiedDate.toLocaleTimeString('en-US', {
-        hour: '2-digit', 
-        minute: '2-digit',
-        hour12: true
-      });
-      element.textContent = dateStr + ' at ' + timeStr;
-      console.log('Last Updated:', dateStr + ' at ' + timeStr);
-    } else {
-      console.error('lastModified element not found');
-    }
-  } catch (error) {
-    console.error('Error updating last modified date:', error);
-  }
-});
-
 function openFeedback() {
   const feedbackModal = document.getElementById('feedbackModal');
   const feedbackIframe = document.getElementById('feedbackIframe');
@@ -2446,28 +2420,6 @@ document.getElementById('quizModal').addEventListener('click', function(e) {
 });
   
 
-// === LAST UPDATED CODE - SIMPLE VERSION ===
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(function() {
-    const elem = document.getElementById('lastModified');
-    if (elem) {
-      const now = new Date();
-      const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-      const dateStr = months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
-      let hours = now.getHours();
-      const ampm = hours >= 12 ? 'PM' : 'AM';
-      hours = hours % 12;
-      hours = hours ? hours : 12;
-      const minutes = now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes();
-      const timeStr = hours + ':' + minutes + ' ' + ampm;
-      elem.textContent = dateStr + ' at ' + timeStr;
-      elem.style.display = 'inline';
-      console.log('Last Updated set to:', elem.textContent);
-    } else {
-      console.error('lastModified element NOT FOUND');
-    }
-  }, 100);
-});
 // ═══════════════════════════════════════════════════════════════════
 // FILE SEARCH SYSTEM
 // ═══════════════════════════════════════════════════════════════════
@@ -2675,9 +2627,11 @@ document.addEventListener('click', function(e) {
     }
   }
 });
+// ═══════════════════════════════════════════════════════════════════
 // Last Updated Timestamp
-window.addEventListener('load', function() {
-  setTimeout(function() {
+// ═══════════════════════════════════════════════════════════════════
+(function() {
+  function setLastUpdated() {
     var elem = document.getElementById('lastModified');
     if (elem) {
       var d = new Date();
@@ -2692,13 +2646,19 @@ window.addEventListener('load', function() {
       m = m < 10 ? '0' + m : m;
       var timeStr = h + ':' + m + ' ' + ampm;
       elem.textContent = dateStr + ' at ' + timeStr;
-      elem.style.display = 'inline';
-      console.log('✅ Last Updated successfully set to:', elem.textContent);
+      console.log('✅ Last Updated: ' + elem.textContent);
     } else {
-      console.error('❌ Element with id=lastModified not found in DOM');
+      console.error('❌ lastModified element not found');
     }
-  }, 200);
-});
+  }
+  
+  // Try immediately
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setLastUpdated);
+  } else {
+    setLastUpdated();
+  }
+})();
 </script>
 
 </body>
