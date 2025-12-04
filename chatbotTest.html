@@ -2165,7 +2165,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
   const browser = browserMatch ? browserMatch[0].replace('OPR', 'Opera') : 'Unknown';
 
   try {
-    const webhookUrl = 'https://n8n-workflow-test.duckdns.org/webhook/Stat_Abs';
+    const webhookUrl = 'https://n8n-workflow-test.duckdns.org/webhook/stat-abstract';
 
     const response = await fetch(webhookUrl, {
       method: 'POST',
