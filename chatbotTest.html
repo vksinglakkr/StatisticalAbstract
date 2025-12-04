@@ -1185,7 +1185,6 @@
     <p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified" style="display: inline;">Loading...</span></p>
       <div class="flex flex-wrap justify-center items-center gap-6">
         <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/haryana-logo.jpg" alt="Haryana" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
-        <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/kdb-logo.png" alt="KDB" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
       </div>
     </div>
   </div>
@@ -1874,7 +1873,7 @@ function filterQuestions(query) {
     }
     
     return keywords.some(keyword => questionLower.includes(keyword));
-  }).slice(0, 8); // Show max 8 suggestions
+  }); // Show ALL matching suggestions (no limit)
 }
 
 userInput.addEventListener('input', function() {
@@ -2617,33 +2616,26 @@ document.addEventListener('click', function(e) {
   }
 });
 // ═══════════════════════════════════════════════════════════════════
-// Last Updated Timestamp - Clean Version
+// Last Updated Timestamp - Immediate Execution
 // ═══════════════════════════════════════════════════════════════════
-(function() {
-  function setLastUpdated() {
-    var elem = document.getElementById('lastModified');
-    if (elem) {
-      var d = new Date();
-      var months = ['January','February','March','April','May','June',
-                    'July','August','September','October','November','December'];
-      var dateStr = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-      var h = d.getHours();
-      var ampm = h >= 12 ? 'PM' : 'AM';
-      h = h % 12;
-      h = h ? h : 12;
-      var m = d.getMinutes();
-      m = m < 10 ? '0' + m : m;
-      var timeStr = h + ':' + m + ' ' + ampm;
-      elem.textContent = dateStr + ' at ' + timeStr;
-    }
+window.addEventListener('DOMContentLoaded', function() {
+  var elem = document.getElementById('lastModified');
+  if (elem) {
+    var d = new Date();
+    var months = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+    var dateStr = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    var h = d.getHours();
+    var ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12;
+    h = h ? h : 12;
+    var m = d.getMinutes();
+    m = m < 10 ? '0' + m : m;
+    var timeStr = h + ':' + m + ' ' + ampm;
+    elem.textContent = dateStr + ' at ' + timeStr;
+    elem.style.display = 'inline';
   }
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setLastUpdated);
-  } else {
-    setLastUpdated();
-  }
-})();
+});
 </script>
 
 </body>
