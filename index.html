@@ -1,0 +1,2705 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>STATS SAHAYAK – Statistical Abstract Chatbot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Functions need to be defined before they're called in HTML
+    function openPDFGuide() {
+      window.open('STATS_SAHAYAK_Tutorial.html', '_blank');
+    }
+    
+    function openTutorialVideos() {
+      window.open('https://www.youtube.com/watch?v=YOUR_VIDEO_ID', '_blank');
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+ <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: radial-gradient(ellipse at top, #1e3a8a, #0f172a);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .devanagari { font-family: 'Noto Sans Devanagari', sans-serif; }
+  .playfair { font-family: 'Playfair Display', serif; }
+  .container-main { position: relative; z-index: 1; }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #ff6b35 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+  }
+  .mic-btn {
+    transition: all 0.3s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mic-btn.recording {
+    background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+    border-color: #dc2626 !important;
+    animation: pulseRec 1.5s ease-in-out infinite;
+  }
+  @keyframes pulseRec {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+    50% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+  }
+  @keyframes shimmer { to { background-position: 200% center; } }
+  .header-glow { position: relative; }
+  .header-glow::before {
+    content: '';
+    position: absolute;
+    top: -20px; left: 50%;
+    transform: translateX(-50%);
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.3), transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+  .tts-btn {
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tts-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .tts-btn.speaking { animation: pulse 1.5s ease-in-out infinite; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+  }
+  .lang-toggle {
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .lang-toggle button {
+    padding: 8px 20px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    background: transparent;
+    color: #64748b;
+  }
+  .lang-toggle button.active {
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    color: white;
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.4);
+    transform: scale(1.05);
+  }
+  
+.query-type-selector {
+  background: linear-gradient(135deg, #fef3c7, #fed7aa);
+  border: 3px solid #f59e0b;
+  border-radius: 20px;
+  padding: 20px 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+}
+
+.radio-option {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding: 14px 16px;
+  background: white;
+  border: 3px solid #e5e7eb;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 12px;
+  min-height: 80px;
+}
+
+.radio-option:last-child {
+  margin-bottom: 0;
+}
+
+.radio-option:hover {
+  border-color: #f59e0b;
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.2);
+}
+
+.radio-option input[type="radio"] {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  margin-right: 12px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: #f59e0b;
+  flex-shrink: 0;
+}
+
+.radio-option.selected {
+  border-color: #f59e0b;
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
+  transform: scale(1.02);
+}
+
+.radio-icon {
+  font-size: 28px;
+  min-width: 36px;
+  margin-right: 8px;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.radio-label {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: 2px;
+}
+
+.radio-label-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.radio-label-desc {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* AUTOCOMPLETE STYLES */
+.autocomplete-container {
+  position: relative;
+  width: 100%;
+}
+
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #f59e0b;
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+  margin-top: -8px;
+}
+
+.autocomplete-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f3f4f6;
+  transition: all 0.2s;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover {
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  font-weight: 600;
+}
+
+.autocomplete-item mark {
+  background: #fef3c7;
+  color: #ea580c;
+  font-weight: 700;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.autocomplete-no-results {
+  padding: 16px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.autocomplete-category {
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #f59e0b;
+  background: #fffbeb;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #fed7aa;
+}
+   
+/* FILE SEARCH STYLES */
+.file-search-wrapper {
+  display: none;
+  margin-bottom: 2rem;
+}
+
+.file-search-input-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.file-autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #f97316;
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  max-height: 350px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+  margin-top: -8px;
+  display: none;
+}
+
+.file-autocomplete-item {
+  padding: 14px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f3f4f6;
+  transition: all 0.2s;
+}
+
+.file-autocomplete-item:hover {
+  background: linear-gradient(135deg, #fff7ed, #fed7aa);
+}
+
+.file-autocomplete-item-title {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.file-autocomplete-item-meta {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.file-selected-display {
+  display: none;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+  border-left: 5px solid #f97316;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+.file-results-area {
+  margin-top: 1.5rem;
+}
+
+.file-year-group {
+  margin-bottom: 1.5rem;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.file-year-group h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.file-download-link {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 6px 6px 6px 0;
+  background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+  transition: all 0.3s;
+}
+
+.file-download-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
+}
+   
+@media (max-width: 640px) {
+  .query-type-selector {
+    padding: 16px 12px;
+  }
+  
+  .radio-option {
+    padding: 12px 12px;
+    min-height: 85px;
+  }
+  
+  .radio-option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin-right: 10px;
+  }
+  
+  .radio-icon {
+    font-size: 24px;
+    min-width: 32px;
+    margin-right: 6px;
+  }
+  
+  .radio-label-title {
+    font-size: 16px;
+  }
+
+  .radio-label-desc {
+    font-size: 11px;
+    line-height: 1.35;
+  }
+  
+  .autocomplete-dropdown {
+    max-height: 250px;
+  }
+  
+  .autocomplete-item {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 360px) {
+  .radio-icon {
+    font-size: 22px;
+    min-width: 28px;
+  }
+  
+  .radio-label-title {
+    font-size: 14px;
+  }
+  
+  .radio-label-desc {
+    font-size: 10.5px;
+  }
+}
+  
+  .slide-fade-enter {
+    animation: slideFadeIn 0.5s ease-out;
+  }
+  @keyframes slideFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  #userInput::placeholder {
+    font-size: 13px;
+    color: #b5b5b5;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+  #userInput {
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    color: #1f2937 !important;
+    line-height: 1.5;
+    vertical-align: bottom;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: block;
+  }
+  
+  @media (max-width: 768px) {
+    #userInput {
+      font-size: 16px !important;
+      padding: 12px !important;
+      padding-bottom: 48px !important;
+      min-height: 100px;
+    }
+    #userInput::placeholder {
+      font-size: 12px;
+    }
+    .mic-btn {
+      bottom: 8px !important;
+      right: 8px !important;
+    }
+  }
+  
+  .icon { display: inline-block; width: 1em; height: 1em; vertical-align: -0.125em; }
+  .btn-primary {
+    background: linear-gradient(135deg, #ff6b35, #f59e0b);
+    color: white;
+    font-weight: 700;
+    padding: 18px 32px;
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+  }
+  .btn-primary:hover::before { left: 100%; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255, 107, 53, 0.5); }
+  .event-card {
+    border-radius: 20px;
+    padding: 20px;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .event-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,0.2); }
+  .quote-section {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    border-left: 6px solid #3b82f6;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15); 
+    position: relative;
+    overflow: hidden;
+  }
+  .quote-section::before {
+    content: '"';
+    position: absolute;
+    top: -20px; left: 20px;
+    font-size: 120px;
+    color: rgba(59, 130, 246, 0.1);
+    font-family: Georgia, serif;
+  }
+  input, textarea, select { transition: all 0.3s; }
+  input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
+  .modal-enter { animation: modalEnter 0.3s ease-out; }
+  @keyframes modalEnter {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .floating { animation: floating 3s ease-in-out infinite; }
+  @keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  .feedback-btn {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+  }
+  
+  .feedback-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    background: linear-gradient(135deg, #059669, #047857);
+  }
+  
+  .feedback-btn-small {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  #feedbackModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  #feedbackModal.show {
+    display: flex;
+  }
+
+  .feedback-modal-content {
+    background: white;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 900px;
+    height: 90vh;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .feedback-modal-header {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .feedback-modal-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+
+  .feedback-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+  }
+
+  #feedbackIframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: white;
+  }
+
+  .iframe-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
+  }
+
+  .spinner {
+    border: 4px solid #f3f4f6;
+    border-top: 4px solid #10b981;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .om-symbol {
+    position: fixed;
+    font-size: 200px;
+    opacity: 0.05;
+    color: rgba(251, 191, 36, 0.3);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+  .om-top-right {
+    top: -50px;
+    right: -50px;
+  }
+  .om-bottom-left {
+    bottom: -50px;
+    left: -50px;
+    transform: rotate(180deg);
+  }
+  
+  .quiz-chatbot-btn {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: white;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .quiz-chatbot-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+  }
+  
+  .quiz-chatbot-btn:hover::before {
+    left: 100%;
+  }
+  
+  .quiz-chatbot-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  }
+  
+  .quiz-chatbot-btn svg {
+    width: 20px;
+    height: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+  
+  .music-control-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    font-weight: 600;
+    padding: 14px 20px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    z-index: 1000;
+  }
+  
+  .music-control-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+  }
+  
+  @media (max-width: 768px) {
+    .music-control-btn {
+      bottom: 16px;
+      right: 16px;
+      padding: 12px 16px;
+      font-size: 13px;
+    }
+  }
+
+  #quizModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10001;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  #quizModal.show {
+    display: flex;
+  }
+
+  .quiz-modal-content {
+    background: white;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 1200px;
+    height: 92vh;
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .quiz-modal-header {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .quiz-modal-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+
+  .quiz-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+  }
+
+#quizIframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: white;
+  }
+  /* Live Telecast Button - Red Theme */
+.live-telecast-btn {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: white;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.live-telecast-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.live-telecast-btn:hover::before {
+  left: 100%;
+}
+
+.live-telecast-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.5);
+  background: linear-gradient(135deg, #b91c1c, #dc2626);
+}
+
+.live-telecast-btn svg {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Pulsing Dot for Live Indicator */
+.live-telecast-btn .pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  animation: pulse-live 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-live {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+/* 
+  #categorySelect option:not([disabled]) {
+    padding: 12px 8px;
+    font-size: 15px;
+  }
+  
+  #categorySelect {
+    font-weight: 600;
+  }  
+   
+  #questionSelect {
+    font-weight: 600;
+  }
+
+
+  @media (max-width: 480px) {
+    #questionSelect {
+      font-size: 12px !important;
+    }
+    
+    #questionSelect option:not([disabled]) {
+      font-size: 12px !important;
+      padding: 8px 6px !important;
+    }
+  }
+  
+  #modalQuestion {
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+  }
+  
+  @media (max-width: 768px) {
+    #modalQuestion {
+      font-size: 17px !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #modalQuestion {
+      font-size: 16px !important;
+    }
+  }
+*/
+/* Question Select Dropdown - Options Font Size */
+#questionSelect option {
+  font-size: 13px !important;
+  padding: 8px !important;
+  line-height: 1.4;
+}
+
+#questionSelect optgroup {
+  font-size: 14px !important;
+  font-weight: 600;
+  color: #1e40af;
+}
+
+/* Mobile ke liye aur bhi chhota */
+@media (max-width: 640px) {
+  #questionSelect option {
+    font-size: 12px !important;
+    padding: 6px !important;
+  }
+  
+  #questionSelect optgroup {
+    font-size: 13px !important;
+  }
+}
+</style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+  <div class="om-symbol om-top-right devanagari">ॐ</div>
+  <div class="om-symbol om-bottom-left devanagari">ॐ</div>
+
+  <div class="container-main w-full max-w-5xl glass-card rounded-3xl shadow-2xl overflow-hidden">
+    <div class="relative bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 p-6 pb-4 text-center header-glow">
+      <div class="flex justify-between items-start mb-4 w-full">
+ <button onclick="openPDFGuide()" class="live-telecast-btn" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+    </svg>
+    Tutorial Guide
+  </button>
+  <button onclick="openTutorialVideos()" class="quiz-chatbot-btn">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Tutorial Videos
+        </button>
+      </div>
+      
+      <div class="floating">
+        <h1 class="text-5xl md:text-6xl font-black gradient-text mb-2 playfair tracking-tight">STATS SAHAYAK</h1>
+      </div>
+      <p class="text-sm text-gray-600 font-semibold mb-3 tracking-wide">Statistical Abstract Chatbot</p>
+      
+      <div class="w-full max-w-2xl mx-auto px-4">
+        <div class="bg-white rounded-2xl border-3 border-orange-400 py-2 px-4 shadow-xl transform hover:scale-105 transition-all duration-300">
+          <h2 class="text-sm sm:text-base md:text-lg font-black text-center bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 bg-clip-text text-transparent whitespace-nowrap">
+            Department of Economic and Statistical Analysis, Haryana
+          </h2>
+        </div>
+      </div>
+     </div>
+
+    <div class="p-2">
+      <div class="query-type-selector">
+        <h3 class="text-xl font-bold text-gray-900 mb-4 text-center flex items-center justify-center gap-2">
+          <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Area of interest?
+        </h3>
+        
+        <div class="radio-option" onclick="selectQueryType('statistics')">
+          <input type="radio" name="queryType" id="statisticsRadio" value="statistics">
+          <span class="radio-icon">📖</span>
+          <label for="statisticsRadio" class="radio-label cursor-pointer">
+            <span class="radio-label-title">Learn About Statistics</span>
+            <span class="radio-label-desc">Get explanations about statistical terms and concepts</span>
+          </label>
+        </div>
+        
+        <div class="radio-option" onclick="selectQueryType('data')">
+          <input type="radio" name="queryType" id="dataRadio" value="data">
+          <span class="radio-icon">📊</span>
+          <label for="dataRadio" class="radio-label cursor-pointer">
+            <span class="radio-label-title">Find Haryana Data</span>
+            <span class="radio-label-desc">Search for specific data from Haryana Statistical Abstract</span>
+          </label>
+        </div>
+      </div>
+
+      <div id="questionSection" style="display: none;">
+        <div class="mb-8 slide-fade-enter">
+          <div class="relative autocomplete-container">
+            <textarea
+              id="userInput"
+              rows="3"
+              class="w-full rounded-2xl border-4 border-orange-400 p-4 pb-12 text-gray-900
+                     bg-gradient-to-br from-white to-orange-50 shadow-2xl resize-none
+                     focus:border-orange-500 focus:ring-4 focus:ring-orange-200 focus:shadow-2xl
+                     transition-all duration-300 leading-relaxed"
+              placeholder="Type your question here... (e.g., What is literacy rate? Show district-wise population)"
+            ></textarea>
+            <div id="autocompleteDropdown" class="autocomplete-dropdown" style="display: none;"></div>
+            <button
+              id="voiceBtn"
+              class="mic-btn absolute bottom-3 right-3 text-orange-500 hover:text-orange-700 transition-all duration-300 hover:scale-110 bg-white rounded-full p-3 shadow-lg border-2 border-orange-300"
+              title="Click to speak"
+            >
+              <svg id="micIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-8 slide-fade-enter" id="quickQuestionsSection">
+          <div class="flex items-center justify-between mb-4">
+            <label class="text-lg font-bold text-gray-800">Quick help👇</label>
+              <div class="flex justify-end mb-2">
+                <div class="lang-toggle">
+                  <button class="langBtn active" data-lang="English">English</button>
+                  <button class="langBtn" data-lang="Hindi">हिंदी</button>
+                </div>
+              </div>  
+          </div>
+          <div class="space-y-4">
+            <select id="categorySelect" class="block w-full px-5 py-4 text-base border-2 border-gray-200 focus:outline-none focus:ring-3 focus:ring-blue-500 focus:border-blue-500 rounded-2xl bg-white shadow-md transition-all duration-300 font-medium">
+              <option value="" selected disabled>Select Topic</option>
+            </select>
+            <select id="questionSelect" class="block w-full px-5 py-4 text-base border-2 border-gray-200 focus:outline-none focus:ring-3 focus:ring-blue-500 focus:border-blue-500 rounded-2xl bg-white shadow-md transition-all duration-300 font-medium" disabled>
+                <option value="" selected disabled>Select Question</option>
+            </select> 
+          </div>
+        </div>
+        <!-- FILE SEARCH SECTION (for Find Haryana Data mode) -->
+        <div class="mb-8 slide-fade-enter file-search-wrapper" id="fileSearchSection">
+          <div class="bg-gradient-to-br from-orange-50 to-amber-50 p-6 rounded-xl border-2 border-orange-200 shadow-md">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+              Search Statistical Abstract Files
+            </h3>
+            
+            <div class="file-search-input-container">
+              <input 
+                type="text" 
+                id="fileSearchInput"
+                class="w-full rounded-xl border-2 border-orange-400 p-4 text-gray-900 bg-white shadow-lg 
+                       focus:border-orange-500 focus:ring-4 focus:ring-orange-200 transition-all duration-300"
+                placeholder="🔍 Type to search files... (e.g., Haryana Staff Selection, Population, Agriculture)"
+                autocomplete="off"
+              />
+              <div id="fileAutocompleteDropdown" class="file-autocomplete-dropdown"></div>
+            </div>
+            
+            <div id="fileSelectedDisplay" class="file-selected-display"></div>
+            
+            <button 
+              onclick="searchStatFiles()"
+              class="w-full py-4 px-6 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold 
+                     rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all 
+                     duration-300 flex items-center justify-center gap-2"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+              Find Data Files
+            </button>
+            
+            <div id="fileResultsArea" class="file-results-area"></div>
+          </div>
+        </div>
+
+        
+
+        <button 
+          id="submitBtn" 
+          class="w-full mt-4 btn-primary flex items-center justify-center gap-3 text-xl slide-fade-enter"
+        >
+          <svg class="icon w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+          </svg>
+          Submit
+        </button>
+      </div>
+
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-4 mt-4 px-2">
+  <!-- Haryana Statistical Abstract Card -->
+  <div class="event-card bg-gradient-to-br from-blue-50 to-blue-100 border-l-4 border-blue-600 shadow-lg rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:scale-105">
+    <div class="flex items-center gap-3 mb-3">
+      <svg class="w-10 h-10 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+      </svg>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 text-base">Haryana Statistical Abstract</p>
+        <p class="text-xs text-gray-600 font-medium">हरियाणा सांख्यिकीय सार</p>
+      </div>
+    </div>
+    <div class="ml-13 space-y-1">
+      <a href="https://esaharyana.gov.in/statistical-wing-publication-reports/" target="_blank" 
+         class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600 transition-colors mt-2">
+        View Reports →
+      </a>
+    </div>
+  </div>
+
+  <!-- India Statistical Abstract Card -->
+  <div class="event-card bg-gradient-to-br from-green-50 to-green-100 border-l-4 border-green-600 shadow-lg rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:scale-105">
+    <div class="flex items-center gap-3 mb-3">
+      <svg class="w-10 h-10 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 text-base">India Statistics</p>
+        <p class="text-xs text-gray-600 font-medium">भारत सांख्यिकी</p>
+      </div>
+    </div>
+    <div class="ml-13 space-y-1">
+      <a href="https://www.mospi.gov.in/publications-reports" target="_blank" 
+         class="inline-block bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition-colors mt-2">
+        Visit MoSPI →
+      </a>
+    </div>
+  </div>
+
+  <!-- Census Data Card -->
+  <div class="event-card bg-gradient-to-br from-purple-50 to-purple-100 border-l-4 border-purple-600 shadow-lg rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:scale-105">
+    <div class="flex items-center gap-3 mb-3">
+      <svg class="w-10 h-10 text-purple-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+      </svg>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 text-base">Census Data</p>
+        <p class="text-xs text-gray-600 font-medium">जनगणना डेटा</p>
+      </div>
+    </div>
+    <div class="ml-13 space-y-1">
+      <a href="https://censusindia.gov.in/" target="_blank" 
+         class="inline-block bg-purple-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-purple-600 transition-colors mt-2">
+        View Census →
+      </a>
+    </div>
+  </div>
+
+  <!-- Open Data Portal Card -->
+  <div class="event-card bg-gradient-to-br from-orange-50 to-orange-100 border-l-4 border-orange-600 shadow-lg rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:scale-105">
+    <div class="flex items-center gap-3 mb-3">
+      <svg class="w-10 h-10 text-orange-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+      </svg>
+      <div class="flex-1">
+        <p class="font-bold text-gray-900 text-base">Open Data</p>
+        <p class="text-xs text-gray-600 font-medium">खुला डेटा</p>
+      </div>
+    </div>
+    <div class="ml-13 space-y-1">
+      <a href="https://data.gov.in/" target="_blank" 
+         class="inline-block bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600 transition-colors mt-2">
+        Explore Data →
+      </a>
+    </div>
+  </div>
+</div>
+
+      <div class="quote-section mb-1">
+        <p class="text-xl text-gray-900 text-center leading-relaxed mb-2 relative z-10 font-semibold italic">
+          "Without data, you're just another person with an opinion."
+        </p>
+        <p class="text-right text-gray-600 text-sm mb-1 mt-1 font-medium">– W. Edwards Deming</p>
+        <p class="text-center text-sm text-gray-700 mb-0 mt-2 font-light leading-relaxed">
+         <span style="line-height: 1.2; display: block;">Statistics illuminate the path from confusion to clarity,<br>transforming raw numbers into meaningful insights for progress.</span>
+        </p>
+      </div>
+
+      <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button onclick="openFeedback()" class="feedback-btn">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+          </svg>
+          Feedback
+        </button>
+        
+        <a href="https://esaharyana.gov.in/" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold transition-all hover:scale-105">
+          <svg class="icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          Visit ESA Haryana
+        </a>
+      </div>
+    </div>
+    
+  <div class="border-t-2 border-gray-200 px-6 py-4 text-center bg-gradient-to-b from-gray-50 to-white">
+       <p class="text-sm text-gray-700 mb-2 font-medium">AI Chatbot powered by <span class="font-bold text-orange-600">Groq + Llama 3.3</span></p>
+    <p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified"></span></p>
+      <div class="flex flex-wrap justify-center items-center gap-6">
+        <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/haryana-logo.jpg" alt="Haryana" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
+        <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/kdb-logo.png" alt="KDB" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
+      </div>
+    </div>
+  </div>
+
+  <div id="aiModal" class="hidden fixed inset-0 flex items-center justify-center p-2" style="z-index: 9999; background: rgba(0,0,0,0.92);">
+    <div class="bg-white rounded-3xl shadow-2xl w-full mx-2 modal-enter overflow-hidden" style="max-width: 850px; max-height: 92vh;">
+      <div class="flex justify-between items-center px-5 py-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+        <h2 class="text-xl font-bold flex items-center gap-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          AI Response
+        </h2>
+        <button id="closeModal" class="hover:bg-white/20 p-2 rounded-full transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="p-5 overflow-y-auto bg-gray-50" style="max-height: calc(92vh - 180px);">
+        <div class="mb-5">
+          <div class="flex items-center gap-2 mb-2">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <p class="font-bold text-gray-900">Question:</p>
+          </div>
+          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-2xl border-l-4 border-blue-500">
+            <pre id="modalQuestion" class="whitespace-pre-wrap text-gray-800 leading-relaxed"></pre> 
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-2 flex-wrap gap-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+              <p class="font-bold text-gray-900">Answer:</p>
+            </div>
+            <button id="ttsToggle" class="tts-btn bg-gradient-to-r from-orange-500 to-orange-600 text-white">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+              <span id="ttsLabel">Listen</span>
+            </button>
+          </div>
+          <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-4 rounded-2xl border-l-4 border-orange-500">
+            <pre id="modalAnswer" class="whitespace-pre-wrap text-gray-800 text-sm leading-loose devanagari"></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t-2 border-gray-200 p-3 bg-white flex justify-center gap-2">
+        <button id="copyBtn" class="flex items-center gap-1 px-4 py-2 bg-white border-2 border-gray-300 rounded-xl hover:bg-gray-50 transition text-sm font-semibold">
+          <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          Copy
+        </button>
+        <button onclick="openFeedback()" class="feedback-btn feedback-btn-small">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+          </svg>
+          Rate Us
+        </button>
+        <button id="closeBtn" class="flex items-center gap-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-5 py-2 rounded-xl hover:from-blue-700 hover:to-blue-800 transition text-sm font-bold shadow-lg">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="feedbackModal">
+    <div class="feedback-modal-content">
+      <div class="feedback-modal-header">
+        <h2 class="text-xl font-bold flex items-center gap-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+          </svg>
+          Feedback
+        </h2>
+        <button onclick="closeFeedback()" class="feedback-modal-close">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div style="position: relative; flex: 1;">
+        <div id="iframeLoader" class="iframe-loader" style="display: none;">
+          <div class="spinner"></div>
+          <p style="color: #64748b; font-weight: 600;">Loading feedback form...</p>
+        </div>
+        <iframe id="feedbackIframe" src=""></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div id="quizModal">
+    <div class="quiz-modal-content">
+      <div class="quiz-modal-header">
+        <h2 class="text-xl font-bold flex items-center gap-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+          🎥 Tutorial Videos
+        </h2>
+        <button onclick="closeTutorialVideos()" class="quiz-modal-close">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div style="position: relative; flex: 1; overflow-y: auto; padding: 20px;">
+        <div class="space-y-4">
+          <!-- Video 1 -->
+          <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-5 rounded-xl border-l-4 border-blue-500 hover:shadow-lg transition-all">
+            <h3 class="font-bold text-blue-900 text-lg mb-2 flex items-center gap-2">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+              </svg>
+              Getting Started with STATS SAHAYAK
+            </h3>
+            <p class="text-gray-700 text-sm mb-3">Learn the basics of using the chatbot</p>
+            <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_1" target="_blank" 
+               class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-semibold">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+              </svg>
+              Watch Tutorial (5 min)
+            </a>
+          </div>
+
+          <!-- Video 2 -->
+          <div class="bg-gradient-to-r from-green-50 to-green-100 p-5 rounded-xl border-l-4 border-green-500 hover:shadow-lg transition-all">
+            <h3 class="font-bold text-green-900 text-lg mb-2 flex items-center gap-2">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+              </svg>
+              Finding Statistical Data
+            </h3>
+            <p class="text-gray-700 text-sm mb-3">How to search for district-wise data and reports</p>
+            <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_2" target="_blank" 
+               class="inline-flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-semibold">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+              </svg>
+              Watch Tutorial (7 min)
+            </a>
+          </div>
+
+          <!-- Video 3 -->
+          <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-5 rounded-xl border-l-4 border-purple-500 hover:shadow-lg transition-all">
+            <h3 class="font-bold text-purple-900 text-lg mb-2 flex items-center gap-2">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+              </svg>
+              Advanced Features
+            </h3>
+            <p class="text-gray-700 text-sm mb-3">Voice input, language toggle, and more</p>
+            <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_3" target="_blank" 
+               class="inline-flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors text-sm font-semibold">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+              </svg>
+              Watch Tutorial (6 min)
+            </a>
+          </div>
+
+          <!-- Video 4 -->
+          <div class="bg-gradient-to-r from-orange-50 to-orange-100 p-5 rounded-xl border-l-4 border-orange-500 hover:shadow-lg transition-all">
+            <h3 class="font-bold text-orange-900 text-lg mb-2 flex items-center gap-2">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+              </svg>
+              Understanding Statistical Reports
+            </h3>
+            <p class="text-gray-700 text-sm mb-3">Learn to interpret data and generate insights</p>
+            <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_4" target="_blank" 
+               class="inline-flex items-center gap-2 bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors text-sm font-semibold">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+              </svg>
+              Watch Tutorial (8 min)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <script>
+const statsQuestions = {
+  '📚 Learn About Statistics': {
+    '📊 Basic Concepts': [
+      "What is a Price Index?",
+      "Explain Consumer Price Index (CPI)",
+      "What is the difference between mean, median, and mode?",
+      "What is population density?",
+      "What is Gross Domestic Product (GDP)?",
+      "What is literacy rate?",
+      "What is infant mortality rate?",
+      "What is per capita income?",
+      "What is sex ratio?",
+      "What is cropped area?"
+    ],
+    '📈 Statistical Methods': [
+      "How to calculate growth rate?",
+      "What is base year in index numbers?",
+      "What are constant vs current prices?",
+      "How is workforce participation rate calculated?",
+      "What is enumeration in census?",
+      "How to interpret percentage changes?",
+      "What is sample registration system?",
+      "What is the difference between census and survey?",
+      "What are vital statistics?",
+      "How is agricultural productivity measured?"
+    ]
+  }
+};
+
+const statsQuestionsData = {
+  '👥 Area and Population': {
+    '📍 Basic Information': [
+      "Show area and population of Haryana",
+      "What is the growth of total population in Haryana?",
+      "Give me district-wise population distribution",
+      "How many villages and towns are in Haryana?",
+      "What is the rural and urban population by district?",
+      "Show me population density by districts",
+      "What is the literacy rate by districts?",
+      "Show scheduled castes population by districts",
+      "What is the sex ratio in Haryana?",
+      "Give me age distribution of population"
+    ]
+  },
+  
+  '🌾 Agriculture': {
+    '🚜 Crop Production': [
+      "Show area and production of foodgrains in Haryana",
+      "What is the area under principal crops?",
+      "Give me district-wise percentage distribution of crops",
+      "Show area under fruit and vegetables",
+      "What is the consumption of fertilizers in Haryana?",
+      "How many tractors are there in Haryana?",
+      "Show district-wise net area sown",
+      "What is the total cropped area by district?",
+      "Give me agricultural machinery data",
+      "Show area under high yielding varieties"
+    ]
+  },
+  
+  '🐄 Animal Husbandry': {
+    '🐮 Livestock': [
+      "Show livestock and poultry in Haryana",
+      "How many cattle are there in Haryana?",
+      "Give me data on buffaloes in Haryana",
+      "What is the sheep population?",
+      "Show goats and pigs population",
+      "How many fowls and ducks are there?",
+      "Show livestock per square kilometer",
+      "Give me milk production data",
+      "How many veterinary institutions are there?",
+      "Show poultry farms in Haryana"
+    ]
+  },
+  
+  '🏫 Education': {
+    '📚 Schools & Colleges': [
+      "How many recognized institutions are in Haryana?",
+      "Show number of colleges by district",
+      "What is the student enrollment in schools?",
+      "Give me teacher-pupil ratio",
+      "Show scheduled caste scholars in schools",
+      "How many universities are in Haryana?",
+      "What is the enrollment ratio by districts?",
+      "Show number of teachers by qualification",
+      "Give me technical education institution data",
+      "What is literacy among scheduled castes?"
+    ]
+  },
+  
+  '🏥 Health & Family Welfare': {
+    '⚕️ Medical Facilities': [
+      "How many hospitals and dispensaries are there?",
+      "Show number of beds available",
+      "What is the infant mortality rate?",
+      "Give me birth and death rates",
+      "Show family welfare statistics",
+      "How many health centers are there?",
+      "What is the area covered per institution?",
+      "Show sterilization operations data",
+      "Give me safe drinking water supply data",
+      "What are the mortality rates by disease?"
+    ]
+  },
+  
+  '🏭 Industries': {
+    '⚙️ Manufacturing': [
+      "How many registered factories are there?",
+      "Show district-wise factory data",
+      "What is the industrial production?",
+      "How many workers are employed in factories?",
+      "Give me industry-wise classification of factories",
+      "Show index of industrial production",
+      "What is the cotton textile mill data?",
+      "Show loans by Financial Corporation",
+      "Give me village industries data",
+      "What is employment in organized sector?"
+    ]
+  },
+  
+  '💰 Banking & Finance': {
+    '🏦 Banking Development': [
+      "Show banking development in Haryana",
+      "What are district-wise deposits and credits?",
+      "How many banking offices are there?",
+      "Give me bank offices by population range",
+      "Show deposits and advances data",
+      "What is per capita deposit?",
+      "Show cooperative societies statistics",
+      "Give me small savings data",
+      "What is the public debt?",
+      "Show tax revenue by district"
+    ]
+  },
+  
+  '⚡ Power & Infrastructure': {
+    '🔌 Electricity': [
+      "Show electricity consumption in Haryana",
+      "How many villages are electrified?",
+      "What is per capita power consumption?",
+      "Give me number of tube wells energized",
+      "Show installed generation capacity",
+      "What is the power availability?",
+      "Show consumption by category",
+      "How many solar pumps are installed?",
+      "Give me renewable energy capacity data",
+      "What is industrial power consumption?"
+    ]
+  },
+  
+  '🚗 Transport': {
+    '🛣️ Roads & Vehicles': [
+      "How many motor vehicles are registered?",
+      "Show district-wise vehicle registration",
+      "What is the road length by type?",
+      "Give me road accident statistics",
+      "Show Haryana Roadways progress",
+      "How many driving licenses issued?",
+      "What is road length per 100 sq km?",
+      "Show villages connected with roads",
+      "Give me highway length data",
+      "What is the railway route in Haryana?"
+    ]
+  },
+  
+  '💼 Labour & Employment': {
+    '👷 Employment Data': [
+      "Show employment in organized sector",
+      "What is registration at employment exchanges?",
+      "Give me industrial disputes data",
+      "Show average wages by sector",
+      "What are trade unions statistics?",
+      "Show workers compensation data",
+      "Give me occupational distribution data",
+      "What is vocational training enrollment?",
+      "Show factory worker earnings",
+      "What is worker participation rate?"
+    ]
+  }
+};
+
+const statsQuestionsHindi = {
+  '📚 सांख्यिकी के बारे में जानें': {
+    '📊 मूल अवधारणाएं': [
+      "मूल्य सूचकांक क्या है?",
+      "उपभोक्ता मूल्य सूचकांक (CPI) समझाएं",
+      "माध्य, माध्यिका और बहुलक में क्या अंतर है?",
+      "जनसंख्या घनत्व क्या है?",
+      "सकल घरेलू उत्पाद (GDP) क्या है?",
+      "साक्षरता दर क्या है?",
+      "शिशु मृत्यु दर क्या है?",
+      "प्रति व्यक्ति आय क्या है?",
+      "लिंगानुपात क्या है?",
+      "फसली क्षेत्र क्या है?"
+    ],
+    '📈 सांख्यिकीय विधियां': [
+      "वृद्धि दर की गणना कैसे करें?",
+      "सूचकांकों में आधार वर्ष क्या है?",
+      "स्थिर बनाम चालू मूल्य क्या हैं?",
+      "कार्यबल भागीदारी दर की गणना कैसे की जाती है?",
+      "जनगणना में गणना क्या है?",
+      "प्रतिशत परिवर्तन की व्याख्या कैसे करें?",
+      "नमूना पंजीकरण प्रणाली क्या है?",
+      "जनगणना और सर्वेक्षण में क्या अंतर है?",
+      "महत्वपूर्ण सांख्यिकी क्या हैं?",
+      "कृषि उत्पादकता कैसे मापी जाती है?"
+    ]
+  }
+};
+
+const statsQuestionsDataHindi = {
+  '👥 क्षेत्र और जनसंख्या': {
+    '📍 बुनियादी जानकारी': [
+      "हरियाणा का क्षेत्र और जनसंख्या दिखाएं",
+      "हरियाणा में कुल जनसंख्या की वृद्धि क्या है?",
+      "मुझे जिलेवार जनसंख्या वितरण दें",
+      "हरियाणा में कितने गांव और शहर हैं?",
+      "जिले के अनुसार ग्रामीण और शहरी जनसंख्या क्या है?",
+      "मुझे जिलों के अनुसार जनसंख्या घनत्व दिखाएं",
+      "जिलों के अनुसार साक्षरता दर क्या है?",
+      "जिलों के अनुसार अनुसूचित जाति की जनसंख्या दिखाएं",
+      "हरियाणा में लिंगानुपात क्या है?",
+      "मुझे जनसंख्या का आयु वितरण दें"
+    ]
+  },
+  
+  '🌾 कृषि': {
+    '🚜 फसल उत्पादन': [
+      "हरियाणा में खाद्यान्न का क्षेत्र और उत्पादन दिखाएं",
+      "मुख्य फसलों के अंतर्गत क्षेत्र क्या है?",
+      "मुझे फसलों का जिलेवार प्रतिशत वितरण दें",
+      "फलों और सब्जियों के अंतर्गत क्षेत्र दिखाएं",
+      "हरियाणा में उर्वरकों की खपत क्या है?",
+      "हरियाणा में कितने ट्रैक्टर हैं?",
+      "जिलेवार शुद्ध बोया गया क्षेत्र दिखाएं",
+      "जिले के अनुसार कुल फसली क्षेत्र क्या है?",
+      "मुझे कृषि मशीनरी डेटा दें",
+      "उच्च उपज देने वाली किस्मों के अंतर्गत क्षेत्र दिखाएं"
+    ]
+  },
+  
+  '🐄 पशुपालन': {
+    '🐮 पशुधन': [
+      "हरियाणा में पशुधन और मुर्गी पालन दिखाएं",
+      "हरियाणा में कितनी मवेशी हैं?",
+      "मुझे हरियाणा में भैंसों का डेटा दें",
+      "भेड़ की जनसंख्या क्या है?",
+      "बकरी और सूअर की जनसंख्या दिखाएं",
+      "कितनी मुर्गियां और बत्तखें हैं?",
+      "प्रति वर्ग किलोमीटर पशुधन दिखाएं",
+      "मुझे दूध उत्पादन डेटा दें",
+      "कितने पशु चिकित्सा संस्थान हैं?",
+      "हरियाणा में मुर्गी फार्म दिखाएं"
+    ]
+  },
+  
+  '🏫 शिक्षा': {
+    '📚 स्कूल और कॉलेज': [
+      "हरियाणा में कितने मान्यता प्राप्त संस्थान हैं?",
+      "जिले के अनुसार कॉलेजों की संख्या दिखाएं",
+      "स्कूलों में छात्र नामांकन क्या है?",
+      "मुझे शिक्षक-छात्र अनुपात दें",
+      "स्कूलों में अनुसूचित जाति के छात्र दिखाएं",
+      "हरियाणा में कितने विश्वविद्यालय हैं?",
+      "जिलों के अनुसार नामांकन अनुपात क्या है?",
+      "योग्यता के अनुसार शिक्षकों की संख्या दिखाएं",
+      "मुझे तकनीकी शिक्षा संस्थान डेटा दें",
+      "अनुसूचित जातियों में साक्षरता क्या है?"
+    ]
+  },
+  
+  '🏥 स्वास्थ्य और परिवार कल्याण': {
+    '⚕️ चिकित्सा सुविधाएं': [
+      "कितने अस्पताल और औषधालय हैं?",
+      "उपलब्ध बिस्तरों की संख्या दिखाएं",
+      "शिशु मृत्यु दर क्या है?",
+      "मुझे जन्म और मृत्यु दर दें",
+      "परिवार कल्याण सांख्यिकी दिखाएं",
+      "कितने स्वास्थ्य केंद्र हैं?",
+      "प्रति संस्थान कवर किया गया क्षेत्र क्या है?",
+      "नसबंदी ऑपरेशन डेटा दिखाएं",
+      "मुझे सुरक्षित पेयजल आपूर्ति डेटा दें",
+      "बीमारी के अनुसार मृत्यु दर क्या हैं?"
+    ]
+  },
+  
+  '🏭 उद्योग': {
+    '⚙️ विनिर्माण': [
+      "कितने पंजीकृत कारखाने हैं?",
+      "जिलेवार कारखाना डेटा दिखाएं",
+      "औद्योगिक उत्पादन क्या है?",
+      "कारखानों में कितने कर्मचारी कार्यरत हैं?",
+      "मुझे कारखानों का उद्योग-वार वर्गीकरण दें",
+      "औद्योगिक उत्पादन सूचकांक दिखाएं",
+      "सूती कपड़ा मिल डेटा क्या है?",
+      "वित्तीय निगम द्वारा ऋण दिखाएं",
+      "मुझे ग्रामीण उद्योग डेटा दें",
+      "संगठित क्षेत्र में रोजगार क्या है?"
+    ]
+  },
+  
+  '💰 बैंकिंग और वित्त': {
+    '🏦 बैंकिंग विकास': [
+      "हरियाणा में बैंकिंग विकास दिखाएं",
+      "जिलेवार जमा और ऋण क्या हैं?",
+      "कितने बैंकिंग कार्यालय हैं?",
+      "मुझे जनसंख्या सीमा के अनुसार बैंक कार्यालय दें",
+      "जमा और अग्रिम डेटा दिखाएं",
+      "प्रति व्यक्ति जमा क्या है?",
+      "सहकारी समितियों की सांख्यिकी दिखाएं",
+      "मुझे लघु बचत डेटा दें",
+      "सार्वजनिक ऋण क्या है?",
+      "जिले के अनुसार कर राजस्व दिखाएं"
+    ]
+  },
+  
+  '⚡ बिजली और बुनियादी ढांचा': {
+    '🔌 बिजली': [
+      "हरियाणा में बिजली की खपत दिखाएं",
+      "कितने गांव विद्युतीकृत हैं?",
+      "प्रति व्यक्ति बिजली खपत क्या है?",
+      "मुझे ऊर्जावान नलकूपों की संख्या दें",
+      "स्थापित उत्पादन क्षमता दिखाएं",
+      "बिजली की उपलब्धता क्या है?",
+      "श्रेणी के अनुसार खपत दिखाएं",
+      "कितने सौर पंप स्थापित हैं?",
+      "मुझे नवीकरणीय ऊर्जा क्षमता डेटा दें",
+      "औद्योगिक बिजली खपत क्या है?"
+    ]
+  },
+  
+  '🚗 परिवहन': {
+    '🛣️ सड़कें और वाहन': [
+      "कितने मोटर वाहन पंजीकृत हैं?",
+      "जिलेवार वाहन पंजीकरण दिखाएं",
+      "प्रकार के अनुसार सड़क की लंबाई क्या है?",
+      "मुझे सड़क दुर्घटना सांख्यिकी दें",
+      "हरियाणा रोडवेज की प्रगति दिखाएं",
+      "कितने ड्राइविंग लाइसेंस जारी किए गए?",
+      "प्रति 100 वर्ग किमी सड़क की लंबाई क्या है?",
+      "सड़कों से जुड़े गांव दिखाएं",
+      "मुझे राजमार्ग की लंबाई डेटा दें",
+      "हरियाणा में रेलवे मार्ग क्या है?"
+    ]
+  },
+  
+  '💼 श्रम और रोजगार': {
+    '👷 रोजगार डेटा': [
+      "संगठित क्षेत्र में रोजगार दिखाएं",
+      "रोजगार कार्यालयों में पंजीकरण क्या है?",
+      "मुझे औद्योगिक विवाद डेटा दें",
+      "क्षेत्र के अनुसार औसत वेतन दिखाएं",
+      "ट्रेड यूनियन सांख्यिकी क्या हैं?",
+      "श्रमिक मुआवजा डेटा दिखाएं",
+      "मुझे व्यावसायिक वितरण डेटा दें",
+      "व्यावसायिक प्रशिक्षण नामांकन क्या है?",
+      "कारखाना कर्मचारी आय दिखाएं",
+      "कार्यकर्ता भागीदारी दर क्या है?"
+    ]
+  }
+};
+
+let selectedLanguage = 'English';
+let currentQuestions = {};
+let allQuestions = [];
+// File Search Variables
+let masterFileData = [];
+let selectedFileItem = null;
+const TSV_FILE_PATH = '/data/MainFile.tsv';
+const FILE_API_ENDPOINT = 'https://n8n-workflow-test.duckdns.org/webhook/search-files';    
+
+const categorySelect = document.getElementById('categorySelect');
+const questionSelect = document.getElementById('questionSelect');
+const questionSection = document.getElementById('questionSection');
+const userInput = document.getElementById('userInput');
+const autocompleteDropdown = document.getElementById('autocompleteDropdown');
+
+function selectQueryType(type) {
+  selectedQueryType = type;
+  
+  document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
+  const clickedOption = type === 'statistics' ? 
+    document.querySelector('.radio-option:first-of-type') : 
+    document.querySelector('.radio-option:last-of-type');
+  clickedOption.classList.add('selected');
+  
+  if (type === 'statistics') {
+    document.getElementById('statisticsRadio').checked = true;
+    document.getElementById('userInput').placeholder = 'Ask about statistical concepts... (e.g., What is GDP? Explain literacy rate)';
+    
+    // Show quick questions, hide file search
+    document.getElementById('quickQuestionsSection').style.display = 'block';
+    document.getElementById('fileSearchSection').style.display = 'none';
+    
+  } else {
+    document.getElementById('dataRadio').checked = true;
+    document.getElementById('userInput').placeholder = 'Search for data files or ask questions...';
+    
+    // Hide quick questions, show file search
+    document.getElementById('quickQuestionsSection').style.display = 'none';
+    document.getElementById('fileSearchSection').style.display = 'block';
+    
+    // Load master file data if not loaded
+    if (masterFileData.length === 0) {
+      loadMasterFileData();
+    }
+  }
+  
+  loadCategories();
+  buildAllQuestionsList();
+  questionSection.style.display = 'block';
+}
+
+
+function loadCategories() {
+  categorySelect.innerHTML = '<option value="" selected disabled>Select Topic</option>';
+  questionSelect.innerHTML = '<option value="" selected disabled>Select Question</option>';
+  questionSelect.disabled = true;
+  
+  currentQuestions = selectedQueryType === 'statistics' ? 
+    (selectedLanguage === 'Hindi' ? statsQuestionsHindi : statsQuestions) :
+    (selectedLanguage === 'Hindi' ? statsQuestionsDataHindi : statsQuestionsData);
+  
+  Object.keys(currentQuestions).forEach(category => {
+    const option = document.createElement('option');
+    option.value = category;
+    option.textContent = formatCategoryName(category);
+    
+    // Add special color classes to specific categories
+    if (category.includes('Cultural') || category.includes('सांस्कृतिक')) {
+      option.classList.add('category-cultural');
+    } else if (category.includes('Religious') || category.includes('धार्मिक')) {
+      option.classList.add('category-religious');
+    } else if (category.includes('Date') || category.includes('तारीख')) {
+      option.classList.add('category-date');
+    }
+    
+    categorySelect.appendChild(option);
+  });
+}
+function buildAllQuestionsList() {
+  allQuestions = [];
+  currentQuestions = selectedQueryType === 'statistics' ? 
+    (selectedLanguage === 'Hindi' ? statsQuestionsHindi : statsQuestions) :
+    (selectedLanguage === 'Hindi' ? statsQuestionsDataHindi : statsQuestionsData);
+  
+  Object.keys(currentQuestions).forEach(mainCategory => {
+    const subcategories = currentQuestions[mainCategory];
+    
+    // Loop through subcategories
+    Object.keys(subcategories).forEach(subcategory => {
+      subcategories[subcategory].forEach(question => {
+        allQuestions.push({
+          question: question,
+          category: formatCategoryName(mainCategory),
+          subcategory: subcategory
+        });
+      });
+    });
+  });
+}
+
+function formatCategoryName(category) {
+  // Just remove underscores and return as-is to preserve original capitalization
+  // including parentheses content like (Dharamshalas)
+  return category.replace(/_/g, ' ');
+}
+
+// AUTOCOMPLETE FUNCTIONALITY
+function highlightMatch(text, query) {
+  const regex = new RegExp(`(${query})`, 'gi');
+  return text.replace(regex, '<mark>$1</mark>');
+}
+
+function filterQuestions(query) {
+  if (!query || query.length < 1) {
+    return [];
+  }
+  
+  query = query.toLowerCase().trim();
+  const keywords = query.split(/\s+/);
+  
+  return allQuestions.filter(item => {
+    const questionLower = item.question.toLowerCase();
+    
+    // Better matching for 3-4 character searches
+    if (query.length >= 3 && query.length <= 4) {
+      const wordBoundaryMatch = new RegExp(`\\b${query}`, 'i').test(questionLower);
+      const consecutiveMatch = questionLower.includes(query);
+      return wordBoundaryMatch || consecutiveMatch;
+    }
+    
+    return keywords.some(keyword => questionLower.includes(keyword));
+  }).slice(0, 8); // Show max 8 suggestions
+}
+
+userInput.addEventListener('input', function() {
+  const query = this.value.trim();
+  
+  if (query.length < 2) {
+    autocompleteDropdown.style.display = 'none';
+    return;
+  }
+  
+  const matches = filterQuestions(query);
+  
+  if (matches.length === 0) {
+    autocompleteDropdown.innerHTML = '<div class="autocomplete-no-results">No matching questions found. Try different keywords.</div>';
+    autocompleteDropdown.style.display = 'block';
+    return;
+  }
+  
+  let html = '';
+  let lastCategory = '';
+  
+  matches.forEach(item => {
+    if (item.category !== lastCategory) {
+      html += `<div class="autocomplete-category">${item.category}</div>`;
+      lastCategory = item.category;
+    }
+    
+    const highlightedQuestion = highlightMatch(item.question, query);
+    html += `<div class="autocomplete-item" data-question="${item.question}">${highlightedQuestion}</div>`;
+  });
+  
+  autocompleteDropdown.innerHTML = html;
+  autocompleteDropdown.style.display = 'block';
+  
+  // Add click handlers
+  document.querySelectorAll('.autocomplete-item').forEach(item => {
+    item.addEventListener('click', function() {
+      userInput.value = this.getAttribute('data-question');
+      autocompleteDropdown.style.display = 'none';
+    });
+  });
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  if (!userInput.contains(e.target) && !autocompleteDropdown.contains(e.target)) {
+    autocompleteDropdown.style.display = 'none';
+  }
+});
+
+// Close dropdown on ESC key
+userInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    autocompleteDropdown.style.display = 'none';
+  }
+});
+
+categorySelect.addEventListener('change', function() {
+  questionSelect.innerHTML = '<option value="" selected disabled>Select Question</option>';
+  questionSelect.disabled = false;
+  
+  const selectedCategory = this.value;
+  const categoryData = currentQuestions[selectedCategory];
+  
+  if (categoryData) {
+    // categoryData is now an object with subcategories
+    Object.keys(categoryData).forEach(subcategory => {
+      // Add optgroup for subcategory
+      const optgroup = document.createElement('optgroup');
+      optgroup.label = subcategory;
+      
+      // Add questions under this subcategory
+      categoryData[subcategory].forEach(question => {
+        const option = document.createElement('option');
+        option.value = question;
+        option.textContent = question;
+        optgroup.appendChild(option);
+      });
+      
+      questionSelect.appendChild(optgroup);
+    });
+  }
+});
+
+questionSelect.addEventListener('change', function() {
+  userInput.value = this.value;
+  autocompleteDropdown.style.display = 'none';
+});
+
+document.querySelectorAll('.langBtn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    selectedLanguage = this.getAttribute('data-lang');
+    document.querySelectorAll('.langBtn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    loadCategories();
+    buildAllQuestionsList();
+  });
+});
+
+let isSpeaking = false;
+let ttsUtterance = null;
+let manualStop = false;
+const ttsBtn = document.getElementById('ttsToggle');
+const ttsLabel = document.getElementById('ttsLabel');
+
+ttsBtn.addEventListener('click', () => {
+  if (isSpeaking) {
+    manualStop = true;
+    speechSynthesis.cancel();
+    isSpeaking = false;
+    ttsBtn.classList.remove('speaking');
+    ttsLabel.textContent = 'Listen';
+    return;
+  }
+  
+  manualStop = false;
+  const answerText = document.getElementById('modalAnswer').textContent;
+  
+  if (!answerText || answerText === 'Thinking...') {
+    alert('No answer to read yet!');
+    return;
+  }
+  
+  if (!('speechSynthesis' in window)) {
+    alert('Text-to-speech is not supported in your browser.');
+    return;
+  }
+  
+  ttsUtterance = new SpeechSynthesisUtterance(answerText);
+  ttsUtterance.rate = 0.9;
+  ttsUtterance.pitch = 1;
+  ttsUtterance.volume = 1;
+  
+// ========================================================================
+  // SMART TTS WITH LANGUAGE DETECTION - Lines 1760-1824 Replacement
+  // ========================================================================
+  
+  const voices = speechSynthesis.getVoices();
+  
+  // ========================================================================
+  // DETECT LANGUAGE (Hindi vs English)
+  // ========================================================================
+  function detectLanguage(text) {
+    const cleanText = text.replace(/[।॥.,!?;:\-\_\n\r]/g, ' ').trim();
+    const hindiCharCount = (cleanText.match(/[\u0900-\u097F]/g) || []).length;
+    const englishCharCount = (cleanText.match(/[a-zA-Z]/g) || []).length;
+    const totalChars = hindiCharCount + englishCharCount;
+    
+    if (totalChars === 0) return 'en';
+    const hindiPercentage = (hindiCharCount / totalChars) * 100;
+    
+    return hindiPercentage > 30 ? 'hi' : 'en';
+  }
+  
+  const detectedLang = detectLanguage(answerText);
+  console.log('🔍 Detected Language:', detectedLang);
+  
+  // ========================================================================
+  // VERSION 24 STYLE - Auto-working TTS (No voice installation needed!)
+  // ========================================================================
+  
+  // Set language HINT - let browser choose best voice automatically
+  if (detectedLang === 'hi') {
+    ttsUtterance.lang = 'hi-IN';  // Hint: This is Hindi text
+    console.log('📢 Language hint: Hindi');
+  } else {
+    ttsUtterance.lang = 'en-US';  // Hint: This is English text
+    console.log('📢 Language hint: English');
+  }
+  
+  // OPTIONAL: Try to use better voice if available, but DON'T FORCE
+  // (voices already declared above at line 1797)
+  console.log('📊 Available voices:', voices.length);
+  
+  if (voices.length > 0 && detectedLang === 'hi') {
+    // Try to find Hindi voice (optional enhancement)
+    const hindiVoice = voices.find(voice => 
+      voice.lang === 'hi-IN' || 
+      (voice.lang && voice.lang.startsWith('hi'))
+    );
+    
+    if (hindiVoice) {
+      ttsUtterance.voice = hindiVoice;
+      console.log('✅ Using installed Hindi voice:', hindiVoice.name);
+    } else {
+      // NO HINDI VOICE - Don't force English voice!
+      // Leave voice undefined → browser uses multilingual system default
+      console.log('ℹ️ No Hindi voice found - using system default (multilingual TTS)');
+      console.log('   System will read Hindi reasonably using phonetic rules');
+    }
+  } else if (voices.length > 0 && detectedLang === 'en') {
+    // For English, try to find best English voice
+    const englishVoice = voices.find(v => 
+      v.lang === 'en-US' || v.lang === 'en-GB' || v.lang === 'en-IN'
+    ) || voices.find(v => v.lang && v.lang.startsWith('en'));
+    
+    if (englishVoice) {
+      ttsUtterance.voice = englishVoice;
+      console.log('✅ Using English voice:', englishVoice.name);
+    }
+  }
+  
+  console.log('🎤 Final TTS settings:');
+  console.log('   Voice:', ttsUtterance.voice?.name || 'System Default (Multilingual)');
+  console.log('   Language:', ttsUtterance.lang);
+  console.log('   Text length:', answerText.length, 'characters');
+  
+  // ========================================================================
+  // KEY: If no specific voice set, browser uses system default
+  // System default is multilingual - can read Hindi without voice pack!
+  // ========================================================================
+  
+  // Event handlers
+  ttsUtterance.onstart = () => {
+    isSpeaking = true;
+    ttsBtn.classList.add('speaking');
+    ttsLabel.textContent = 'Stop';
+  };
+  
+  ttsUtterance.onend = () => {
+    if (!manualStop) {
+      isSpeaking = false;
+      ttsBtn.classList.remove('speaking');
+      ttsLabel.textContent = 'Listen';
+    }
+  };
+  
+  ttsUtterance.onerror = (e) => {
+    if (manualStop) {
+      manualStop = false;
+      return;
+    }
+    
+    isSpeaking = false;
+    ttsBtn.classList.remove('speaking');
+    ttsLabel.textContent = 'Listen';
+    
+    let errorMsg = 'Speech failed. ';
+    if (e.error === 'canceled' || e.error === 'interrupted') {
+      return;
+    } else if (e.error === 'not-allowed') {
+      errorMsg += 'Please enable speech in browser settings.';
+    } else if (e.error === 'language-unavailable') {
+      errorMsg += 'Voice not available on your device.';
+    } else {
+      errorMsg += 'Please try again.';
+    }
+    alert(errorMsg);
+  };
+  
+  try {
+    speechSynthesis.speak(ttsUtterance);
+  } catch (error) {
+    alert('Text-to-speech is not available on your device.');
+  }
+});
+    
+document.getElementById('submitBtn').addEventListener('click', async () => {
+  const question = userInput.value.trim();
+  
+  if (!selectedQueryType) {
+    alert('Please select either "Gita Guidance" or "Festival Information" first!');
+    return;
+  }
+  
+  if (!question) {
+    alert('Please enter your question!');
+    return;
+  }
+
+  const mainContainer = document.querySelector('.container-main');
+  if (mainContainer) mainContainer.style.visibility = 'hidden';
+
+  speechSynthesis.cancel();
+  isSpeaking = false;
+  document.getElementById('ttsToggle').classList.remove('speaking');
+  document.getElementById('ttsLabel').textContent = 'Listen';
+
+  document.getElementById('modalQuestion').textContent = question;
+  document.getElementById('modalAnswer').textContent = 'Thinking...';
+  document.getElementById('aiModal').classList.remove('hidden');
+  
+  // Hide autocomplete dropdown
+  autocompleteDropdown.style.display = 'none';
+
+  const deviceType = /Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ? 'Mobile' : 
+                     /Tablet|iPad/i.test(navigator.userAgent) ? 'Tablet' : 'Desktop';
+  const browserMatch = navigator.userAgent.match(/(Firefox|Chrome|Safari|Edge|Opera|OPR)/i);
+  const browser = browserMatch ? browserMatch[0].replace('OPR', 'Opera') : 'Unknown';
+
+  try {
+    const webhookUrl = 'https://n8n-workflow-test.duckdns.org/webhook/Stat_Abs';
+
+    const response = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        question: question,
+        language: selectedLanguage,
+        queryType: selectedQueryType === 'statistics' ? 'STATISTICAL_CONCEPT_QUERY' : 'STATISTICAL_DATA_QUERY',
+        mobNo: 'anonymous',
+        deviceType: deviceType,
+        browser: browser,
+        timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        userAgent: navigator.userAgent
+      })
+    });
+
+    const data = await response.json();
+    const aiResponse = data.answer || data.error || 'No response received.';
+    const disclaimer = "\n────────────────\n⚠️ Disclaimer: This is an AI-generated response for guidance purposes only. Please verify important information from official sources.";
+    const fullResponse = aiResponse + `<span style="line-height: 1.2; display: block; margin-top: 8px;">${disclaimer}</span>`;
+    document.getElementById('modalAnswer').innerHTML = fullResponse;
+  } catch (error) {
+    document.getElementById('modalAnswer').textContent = 'Connection failed: ' + error.message;
+  }
+});
+
+let recognition;
+let isRecording = false;
+
+if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRecognition();
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.lang = 'hi-IN';
+
+  recognition.onstart = () => {
+    isRecording = true;
+    const voiceBtn = document.getElementById('voiceBtn');
+    voiceBtn.classList.add('recording');
+    voiceBtn.title = 'Recording... Click to stop';
+  };
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    userInput.value = transcript;
+    // Trigger autocomplete
+    userInput.dispatchEvent(new Event('input'));
+  };
+
+  recognition.onend = () => {
+    isRecording = false;
+    const voiceBtn = document.getElementById('voiceBtn');
+    voiceBtn.classList.remove('recording');
+    voiceBtn.title = 'Click to speak';
+  };
+
+  recognition.onerror = (event) => {
+    isRecording = false;
+    const voiceBtn = document.getElementById('voiceBtn');
+    voiceBtn.classList.remove('recording');
+    voiceBtn.title = 'Click to speak';
+    if (event.error !== 'no-speech') {
+      alert('Voice recognition failed. Please try again.');
+    }
+  };
+}
+
+document.getElementById('voiceBtn').addEventListener('click', (e) => {
+  e.preventDefault();
+  if (recognition) {
+    if (isRecording) {
+      recognition.stop();
+    } else {
+      recognition.start();
+    }
+  } else {
+    alert('Voice recognition is not supported in your browser.');
+  }
+});
+
+document.getElementById('closeBtn').onclick = () => {
+  speechSynthesis.cancel();
+  document.getElementById('aiModal').classList.add('hidden');
+  const mainContainer = document.querySelector('.container-main');
+  if (mainContainer) mainContainer.style.visibility = 'visible';
+};
+
+document.getElementById('closeModal').onclick = () => {
+  speechSynthesis.cancel();
+  document.getElementById('aiModal').classList.add('hidden');
+  const mainContainer = document.querySelector('.container-main');
+  if (mainContainer) mainContainer.style.visibility = 'visible';
+};
+
+document.getElementById('copyBtn').onclick = () => {
+  const text = document.getElementById('modalAnswer').textContent;
+  
+  // Modern clipboard API with fallback
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copyBtn');
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Copied!';
+      setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
+    }).catch(err => fallbackCopyText(text));
+  } else {
+    fallbackCopyText(text);
+  }
+};
+
+// Fallback copy function for older browsers
+function fallbackCopyText(text) {
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+  textArea.style.position = 'fixed';
+  textArea.style.left = '-999999px';
+  document.body.appendChild(textArea);
+  textArea.select();
+  try {
+    document.execCommand('copy');
+    const btn = document.getElementById('copyBtn');
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Copied!';
+    setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
+  } catch (err) {
+    alert('Copy failed. Please copy manually.');
+  }
+  document.body.removeChild(textArea);
+}
+
+const fluteMusic = document.getElementById('fluteMusic');
+const musicToggle = document.getElementById('musicToggle');
+const musicLabel = document.getElementById('musicLabel');
+
+musicToggle.addEventListener('click', () => {
+  if (fluteMusic.paused) {
+    fluteMusic.play().catch(e => {
+      alert("Please interact with the page first, then click to play music.");
+    });
+    musicLabel.textContent = "Pause Flute";
+  } else {
+    fluteMusic.pause();
+    musicLabel.textContent = "Play Flute";
+  }
+});
+
+// Last Updated timestamp
+window.addEventListener('DOMContentLoaded', function() {
+  try {
+    const lastModifiedDate = new Date(document.lastModified);
+    const element = document.getElementById("lastModified");
+    if (element) {
+      const dateStr = lastModifiedDate.toLocaleDateString('en-US', {
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric'
+      });
+      const timeStr = lastModifiedDate.toLocaleTimeString('en-US', {
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: true
+      });
+      element.textContent = dateStr + ' at ' + timeStr;
+      console.log('Last Updated:', dateStr + ' at ' + timeStr);
+    } else {
+      console.error('lastModified element not found');
+    }
+  } catch (error) {
+    console.error('Error updating last modified date:', error);
+  }
+});
+
+function openFeedback() {
+  const feedbackModal = document.getElementById('feedbackModal');
+  const feedbackIframe = document.getElementById('feedbackIframe');
+  const iframeLoader = document.getElementById('iframeLoader');
+  
+  feedbackModal.classList.add('show');
+  iframeLoader.style.display = 'block';
+  
+  feedbackIframe.src = 'https://vksinglakkr.github.io/IGM2025/feedback_igm_chatbot.html';
+  
+  feedbackIframe.onload = function() {
+    iframeLoader.style.display = 'none';
+  };feedbackIframe.onerror = function() {
+    iframeLoader.innerHTML = '<p style="color: #ef4444; font-weight: 600;">Failed to load feedback form</p>';
+  };
+}
+
+function closeFeedback() {
+  const feedbackModal = document.getElementById('feedbackModal');
+  const feedbackIframe = document.getElementById('feedbackIframe');
+  const iframeLoader = document.getElementById('iframeLoader');
+  
+  feedbackModal.classList.remove('show');
+  feedbackIframe.src = '';
+  
+  iframeLoader.style.display = 'none';
+  iframeLoader.innerHTML = '<div class="spinner"></div><p style="color: #64748b; font-weight: 600;">Loading feedback form...</p>';
+}
+
+document.getElementById('feedbackModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeFeedback();
+  }
+});
+
+function openLiveTelecast() {
+  window.open('https://www.youtube.com/live/My5T4LiHBdw', '_blank', 'noopener,noreferrer');
+}    
+function openTutorialVideos() {
+/*
+  const quizModal = document.getElementById('quizModal');
+  const quizIframe = document.getElementById('quizIframe');
+  const quizIframeLoader = document.getElementById('quizIframeLoader');
+  
+  quizModal.classList.add('show');
+  quizIframeLoader.style.display = 'block';
+  
+  quizIframe.src = 'https://igmquiz.in/webloginkkr.aspx';
+  
+  quizIframe.onload = function() {
+    quizIframeLoader.style.display = 'none';
+  };
+  
+  quizIframe.onerror = function() {
+    quizIframeLoader.innerHTML = '<p style="color: #ef4444; font-weight: 600;">Failed to load Tutorial Videos</p>';
+  };
+*/
+window.open('https://igmquiz.in/webloginkkr.aspx', '_blank');
+}
+
+function closeQuizChatbot() {
+  const quizModal = document.getElementById('quizModal');
+  const quizIframe = document.getElementById('quizIframe');
+  const quizIframeLoader = document.getElementById('quizIframeLoader');
+  
+  quizModal.classList.remove('show');
+  quizIframe.src = '';
+  
+  quizIframeLoader.style.display = 'none';
+  quizIframeLoader.innerHTML = '<div class="spinner"></div><p style="color: #64748b; font-weight: 600;">Loading Videos...</p>';
+}
+
+document.getElementById('quizModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeQuizChatbot();
+  }
+});
+  
+
+// === LAST UPDATED CODE - SIMPLE VERSION ===
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    const elem = document.getElementById('lastModified');
+    if (elem) {
+      const now = new Date();
+      const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const dateStr = months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
+      let hours = now.getHours();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      const minutes = now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes();
+      const timeStr = hours + ':' + minutes + ' ' + ampm;
+      elem.textContent = dateStr + ' at ' + timeStr;
+      elem.style.display = 'inline';
+      console.log('Last Updated set to:', elem.textContent);
+    } else {
+      console.error('lastModified element NOT FOUND');
+    }
+  }, 100);
+});
+// ═══════════════════════════════════════════════════════════════════
+// FILE SEARCH SYSTEM
+// ═══════════════════════════════════════════════════════════════════
+
+async function loadMasterFileData() {
+  try {
+    const response = await fetch(TSV_FILE_PATH);
+    const text = await response.text();
+    const lines = text.split('\n');
+    
+    for (let i = 1; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line) continue;
+      
+      const [Chp_Code, Chapter_Name, sec_code, part_code] = line.split('\t');
+      
+      if (Chapter_Name && sec_code && Chp_Code) {
+        masterFileData.push({
+          chp_code: Chp_Code.trim().padStart(2, '0'),
+          chapter_name: Chapter_Name.trim(),
+          sec_code: sec_code.trim(),
+          part_code: part_code ? part_code.trim() : '',
+          search_text: Chapter_Name.toLowerCase()
+        });
+      }
+    }
+    
+    console.log(`✅ Loaded ${masterFileData.length} chapters from MainFile.tsv`);
+  } catch (error) {
+    console.error('❌ Error loading master file data:', error);
+  }
+}
+
+// File Search Input Handler
+const fileSearchInput = document.getElementById('fileSearchInput');
+let fileSearchTimeout;
+
+if (fileSearchInput) {
+  fileSearchInput.addEventListener('input', function() {
+    clearTimeout(fileSearchTimeout);
+    fileSearchTimeout = setTimeout(() => {
+      performFileSearch(this.value);
+    }, 300);
+  });
+}
+
+function performFileSearch(query) {
+  const dropdown = document.getElementById('fileAutocompleteDropdown');
+  
+  if (!query || query.length < 2) {
+    dropdown.style.display = 'none';
+    return;
+  }
+  
+  const searchTerm = query.toLowerCase();
+  const results = masterFileData.filter(item => 
+    item.search_text.includes(searchTerm)
+  ).slice(0, 15);
+  
+  if (results.length > 0) {
+    displayFileAutocomplete(results);
+  } else {
+    dropdown.innerHTML = '<div class="p-4 text-center text-gray-500">No matching files found</div>';
+    dropdown.style.display = 'block';
+  }
+}
+
+function displayFileAutocomplete(results) {
+  const dropdown = document.getElementById('fileAutocompleteDropdown');
+  let html = '';
+  
+  results.forEach(item => {
+    const itemData = JSON.stringify(item).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    html += `
+      <div class="file-autocomplete-item" onclick='selectFileItem(${itemData})'>
+        <div class="file-autocomplete-item-title">${item.chapter_name}</div>
+        <div class="file-autocomplete-item-meta">
+          📁 ${item.sec_code} | 📄 Ch.${item.chp_code} | 📊 ${item.part_code}
+        </div>
+      </div>
+    `;
+  });
+  
+  dropdown.innerHTML = html;
+  dropdown.style.display = 'block';
+}
+
+function selectFileItem(item) {
+  selectedFileItem = item;
+  
+  document.getElementById('fileSearchInput').value = item.chapter_name;
+  document.getElementById('fileAutocompleteDropdown').style.display = 'none';
+  
+  document.getElementById('fileSelectedDisplay').innerHTML = `
+    <strong>📋 Selected:</strong> ${item.chapter_name}<br>
+    <small>Section: ${item.sec_code} | Chapter: ${item.chp_code}</small>
+  `;
+  document.getElementById('fileSelectedDisplay').style.display = 'block';
+  
+  console.log('✅ Selected file item:', item);
+}
+
+async function searchStatFiles() {
+  if (!selectedFileItem) {
+    alert('⚠️ Please select a question from the dropdown first!');
+    return;
+  }
+  
+  const resultsDiv = document.getElementById('fileResultsArea');
+  resultsDiv.innerHTML = '<div class="text-center py-8 text-gray-600">🔍 Searching for files...</div>';
+  
+  const filePrefix = selectedFileItem.sec_code + selectedFileItem.chp_code;
+  console.log('🔍 Searching for files with prefix:', filePrefix);
+  
+  try {
+    const response = await fetch(FILE_API_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        filePrefix: filePrefix,
+        question: selectedFileItem.chapter_name,
+        sec_code: selectedFileItem.sec_code,
+        chp_code: selectedFileItem.chp_code
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (data.success && data.files && data.files.length > 0) {
+      displayFileResults(data.files, selectedFileItem);
+    } else {
+      displayNoFileResults(selectedFileItem, filePrefix);
+    }
+    
+  } catch (error) {
+    console.error('❌ Error:', error);
+    resultsDiv.innerHTML = '<div class="text-center py-8 text-red-600">❌ Error searching files. Please try again.</div>';
+  }
+}
+
+function displayFileResults(files, selectedItem) {
+  const resultsDiv = document.getElementById('fileResultsArea');
+  
+  const filesByYear = {};
+  files.forEach(file => {
+    if (!filesByYear[file.year]) {
+      filesByYear[file.year] = [];
+    }
+    filesByYear[file.year].push(file);
+  });
+  
+  const years = Object.keys(filesByYear).sort().reverse();
+  
+  let html = `
+    <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-5 rounded-xl mb-5 border-2 border-green-200">
+      <h3 class="text-lg font-bold text-gray-800 mb-2">✅ Found ${files.length} file(s)</h3>
+      <p class="text-gray-700 font-semibold text-sm">${selectedItem.chapter_name}</p>
+      <p class="text-xs text-gray-600 mt-1">Section: ${selectedItem.sec_code} | Chapter: ${selectedItem.chp_code}</p>
+    </div>
+  `;
+  
+  years.forEach(year => {
+    html += `
+      <div class="file-year-group">
+        <h4>📅 Year: ${year}</h4>
+    `;
+    
+    filesByYear[year].forEach(file => {
+      const icon = file.extension === 'pdf' ? '📕' : '📊';
+      html += `
+        <a href="${file.url}" target="_blank" class="file-download-link">
+          ${icon} ${file.filename}
+        </a>
+      `;
+    });
+    
+    html += `</div>`;
+  });
+  
+  resultsDiv.innerHTML = html;
+}
+
+function displayNoFileResults(selectedItem, filePrefix) {
+  const resultsDiv = document.getElementById('fileResultsArea');
+  resultsDiv.innerHTML = `
+    <div class="text-center py-12 bg-yellow-50 rounded-xl border-2 border-yellow-200">
+      <div class="text-6xl mb-4">📭</div>
+      <h4 class="text-lg font-bold text-gray-800 mb-2">No files found</h4>
+      <p class="text-gray-600 text-sm">No data files found for: <strong>${selectedItem.chapter_name}</strong></p>
+      <p class="text-xs text-gray-500 mt-2">File prefix: ${filePrefix}</p>
+    </div>
+  `;
+}
+
+// Close file autocomplete when clicking outside
+document.addEventListener('click', function(e) {
+  const fileInput = document.getElementById('fileSearchInput');
+  const fileDropdown = document.getElementById('fileAutocompleteDropdown');
+  
+  if (fileInput && fileDropdown) {
+    if (!fileInput.contains(e.target) && !fileDropdown.contains(e.target)) {
+      fileDropdown.style.display = 'none';
+    }
+  }
+});
+// Last Updated Timestamp
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var elem = document.getElementById('lastModified');
+    if (elem) {
+      var d = new Date();
+      var months = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+      var dateStr = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+      var h = d.getHours();
+      var ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12;
+      h = h ? h : 12;
+      var m = d.getMinutes();
+      m = m < 10 ? '0' + m : m;
+      var timeStr = h + ':' + m + ' ' + ampm;
+      elem.textContent = dateStr + ' at ' + timeStr;
+      elem.style.display = 'inline';
+      console.log('✅ Last Updated successfully set to:', elem.textContent);
+    } else {
+      console.error('❌ Element with id=lastModified not found in DOM');
+    }
+  }, 200);
+});
+</script>
+
+</body>
+</html>
