@@ -1632,37 +1632,43 @@ function initUserInputListener() {
   console.log('✅ User input autocomplete initialized');
 }
 
-categorySelect.addEventListener('change', function() {
-  questionSelect.innerHTML = '<option value="" selected disabled>Select Question</option>';
-  questionSelect.disabled = false;
+// Initialize dropdown event listeners (must run after DOM is ready)
+function initDropdownListeners() {
+  if (!categorySelect || !questionSelect) initDOMElements();
   
-  const selectedCategory = this.value;
-  const categoryData = currentQuestions[selectedCategory];
-  
-  if (categoryData) {
-    // categoryData is now an object with subcategories
-    Object.keys(categoryData).forEach(subcategory => {
-      // Add optgroup for subcategory
-      const optgroup = document.createElement('optgroup');
-      optgroup.label = subcategory;
-      
-      // Add questions under this subcategory
-      categoryData[subcategory].forEach(question => {
-        const option = document.createElement('option');
-        option.value = question;
-        option.textContent = question;
-        optgroup.appendChild(option);
+  categorySelect.addEventListener('change', function() {
+    questionSelect.innerHTML = '<option value="" selected disabled>Select Question</option>';
+    questionSelect.disabled = false;
+    
+    const selectedCategory = this.value;
+    const categoryData = currentQuestions[selectedCategory];
+    
+    if (categoryData) {
+      // categoryData is now an object with subcategories
+      Object.keys(categoryData).forEach(subcategory => {
+        // Add optgroup for subcategory
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = subcategory;
+        
+        // Add questions under this subcategory
+        categoryData[subcategory].forEach(question => {
+          const option = document.createElement('option');
+          option.value = question;
+          option.textContent = question;
+          optgroup.appendChild(option);
+        });
+        
+        questionSelect.appendChild(optgroup);
       });
-      
-      questionSelect.appendChild(optgroup);
-    });
-  }
-});
+    }
+  });
 
-questionSelect.addEventListener('change', function() {
-  userInput.value = this.value;
-  autocompleteDropdown.style.display = 'none';
-});
+  questionSelect.addEventListener('change', function() {
+    userInput.value = this.value;
+    autocompleteDropdown.style.display = 'none';
+  });
+}
+
 
 document.querySelectorAll('.langBtn').forEach(btn => {
   btn.addEventListener('click', function() {
@@ -2355,6 +2361,9 @@ window.addEventListener('DOMContentLoaded', function() {
   // Initialize autocomplete listeners
   initUserInputListener();
   initFileSearchListener();
+  
+  // Initialize dropdown listeners (category/question select)
+  initDropdownListeners();
   
   // Set last modified date - DYNAMIC (like IGM)
   const lastModifiedDate = new Date(document.lastModified);
