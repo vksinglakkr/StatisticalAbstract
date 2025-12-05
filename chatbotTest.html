@@ -2346,7 +2346,7 @@ document.addEventListener('click', function(e) {
   }
 });
 // ═══════════════════════════════════════════════════════════════════
-// Last Updated Timestamp - FIXED DATE
+// Last Updated Timestamp - DYNAMIC DATE (from IGM)
 // ═══════════════════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', function() {
   // Initialize DOM elements
@@ -2356,11 +2356,15 @@ window.addEventListener('DOMContentLoaded', function() {
   initUserInputListener();
   initFileSearchListener();
   
-  // Set last modified date
-  var elem = document.getElementById('lastModified');
+  // Set last modified date - DYNAMIC (like IGM)
+  const lastModifiedDate = new Date(document.lastModified);
+  const elem = document.getElementById('lastModified');
   if (elem) {
-    // Fixed date - Update this manually when you make changes
-    elem.textContent = 'December 4, 2024';
+    elem.textContent = lastModifiedDate.toLocaleDateString('en-US', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    }) + ' at ' + lastModifiedDate.toLocaleTimeString('en-US', {
+      hour: '2-digit', minute: '2-digit'
+    });
     elem.style.display = 'inline';
   }
 });
