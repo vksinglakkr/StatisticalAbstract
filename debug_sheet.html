@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Debug - Check Google Sheet Data</title>
+  <style>
+    body { font-family: monospace; padding: 20px; }
+    h2 { color: #dc2626; }
+    .raw { background: #f3f4f6; padding: 15px; border: 2px solid #ddd; margin: 10px 0; }
+    pre { white-space: pre-wrap; word-wrap: break-word; }
+    .line { padding: 5px; border-bottom: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <h2>🔍 Debug: Google Sheets Raw Data</h2>
+  <div id="status">Loading...</div>
+  
+  <h3>Raw TSV Text (first 1000 characters):</h3>
+  <div class="raw" id="rawText"></div>
+  
+  <h3>First 10 Lines Split:</h3>
+  <div class="raw" id="lines"></div>
+  
+  <h3>Parsed Data:</h3>
+  <div class="raw" id="parsed"></div>
+
+  <script>
+    const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/17mpGz4-lw-xBYqDiHj7RV1z0w_5k8lEmSmVqsxS36ro/export?format=tsv&gid=740242886';
+    
+    async function debug() {
+      try {
+        document.getElementById('status').innerHTML = '📡 Fetching...';
+        
+        const response = await fetch(GOOGLE_SHEET_URL);
+        const tsvText = await response.text();
+        
+        document.getElementById('status').innerHTML = `✅ Received ${tsvText.length} characters`;
+        
+        // Show raw text
+        document.getElementById('rawText').innerHTML = `<pre>${tsvText.substring(0, 1000)}</pre>`;
+        
+        // Show lines
+        const lines = tsvText.split('\n');
+        let linesHtml = '';
+        for (let i = 0; i < Math.min(10, lines.length); i++) {
+          const line = lines[i];
+          const columns = line.split('\t');
+          linesHtml += `<div class="line">
+            <strong>Line ${i}:</strong> ${columns.length} columns<br>
+            Raw: <code>${line.substring(0, 100)}</code><br>
+            Columns: ${JSON.stringify(columns.slice(0, 5))}
+          </div>`;
+        }
+        document.getElementById('lines').innerHTML = linesHtml;
+        
+        // Show parsed
+        let parsedHtml = '<table border="1" cellpadding="5"><tr><th>Row</th><th>Question</th><th>sec_code</th><th>chp_code</th></tr>';
+        for (let i = 1; i < Math.min(10, lines.length); i++) {
+          const line = lines[i].trim();
+          if (!line) continue;
+          
+          const columns = line.split('\t');
+          const question = columns[0] || '';
+          const sec_code = columns[1] || '';
+          const chp_code = columns[2] || '';
+          
+          parsedHtml += `<tr>
+            <td>${i}</td>
+            <td>${question.substring(0, 50)}</td>
+            <td>${sec_code}</td>
+            <td>${chp_code}</td>
+          </tr>`;
+        }
+        parsedHtml += '</table>';
+        document.getElementById('parsed').innerHTML = parsedHtml;
+        
+      } catch (error) {
+        document.getElementById('status').innerHTML = `❌ Error: ${error.message}`;
+      }
+    }
+    
+    debug();
+  </script>
+</body>
+</html>
