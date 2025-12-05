@@ -1669,50 +1669,48 @@ function initDropdownListeners() {
   });
 }
 
-
-document.querySelectorAll('.langBtn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    selectedLanguage = this.getAttribute('data-lang');
-    document.querySelectorAll('.langBtn').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    loadCategories();
-    buildAllQuestionsList();
+// Initialize language buttons and TTS (must run after DOM ready)
+function initLanguageAndTTS() {
+  document.querySelectorAll('.langBtn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      selectedLanguage = this.getAttribute('data-lang');
+      document.querySelectorAll('.langBtn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      loadCategories();
+      buildAllQuestionsList();
+    });
   });
-});
 
-let isSpeaking = false;
-let ttsUtterance = null;
-let manualStop = false;
-const ttsBtn = document.getElementById('ttsToggle');
-const ttsLabel = document.getElementById('ttsLabel');
+  const ttsBtn = document.getElementById('ttsToggle');
+  const ttsLabel = document.getElementById('ttsLabel');
 
-ttsBtn.addEventListener('click', () => {
-  if (isSpeaking) {
-    manualStop = true;
-    speechSynthesis.cancel();
-    isSpeaking = false;
-    ttsBtn.classList.remove('speaking');
-    ttsLabel.textContent = 'Listen';
-    return;
-  }
-  
-  manualStop = false;
-  const answerText = document.getElementById('modalAnswer').textContent;
-  
-  if (!answerText || answerText === 'Thinking...') {
-    alert('No answer to read yet!');
-    return;
-  }
-  
-  if (!('speechSynthesis' in window)) {
-    alert('Text-to-speech is not supported in your browser.');
-    return;
-  }
-  
-  ttsUtterance = new SpeechSynthesisUtterance(answerText);
-  ttsUtterance.rate = 0.9;
-  ttsUtterance.pitch = 1;
-  ttsUtterance.volume = 1;
+  ttsBtn.addEventListener('click', () => {
+    if (isSpeaking) {
+      manualStop = true;
+      speechSynthesis.cancel();
+      isSpeaking = false;
+      ttsBtn.classList.remove('speaking');
+      ttsLabel.textContent = 'Listen';
+      return;
+    }
+    
+    manualStop = false;
+    const answerText = document.getElementById('modalAnswer').textContent;
+    
+    if (!answerText || answerText === 'Thinking...') {
+      alert('No answer to read yet!');
+      return;
+    }
+    
+    if (!('speechSynthesis' in window)) {
+      alert('Text-to-speech is not supported in your browser.');
+      return;
+    }
+    
+    ttsUtterance = new SpeechSynthesisUtterance(answerText);
+    ttsUtterance.rate = 0.9;
+    ttsUtterance.pitch = 1;
+    ttsUtterance.volume = 1;
   
 // ========================================================================
   // SMART TTS WITH LANGUAGE DETECTION - Lines 1760-1824 Replacement
@@ -1954,6 +1952,28 @@ document.getElementById('voiceBtn').addEventListener('click', (e) => {
   }
 });
 
+  // End of TTS listener
+}
+
+// Initialize music toggle (must run after DOM ready)
+function initMusicToggle() {
+  const fluteMusic = document.getElementById('fluteMusic');
+  const musicToggle = document.getElementById('musicToggle');
+  const musicLabel = document.getElementById('musicLabel');
+
+  musicToggle.addEventListener('click', () => {
+    if (fluteMusic.paused) {
+      fluteMusic.play().catch(e => {
+        alert("Please interact with the page first, then click to play music.");
+      });
+      musicLabel.textContent = "Pause Flute";
+    } else {
+      fluteMusic.pause();
+      musicLabel.textContent = "Play Flute";
+    }
+  });
+}
+
 document.getElementById('closeBtn').onclick = () => {
   speechSynthesis.cancel();
   document.getElementById('aiModal').classList.add('hidden');
@@ -2003,22 +2023,6 @@ function fallbackCopyText(text) {
   }
   document.body.removeChild(textArea);
 }
-
-const fluteMusic = document.getElementById('fluteMusic');
-const musicToggle = document.getElementById('musicToggle');
-const musicLabel = document.getElementById('musicLabel');
-
-musicToggle.addEventListener('click', () => {
-  if (fluteMusic.paused) {
-    fluteMusic.play().catch(e => {
-      alert("Please interact with the page first, then click to play music.");
-    });
-    musicLabel.textContent = "Pause Flute";
-  } else {
-    fluteMusic.pause();
-    musicLabel.textContent = "Play Flute";
-  }
-});
 
 function openFeedback() {
   const feedbackModal = document.getElementById('feedbackModal');
@@ -2364,6 +2368,12 @@ window.addEventListener('DOMContentLoaded', function() {
   
   // Initialize dropdown listeners (category/question select)
   initDropdownListeners();
+  
+  // Initialize language buttons and TTS
+  initLanguageAndTTS();
+  
+  // Initialize music toggle
+  initMusicToggle();
   
   // Set last modified date - DYNAMIC (like IGM)
   const lastModifiedDate = new Date(document.lastModified);
