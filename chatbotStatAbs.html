@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>STATS SAHAYAK – Statistical Abstract Chatbot [v4.0-CLEAN]</title>
+<title>STATS SAHAYAK – Statistical Abstract Chatbot [v4.1-STABLE]</title>
+<!-- VERSION: 4.1-STABLE - Last Modified Date Fixed, Music Toggle Safe Check Added -->
   <!-- VERSION: 4.0-CLEAN - File search removed, Last Modified fixed, FINAL VERSION -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -1181,9 +1182,9 @@
     </div>
     
   <div class="border-t-2 border-gray-200 px-6 py-4 text-center bg-gradient-to-b from-gray-50 to-white">
-       <p class="text-sm text-gray-700 mb-2 font-medium">AI Chatbot powered by <span class="font-bold text-orange-600">Groq + Llama 3.3</span></p>
-    <p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified" style="display: inline;">Loading...</span></p>
-      <div class="flex flex-wrap justify-center items-center gap-6">
+<p class="text-sm text-gray-700 mb-2 font-medium">AI Chatbot powered by <span class="font-bold text-orange-600">Groq + Llama 3.3</span></p>
+<p class="text-gray-500 text-xs mb-1">Version: <span class="font-semibold text-gray-700">4.1-STABLE</span></p>
+<p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified" style="display: inline;">Loading...</span></p>      <div class="flex flex-wrap justify-center items-center gap-6">
         <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/haryana-logo.jpg" alt="Haryana" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
       </div>
     </div>
@@ -1956,10 +1957,17 @@ document.getElementById('voiceBtn').addEventListener('click', (e) => {
 }
 
 // Initialize music toggle (must run after DOM ready)
+// Initialize music toggle (must run after DOM ready)
 function initMusicToggle() {
   const fluteMusic = document.getElementById('fluteMusic');
   const musicToggle = document.getElementById('musicToggle');
   const musicLabel = document.getElementById('musicLabel');
+
+  // ✅ CHECK IF ELEMENTS EXIST BEFORE ACCESSING
+  if (!fluteMusic || !musicToggle || !musicLabel) {
+    console.log('ℹ️ Music player elements not found (feature removed from UI)');
+    return; // Exit safely without crashing
+  }
 
   musicToggle.addEventListener('click', () => {
     if (fluteMusic.paused) {
@@ -2369,35 +2377,81 @@ document.addEventListener('click', function(e) {
 // Last Updated Timestamp - DYNAMIC DATE (from IGM)
 // ═══════════════════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', function() {
+  console.log('🚀 Page loaded - initializing components...');
+  
   // Initialize DOM elements
   initDOMElements();
+  console.log('✅ DOM elements initialized');
   
   // Initialize autocomplete listeners
   initUserInputListener();
+  console.log('✅ User input listener initialized');
+  
   initFileSearchListener();
+  console.log('✅ File search listener initialized');
   
   // Initialize dropdown listeners (category/question select)
   initDropdownListeners();
+  console.log('✅ Dropdown listeners initialized');
   
   // Initialize language buttons and TTS
   initLanguageAndTTS();
+  console.log('✅ Language and TTS initialized');
   
-  // Initialize music toggle
+  // Initialize music toggle (SAFELY - checks if elements exist)
   initMusicToggle();
+  console.log('✅ Music toggle check completed');
   
-  // Set last modified date - DYNAMIC (like IGM)
-  const lastModifiedDate = new Date(document.lastModified);
+  // Set last modified date - IMPROVED VERSION
   const elem = document.getElementById('lastModified');
+  console.log('📅 Setting last modified date...');
+  console.log('   Element found:', elem ? 'YES' : 'NO');
+  
   if (elem) {
-    elem.textContent = lastModifiedDate.toLocaleDateString('en-US', {
-      year: 'numeric', month: 'long', day: 'numeric'
-    }) + ' at ' + lastModifiedDate.toLocaleTimeString('en-US', {
-      hour: '2-digit', minute: '2-digit'
-    });
-    elem.style.display = 'inline';
+    try {
+      // Get the last modified string
+      const lastModifiedStr = document.lastModified;
+      console.log('   Raw lastModified string:', lastModifiedStr);
+      
+      // Parse the date
+      const lastModifiedDate = new Date(lastModifiedStr);
+      console.log('   Parsed date object:', lastModifiedDate);
+      console.log('   Is valid date?', !isNaN(lastModifiedDate.getTime()));
+      
+      // Check if valid date
+      if (isNaN(lastModifiedDate.getTime())) {
+        // Fallback to current date
+        console.warn('⚠️ Could not parse lastModified, using current date');
+        const now = new Date();
+        elem.textContent = now.toLocaleDateString('en-US', {
+          year: 'numeric', month: 'long', day: 'numeric'
+        }) + ' at ' + now.toLocaleTimeString('en-US', {
+          hour: '2-digit', minute: '2-digit', hour12: true
+        });
+      } else {
+        // Valid date - format it
+        elem.textContent = lastModifiedDate.toLocaleDateString('en-US', {
+          year: 'numeric', month: 'long', day: 'numeric'
+        }) + ' at ' + lastModifiedDate.toLocaleTimeString('en-US', {
+          hour: '2-digit', minute: '2-digit', hour12: true
+        });
+      }
+      
+      elem.style.display = 'inline';
+      console.log('✅ Last Modified set to:', elem.textContent);
+      
+    } catch (error) {
+      console.error('❌ Error setting last modified:', error);
+      // Final fallback
+      elem.textContent = 'Recently Updated';
+      elem.style.display = 'inline';
+    }
+  } else {
+    console.error('❌ Element with id="lastModified" not found in HTML!');
   }
-});
-</script>
+  
+  console.log('🎉 All initialization complete!');
+});</script>
 
 </body>
 </html>
