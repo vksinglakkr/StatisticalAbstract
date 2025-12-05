@@ -2369,46 +2369,59 @@ document.addEventListener('click', function(e) {
 // Last Updated Timestamp - DYNAMIC DATE (from IGM)
 // ═══════════════════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', function() {
+  console.log('🚀 Page loaded - initializing components...');
+  
   // Initialize DOM elements
   initDOMElements();
+  console.log('✅ DOM elements initialized');
   
   // Initialize autocomplete listeners
   initUserInputListener();
+  console.log('✅ User input listener initialized');
+  
   initFileSearchListener();
+  console.log('✅ File search listener initialized');
   
   // Initialize dropdown listeners (category/question select)
   initDropdownListeners();
+  console.log('✅ Dropdown listeners initialized');
   
   // Initialize language buttons and TTS
   initLanguageAndTTS();
+  console.log('✅ Language and TTS initialized');
   
-  // Initialize music toggle
+  // Initialize music toggle (SAFELY - checks if elements exist)
   initMusicToggle();
+  console.log('✅ Music toggle check completed');
   
-  // Set last modified date - FIXED VERSION
+  // Set last modified date - IMPROVED VERSION
   const elem = document.getElementById('lastModified');
+  console.log('📅 Setting last modified date...');
+  console.log('   Element found:', elem ? 'YES' : 'NO');
+  
   if (elem) {
     try {
-      // document.lastModified returns a string like "12/05/2025 14:30:45"
-      // We need to parse it correctly
+      // Get the last modified string
       const lastModifiedStr = document.lastModified;
-      console.log('📅 Raw lastModified:', lastModifiedStr);
+      console.log('   Raw lastModified string:', lastModifiedStr);
       
-      // Create Date object from the string
+      // Parse the date
       const lastModifiedDate = new Date(lastModifiedStr);
+      console.log('   Parsed date object:', lastModifiedDate);
+      console.log('   Is valid date?', !isNaN(lastModifiedDate.getTime()));
       
-      // Check if date is valid
+      // Check if valid date
       if (isNaN(lastModifiedDate.getTime())) {
-        // Fallback: Use current date if parsing fails
+        // Fallback to current date
         console.warn('⚠️ Could not parse lastModified, using current date');
         const now = new Date();
         elem.textContent = now.toLocaleDateString('en-US', {
           year: 'numeric', month: 'long', day: 'numeric'
         }) + ' at ' + now.toLocaleTimeString('en-US', {
-          hour: '2-digit', minute: '2-digit'
+          hour: '2-digit', minute: '2-digit', hour12: true
         });
       } else {
-        // Successfully parsed
+        // Valid date - format it
         elem.textContent = lastModifiedDate.toLocaleDateString('en-US', {
           year: 'numeric', month: 'long', day: 'numeric'
         }) + ' at ' + lastModifiedDate.toLocaleTimeString('en-US', {
@@ -2417,18 +2430,20 @@ window.addEventListener('DOMContentLoaded', function() {
       }
       
       elem.style.display = 'inline';
-      console.log('✅ Last Modified displayed:', elem.textContent);
+      console.log('✅ Last Modified set to:', elem.textContent);
       
     } catch (error) {
-      console.error('❌ Error setting last modified date:', error);
-      elem.textContent = 'December 05, 2025';
+      console.error('❌ Error setting last modified:', error);
+      // Final fallback
+      elem.textContent = 'Recently Updated';
       elem.style.display = 'inline';
     }
   } else {
-    console.error('❌ lastModified element not found');
+    console.error('❌ Element with id="lastModified" not found in HTML!');
   }
-});
-</script>
+  
+  console.log('🎉 All initialization complete!');
+});</script>
 
 </body>
 </html>
