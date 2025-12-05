@@ -2237,14 +2237,24 @@ function displayFileAutocomplete(results, dropdown) {
 function selectFileItem(item) {
   selectedFileItem = item;
   
-  document.getElementById('fileSearchInput').value = item.chapter_name;
-  document.getElementById('autocompleteDropdown').style.display = 'none';
+  // Use userInput (the main input field) instead of non-existent fileSearchInput
+  if (userInput) {
+    userInput.value = item.chapter_name;
+  }
   
-  document.getElementById('fileSelectedDisplay').innerHTML = `
-    <strong>📋 Selected:</strong> ${item.chapter_name}<br>
-    <small>Section: ${item.sec_code} | Chapter: ${item.chp_code}</small>
-  `;
-  document.getElementById('fileSelectedDisplay').style.display = 'block';
+  const dropdown = document.getElementById('autocompleteDropdown');
+  if (dropdown) {
+    dropdown.style.display = 'none';
+  }
+  
+  const displayElement = document.getElementById('fileSelectedDisplay');
+  if (displayElement) {
+    displayElement.innerHTML = `
+      <strong>📋 Selected:</strong> ${item.chapter_name}<br>
+      <small>Section: ${item.sec_code} | Chapter: ${item.chp_code}</small>
+    `;
+    displayElement.style.display = 'block';
+  }
   
   console.log('✅ Selected file item:', item);
 }
