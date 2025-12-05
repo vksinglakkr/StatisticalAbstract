@@ -2125,11 +2125,15 @@ async function loadMasterFileData() {
       // Split by TAB (TSV format) - supports commas in questions
       const columns = line.split('\t');
       
-      // Expected format: Question [TAB] sec_code [TAB] chp_code
+      // Your sheet format: Chp_Code [TAB] Chapter_Name [TAB] sec_code [TAB] part_code
+      // Column 0 = Chp_Code (1, 2, 3...)
+      // Column 1 = Chapter_Name (the actual question)
+      // Column 2 = sec_code (Admin_Stru, etc.)
+      // Column 3 = part_code (SS, ES, etc.)
       if (columns.length >= 3) {
-        const question = columns[0].trim();
-        const sec_code = columns[1].trim();
-        const chp_code = columns[2].trim();
+        const chp_code = columns[0].trim();   // Column 0 = Chp_Code
+        const question = columns[1].trim();   // Column 1 = Chapter_Name (ACTUAL QUESTION)
+        const sec_code = columns[2].trim();   // Column 2 = sec_code
         
         if (question && sec_code && chp_code) {
           masterFileData.push({
