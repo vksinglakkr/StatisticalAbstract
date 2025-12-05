@@ -1,0 +1,8 @@
+v4.0-ALPHA    → Early testing, many bugs expected
+v4.0-BETA     → Feature complete, still finding bugs
+v4.0-CLEAN    → Removed old code, streamlined features
+v4.0-RC       → Release Candidate, final testing
+v4.1-STABLE   → All bugs fixed, production ready
+v4.1-FINAL    → Officially released, stable version
+
+
