@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>STATS SAHAYAK – Statistical Abstract Chatbot [v4.0-CLEAN]</title>
+<title>STATS SAHAYAK – Statistical Abstract Chatbot [v4.1-STABLE]</title>
+<!-- VERSION: 4.1-STABLE - Last Modified Date Fixed, Music Toggle Safe Check Added -->
   <!-- VERSION: 4.0-CLEAN - File search removed, Last Modified fixed, FINAL VERSION -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -1181,9 +1182,9 @@
     </div>
     
   <div class="border-t-2 border-gray-200 px-6 py-4 text-center bg-gradient-to-b from-gray-50 to-white">
-       <p class="text-sm text-gray-700 mb-2 font-medium">AI Chatbot powered by <span class="font-bold text-orange-600">Groq + Llama 3.3</span></p>
-    <p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified" style="display: inline;">Loading...</span></p>
-      <div class="flex flex-wrap justify-center items-center gap-6">
+<p class="text-sm text-gray-700 mb-2 font-medium">AI Chatbot powered by <span class="font-bold text-orange-600">Groq + Llama 3.3</span></p>
+<p class="text-gray-500 text-xs mb-1">Version: <span class="font-semibold text-gray-700">4.1-STABLE</span></p>
+<p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified" style="display: inline;">Loading...</span></p>      <div class="flex flex-wrap justify-center items-center gap-6">
         <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/haryana-logo.jpg" alt="Haryana" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
       </div>
     </div>
@@ -1956,10 +1957,17 @@ document.getElementById('voiceBtn').addEventListener('click', (e) => {
 }
 
 // Initialize music toggle (must run after DOM ready)
+// Initialize music toggle (must run after DOM ready)
 function initMusicToggle() {
   const fluteMusic = document.getElementById('fluteMusic');
   const musicToggle = document.getElementById('musicToggle');
   const musicLabel = document.getElementById('musicLabel');
+
+  // ✅ CHECK IF ELEMENTS EXIST BEFORE ACCESSING
+  if (!fluteMusic || !musicToggle || !musicLabel) {
+    console.log('ℹ️ Music player elements not found (feature removed from UI)');
+    return; // Exit safely without crashing
+  }
 
   musicToggle.addEventListener('click', () => {
     if (fluteMusic.paused) {
