@@ -132,16 +132,17 @@
         const lines = tsvText.split('\n');
         log(`📊 Parsing ${lines.length} lines...`);
         
-        // Skip header (line 0)
+        // Your sheet has 4 columns: Chp_Code, Chapter_Name, sec_code, part_code
+        // We need columns: 1 (Chapter_Name), 2 (sec_code), 0 (Chp_Code)
         for (let i = 1; i < lines.length; i++) {
           const line = lines[i].trim();
           if (!line) continue;
           
           const columns = line.split('\t');
           if (columns.length >= 3) {
-            const question = columns[0] ? columns[0].trim() : '';
-            const sec_code = columns[1] ? columns[1].trim() : '';
-            const chp_code = columns[2] ? columns[2].trim() : '';
+            const chp_code = columns[0] ? columns[0].trim() : '';  // Column 0 = Chp_Code
+            const question = columns[1] ? columns[1].trim() : '';   // Column 1 = Chapter_Name
+            const sec_code = columns[2] ? columns[2].trim() : '';   // Column 2 = sec_code
             
             if (question && question.length > 1 && sec_code && chp_code) {
               masterFileData.push({
