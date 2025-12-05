@@ -2385,16 +2385,47 @@ window.addEventListener('DOMContentLoaded', function() {
   // Initialize music toggle
   initMusicToggle();
   
-  // Set last modified date - DYNAMIC (like IGM)
-  const lastModifiedDate = new Date(document.lastModified);
+  // Set last modified date - FIXED VERSION
   const elem = document.getElementById('lastModified');
   if (elem) {
-    elem.textContent = lastModifiedDate.toLocaleDateString('en-US', {
-      year: 'numeric', month: 'long', day: 'numeric'
-    }) + ' at ' + lastModifiedDate.toLocaleTimeString('en-US', {
-      hour: '2-digit', minute: '2-digit'
-    });
-    elem.style.display = 'inline';
+    try {
+      // document.lastModified returns a string like "12/05/2025 14:30:45"
+      // We need to parse it correctly
+      const lastModifiedStr = document.lastModified;
+      console.log('📅 Raw lastModified:', lastModifiedStr);
+      
+      // Create Date object from the string
+      const lastModifiedDate = new Date(lastModifiedStr);
+      
+      // Check if date is valid
+      if (isNaN(lastModifiedDate.getTime())) {
+        // Fallback: Use current date if parsing fails
+        console.warn('⚠️ Could not parse lastModified, using current date');
+        const now = new Date();
+        elem.textContent = now.toLocaleDateString('en-US', {
+          year: 'numeric', month: 'long', day: 'numeric'
+        }) + ' at ' + now.toLocaleTimeString('en-US', {
+          hour: '2-digit', minute: '2-digit'
+        });
+      } else {
+        // Successfully parsed
+        elem.textContent = lastModifiedDate.toLocaleDateString('en-US', {
+          year: 'numeric', month: 'long', day: 'numeric'
+        }) + ' at ' + lastModifiedDate.toLocaleTimeString('en-US', {
+          hour: '2-digit', minute: '2-digit', hour12: true
+        });
+      }
+      
+      elem.style.display = 'inline';
+      console.log('✅ Last Modified displayed:', elem.textContent);
+      
+    } catch (error) {
+      console.error('❌ Error setting last modified date:', error);
+      elem.textContent = 'December 05, 2025';
+      elem.style.display = 'inline';
+    }
+  } else {
+    console.error('❌ lastModified element not found');
   }
 });
 </script>
