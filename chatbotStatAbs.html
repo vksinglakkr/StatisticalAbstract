@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>STATS SAHAYAK – Statistical Abstract Chatbot</title>
+  <title>STATS SAHAYAK – Statistical Abstract Chatbot [v4.0-CLEAN]</title>
+  <!-- VERSION: 4.0-CLEAN - File search removed, Last Modified fixed, FINAL VERSION -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     // Functions need to be defined before they're called in HTML
@@ -270,7 +271,106 @@
   letter-spacing: 0.5px;
   border-bottom: 1px solid #fed7aa;
 }
+   
+/* FILE SEARCH STYLES */
+.file-search-wrapper {
+  display: none;
+  margin-bottom: 2rem;
+}
 
+.file-search-input-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.file-autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #f97316;
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  max-height: 350px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+  margin-top: -8px;
+  display: none;
+}
+
+.file-autocomplete-item {
+  padding: 14px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f3f4f6;
+  transition: all 0.2s;
+}
+
+.file-autocomplete-item:hover {
+  background: linear-gradient(135deg, #fff7ed, #fed7aa);
+}
+
+.file-autocomplete-item-title {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.file-autocomplete-item-meta {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.file-selected-display {
+  display: none;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+  border-left: 5px solid #f97316;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+.file-results-area {
+  margin-top: 1.5rem;
+}
+
+.file-year-group {
+  margin-bottom: 1.5rem;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.file-year-group h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.file-download-link {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 6px 6px 6px 0;
+  background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+  transition: all 0.3s;
+}
+
+.file-download-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
+}
+   
 @media (max-width: 640px) {
   .query-type-selector {
     padding: 16px 12px;
@@ -959,6 +1059,9 @@
             </select> 
           </div>
         </div>
+        <!-- File search section removed - use main chat input only -->
+
+        
 
         <button 
           id="submitBtn" 
@@ -1079,10 +1182,9 @@
     
   <div class="border-t-2 border-gray-200 px-6 py-4 text-center bg-gradient-to-b from-gray-50 to-white">
        <p class="text-sm text-gray-700 mb-2 font-medium">AI Chatbot powered by <span class="font-bold text-orange-600">Groq + Llama 3.3</span></p>
-    <p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified"></span></p>
+    <p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified" style="display: inline;">Loading...</span></p>
       <div class="flex flex-wrap justify-center items-center gap-6">
         <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/haryana-logo.jpg" alt="Haryana" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
-        <img src="https://raw.githubusercontent.com/vksinglakkr/IGM2025/main/Images/kdb-logo.png" alt="KDB" class="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-all hover:scale-110">
       </div>
     </div>
   </div>
@@ -1265,9 +1367,7 @@
     </div>
   </div>
 
-  
-
-  <script>
+<script>
 const statsQuestions = {
   '📚 Learn About Statistics': {
     '📊 Basic Concepts': [
@@ -1281,18 +1381,6 @@ const statsQuestions = {
       "What is per capita income?",
       "What is sex ratio?",
       "What is cropped area?"
-    ],
-    '📈 Statistical Methods': [
-      "How to calculate growth rate?",
-      "What is base year in index numbers?",
-      "What are constant vs current prices?",
-      "How is workforce participation rate calculated?",
-      "What is enumeration in census?",
-      "How to interpret percentage changes?",
-      "What is sample registration system?",
-      "What is the difference between census and survey?",
-      "What are vital statistics?",
-      "How is agricultural productivity measured?"
     ]
   }
 };
@@ -1300,180 +1388,15 @@ const statsQuestions = {
 const statsQuestionsData = {
   '👥 Area and Population': {
     '📍 Basic Information': [
-      "Show area and population of Haryana",
-      "What is the growth of total population in Haryana?",
-      "Give me district-wise population distribution",
-      "How many villages and towns are in Haryana?",
-      "What is the rural and urban population by district?",
-      "Show me population density by districts",
-      "What is the literacy rate by districts?",
-      "Show scheduled castes population by districts",
-      "What is the sex ratio in Haryana?",
-      "Give me age distribution of population"
-    ]
-  },
-  
-  '🌾 Agriculture': {
-    '🚜 Crop Production': [
-      "Show area and production of foodgrains in Haryana",
-      "What is the area under principal crops?",
-      "Give me district-wise percentage distribution of crops",
-      "Show area under fruit and vegetables",
-      "What is the consumption of fertilizers in Haryana?",
-      "How many tractors are there in Haryana?",
-      "Show district-wise net area sown",
-      "What is the total cropped area by district?",
-      "Give me agricultural machinery data",
-      "Show area under high yielding varieties"
-    ]
-  },
-  
-  '🐄 Animal Husbandry': {
-    '🐮 Livestock': [
-      "Show livestock and poultry in Haryana",
-      "How many cattle are there in Haryana?",
-      "Give me data on buffaloes in Haryana",
-      "What is the sheep population?",
-      "Show goats and pigs population",
-      "How many fowls and ducks are there?",
-      "Show livestock per square kilometer",
-      "Give me milk production data",
-      "How many veterinary institutions are there?",
-      "Show poultry farms in Haryana"
-    ]
-  },
-  
-  '🏫 Education': {
-    '📚 Schools & Colleges': [
-      "How many recognized institutions are in Haryana?",
-      "Show number of colleges by district",
-      "What is the student enrollment in schools?",
-      "Give me teacher-pupil ratio",
-      "Show scheduled caste scholars in schools",
-      "How many universities are in Haryana?",
-      "What is the enrollment ratio by districts?",
-      "Show number of teachers by qualification",
-      "Give me technical education institution data",
-      "What is literacy among scheduled castes?"
-    ]
-  },
-  
-  '🏥 Health & Family Welfare': {
-    '⚕️ Medical Facilities': [
-      "How many hospitals and dispensaries are there?",
-      "Show number of beds available",
-      "What is the infant mortality rate?",
-      "Give me birth and death rates",
-      "Show family welfare statistics",
-      "How many health centers are there?",
-      "What is the area covered per institution?",
-      "Show sterilization operations data",
-      "Give me safe drinking water supply data",
-      "What are the mortality rates by disease?"
-    ]
-  },
-  
-  '🏭 Industries': {
-    '⚙️ Manufacturing': [
-      "How many registered factories are there?",
-      "Show district-wise factory data",
-      "What is the industrial production?",
-      "How many workers are employed in factories?",
-      "Give me industry-wise classification of factories",
-      "Show index of industrial production",
-      "What is the cotton textile mill data?",
-      "Show loans by Financial Corporation",
-      "Give me village industries data",
-      "What is employment in organized sector?"
-    ]
-  },
-  
-  '💰 Banking & Finance': {
-    '🏦 Banking Development': [
-      "Show banking development in Haryana",
-      "What are district-wise deposits and credits?",
-      "How many banking offices are there?",
-      "Give me bank offices by population range",
-      "Show deposits and advances data",
-      "What is per capita deposit?",
-      "Show cooperative societies statistics",
-      "Give me small savings data",
-      "What is the public debt?",
-      "Show tax revenue by district"
-    ]
-  },
-  
-  '⚡ Power & Infrastructure': {
-    '🔌 Electricity': [
-      "Show electricity consumption in Haryana",
-      "How many villages are electrified?",
-      "What is per capita power consumption?",
-      "Give me number of tube wells energized",
-      "Show installed generation capacity",
-      "What is the power availability?",
-      "Show consumption by category",
-      "How many solar pumps are installed?",
-      "Give me renewable energy capacity data",
-      "What is industrial power consumption?"
-    ]
-  },
-  
-  '🚗 Transport': {
-    '🛣️ Roads & Vehicles': [
-      "How many motor vehicles are registered?",
-      "Show district-wise vehicle registration",
-      "What is the road length by type?",
-      "Give me road accident statistics",
-      "Show Haryana Roadways progress",
-      "How many driving licenses issued?",
-      "What is road length per 100 sq km?",
-      "Show villages connected with roads",
-      "Give me highway length data",
-      "What is the railway route in Haryana?"
-    ]
-  },
-  
-  '💼 Labour & Employment': {
-    '👷 Employment Data': [
-      "Show employment in organized sector",
-      "What is registration at employment exchanges?",
-      "Give me industrial disputes data",
-      "Show average wages by sector",
-      "What are trade unions statistics?",
-      "Show workers compensation data",
-      "Give me occupational distribution data",
-      "What is vocational training enrollment?",
-      "Show factory worker earnings",
-      "What is worker participation rate?"
+      "Classification of area in Haryana"
     ]
   }
-};
+  };
 
 const statsQuestionsHindi = {
   '📚 सांख्यिकी के बारे में जानें': {
     '📊 मूल अवधारणाएं': [
-      "मूल्य सूचकांक क्या है?",
-      "उपभोक्ता मूल्य सूचकांक (CPI) समझाएं",
-      "माध्य, माध्यिका और बहुलक में क्या अंतर है?",
-      "जनसंख्या घनत्व क्या है?",
-      "सकल घरेलू उत्पाद (GDP) क्या है?",
-      "साक्षरता दर क्या है?",
-      "शिशु मृत्यु दर क्या है?",
-      "प्रति व्यक्ति आय क्या है?",
-      "लिंगानुपात क्या है?",
-      "फसली क्षेत्र क्या है?"
-    ],
-    '📈 सांख्यिकीय विधियां': [
-      "वृद्धि दर की गणना कैसे करें?",
-      "सूचकांकों में आधार वर्ष क्या है?",
-      "स्थिर बनाम चालू मूल्य क्या हैं?",
-      "कार्यबल भागीदारी दर की गणना कैसे की जाती है?",
-      "जनगणना में गणना क्या है?",
-      "प्रतिशत परिवर्तन की व्याख्या कैसे करें?",
-      "नमूना पंजीकरण प्रणाली क्या है?",
-      "जनगणना और सर्वेक्षण में क्या अंतर है?",
-      "महत्वपूर्ण सांख्यिकी क्या हैं?",
-      "कृषि उत्पादकता कैसे मापी जाती है?"
+      "मूल्य सूचकांक क्या है?"
     ]
   }
 };
@@ -1482,165 +1405,56 @@ const statsQuestionsDataHindi = {
   '👥 क्षेत्र और जनसंख्या': {
     '📍 बुनियादी जानकारी': [
       "हरियाणा का क्षेत्र और जनसंख्या दिखाएं",
-      "हरियाणा में कुल जनसंख्या की वृद्धि क्या है?",
-      "मुझे जिलेवार जनसंख्या वितरण दें",
-      "हरियाणा में कितने गांव और शहर हैं?",
-      "जिले के अनुसार ग्रामीण और शहरी जनसंख्या क्या है?",
-      "मुझे जिलों के अनुसार जनसंख्या घनत्व दिखाएं",
-      "जिलों के अनुसार साक्षरता दर क्या है?",
-      "जिलों के अनुसार अनुसूचित जाति की जनसंख्या दिखाएं",
-      "हरियाणा में लिंगानुपात क्या है?",
-      "मुझे जनसंख्या का आयु वितरण दें"
-    ]
-  },
-  
-  '🌾 कृषि': {
-    '🚜 फसल उत्पादन': [
-      "हरियाणा में खाद्यान्न का क्षेत्र और उत्पादन दिखाएं",
-      "मुख्य फसलों के अंतर्गत क्षेत्र क्या है?",
-      "मुझे फसलों का जिलेवार प्रतिशत वितरण दें",
-      "फलों और सब्जियों के अंतर्गत क्षेत्र दिखाएं",
-      "हरियाणा में उर्वरकों की खपत क्या है?",
-      "हरियाणा में कितने ट्रैक्टर हैं?",
-      "जिलेवार शुद्ध बोया गया क्षेत्र दिखाएं",
-      "जिले के अनुसार कुल फसली क्षेत्र क्या है?",
-      "मुझे कृषि मशीनरी डेटा दें",
-      "उच्च उपज देने वाली किस्मों के अंतर्गत क्षेत्र दिखाएं"
-    ]
-  },
-  
-  '🐄 पशुपालन': {
-    '🐮 पशुधन': [
-      "हरियाणा में पशुधन और मुर्गी पालन दिखाएं",
-      "हरियाणा में कितनी मवेशी हैं?",
-      "मुझे हरियाणा में भैंसों का डेटा दें",
-      "भेड़ की जनसंख्या क्या है?",
-      "बकरी और सूअर की जनसंख्या दिखाएं",
-      "कितनी मुर्गियां और बत्तखें हैं?",
-      "प्रति वर्ग किलोमीटर पशुधन दिखाएं",
-      "मुझे दूध उत्पादन डेटा दें",
-      "कितने पशु चिकित्सा संस्थान हैं?",
-      "हरियाणा में मुर्गी फार्म दिखाएं"
-    ]
-  },
-  
-  '🏫 शिक्षा': {
-    '📚 स्कूल और कॉलेज': [
-      "हरियाणा में कितने मान्यता प्राप्त संस्थान हैं?",
-      "जिले के अनुसार कॉलेजों की संख्या दिखाएं",
-      "स्कूलों में छात्र नामांकन क्या है?",
-      "मुझे शिक्षक-छात्र अनुपात दें",
-      "स्कूलों में अनुसूचित जाति के छात्र दिखाएं",
-      "हरियाणा में कितने विश्वविद्यालय हैं?",
-      "जिलों के अनुसार नामांकन अनुपात क्या है?",
-      "योग्यता के अनुसार शिक्षकों की संख्या दिखाएं",
-      "मुझे तकनीकी शिक्षा संस्थान डेटा दें",
-      "अनुसूचित जातियों में साक्षरता क्या है?"
-    ]
-  },
-  
-  '🏥 स्वास्थ्य और परिवार कल्याण': {
-    '⚕️ चिकित्सा सुविधाएं': [
-      "कितने अस्पताल और औषधालय हैं?",
-      "उपलब्ध बिस्तरों की संख्या दिखाएं",
-      "शिशु मृत्यु दर क्या है?",
-      "मुझे जन्म और मृत्यु दर दें",
-      "परिवार कल्याण सांख्यिकी दिखाएं",
-      "कितने स्वास्थ्य केंद्र हैं?",
-      "प्रति संस्थान कवर किया गया क्षेत्र क्या है?",
-      "नसबंदी ऑपरेशन डेटा दिखाएं",
-      "मुझे सुरक्षित पेयजल आपूर्ति डेटा दें",
-      "बीमारी के अनुसार मृत्यु दर क्या हैं?"
-    ]
-  },
-  
-  '🏭 उद्योग': {
-    '⚙️ विनिर्माण': [
-      "कितने पंजीकृत कारखाने हैं?",
-      "जिलेवार कारखाना डेटा दिखाएं",
-      "औद्योगिक उत्पादन क्या है?",
-      "कारखानों में कितने कर्मचारी कार्यरत हैं?",
-      "मुझे कारखानों का उद्योग-वार वर्गीकरण दें",
-      "औद्योगिक उत्पादन सूचकांक दिखाएं",
-      "सूती कपड़ा मिल डेटा क्या है?",
-      "वित्तीय निगम द्वारा ऋण दिखाएं",
-      "मुझे ग्रामीण उद्योग डेटा दें",
-      "संगठित क्षेत्र में रोजगार क्या है?"
-    ]
-  },
-  
-  '💰 बैंकिंग और वित्त': {
-    '🏦 बैंकिंग विकास': [
-      "हरियाणा में बैंकिंग विकास दिखाएं",
-      "जिलेवार जमा और ऋण क्या हैं?",
-      "कितने बैंकिंग कार्यालय हैं?",
-      "मुझे जनसंख्या सीमा के अनुसार बैंक कार्यालय दें",
-      "जमा और अग्रिम डेटा दिखाएं",
-      "प्रति व्यक्ति जमा क्या है?",
-      "सहकारी समितियों की सांख्यिकी दिखाएं",
-      "मुझे लघु बचत डेटा दें",
-      "सार्वजनिक ऋण क्या है?",
-      "जिले के अनुसार कर राजस्व दिखाएं"
-    ]
-  },
-  
-  '⚡ बिजली और बुनियादी ढांचा': {
-    '🔌 बिजली': [
-      "हरियाणा में बिजली की खपत दिखाएं",
-      "कितने गांव विद्युतीकृत हैं?",
-      "प्रति व्यक्ति बिजली खपत क्या है?",
-      "मुझे ऊर्जावान नलकूपों की संख्या दें",
-      "स्थापित उत्पादन क्षमता दिखाएं",
-      "बिजली की उपलब्धता क्या है?",
-      "श्रेणी के अनुसार खपत दिखाएं",
-      "कितने सौर पंप स्थापित हैं?",
-      "मुझे नवीकरणीय ऊर्जा क्षमता डेटा दें",
-      "औद्योगिक बिजली खपत क्या है?"
-    ]
-  },
-  
-  '🚗 परिवहन': {
-    '🛣️ सड़कें और वाहन': [
-      "कितने मोटर वाहन पंजीकृत हैं?",
-      "जिलेवार वाहन पंजीकरण दिखाएं",
-      "प्रकार के अनुसार सड़क की लंबाई क्या है?",
-      "मुझे सड़क दुर्घटना सांख्यिकी दें",
-      "हरियाणा रोडवेज की प्रगति दिखाएं",
-      "कितने ड्राइविंग लाइसेंस जारी किए गए?",
-      "प्रति 100 वर्ग किमी सड़क की लंबाई क्या है?",
-      "सड़कों से जुड़े गांव दिखाएं",
-      "मुझे राजमार्ग की लंबाई डेटा दें",
-      "हरियाणा में रेलवे मार्ग क्या है?"
-    ]
-  },
-  
-  '💼 श्रम और रोजगार': {
-    '👷 रोजगार डेटा': [
-      "संगठित क्षेत्र में रोजगार दिखाएं",
-      "रोजगार कार्यालयों में पंजीकरण क्या है?",
-      "मुझे औद्योगिक विवाद डेटा दें",
-      "क्षेत्र के अनुसार औसत वेतन दिखाएं",
-      "ट्रेड यूनियन सांख्यिकी क्या हैं?",
-      "श्रमिक मुआवजा डेटा दिखाएं",
-      "मुझे व्यावसायिक वितरण डेटा दें",
-      "व्यावसायिक प्रशिक्षण नामांकन क्या है?",
-      "कारखाना कर्मचारी आय दिखाएं",
-      "कार्यकर्ता भागीदारी दर क्या है?"
+      "हरियाणा में कुल जनसंख्या की वृद्धि क्या है?"
     ]
   }
 };
 
 let selectedLanguage = 'English';
+let selectedQueryType = 'statistics'; // ⚠️ FIX: Missing variable for radio buttons
 let currentQuestions = {};
 let allQuestions = [];
+// ═══════════════════════════════════════════════════════════════════
+// GOOGLE SHEETS CONFIGURATION
+// ═══════════════════════════════════════════════════════════════════
+const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/17mpGz4-lw-xBYqDiHj7RV1z0w_5k8lEmSmVqsxS36ro/export?format=tsv&gid=740242886';
 
-const categorySelect = document.getElementById('categorySelect');
-const questionSelect = document.getElementById('questionSelect');
-const questionSection = document.getElementById('questionSection');
-const userInput = document.getElementById('userInput');
-const autocompleteDropdown = document.getElementById('autocompleteDropdown');
+// File Search Variables - LOADED FROM GOOGLE SHEETS (TSV FORMAT)
+let masterFileData = [];
+let selectedFileItem = null;
+    
+// ═══════════════════════════════════════════════════════════════════
+// COMPREHENSIVE DEBUG LOGGING
+// ═══════════════════════════════════════════════════════════════════
+console.log('════════════════════════════════════════════════════════');
+console.log('🔍 STATS SAHAYAK DEBUG MODE');
+console.log('════════════════════════════════════════════════════════');
+console.log('✓ Script loading started');
+console.log('✓ GOOGLE_SHEET_URL:', GOOGLE_SHEET_URL);
+console.log('✓ Document ready state:', document.readyState);
+console.log('════════════════════════════════════════════════════════');
+
+const FILE_API_ENDPOINT = 'https://n8n-workflow-test.duckdns.org/webhook/stat-abstract'; // ⚠️ ADD YOUR N8N WEBHOOK URL    
+
+// DOM elements - will be accessed when needed (after page loads)
+let categorySelect;
+let questionSelect;
+let questionSection;
+let userInput;
+let autocompleteDropdown;
+
+// Initialize DOM elements after page loads
+function initDOMElements() {
+  categorySelect = document.getElementById('categorySelect');
+  questionSelect = document.getElementById('questionSelect');
+  questionSection = document.getElementById('questionSection');
+  userInput = document.getElementById('userInput');
+  autocompleteDropdown = document.getElementById('autocompleteDropdown');
+}
 
 function selectQueryType(type) {
+  if (!categorySelect) initDOMElements(); // Initialize if not done yet
+  
   selectedQueryType = type;
   
   document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
@@ -1652,15 +1466,28 @@ function selectQueryType(type) {
   if (type === 'statistics') {
     document.getElementById('statisticsRadio').checked = true;
     document.getElementById('userInput').placeholder = 'Ask about statistical concepts... (e.g., What is GDP? Explain literacy rate)';
+    
+    // Show quick questions
+    document.getElementById('quickQuestionsSection').style.display = 'block';
+    
   } else {
     document.getElementById('dataRadio').checked = true;
-    document.getElementById('userInput').placeholder = 'Search Haryana data... (e.g., Show district-wise population, Agricultural production data)';
+    document.getElementById('userInput').placeholder = 'Ask about Haryana data... (e.g., Haryana Staff Selection)';
+    
+    // Hide quick questions
+    document.getElementById('quickQuestionsSection').style.display = 'none';
+    
+    // Load master file data if not loaded
+    if (masterFileData.length === 0) {
+      loadMasterFileData();
+    }
   }
   
   loadCategories();
   buildAllQuestionsList();
   questionSection.style.display = 'block';
 }
+
 
 function loadCategories() {
   categorySelect.innerHTML = '<option value="" selected disabled>Select Topic</option>';
@@ -1741,18 +1568,27 @@ function filterQuestions(query) {
     }
     
     return keywords.some(keyword => questionLower.includes(keyword));
-  }).slice(0, 8); // Show max 8 suggestions
+  }); // Show ALL matching suggestions (no limit)
 }
 
-userInput.addEventListener('input', function() {
-  const query = this.value.trim();
+function initUserInputListener() {
+  if (!userInput) initDOMElements();
   
-  if (query.length < 2) {
-    autocompleteDropdown.style.display = 'none';
-    return;
-  }
-  
-  const matches = filterQuestions(query);
+  userInput.addEventListener('input', function() {
+    const query = this.value.trim();
+    
+    if (query.length < 2) {
+      autocompleteDropdown.style.display = 'none';
+      return;
+    }
+    
+    // Check which mode we're in
+    if (selectedQueryType === 'data') {
+      // DATA MODE - Search in masterFileData (Google Sheets)
+      performFileSearch(query);
+    } else {
+      // STATISTICS MODE - Search in hardcoded questions
+      const matches = filterQuestions(query);
   
   if (matches.length === 0) {
     autocompleteDropdown.innerHTML = '<div class="autocomplete-no-results">No matching questions found. Try different keywords.</div>';
@@ -1783,97 +1619,98 @@ userInput.addEventListener('input', function() {
       autocompleteDropdown.style.display = 'none';
     });
   });
-});
+    } // End of statistics mode
+  }); // End of input event listener
 
-// Close dropdown when clicking outside
-document.addEventListener('click', function(e) {
-  if (!userInput.contains(e.target) && !autocompleteDropdown.contains(e.target)) {
-    autocompleteDropdown.style.display = 'none';
-  }
-});
-
-// Close dropdown on ESC key
-userInput.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    autocompleteDropdown.style.display = 'none';
-  }
-});
-
-categorySelect.addEventListener('change', function() {
-  questionSelect.innerHTML = '<option value="" selected disabled>Select Question</option>';
-  questionSelect.disabled = false;
-  
-  const selectedCategory = this.value;
-  const categoryData = currentQuestions[selectedCategory];
-  
-  if (categoryData) {
-    // categoryData is now an object with subcategories
-    Object.keys(categoryData).forEach(subcategory => {
-      // Add optgroup for subcategory
-      const optgroup = document.createElement('optgroup');
-      optgroup.label = subcategory;
-      
-      // Add questions under this subcategory
-      categoryData[subcategory].forEach(question => {
-        const option = document.createElement('option');
-        option.value = question;
-        option.textContent = question;
-        optgroup.appendChild(option);
-      });
-      
-      questionSelect.appendChild(optgroup);
-    });
-  }
-});
-
-questionSelect.addEventListener('change', function() {
-  userInput.value = this.value;
-  autocompleteDropdown.style.display = 'none';
-});
-
-document.querySelectorAll('.langBtn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    selectedLanguage = this.getAttribute('data-lang');
-    document.querySelectorAll('.langBtn').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    loadCategories();
-    buildAllQuestionsList();
+  // Close dropdown on ESC key
+  userInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      autocompleteDropdown.style.display = 'none';
+    }
   });
-});
+  
+  console.log('✅ User input autocomplete initialized');
+}
 
-let isSpeaking = false;
-let ttsUtterance = null;
-let manualStop = false;
-const ttsBtn = document.getElementById('ttsToggle');
-const ttsLabel = document.getElementById('ttsLabel');
+// Initialize dropdown event listeners (must run after DOM is ready)
+function initDropdownListeners() {
+  if (!categorySelect || !questionSelect) initDOMElements();
+  
+  categorySelect.addEventListener('change', function() {
+    questionSelect.innerHTML = '<option value="" selected disabled>Select Question</option>';
+    questionSelect.disabled = false;
+    
+    const selectedCategory = this.value;
+    const categoryData = currentQuestions[selectedCategory];
+    
+    if (categoryData) {
+      // categoryData is now an object with subcategories
+      Object.keys(categoryData).forEach(subcategory => {
+        // Add optgroup for subcategory
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = subcategory;
+        
+        // Add questions under this subcategory
+        categoryData[subcategory].forEach(question => {
+          const option = document.createElement('option');
+          option.value = question;
+          option.textContent = question;
+          optgroup.appendChild(option);
+        });
+        
+        questionSelect.appendChild(optgroup);
+      });
+    }
+  });
 
-ttsBtn.addEventListener('click', () => {
-  if (isSpeaking) {
-    manualStop = true;
-    speechSynthesis.cancel();
-    isSpeaking = false;
-    ttsBtn.classList.remove('speaking');
-    ttsLabel.textContent = 'Listen';
-    return;
-  }
-  
-  manualStop = false;
-  const answerText = document.getElementById('modalAnswer').textContent;
-  
-  if (!answerText || answerText === 'Thinking...') {
-    alert('No answer to read yet!');
-    return;
-  }
-  
-  if (!('speechSynthesis' in window)) {
-    alert('Text-to-speech is not supported in your browser.');
-    return;
-  }
-  
-  ttsUtterance = new SpeechSynthesisUtterance(answerText);
-  ttsUtterance.rate = 0.9;
-  ttsUtterance.pitch = 1;
-  ttsUtterance.volume = 1;
+  questionSelect.addEventListener('change', function() {
+    userInput.value = this.value;
+    autocompleteDropdown.style.display = 'none';
+  });
+}
+
+// Initialize language buttons and TTS (must run after DOM ready)
+function initLanguageAndTTS() {
+  document.querySelectorAll('.langBtn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      selectedLanguage = this.getAttribute('data-lang');
+      document.querySelectorAll('.langBtn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      loadCategories();
+      buildAllQuestionsList();
+    });
+  });
+
+  const ttsBtn = document.getElementById('ttsToggle');
+  const ttsLabel = document.getElementById('ttsLabel');
+
+  ttsBtn.addEventListener('click', () => {
+    if (isSpeaking) {
+      manualStop = true;
+      speechSynthesis.cancel();
+      isSpeaking = false;
+      ttsBtn.classList.remove('speaking');
+      ttsLabel.textContent = 'Listen';
+      return;
+    }
+    
+    manualStop = false;
+    const answerText = document.getElementById('modalAnswer').textContent;
+    
+    if (!answerText || answerText === 'Thinking...') {
+      alert('No answer to read yet!');
+      return;
+    }
+    
+    if (!('speechSynthesis' in window)) {
+      alert('Text-to-speech is not supported in your browser.');
+      return;
+    }
+    
+    ttsUtterance = new SpeechSynthesisUtterance(answerText);
+    ttsUtterance.rate = 0.9;
+    ttsUtterance.pitch = 1;
+    ttsUtterance.volume = 1;
   
 // ========================================================================
   // SMART TTS WITH LANGUAGE DETECTION - Lines 1760-1824 Replacement
@@ -2033,7 +1870,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
   const browser = browserMatch ? browserMatch[0].replace('OPR', 'Opera') : 'Unknown';
 
   try {
-    const webhookUrl = 'https://n8n-workflow-test.duckdns.org/webhook/Stat_Abs';
+    const webhookUrl = 'https://n8n-workflow-test.duckdns.org/webhook/stat-abstract';
 
     const response = await fetch(webhookUrl, {
       method: 'POST',
@@ -2115,6 +1952,28 @@ document.getElementById('voiceBtn').addEventListener('click', (e) => {
   }
 });
 
+  // End of TTS listener
+}
+
+// Initialize music toggle (must run after DOM ready)
+function initMusicToggle() {
+  const fluteMusic = document.getElementById('fluteMusic');
+  const musicToggle = document.getElementById('musicToggle');
+  const musicLabel = document.getElementById('musicLabel');
+
+  musicToggle.addEventListener('click', () => {
+    if (fluteMusic.paused) {
+      fluteMusic.play().catch(e => {
+        alert("Please interact with the page first, then click to play music.");
+      });
+      musicLabel.textContent = "Pause Flute";
+    } else {
+      fluteMusic.pause();
+      musicLabel.textContent = "Play Flute";
+    }
+  });
+}
+
 document.getElementById('closeBtn').onclick = () => {
   speechSynthesis.cancel();
   document.getElementById('aiModal').classList.add('hidden');
@@ -2164,48 +2023,6 @@ function fallbackCopyText(text) {
   }
   document.body.removeChild(textArea);
 }
-
-const fluteMusic = document.getElementById('fluteMusic');
-const musicToggle = document.getElementById('musicToggle');
-const musicLabel = document.getElementById('musicLabel');
-
-musicToggle.addEventListener('click', () => {
-  if (fluteMusic.paused) {
-    fluteMusic.play().catch(e => {
-      alert("Please interact with the page first, then click to play music.");
-    });
-    musicLabel.textContent = "Pause Flute";
-  } else {
-    fluteMusic.pause();
-    musicLabel.textContent = "Play Flute";
-  }
-});
-
-// Last Updated timestamp
-window.addEventListener('DOMContentLoaded', function() {
-  try {
-    const lastModifiedDate = new Date(document.lastModified);
-    const element = document.getElementById("lastModified");
-    if (element) {
-      const dateStr = lastModifiedDate.toLocaleDateString('en-US', {
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric'
-      });
-      const timeStr = lastModifiedDate.toLocaleTimeString('en-US', {
-        hour: '2-digit', 
-        minute: '2-digit',
-        hour12: true
-      });
-      element.textContent = dateStr + ' at ' + timeStr;
-      console.log('Last Updated:', dateStr + ' at ' + timeStr);
-    } else {
-      console.error('lastModified element not found');
-    }
-  } catch (error) {
-    console.error('Error updating last modified date:', error);
-  }
-});
 
 function openFeedback() {
   const feedbackModal = document.getElementById('feedbackModal');
@@ -2286,55 +2103,299 @@ document.getElementById('quizModal').addEventListener('click', function(e) {
 });
   
 
-// === LAST UPDATED CODE - SIMPLE VERSION ===
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(function() {
-    const elem = document.getElementById('lastModified');
-    if (elem) {
-      const now = new Date();
-      const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-      const dateStr = months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
-      let hours = now.getHours();
-      const ampm = hours >= 12 ? 'PM' : 'AM';
-      hours = hours % 12;
-      hours = hours ? hours : 12;
-      const minutes = now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes();
-      const timeStr = hours + ':' + minutes + ' ' + ampm;
-      elem.textContent = dateStr + ' at ' + timeStr;
-      elem.style.display = 'inline';
-      console.log('Last Updated set to:', elem.textContent);
-    } else {
-      console.error('lastModified element NOT FOUND');
+// ═══════════════════════════════════════════════════════════════════
+// FILE SEARCH SYSTEM
+// ═══════════════════════════════════════════════════════════════════
+
+async function loadMasterFileData() {
+  try {
+    console.log('🔄 Loading questions from Google Sheets (TSV)...');
+    console.log('   URL:', GOOGLE_SHEET_URL);
+    
+    const response = await fetch(GOOGLE_SHEET_URL);
+    console.log('   📡 Response status:', response.status, response.statusText);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
-  }, 100);
+    
+    const tsvText = await response.text();
+    console.log('   📄 TSV text length:', tsvText.length, 'characters');
+    
+    const lines = tsvText.split('\n');
+    console.log('   📄 Total lines:', lines.length);
+    
+    masterFileData = []; // Clear existing data
+    
+    // Parse TSV - Skip header row (index 0)
+    for (let i = 1; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (!line) continue;
+      
+      // Split by TAB (TSV format) - supports commas in questions
+      const columns = line.split('\t');
+      
+      // Your sheet format: Chp_Code [TAB] Chapter_Name [TAB] sec_code [TAB] part_code
+      // Column 0 = Chp_Code (1, 2, 3...)
+      // Column 1 = Chapter_Name (the actual question)
+      // Column 2 = sec_code (Admin_Stru, etc.)
+      // Column 3 = part_code (SS, ES, etc.)
+      if (columns.length >= 3) {
+        const chp_code = columns[0].trim();   // Column 0 = Chp_Code
+        const question = columns[1].trim();   // Column 1 = Chapter_Name (ACTUAL QUESTION)
+        const sec_code = columns[2].trim();   // Column 2 = sec_code
+        
+        if (question && sec_code && chp_code) {
+          masterFileData.push({
+            chp_code: chp_code.padStart(2, '0'),
+            chapter_name: question,
+            sec_code: sec_code,
+            part_code: '',
+            search_text: question.toLowerCase()
+          });
+        }
+      }
+    }
+    
+    console.log(`✅ Loaded ${masterFileData.length} questions from Google Sheets`);
+    console.log('   Sample data:', masterFileData.slice(0, 3));
+    
+  } catch (error) {
+    console.error('❌ Error loading Google Sheets data:', error);
+    console.error('   Error details:', error.message);
+    
+    // Fallback to empty array
+    masterFileData = [];
+    
+    alert('⚠️ Could not load questions from Google Sheets. Please check:\n' +
+          '1. Sheet is published to web (TSV format)\n' +
+          '2. Sheet is publicly accessible\n' +
+          '3. URL is correct');
+  }
+}
+
+// File Search Input Handler - Initialize after DOM loads
+let fileSearchTimeout;
+
+function initFileSearchListener() {
+  if (!userInput) initDOMElements();
+  
+  // We use the SAME userInput for both modes
+  // The autocomplete behavior changes based on selectedQueryType
+  console.log('✅ File search uses userInput field');
+}
+
+function performFileSearch(query) {
+  const dropdown = document.getElementById('autocompleteDropdown'); // Use same dropdown
+  
+  if (!query || query.length < 2) {
+    dropdown.style.display = 'none';
+    return;
+  }
+  
+  const searchTerm = query.toLowerCase();
+  const results = masterFileData.filter(item => 
+    item.search_text.includes(searchTerm)
+  ).slice(0, 15);
+  
+  if (results.length > 0) {
+    displayFileAutocomplete(results, dropdown);
+  } else {
+    dropdown.innerHTML = '<div class="autocomplete-no-results">No matching questions found in Google Sheets</div>';
+    dropdown.style.display = 'block';
+  }
+}
+
+function displayFileAutocomplete(results, dropdown) {
+  let html = '';
+  
+  results.forEach(item => {
+    html += `
+      <div class="autocomplete-item" data-question="${item.chapter_name}" data-item='${JSON.stringify(item)}'>
+        <div style="font-weight: 600;">${item.chapter_name}</div>
+        <div style="font-size: 0.75rem; color: #666; margin-top: 4px;">
+          📁 ${item.sec_code} | 📄 Ch.${item.chp_code}
+        </div>
+      </div>
+    `;
+  });
+  
+  dropdown.innerHTML = html;
+  dropdown.style.display = 'block';
+  
+  // Add click handlers
+  document.querySelectorAll('.autocomplete-item').forEach(element => {
+    element.addEventListener('click', function() {
+      const itemData = JSON.parse(this.getAttribute('data-item'));
+      selectFileItem(itemData);
+      userInput.value = itemData.chapter_name;
+      dropdown.style.display = 'none';
+    });
+  });
+}
+
+function selectFileItem(item) {
+  selectedFileItem = item;
+  
+  // Use userInput (the main input field) instead of non-existent fileSearchInput
+  if (userInput) {
+    userInput.value = item.chapter_name;
+  }
+  
+  const dropdown = document.getElementById('autocompleteDropdown');
+  if (dropdown) {
+    dropdown.style.display = 'none';
+  }
+  
+  const displayElement = document.getElementById('fileSelectedDisplay');
+  if (displayElement) {
+    displayElement.innerHTML = `
+      <strong>📋 Selected:</strong> ${item.chapter_name}<br>
+      <small>Section: ${item.sec_code} | Chapter: ${item.chp_code}</small>
+    `;
+    displayElement.style.display = 'block';
+  }
+  
+  console.log('✅ Selected file item:', item);
+}
+
+async function searchStatFiles() {
+  if (!selectedFileItem) {
+    alert('⚠️ Please select a question from the dropdown first!');
+    return;
+  }
+  
+  const resultsDiv = document.getElementById('fileResultsArea');
+  resultsDiv.innerHTML = '<div class="text-center py-8 text-gray-600">🔍 Searching for files...</div>';
+  
+  const filePrefix = selectedFileItem.sec_code + selectedFileItem.chp_code;
+  console.log('🔍 Searching for files with prefix:', filePrefix);
+  
+  try {
+    const response = await fetch(FILE_API_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        type: 'file_search',  // ⚠️ REQUIRED FOR N8N ROUTING
+        filePrefix: filePrefix,
+        question: selectedFileItem.chapter_name,
+        sec_code: selectedFileItem.sec_code,
+        chp_code: selectedFileItem.chp_code
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (data.success && data.files && data.files.length > 0) {
+      displayFileResults(data.files, selectedFileItem);
+    } else {
+      displayNoFileResults(selectedFileItem, filePrefix);
+    }
+    
+  } catch (error) {
+    console.error('❌ Error:', error);
+    resultsDiv.innerHTML = '<div class="text-center py-8 text-red-600">❌ Error searching files. Please try again.</div>';
+  }
+}
+
+function displayFileResults(files, selectedItem) {
+  const resultsDiv = document.getElementById('fileResultsArea');
+  
+  const filesByYear = {};
+  files.forEach(file => {
+    if (!filesByYear[file.year]) {
+      filesByYear[file.year] = [];
+    }
+    filesByYear[file.year].push(file);
+  });
+  
+  const years = Object.keys(filesByYear).sort().reverse();
+  
+  let html = `
+    <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-5 rounded-xl mb-5 border-2 border-green-200">
+      <h3 class="text-lg font-bold text-gray-800 mb-2">✅ Found ${files.length} file(s)</h3>
+      <p class="text-gray-700 font-semibold text-sm">${selectedItem.chapter_name}</p>
+      <p class="text-xs text-gray-600 mt-1">Section: ${selectedItem.sec_code} | Chapter: ${selectedItem.chp_code}</p>
+    </div>
+  `;
+  
+  years.forEach(year => {
+    html += `
+      <div class="file-year-group">
+        <h4>📅 Year: ${year}</h4>
+    `;
+    
+    filesByYear[year].forEach(file => {
+      const icon = file.extension === 'pdf' ? '📕' : '📊';
+      html += `
+        <a href="${file.url}" target="_blank" class="file-download-link">
+          ${icon} ${file.filename}
+        </a>
+      `;
+    });
+    
+    html += `</div>`;
+  });
+  
+  resultsDiv.innerHTML = html;
+}
+
+function displayNoFileResults(selectedItem, filePrefix) {
+  const resultsDiv = document.getElementById('fileResultsArea');
+  resultsDiv.innerHTML = `
+    <div class="text-center py-12 bg-yellow-50 rounded-xl border-2 border-yellow-200">
+      <div class="text-6xl mb-4">📭</div>
+      <h4 class="text-lg font-bold text-gray-800 mb-2">No files found</h4>
+      <p class="text-gray-600 text-sm">No data files found for: <strong>${selectedItem.chapter_name}</strong></p>
+      <p class="text-xs text-gray-500 mt-2">File prefix: ${filePrefix}</p>
+    </div>
+  `;
+}
+
+// Close file autocomplete when clicking outside
+document.addEventListener('click', function(e) {
+  const fileInput = document.getElementById('fileSearchInput');
+  const fileDropdown = document.getElementById('autocompleteDropdown');
+  
+  if (fileInput && fileDropdown) {
+    if (!fileInput.contains(e.target) && !fileDropdown.contains(e.target)) {
+      fileDropdown.style.display = 'none';
+    }
+  }
 });
-
-</script>
-
-<script>
-// Last Updated Timestamp
-window.addEventListener('load', function() {
-  setTimeout(function() {
-    var elem = document.getElementById('lastModified');
-    if (elem) {
-      var d = new Date();
-      var months = ['January','February','March','April','May','June',
-                    'July','August','September','October','November','December'];
-      var dateStr = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-      var h = d.getHours();
-      var ampm = h >= 12 ? 'PM' : 'AM';
-      h = h % 12;
-      h = h ? h : 12;
-      var m = d.getMinutes();
-      m = m < 10 ? '0' + m : m;
-      var timeStr = h + ':' + m + ' ' + ampm;
-      elem.textContent = dateStr + ' at ' + timeStr;
-      elem.style.display = 'inline';
-      console.log('✅ Last Updated successfully set to:', elem.textContent);
-    } else {
-      console.error('❌ Element with id=lastModified not found in DOM');
-    }
-  }, 200);
+// ═══════════════════════════════════════════════════════════════════
+// Last Updated Timestamp - DYNAMIC DATE (from IGM)
+// ═══════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', function() {
+  // Initialize DOM elements
+  initDOMElements();
+  
+  // Initialize autocomplete listeners
+  initUserInputListener();
+  initFileSearchListener();
+  
+  // Initialize dropdown listeners (category/question select)
+  initDropdownListeners();
+  
+  // Initialize language buttons and TTS
+  initLanguageAndTTS();
+  
+  // Initialize music toggle
+  initMusicToggle();
+  
+  // Set last modified date - DYNAMIC (like IGM)
+  const lastModifiedDate = new Date(document.lastModified);
+  const elem = document.getElementById('lastModified');
+  if (elem) {
+    elem.textContent = lastModifiedDate.toLocaleDateString('en-US', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    }) + ' at ' + lastModifiedDate.toLocaleTimeString('en-US', {
+      hour: '2-digit', minute: '2-digit'
+    });
+    elem.style.display = 'inline';
+  }
 });
 </script>
 
