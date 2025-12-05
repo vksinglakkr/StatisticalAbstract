@@ -139,11 +139,11 @@
           
           const columns = line.split('\t');
           if (columns.length >= 3) {
-            const question = columns[0].trim();
-            const sec_code = columns[1].trim();
-            const chp_code = columns[2].trim();
+            const question = columns[0] ? columns[0].trim() : '';
+            const sec_code = columns[1] ? columns[1].trim() : '';
+            const chp_code = columns[2] ? columns[2].trim() : '';
             
-            if (question && sec_code && chp_code) {
+            if (question && question.length > 1 && sec_code && chp_code) {
               masterFileData.push({
                 chapter_name: question,
                 sec_code: sec_code,
@@ -155,15 +155,17 @@
         }
         
         log(`✅ SUCCESS! Loaded ${masterFileData.length} questions`);
+        log(`First 3 questions:`);
+        masterFileData.slice(0, 3).forEach((item, idx) => {
+          log(`${idx + 1}. "${item.chapter_name}" (${item.sec_code}/${item.chp_code})`);
+        });
+        
         statusEl.className = 'status success';
         statusEl.innerHTML = `✅ <strong>Loaded ${masterFileData.length} questions!</strong> You can now type in the box below.`;
         
         // Enable input
         userInput.disabled = false;
         userInput.focus();
-        
-        log('Sample data:');
-        log(JSON.stringify(masterFileData.slice(0, 3), null, 2));
         
       } catch (error) {
         log(`❌ ERROR: ${error.message}`);
