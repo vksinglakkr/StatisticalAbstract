@@ -5,4 +5,9 @@ v4.0-RC       → Release Candidate, final testing
 v4.1-STABLE   → All bugs fixed, production ready
 v4.1-FINAL    → Officially released, stable version
 
+n8n does not have 
+❌ fetch - not available
+❌ URLSearchParams - not available
+❌ $http - not available
+
 
