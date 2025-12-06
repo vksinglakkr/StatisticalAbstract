@@ -1453,8 +1453,9 @@ function initDOMElements() {
   autocompleteDropdown = document.getElementById('autocompleteDropdown');
 }
 
+// UPDATED selectQueryType function with cosmetic fixes
 function selectQueryType(type) {
-  if (!categorySelect) initDOMElements(); // Initialize if not done yet
+  if (!categorySelect) initDOMElements();
   
   selectedQueryType = type;
   
@@ -1464,16 +1465,30 @@ function selectQueryType(type) {
     document.querySelector('.radio-option:last-of-type');
   clickedOption.classList.add('selected');
   
+  // ✅ FIX 1: Clear textbox when switching radio buttons
+  userInput.value = '';
+  autocompleteDropdown.style.display = 'none';
+  
   if (type === 'statistics') {
     document.getElementById('statisticsRadio').checked = true;
     document.getElementById('userInput').placeholder = 'Ask about statistical concepts... (e.g., What is GDP? Explain literacy rate)';
+    
+    // ✅ FIX 2: Make textbox editable for statistics mode
+    userInput.readOnly = false;
+    userInput.style.backgroundColor = '';
+    userInput.style.cursor = 'text';
     
     // Show quick questions
     document.getElementById('quickQuestionsSection').style.display = 'block';
     
   } else {
     document.getElementById('dataRadio').checked = true;
-    document.getElementById('userInput').placeholder = 'Ask about Haryana data... (e.g., Haryana Staff Selection)';
+    document.getElementById('userInput').placeholder = 'Select a question from dropdown...';
+    
+    // ✅ FIX 2: Make textbox read-only for data mode
+    userInput.readOnly = true;
+    userInput.style.backgroundColor = '#f3f4f6';
+    userInput.style.cursor = 'not-allowed';
     
     // Hide quick questions
     document.getElementById('quickQuestionsSection').style.display = 'none';
@@ -1488,7 +1503,6 @@ function selectQueryType(type) {
   buildAllQuestionsList();
   questionSection.style.display = 'block';
 }
-
 
 function loadCategories() {
   categorySelect.innerHTML = '<option value="" selected disabled>Select Topic</option>';
@@ -2214,16 +2228,15 @@ function performFileSearch(query) {
   }
 }
 
+// UPDATED displayFileAutocomplete function - shows only questions
 function displayFileAutocomplete(results, dropdown) {
   let html = '';
   
   results.forEach(item => {
+    // ✅ FIX 3: Show only question text in autocomplete
     html += `
       <div class="autocomplete-item" data-question="${item.chapter_name}" data-item='${JSON.stringify(item)}'>
         <div style="font-weight: 600;">${item.chapter_name}</div>
-        <div style="font-size: 0.75rem; color: #666; margin-top: 4px;">
-          📁 ${item.sec_code} | 📄 Ch.${item.chp_code}
-        </div>
       </div>
     `;
   });
