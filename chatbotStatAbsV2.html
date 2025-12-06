@@ -1453,7 +1453,14 @@ function initDOMElements() {
   autocompleteDropdown = document.getElementById('autocompleteDropdown');
 }
 
-// UPDATED selectQueryType function with cosmetic fixes
+// ============================================================================
+// STATABS CHATBOT - CORRECTED FUNCTION UPDATES
+// ============================================================================
+// Copy your original HTML file and replace these functions with the code below
+// ============================================================================
+
+// FUNCTION 1: selectQueryType (Replace around line 1595)
+// ============================================================================
 function selectQueryType(type) {
   if (!categorySelect) initDOMElements();
   
@@ -1471,9 +1478,9 @@ function selectQueryType(type) {
   
   if (type === 'statistics') {
     document.getElementById('statisticsRadio').checked = true;
-    document.getElementById('userInput').placeholder = 'Ask about statistical concepts... (e.g., What is GDP? Explain literacy rate)';
+    document.getElementById('userInput').placeholder = 'Type your question here...';
     
-    // ✅ FIX 2: Make textbox editable for statistics mode
+    // Make textbox fully editable for statistics mode
     userInput.readOnly = false;
     userInput.style.backgroundColor = '';
     userInput.style.cursor = 'text';
@@ -1483,12 +1490,13 @@ function selectQueryType(type) {
     
   } else {
     document.getElementById('dataRadio').checked = true;
-    document.getElementById('userInput').placeholder = 'Select a question from dropdown...';
+    document.getElementById('userInput').placeholder = 'Start typing to search questions...';
     
-    // ✅ FIX 2: Make textbox read-only for data mode
-    userInput.readOnly = true;
-    userInput.style.backgroundColor = '#f3f4f6';
-    userInput.style.cursor = 'not-allowed';
+    // ✅ FIX 2 CORRECTED: Keep textbox editable so dropdown works!
+    // User can type to search, but we'll guide them with placeholder
+    userInput.readOnly = false;
+    userInput.style.backgroundColor = '';
+    userInput.style.cursor = 'text';
     
     // Hide quick questions
     document.getElementById('quickQuestionsSection').style.display = 'none';
@@ -2228,12 +2236,14 @@ function performFileSearch(query) {
   }
 }
 
-// UPDATED displayFileAutocomplete function - shows only questions
+// ============================================================================
+// FUNCTION 2: displayFileAutocomplete (Replace around line 2170)
+// ============================================================================
 function displayFileAutocomplete(results, dropdown) {
   let html = '';
   
   results.forEach(item => {
-    // ✅ FIX 3: Show only question text in autocomplete
+    // ✅ FIX 3: Show only question text in autocomplete (no chapter/sector codes)
     html += `
       <div class="autocomplete-item" data-question="${item.chapter_name}" data-item='${JSON.stringify(item)}'>
         <div style="font-weight: 600;">${item.chapter_name}</div>
@@ -2254,6 +2264,7 @@ function displayFileAutocomplete(results, dropdown) {
     });
   });
 }
+
 
 function selectFileItem(item) {
   selectedFileItem = item;
