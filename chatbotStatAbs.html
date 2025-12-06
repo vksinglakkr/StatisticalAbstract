@@ -1453,8 +1453,16 @@ function initDOMElements() {
   autocompleteDropdown = document.getElementById('autocompleteDropdown');
 }
 
+// ============================================================================
+// STATABS CHATBOT - CORRECTED FUNCTION UPDATES
+// ============================================================================
+// Copy your original HTML file and replace these functions with the code below
+// ============================================================================
+
+// FUNCTION 1: selectQueryType (Replace around line 1595)
+// ============================================================================
 function selectQueryType(type) {
-  if (!categorySelect) initDOMElements(); // Initialize if not done yet
+  if (!categorySelect) initDOMElements();
   
   selectedQueryType = type;
   
@@ -1464,16 +1472,31 @@ function selectQueryType(type) {
     document.querySelector('.radio-option:last-of-type');
   clickedOption.classList.add('selected');
   
+  // ✅ FIX 1: Clear textbox when switching radio buttons
+  userInput.value = '';
+  autocompleteDropdown.style.display = 'none';
+  
   if (type === 'statistics') {
     document.getElementById('statisticsRadio').checked = true;
-    document.getElementById('userInput').placeholder = 'Ask about statistical concepts... (e.g., What is GDP? Explain literacy rate)';
+    document.getElementById('userInput').placeholder = 'Type your question here...';
+    
+    // Make textbox fully editable for statistics mode
+    userInput.readOnly = false;
+    userInput.style.backgroundColor = '';
+    userInput.style.cursor = 'text';
     
     // Show quick questions
     document.getElementById('quickQuestionsSection').style.display = 'block';
     
   } else {
     document.getElementById('dataRadio').checked = true;
-    document.getElementById('userInput').placeholder = 'Ask about Haryana data... (e.g., Haryana Staff Selection)';
+    document.getElementById('userInput').placeholder = 'Start typing to search questions...';
+    
+    // ✅ FIX 2 CORRECTED: Keep textbox editable so dropdown works!
+    // User can type to search, but we'll guide them with placeholder
+    userInput.readOnly = false;
+    userInput.style.backgroundColor = '';
+    userInput.style.cursor = 'text';
     
     // Hide quick questions
     document.getElementById('quickQuestionsSection').style.display = 'none';
@@ -1488,7 +1511,6 @@ function selectQueryType(type) {
   buildAllQuestionsList();
   questionSection.style.display = 'block';
 }
-
 
 function loadCategories() {
   categorySelect.innerHTML = '<option value="" selected disabled>Select Topic</option>';
@@ -2214,16 +2236,17 @@ function performFileSearch(query) {
   }
 }
 
+// ============================================================================
+// FUNCTION 2: displayFileAutocomplete (Replace around line 2170)
+// ============================================================================
 function displayFileAutocomplete(results, dropdown) {
   let html = '';
   
   results.forEach(item => {
+    // ✅ FIX 3: Show only question text in autocomplete (no chapter/sector codes)
     html += `
       <div class="autocomplete-item" data-question="${item.chapter_name}" data-item='${JSON.stringify(item)}'>
         <div style="font-weight: 600;">${item.chapter_name}</div>
-        <div style="font-size: 0.75rem; color: #666; margin-top: 4px;">
-          📁 ${item.sec_code} | 📄 Ch.${item.chp_code}
-        </div>
       </div>
     `;
   });
@@ -2241,6 +2264,7 @@ function displayFileAutocomplete(results, dropdown) {
     });
   });
 }
+
 
 function selectFileItem(item) {
   selectedFileItem = item;
