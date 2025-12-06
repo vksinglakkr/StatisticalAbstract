@@ -1,3 +1,5 @@
+
+
 v4.0-ALPHA    → Early testing, many bugs expected
 v4.0-BETA     → Feature complete, still finding bugs
 v4.0-CLEAN    → Removed old code, streamlined features
@@ -10,4 +12,14 @@ n8n does not have
 ❌ URLSearchParams - not available
 ❌ $http - not available
 
+📁 Folder: StatAbs/2021-22 (stored in asset_folder, NOT in public_id)
+📄 Filename pattern: Irrigation020314_zxxkto
 
+Irrigation = section (10 chars)
+02 = chapter (2 digits)
+0314 = page number (4 digits)
+_zxxkto = Cloudinary's random suffix
+
+
+
+⚠️ IMPORTANT: The public_id does NOT include the folder path!
