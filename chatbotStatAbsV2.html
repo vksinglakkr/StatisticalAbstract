@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Haryana DataVista
- – Statistical Abstract Chatbot</title>
+<title>HARYANA DATAVISTA – Haryana Statistical Insight Assistant [v4.1-STABLE]</title>
 <!-- VERSION: 4.1-STABLE - Last Modified Date Fixed, Music Toggle Safe Check Added -->
   <!-- VERSION: 4.0-CLEAN - File search removed, Last Modified fixed, FINAL VERSION -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -584,6 +583,68 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
   .radio-label-title { font-size: 14px; }
   .radio-label-desc { font-size: 10.5px; }
 }   
+
+/* ===== Duo diagonal cards (Haryana DataVista) ===== */
+.diagonal-card{
+  position:relative; border-radius:20px; overflow:hidden; height:170px;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+  background:transparent;
+}
+.diagonal-card::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    linear-gradient(135deg, transparent 49.5%, rgba(255,255,255,.7) 50%, transparent 50.5%);
+  mix-blend-mode:soft-light;
+}
+
+.diagonal-half{
+  position:absolute; inset:0; display:flex; align-items:flex-start; gap:.75rem;
+  padding:18px; color:#0f172a;
+}
+.diagonal-half h4{ font-weight:800; font-size:1rem; line-height:1.2; }
+.diagonal-half p{ font-size:.72rem; opacity:.9; margin-top:2px; }
+.diagonal-half .go{
+  margin-top:.5rem; display:inline-block; padding:.35rem .7rem; font-weight:700;
+  border-radius:.65rem; font-size:.78rem;
+  color:#fff; text-decoration:none;
+  box-shadow:0 4px 10px rgba(0,0,0,.12);
+}
+
+.diagonal-left{ clip-path:polygon(0 0, 100% 0, 0 100%); }
+.diagonal-right{ clip-path:polygon(100% 0, 100% 100%, 0 100%); display:flex; justify-content:flex-end; text-align:right; }
+
+.diagonal-icon{ width:34px; height:34px; flex:0 0 34px; }
+
+.card-1 .diagonal-left{
+  background:linear-gradient(135deg,#e0f2fe,#dbeafe);
+  border-left:4px solid #2563eb;
+}
+.card-1 .diagonal-right{
+  background:linear-gradient(135deg,#dcfce7,#d1fae5);
+  border-right:4px solid #16a34a;
+}
+.card-1 .left-btn{ background:#2563eb; }
+.card-1 .right-btn{ background:#16a34a; }
+
+.card-2 .diagonal-left{
+  background:linear-gradient(135deg,#f3e8ff,#ede9fe);
+  border-left:4px solid #7c3aed;
+}
+.card-2 .diagonal-right{
+  background:linear-gradient(135deg,#ffedd5,#fee7d3);
+  border-right:4px solid #ea580c;
+}
+.card-2 .left-btn{ background:#7c3aed; }
+.card-2 .right-btn{ background:#ea580c; }
+
+@media (max-width:640px){
+  .diagonal-card{ height:auto; }
+  .diagonal-card::after{ display:none; }
+  .diagonal-half{ position:relative; clip-path:none; inset:auto; width:100%; border:none; border-radius:0; padding:14px 16px; }
+  .diagonal-right{ justify-content:flex-start; text-align:left; }
+  .diagonal-half + .diagonal-half{ border-top:1px dashed rgba(15,23,42,.12); }
+}
+
 </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
@@ -602,10 +663,9 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
       </div>
       
       <div class="floating">
-        <h1 class="text-5xl md:text-6xl font-black gradient-text mb-2 playfair tracking-tight">Haryana DataVista
-</h1>
+        <h1 class="text-5xl md:text-6xl font-black gradient-text mb-2 playfair tracking-tight">HARYANA DATAVISTA</h1>
       </div>
-      <p class="text-sm text-gray-600 font-semibold mb-3 tracking-wide">Statistical Abstract Chatbot</p>
+      <p class="text-sm text-gray-600 font-semibold mb-3 tracking-wide">Haryana Statistical Insight Assistant</p>
       
       <div class="w-full max-w-2xl mx-auto px-4">
 <!-- SOLUTION 2: Conditional nowrap (Better for very small screens) -->
@@ -703,83 +763,75 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
       </div>
 
 
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-4 mt-4 px-2">
-  <!-- Haryana Statistical Abstract Card -->
-  <div class="event-card bg-gradient-to-br from-blue-50 to-blue-100 border-l-4 border-blue-600 shadow-lg rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:scale-105">
-    <div class="flex items-center gap-3 mb-3">
-      <svg class="w-10 h-10 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+
+<div class="space-y-4 md:space-y-6 mb-4 mt-4 px-2">
+
+  <!-- Card 1: Haryana Statistical Abstract + India Statistics -->
+  <div class="diagonal-card card-1">
+    <div class="diagonal-half diagonal-left">
+      <svg class="diagonal-icon text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
       </svg>
-      <div class="flex-1">
-        <p class="font-bold text-gray-900 text-base">Haryana Statistical Abstract</p>
-        <p class="text-xs text-gray-600 font-medium">हरियाणा सांख्यिकीय सार</p>
+      <div>
+        <h4>Haryana Statistical Abstract</h4>
+        <p class="devanagari">हरियाणा सांख्यिकीय सार</p>
+        <a class="go left-btn" target="_blank"
+           href="https://esaharyana.gov.in/statistical-wing-publication-reports/">
+          View Reports →
+        </a>
       </div>
     </div>
-    <div class="ml-13 space-y-1">
-      <a href="https://esaharyana.gov.in/statistical-wing-publication-reports/" target="_blank" 
-         class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600 transition-colors mt-2">
-        View Reports →
-      </a>
+
+    <div class="diagonal-half diagonal-right">
+      <div>
+        <h4>India Statistics (MoSPI)</h4>
+        <p class="devanagari">भारत सांख्यिकी</p>
+        <a class="go right-btn" target="_blank"
+           href="https://www.mospi.gov.in/publications-reports">
+          Visit MoSPI →
+        </a>
+      </div>
+      <svg class="diagonal-icon text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+      </svg>
     </div>
   </div>
 
-  <!-- India Statistical Abstract Card -->
-  <div class="event-card bg-gradient-to-br from-green-50 to-green-100 border-l-4 border-green-600 shadow-lg rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:scale-105">
-    <div class="flex items-center gap-3 mb-3">
-      <svg class="w-10 h-10 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+  <!-- Card 2: Census Data + Open Data -->
+  <div class="diagonal-card card-2">
+    <div class="diagonal-half diagonal-left">
+      <svg class="diagonal-icon text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
       </svg>
-      <div class="flex-1">
-        <p class="font-bold text-gray-900 text-base">India Statistics</p>
-        <p class="text-xs text-gray-600 font-medium">भारत सांख्यिकी</p>
+      <div>
+        <h4>Census Data</h4>
+        <p class="devanagari">जनगणना डेटा</p>
+        <a class="go left-btn" target="_blank" href="https://censusindia.gov.in/">
+          View Census →
+        </a>
       </div>
     </div>
-    <div class="ml-13 space-y-1">
-      <a href="https://www.mospi.gov.in/publications-reports" target="_blank" 
-         class="inline-block bg-green-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-600 transition-colors mt-2">
-        Visit MoSPI →
-      </a>
+
+    <div class="diagonal-half diagonal-right">
+      <div>
+        <h4>Open Data Portal</h4>
+        <p class="devanagari">खुला डेटा</p>
+        <a class="go right-btn" target="_blank" href="https://data.gov.in/">
+          Explore Data →
+        </a>
+      </div>
+      <svg class="diagonal-icon text-orange-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+      </svg>
     </div>
   </div>
 
-  <!-- Census Data Card -->
-  <div class="event-card bg-gradient-to-br from-purple-50 to-purple-100 border-l-4 border-purple-600 shadow-lg rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:scale-105">
-    <div class="flex items-center gap-3 mb-3">
-      <svg class="w-10 h-10 text-purple-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-      </svg>
-      <div class="flex-1">
-        <p class="font-bold text-gray-900 text-base">Census Data</p>
-        <p class="text-xs text-gray-600 font-medium">जनगणना डेटा</p>
-      </div>
-    </div>
-    <div class="ml-13 space-y-1">
-      <a href="https://censusindia.gov.in/" target="_blank" 
-         class="inline-block bg-purple-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-purple-600 transition-colors mt-2">
-        View Census →
-      </a>
-    </div>
-  </div>
-
-  <!-- Open Data Portal Card -->
-  <div class="event-card bg-gradient-to-br from-orange-50 to-orange-100 border-l-4 border-orange-600 shadow-lg rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:scale-105">
-    <div class="flex items-center gap-3 mb-3">
-      <svg class="w-10 h-10 text-orange-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
-      </svg>
-      <div class="flex-1">
-        <p class="font-bold text-gray-900 text-base">Open Data</p>
-        <p class="text-xs text-gray-600 font-medium">खुला डेटा</p>
-      </div>
-    </div>
-    <div class="ml-13 space-y-1">
-      <a href="https://data.gov.in/" target="_blank" 
-         class="inline-block bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600 transition-colors mt-2">
-        Explore Data →
-      </a>
-    </div>
-  </div>
 </div>
+
 
       <div class="quote-section mb-1">
         <p class="text-xl text-gray-900 text-center leading-relaxed mb-2 relative z-10 font-semibold italic">
@@ -925,7 +977,7 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
               </svg>
-              Getting Started with STATS SAHAYAK
+              Getting Started with HARYANA DATAVISTA
             </h3>
             <p class="text-gray-700 text-sm mb-3">Learn the basics of using the chatbot</p>
             <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_1" target="_blank" 
@@ -1506,7 +1558,7 @@ let selectedFileItem = null;
 // COMPREHENSIVE DEBUG LOGGING
 // ═══════════════════════════════════════════════════════════════════
 console.log('════════════════════════════════════════════════════════');
-console.log('🔍 STATS SAHAYAK DEBUG MODE');
+console.log('🔍 HARYANA DATAVISTA DEBUG MODE');
 console.log('════════════════════════════════════════════════════════');
 console.log('✓ Script loading started');
 console.log('✓ GOOGLE_SHEET_URL:', GOOGLE_SHEET_URL);
