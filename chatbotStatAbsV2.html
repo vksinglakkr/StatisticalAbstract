@@ -199,6 +199,26 @@ body::before {
   overflow-wrap: break-word; hyphens: auto;
 }
 
+/* Styles for links in AI response */
+#modalAnswer a {
+  color: #2563eb;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: all 0.2s;
+  word-break: break-all;
+}
+
+#modalAnswer a:hover {
+  color: #1d4ed8;
+  background: rgba(37, 99, 235, 0.1);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+#modalAnswer a:visited {
+  color: #7c3aed;
+}
+
 .radio-label-desc {
   font-size: 12px; color: #6b7280; line-height: 1.4;
   word-wrap: break-word; overflow-wrap: break-word;
@@ -2023,7 +2043,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
   document.getElementById('ttsLabel').textContent = 'Listen';
 
   document.getElementById('modalQuestion').textContent = question;
-  document.getElementById('modalAnswer').textContent = 'Thinking...';
+  document.getElementById('modalAnswer').innerHTML = 'Thinking...';
   document.getElementById('aiModal').classList.remove('hidden');
   
   // Hide related questions section initially
@@ -2079,9 +2099,14 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
     }
     
     const aiResponse = data.answer || data.error || 'No response received.';
-    const disclaimer = "\n────────────────\n⚠️ Disclaimer: This is an AI-generated response for guidance purposes only. Please verify important information from official sources.";
-    const fullResponse = aiResponse + disclaimer;
-    document.getElementById('modalAnswer').textContent = fullResponse;
+    const disclaimer = "<br><br>────────────────<br>⚠️ <em>Disclaimer: This is an AI-generated response for guidance purposes only. Please verify important information from official sources.</em>";
+    
+    // Convert newlines to <br> tags for proper display
+    const formattedAnswer = aiResponse.replace(/\n/g, '<br>');
+    const fullResponse = formattedAnswer + disclaimer;
+    
+    // Use innerHTML to render HTML links and formatting
+    document.getElementById('modalAnswer').innerHTML = fullResponse;
     
     // Extract and parse related questions
     let relatedQuestions = null;
@@ -2140,7 +2165,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
     } else {
       errorMessage += error.message;
     }
-    document.getElementById('modalAnswer').textContent = errorMessage;
+    document.getElementById('modalAnswer').innerHTML = errorMessage.replace(/\n/g, '<br>');
     if (relatedSection) {
       relatedSection.style.display = 'none';
     }
