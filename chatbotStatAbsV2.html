@@ -2027,7 +2027,10 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
   document.getElementById('aiModal').classList.remove('hidden');
   
   // Hide related questions section initially
-  document.getElementById('relatedQuestionsSection').style.display = 'none';
+  const relatedSection = document.getElementById('relatedQuestionsSection');
+  if (relatedSection) {
+    relatedSection.style.display = 'none';
+  }
   
   // Hide autocomplete dropdown
   autocompleteDropdown.style.display = 'none';
@@ -2056,29 +2059,48 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
     });
 
     const data = await response.json();
-    console.log('Webhook response:', data);
+    console.log('Full webhook response:', data);
     
     const aiResponse = data.answer || data.error || 'No response received.';
     const disclaimer = "\n────────────────\n⚠️ Disclaimer: This is an AI-generated response for guidance purposes only. Please verify important information from official sources.";
     const fullResponse = aiResponse + disclaimer;
     document.getElementById('modalAnswer').textContent = fullResponse;
     
-    // Display related questions if they exist
-    if (data.relatedQuestions && Array.isArray(data.relatedQuestions) && data.relatedQuestions.length > 0) {
-      console.log('Found related questions:', data.relatedQuestions);
-      displayRelatedQuestions(data.relatedQuestions);
+    // Check for related questions - try both direct property and nested
+    let relatedQuestions = null;
+    
+    // Try direct property
+    if (data.relatedQuestions) {
+      relatedQuestions = data.relatedQuestions;
+    }
+    // Try nested in [[Prototype]]
+    else if (data[0] && data[0].relatedQuestions) {
+      relatedQuestions = data[0].relatedQuestions;
+    }
+    
+    console.log('Extracted relatedQuestions:', relatedQuestions);
+    console.log('Type:', typeof relatedQuestions);
+    console.log('Is Array?', Array.isArray(relatedQuestions));
+    
+    // Display if we found them
+    if (relatedQuestions && Array.isArray(relatedQuestions) && relatedQuestions.length > 0) {
+      console.log('Displaying related questions:', relatedQuestions);
+      displayRelatedQuestions(relatedQuestions);
     } else {
-      console.log('No related questions in response');
-      document.getElementById('relatedQuestionsSection').style.display = 'none';
+      console.log('No valid related questions found');
+      if (relatedSection) {
+        relatedSection.style.display = 'none';
+      }
     }
     
   } catch (error) {
     console.error('Error:', error);
     document.getElementById('modalAnswer').textContent = 'Connection failed: ' + error.message;
-    document.getElementById('relatedQuestionsSection').style.display = 'none';
+    if (relatedSection) {
+      relatedSection.style.display = 'none';
+    }
   }
-});
-// ✅ NEW FUNCTION: Display Related Questions
+});// ✅ NEW FUNCTION: Display Related Questions
 function displayRelatedQuestions(questions) {
   const section = document.getElementById('relatedQuestionsSection');
   const listContainer = document.getElementById('relatedQuestionsList');
