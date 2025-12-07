@@ -601,7 +601,27 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
     padding: 14px !important;
   }
 }
+/* Related Questions Styling */
+#relatedQuestionsSection {
+  animation: slideIn 0.4s ease-out;
+}
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#relatedQuestionsList button:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.15);
+}
+   
 </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
@@ -2041,6 +2061,55 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
     document.getElementById('modalAnswer').textContent = 'Connection failed: ' + error.message;
   }
 });
+// ✅ NEW FUNCTION: Display Related Questions
+function displayRelatedQuestions(questions) {
+  const section = document.getElementById('relatedQuestionsSection');
+  const listContainer = document.getElementById('relatedQuestionsList');
+  
+  if (!questions || questions.length === 0) {
+    section.style.display = 'none';
+    return;
+  }
+  
+  // Clear previous questions
+  listContainer.innerHTML = '';
+  
+  // Add each related question as a clickable button
+  questions.forEach((q, index) => {
+    const questionBtn = document.createElement('button');
+    questionBtn.className = 'w-full text-left p-3 bg-white hover:bg-purple-50 border-2 border-purple-200 hover:border-purple-400 rounded-xl transition-all duration-200 text-sm font-medium text-gray-700 hover:text-purple-700 flex items-start gap-2';
+    questionBtn.innerHTML = `
+      <span class="flex-shrink-0 w-6 h-6 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xs font-bold mt-0.5">
+        ${index + 1}
+      </span>
+      <span class="flex-1">${q}</span>
+      <svg class="w-4 h-4 flex-shrink-0 mt-1 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    `;
+    
+    // Click handler to ask the related question
+    questionBtn.addEventListener('click', () => {
+      // Close current modal
+      document.getElementById('aiModal').classList.add('hidden');
+      const mainContainer = document.querySelector('.container-main');
+      if (mainContainer) mainContainer.style.visibility = 'visible';
+      
+      // Set the question in input field
+      userInput.value = q;
+      
+      // Auto-submit after a brief delay
+      setTimeout(() => {
+        document.getElementById('submitBtn').click();
+      }, 300);
+    });
+    
+    listContainer.appendChild(questionBtn);
+  });
+  
+  section.style.display = 'block';
+}
+  
 
 let recognition;
 let isRecording = false;
