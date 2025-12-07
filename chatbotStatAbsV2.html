@@ -584,6 +584,24 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
   .radio-label-title { font-size: 14px; }
   .radio-label-desc { font-size: 10.5px; }
 }   
+   /* Fix icon alignment for last two cards (mobile) */
+@media (max-width: 640px) {
+  .event-card svg {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* prevents icon from jumping upward */
+  .event-card .flex {
+    align-items: flex-start !important;
+  }
+
+  /* Optional: reduce card padding for tighter fit */
+  .event-card {
+    padding: 14px !important;
+  }
+}
+
 </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
