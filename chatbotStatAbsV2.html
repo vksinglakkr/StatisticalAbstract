@@ -2066,25 +2066,30 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
     const fullResponse = aiResponse + disclaimer;
     document.getElementById('modalAnswer').textContent = fullResponse;
     
-    // Check for related questions - try both direct property and nested
+    // Extract and parse related questions
     let relatedQuestions = null;
     
-    // Try direct property
     if (data.relatedQuestions) {
-      relatedQuestions = data.relatedQuestions;
-    }
-    // Try nested in [[Prototype]]
-    else if (data[0] && data[0].relatedQuestions) {
-      relatedQuestions = data[0].relatedQuestions;
+      // If it's already an array, use it
+      if (Array.isArray(data.relatedQuestions)) {
+        relatedQuestions = data.relatedQuestions;
+      }
+      // If it's a string starting with "=", it's an n8n expression - parse it
+      else if (typeof data.relatedQuestions === 'string') {
+        // Remove the leading "=" if present
+        let questionsString = data.relatedQuestions.replace(/^=/, '');
+        // Split by comma (assuming questions don't contain commas)
+        relatedQuestions = questionsString.split(',').map(q => q.trim()).filter(q => q.length > 0);
+      }
     }
     
-    console.log('Extracted relatedQuestions:', relatedQuestions);
-    console.log('Type:', typeof relatedQuestions);
-    console.log('Is Array?', Array.isArray(relatedQuestions));
+    console.log('Parsed relatedQuestions:', relatedQuestions);
+    console.log('Is Array now?', Array.isArray(relatedQuestions));
+    console.log('Length:', relatedQuestions ? relatedQuestions.length : 0);
     
-    // Display if we found them
+    // Display if we have valid questions
     if (relatedQuestions && Array.isArray(relatedQuestions) && relatedQuestions.length > 0) {
-      console.log('Displaying related questions:', relatedQuestions);
+      console.log('Displaying related questions');
       displayRelatedQuestions(relatedQuestions);
     } else {
       console.log('No valid related questions found');
@@ -2100,7 +2105,8 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
       relatedSection.style.display = 'none';
     }
   }
-});// ✅ NEW FUNCTION: Display Related Questions
+});  
+  // ✅ NEW FUNCTION: Display Related Questions
 function displayRelatedQuestions(questions) {
   const section = document.getElementById('relatedQuestionsSection');
   const listContainer = document.getElementById('relatedQuestionsList');
