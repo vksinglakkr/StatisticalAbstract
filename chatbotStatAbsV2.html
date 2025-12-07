@@ -2026,7 +2026,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
   document.getElementById('modalAnswer').textContent = 'Thinking...';
   document.getElementById('aiModal').classList.remove('hidden');
   
-  // ✅ Hide related questions section initially
+  // Hide related questions section initially
   document.getElementById('relatedQuestionsSection').style.display = 'none';
   
   // Hide autocomplete dropdown
@@ -2056,35 +2056,26 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
     });
 
     const data = await response.json();
-    console.log('📥 Webhook response:', data); // Debug log
+    console.log('Webhook response:', data);
     
     const aiResponse = data.answer || data.error || 'No response received.';
     const disclaimer = "\n────────────────\n⚠️ Disclaimer: This is an AI-generated response for guidance purposes only. Please verify important information from official sources.";
-    const fullResponse = aiResponse + `<span style="line-height: 1.2; display: block; margin-top: 8px;">${disclaimer}</span>`;
-    document.getElementById('modalAnswer').innerHTML = fullResponse;
+    const fullResponse = aiResponse + disclaimer;
+    document.getElementById('modalAnswer').textContent = fullResponse;
     
-    // ✅ ADD THIS: Display related questions if they exist
+    // Display related questions if they exist
     if (data.relatedQuestions && Array.isArray(data.relatedQuestions) && data.relatedQuestions.length > 0) {
-      console.log('✅ Found related questions:', data.relatedQuestions);
+      console.log('Found related questions:', data.relatedQuestions);
       displayRelatedQuestions(data.relatedQuestions);
     } else {
-      console.log('❌ No related questions in response');
+      console.log('No related questions in response');
       document.getElementById('relatedQuestionsSection').style.display = 'none';
     }
     
   } catch (error) {
-    console.error('❌ Error:', error);
+    console.error('Error:', error);
     document.getElementById('modalAnswer').textContent = 'Connection failed: ' + error.message;
     document.getElementById('relatedQuestionsSection').style.display = 'none';
-  }
-});
-    const data = await response.json();
-    const aiResponse = data.answer || data.error || 'No response received.';
-    const disclaimer = "\n────────────────\n⚠️ Disclaimer: This is an AI-generated response for guidance purposes only. Please verify important information from official sources.";
-    const fullResponse = aiResponse + `<span style="line-height: 1.2; display: block; margin-top: 8px;">${disclaimer}</span>`;
-    document.getElementById('modalAnswer').innerHTML = fullResponse;
-  } catch (error) {
-    document.getElementById('modalAnswer').textContent = 'Connection failed: ' + error.message;
   }
 });
 // ✅ NEW FUNCTION: Display Related Questions
