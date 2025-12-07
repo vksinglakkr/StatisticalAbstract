@@ -2030,8 +2030,8 @@ function initLanguageAndTTS() {
   }
 });
     
-// Conversation history to maintain context
-let conversationHistory = [];
+// Conversation history to maintain context - make it global
+window.conversationHistory = [];
 
 document.getElementById('submitBtn').addEventListener('click', async () => {
   const question = userInput.value.trim();
@@ -2075,20 +2075,27 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
   try {
     const webhookUrl = 'https://n8n-workflow-test.duckdns.org/webhook/stat-abstract';
 
+    // Prepare payload - only include conversationHistory if it has content
+    const payload = {
+      question: question,
+      language: selectedLanguage,
+      queryType: selectedQueryType === 'statistics' ? 'STATISTICAL_CONCEPT_QUERY' : 'STATISTICAL_DATA_QUERY',
+      mobNo: 'anonymous',
+      deviceType: deviceType,
+      browser: browser,
+      timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      userAgent: navigator.userAgent
+    };
+    
+    // Only add conversationHistory if it has items
+    if (window.conversationHistory.length > 0) {
+      payload.conversationHistory = window.conversationHistory;
+    }
+
     const response = await fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        question: question,
-        language: selectedLanguage,
-        queryType: selectedQueryType === 'statistics' ? 'STATISTICAL_CONCEPT_QUERY' : 'STATISTICAL_DATA_QUERY',
-        mobNo: 'anonymous',
-        deviceType: deviceType,
-        browser: browser,
-        timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-        userAgent: navigator.userAgent,
-        conversationHistory: conversationHistory  // Include conversation history
-      })
+      body: JSON.stringify(payload)
     });
 
     // Check if response is ok
@@ -2122,17 +2129,17 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
     document.getElementById('modalAnswer').innerHTML = fullResponse;
     
     // Add this Q&A to conversation history (store without disclaimer for cleaner context)
-    conversationHistory.push({
+    window.conversationHistory.push({
       question: question,
       answer: aiResponse
     });
     
     // Keep only last 5 Q&A pairs to avoid sending too much data
-    if (conversationHistory.length > 5) {
-      conversationHistory.shift(); // Remove oldest
+    if (window.conversationHistory.length > 5) {
+      window.conversationHistory.shift(); // Remove oldest
     }
     
-    console.log('Updated conversation history:', conversationHistory);
+    console.log('Updated conversation history:', window.conversationHistory);
     
     // Update history badge
     updateHistoryBadge();
@@ -2342,7 +2349,7 @@ document.getElementById('closeBtn').onclick = () => {
 
 // New Topic button - clears conversation history
 document.getElementById('newTopicBtn').onclick = () => {
-  conversationHistory = [];
+  window.conversationHistory = [];
   updateHistoryBadge();
   alert('✨ Conversation history cleared! You can now start a new topic.');
   console.log('Conversation history cleared');
@@ -2353,9 +2360,9 @@ function updateHistoryBadge() {
   const badge = document.getElementById('historyBadge');
   const count = document.getElementById('historyCount');
   
-  if (conversationHistory.length > 0) {
+  if (window.conversationHistory && window.conversationHistory.length > 0) {
     badge.classList.remove('hidden');
-    count.textContent = conversationHistory.length;
+    count.textContent = window.conversationHistory.length;
   } else {
     badge.classList.add('hidden');
   }
