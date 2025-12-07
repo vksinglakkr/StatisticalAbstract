@@ -617,6 +617,28 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
 .card-2 .diagonal-right{ background:linear-gradient(135deg,#ffedd5,#fee7d3); border-right:4px solid #ea580c; }
 .card-2 .left-btn{ background:#7c3aed; } .card-2 .right-btn{ background:#ea580c; }
 /* Mobile stacking already inherent since this section shows only on mobile */
+/* Left section → TOP-LEFT aligned */
+.diagonal-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;   /* top */
+    align-items: flex-start;        /* left */
+}
+
+/* Right section → BOTTOM-RIGHT aligned */
+.diagonal-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;      /* bottom */
+    align-items: flex-end;          /* right */
+    text-align: right;
+    padding-bottom: 22px;           /* extra breathing space */
+    padding-right: 18px;
+}
+
+.diagonal-right h4 {
+    margin-bottom: 4px;
+}
 
 </style>
 </head>
