@@ -1633,7 +1633,7 @@ function initDOMElements() {
 // FUNCTION 1: selectQueryType (Replace around line 1595)
 // ============================================================================
 function selectQueryType(type) {
-  if (!categorySelect) initDOMElements();
+  if (!categorySelect || !questionSection) initDOMElements();
   
   selectedQueryType = type;
   
