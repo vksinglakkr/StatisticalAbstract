@@ -1852,6 +1852,7 @@ function initUserInputListener() {
   
   let html = '';
   let lastCategory = '';
+  let originalQuestion = '';
   
   matches.forEach(item => {
     if (item.category !== lastCategory) {
@@ -2106,6 +2107,17 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
     return;
   }
 
+  // ✅ NEW: Save as original question if this is NOT from a related question click
+  // (Related questions will have " | " separator)
+  if (!question.includes(' | ')) {
+    originalQuestion = question;
+    console.log('📝 Saved original question:', originalQuestion);
+  } else {
+    console.log('🔗 This is a concatenated question (original + related)');
+    // Extract the original part before " | " for future related questions
+    originalQuestion = question.split(' | ')[0];
+  }
+
   const mainContainer = document.querySelector('.container-main');
   if (mainContainer) mainContainer.style.visibility = 'hidden';
 
@@ -2114,6 +2126,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
   document.getElementById('ttsToggle').classList.remove('speaking');
   document.getElementById('ttsLabel').textContent = 'Listen';
 
+  // Display the FULL question (concatenated if it is one)
   document.getElementById('modalQuestion').textContent = question;
   document.getElementById('modalAnswer').innerHTML = 'Thinking...';
   document.getElementById('aiModal').classList.remove('hidden');
@@ -2135,9 +2148,9 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
   try {
     const webhookUrl = 'https://n8n-workflow-test.duckdns.org/webhook/stat-abstract';
 
-    // Prepare payload - only include conversationHistory if it has content
+    // ✅ Send the FULL question (concatenated or original) to webhook
     const payload = {
-      question: question,
+      question: question,  // This will be "Original | Related" if from related question
       language: selectedLanguage,
       queryType: selectedQueryType === 'statistics' ? 'STATISTICAL_CONCEPT_QUERY' : 'STATISTICAL_DATA_QUERY',
       mobNo: 'anonymous',
@@ -2152,22 +2165,21 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
       payload.conversationHistory = window.conversationHistory;
     }
 
+    console.log('📤 Sending to webhook:', payload);
+
     const response = await fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
 
-    // Check if response is ok
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    // Get response text first
     const responseText = await response.text();
     console.log('Raw webhook response:', responseText);
     
-    // Try to parse JSON
     let data;
     try {
       data = JSON.parse(responseText);
@@ -2181,52 +2193,41 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
     const aiResponse = data.answer || data.error || 'No response received.';
     const disclaimer = "<br><br>────────────────<br>⚠️ <em>Disclaimer: This is an AI-generated response for guidance purposes only. Please verify important information from official sources.</em>";
     
-    // Convert newlines to <br> tags for proper display
     const formattedAnswer = aiResponse.replace(/\n/g, '<br>');
     const fullResponse = formattedAnswer + disclaimer;
     
-    // Use innerHTML to render HTML links and formatting
     document.getElementById('modalAnswer').innerHTML = fullResponse;
     
-    // Add this Q&A to conversation history (store without disclaimer for cleaner context)
+    // Add to conversation history
     window.conversationHistory.push({
       question: question,
       answer: aiResponse
     });
     
-    // Keep only last 5 Q&A pairs to avoid sending too much data
     if (window.conversationHistory.length > 5) {
-      window.conversationHistory.shift(); // Remove oldest
+      window.conversationHistory.shift();
     }
     
     console.log('Updated conversation history:', window.conversationHistory);
     
-    // Update history badge
     updateHistoryBadge();
     
-    // Extract and parse related questions
+    // Handle related questions
     let relatedQuestions = null;
     
     if (data.relatedQuestions) {
-      // If it's already an array, use it
       if (Array.isArray(data.relatedQuestions)) {
         relatedQuestions = data.relatedQuestions;
-      }
-      // If it's a string, try to parse it
-      else if (typeof data.relatedQuestions === 'string') {
+      } else if (typeof data.relatedQuestions === 'string') {
         try {
-          // Remove the leading "=" if present (n8n expression)
           let questionsString = data.relatedQuestions.replace(/^=/, '');
           
-          // Try to parse as JSON array first (for stringified arrays)
           try {
             relatedQuestions = JSON.parse(questionsString);
             if (!Array.isArray(relatedQuestions)) {
-              // If parsed but not an array, split by comma
               relatedQuestions = questionsString.split(',').map(q => q.trim()).filter(q => q.length > 0);
             }
           } catch {
-            // If JSON parse fails, split by comma
             relatedQuestions = questionsString.split(',').map(q => q.trim()).filter(q => q.length > 0);
           }
         } catch (parseError) {
@@ -2237,10 +2238,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
     }
     
     console.log('Parsed relatedQuestions:', relatedQuestions);
-    console.log('Is Array now?', Array.isArray(relatedQuestions));
-    console.log('Length:', relatedQuestions ? relatedQuestions.length : 0);
     
-    // Display if we have valid questions
     if (relatedQuestions && Array.isArray(relatedQuestions) && relatedQuestions.length > 0) {
       console.log('Displaying related questions');
       displayRelatedQuestions(relatedQuestions);
@@ -2266,7 +2264,8 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
       relatedSection.style.display = 'none';
     }
   }
-});  
+});
+
   // ✅ NEW FUNCTION: Display Related Questions
 function displayRelatedQuestions(questions) {
   const section = document.getElementById('relatedQuestionsSection');
@@ -2294,15 +2293,22 @@ function displayRelatedQuestions(questions) {
       </svg>
     `;
     
-    // Click handler to ask the related question
+    // ✅ MODIFIED: Click handler with CONCATENATION
     questionBtn.addEventListener('click', () => {
+      console.log('🔗 Related question clicked:', q);
+      console.log('📝 Original question was:', originalQuestion);
+      
       // Close current modal
       document.getElementById('aiModal').classList.add('hidden');
       const mainContainer = document.querySelector('.container-main');
       if (mainContainer) mainContainer.style.visibility = 'visible';
       
-      // Set the question in input field
-      userInput.value = q;
+      // ✅ CONCATENATE: Original Question | Related Question
+      const concatenatedQuestion = `${originalQuestion} | ${q}`;
+      console.log('✅ Concatenated question:', concatenatedQuestion);
+      
+      // Set the concatenated question in input field
+      userInput.value = concatenatedQuestion;
       
       // Auto-submit after a brief delay
       setTimeout(() => {
