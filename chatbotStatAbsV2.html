@@ -1633,9 +1633,24 @@ function initDOMElements() {
 // FUNCTION 1: selectQueryType (Replace around line 1595)
 // ============================================================================
 function selectQueryType(type) {
-  if (!categorySelect || !questionSection) initDOMElements();
+  console.log('🔘 selectQueryType called with:', type);
+  
+  // Always ensure DOM elements are initialized
+  if (!categorySelect || !questionSection) {
+    console.log('   Initializing DOM elements...');
+    initDOMElements();
+  }
+  
+  console.log('   DOM elements status:', {
+    categorySelect: !!categorySelect,
+    questionSelect: !!questionSelect,
+    questionSection: !!questionSection,
+    userInput: !!userInput,
+    autocompleteDropdown: !!autocompleteDropdown
+  });
   
   selectedQueryType = type;
+  console.log('   selectedQueryType set to:', selectedQueryType);
   
   document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
   const clickedOption = type === 'statistics' ? 
@@ -1678,57 +1693,102 @@ function selectQueryType(type) {
     }
   }
   
+  console.log('   Loading categories...');
   loadCategories();
+  
+  console.log('   Building questions list...');
   buildAllQuestionsList();
-  questionSection.style.display = 'block';
+  
+  // Show question section - with safety check
+  console.log('   Showing question section...');
+  console.log('   questionSection exists?', !!questionSection);
+  
+  if (questionSection) {
+    questionSection.style.display = 'block';
+    console.log('   ✅ Question section displayed!');
+  } else {
+    console.error('   ❌ questionSection not found!');
+    initDOMElements();
+    if (questionSection) {
+      questionSection.style.display = 'block';
+      console.log('   ✅ Question section displayed after re-init!');
+    } else {
+      console.error('   ❌ Still cannot find questionSection');
+    }
+  }
+  
+  console.log('🔘 selectQueryType completed');
 }
 
 function loadCategories() {
+  if (!categorySelect || !questionSelect) {
+    console.error('loadCategories: DOM elements not initialized!');
+    initDOMElements();
+    if (!categorySelect || !questionSelect) {
+      console.error('loadCategories: Still unable to find DOM elements');
+      return;
+    }
+  }
+  
   categorySelect.innerHTML = '<option value="" selected disabled>Select Topic</option>';
   questionSelect.innerHTML = '<option value="" selected disabled>Select Question</option>';
   questionSelect.disabled = true;
   
-  currentQuestions = selectedQueryType === 'statistics' ? 
-    (selectedLanguage === 'Hindi' ? statsQuestionsHindi : statsQuestions) :
-    (selectedLanguage === 'Hindi' ? statsQuestionsDataHindi : statsQuestionsData);
-  
-  Object.keys(currentQuestions).forEach(category => {
-    const option = document.createElement('option');
-    option.value = category;
-    option.textContent = formatCategoryName(category);
+  // For statistics mode, use predefined questions
+  // For data mode, we'll use Google Sheets data (masterFileData) instead
+  if (selectedQueryType === 'statistics') {
+    currentQuestions = selectedLanguage === 'Hindi' ? statsQuestionsHindi : statsQuestions;
     
-    // Add special color classes to specific categories
-    if (category.includes('Cultural') || category.includes('सांस्कृतिक')) {
-      option.classList.add('category-cultural');
-    } else if (category.includes('Religious') || category.includes('धार्मिक')) {
-      option.classList.add('category-religious');
-    } else if (category.includes('Date') || category.includes('तारीख')) {
-      option.classList.add('category-date');
-    }
-    
-    categorySelect.appendChild(option);
-  });
+    Object.keys(currentQuestions).forEach(category => {
+      const option = document.createElement('option');
+      option.value = category;
+      option.textContent = formatCategoryName(category);
+      
+      // Add special color classes to specific categories
+      if (category.includes('Cultural') || category.includes('सांस्कृतिक')) {
+        option.classList.add('category-cultural');
+      } else if (category.includes('Religious') || category.includes('धार्मिक')) {
+        option.classList.add('category-religious');
+      } else if (category.includes('Date') || category.includes('तारीख')) {
+        option.classList.add('category-date');
+      }
+      
+      categorySelect.appendChild(option);
+    });
+  } else {
+    // Data mode - categories will be populated from Google Sheets
+    // For now, just set a placeholder
+    currentQuestions = {};
+    console.log('Data mode: Categories will be loaded from Google Sheets');
+  }
 }
 function buildAllQuestionsList() {
   allQuestions = [];
-  currentQuestions = selectedQueryType === 'statistics' ? 
-    (selectedLanguage === 'Hindi' ? statsQuestionsHindi : statsQuestions) :
-    (selectedLanguage === 'Hindi' ? statsQuestionsDataHindi : statsQuestionsData);
   
-  Object.keys(currentQuestions).forEach(mainCategory => {
-    const subcategories = currentQuestions[mainCategory];
+  // For statistics mode, use predefined questions
+  // For data mode, we'll use Google Sheets data (masterFileData) instead
+  if (selectedQueryType === 'statistics') {
+    currentQuestions = selectedLanguage === 'Hindi' ? statsQuestionsHindi : statsQuestions;
     
-    // Loop through subcategories
-    Object.keys(subcategories).forEach(subcategory => {
-      subcategories[subcategory].forEach(question => {
-        allQuestions.push({
-          question: question,
-          category: formatCategoryName(mainCategory),
-          subcategory: subcategory
+    Object.keys(currentQuestions).forEach(mainCategory => {
+      const subcategories = currentQuestions[mainCategory];
+      
+      // Loop through subcategories
+      Object.keys(subcategories).forEach(subcategory => {
+        subcategories[subcategory].forEach(question => {
+          allQuestions.push({
+            question: question,
+            category: formatCategoryName(mainCategory),
+            subcategory: subcategory
+          });
         });
       });
     });
-  });
+  } else {
+    // Data mode - questions will come from masterFileData (Google Sheets)
+    currentQuestions = {};
+    console.log('Data mode: Questions will be loaded from Google Sheets');
+  }
 }
 
 function formatCategoryName(category) {
@@ -2740,6 +2800,13 @@ window.addEventListener('DOMContentLoaded', function() {
   // Initialize DOM elements
   initDOMElements();
   console.log('✅ DOM elements initialized');
+  
+  // Initialize default query type (first radio button)
+  // This ensures the UI is ready even before user clicks
+  setTimeout(() => {
+    selectQueryType('statistics');
+    console.log('✅ Default query type set to statistics');
+  }, 100);
   
   // Initialize autocomplete listeners
   initUserInputListener();
