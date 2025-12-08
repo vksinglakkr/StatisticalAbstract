@@ -1583,7 +1583,7 @@ const statsQuestionsHindi = {
 };
 
 let selectedLanguage = 'English';
-let selectedQueryType = 'statistics'; // ⚠️ FIX: Missing variable for radio buttons
+let selectedQueryType = null; // ✅ FIX: No default selection - user must choose
 let currentQuestions = {};
 let allQuestions = [];
 // ═══════════════════════════════════════════════════════════════════
@@ -2801,12 +2801,8 @@ window.addEventListener('DOMContentLoaded', function() {
   initDOMElements();
   console.log('✅ DOM elements initialized');
   
-  // Initialize default query type (first radio button)
-  // This ensures the UI is ready even before user clicks
-  setTimeout(() => {
-    selectQueryType('statistics');
-    console.log('✅ Default query type set to statistics');
-  }, 100);
+  // DON'T auto-select any radio button - let user choose
+  // questionSection stays hidden until user selects a radio button
   
   // Initialize autocomplete listeners
   initUserInputListener();
