@@ -2,6 +2,27 @@ IMPORTANT:
 We will not incorporate the Saving of Records of Learn About Statistics
 because it will cause issue of Related Questions...... So knowning we have not incorporated it ...
 
+
+Why we should keep "New Topic" Button (Your Current Setup):
+User: "What is GDP?"
+Bot: "GDP is Gross Domestic Product..."
+Shows Related Questions:
+  1. What are components of GDP?
+  2. How is GDP calculated?
+  3. What are limitations of GDP?
+  4. How does GDP affect economy?
+
+User: Doesn't click related question
+Instead, goes to Quick Help dropdown
+Selects from dropdown: "What are the components of GDP?"
+
+Bot receives:
+  Previous Context: "What is GDP? → GDP is..."
+  Current Question: "What are the components of GDP?"
+
+Bot responds: "As I mentioned earlier, GDP is... The components are C, I, G, and (X-M)..."
+✅ Context is preserved! Even though user didn't click related question.
+
 v4.0-ALPHA    → Early testing, many bugs expected
 v4.0-BETA     → Feature complete, still finding bugs
 v4.0-CLEAN    → Removed old code, streamlined features
