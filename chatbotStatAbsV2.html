@@ -977,6 +977,344 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* ============================================================================
+   IMAGE UPLOAD INTERFACE - Step 2 Phase 1
+   ============================================================================ */
+
+.image-upload-container {
+  background: linear-gradient(135deg, #fefce8, #fef3c7);
+  border: 2px solid #eab308;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 20px 0;
+  display: none;
+  animation: slideDown 0.4s ease-out;
+}
+
+.image-upload-container.visible {
+  display: block;
+}
+
+.image-upload-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #713f12;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.selected-years-display {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #78716c;
+}
+
+.selected-years-display strong {
+  color: #713f12;
+  font-weight: 600;
+}
+
+.upload-dropzone {
+  border: 3px dashed #eab308;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 20px;
+}
+
+.upload-dropzone:hover {
+  border-color: #ca8a04;
+  background: #fefce8;
+  transform: translateY(-2px);
+}
+
+.upload-dropzone.dragover {
+  border-color: #16a34a;
+  background: #f0fdf4;
+  border-style: solid;
+}
+
+.upload-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.upload-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #713f12;
+  margin-bottom: 8px;
+}
+
+.upload-subtext {
+  font-size: 13px;
+  color: #78716c;
+  margin-bottom: 12px;
+}
+
+.upload-specs {
+  font-size: 12px;
+  color: #a8a29e;
+  font-style: italic;
+}
+
+#imageFileInput {
+  display: none;
+}
+
+.uploaded-images-section {
+  margin: 20px 0;
+  display: none;
+}
+
+.uploaded-images-section.visible {
+  display: block;
+}
+
+.uploaded-images-header {
+  font-size: 15px;
+  font-weight: 600;
+  color: #713f12;
+  margin-bottom: 12px;
+}
+
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.image-preview-card {
+  position: relative;
+  background: white;
+  border: 2px solid #e7e5e4;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  transition: all 0.3s;
+}
+
+.image-preview-card:hover {
+  border-color: #eab308;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.2);
+}
+
+.image-preview-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-preview-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image-number {
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.image-size {
+  color: rgba(255,255,255,0.8);
+  font-size: 11px;
+}
+
+.remove-image-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.remove-image-btn:hover {
+  background: #dc2626;
+  transform: scale(1.1);
+}
+
+.upload-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.upload-action-btn {
+  flex: 1;
+  min-width: 140px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.upload-more-btn {
+  background: white;
+  color: #713f12;
+  border: 2px solid #eab308;
+}
+
+.upload-more-btn:hover {
+  background: #fefce8;
+  border-color: #ca8a04;
+}
+
+.clear-all-btn {
+  background: white;
+  color: #dc2626;
+  border: 2px solid #fca5a5;
+}
+
+.clear-all-btn:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
+
+.process-images-btn {
+  background: linear-gradient(135deg, #eab308, #ca8a04);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.3);
+}
+
+.process-images-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(234, 179, 8, 0.4);
+  background: linear-gradient(135deg, #ca8a04, #a16207);
+}
+
+.process-images-btn:disabled {
+  background: linear-gradient(135deg, #d4d4d8, #a1a1aa);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.upload-hint {
+  font-size: 12px;
+  color: #78716c;
+  text-align: center;
+  margin-top: 12px;
+  font-style: italic;
+}
+
+.processing-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.processing-overlay.visible {
+  display: flex;
+}
+
+.processing-content {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+}
+
+.processing-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid #fef3c7;
+  border-top-color: #eab308;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+.processing-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #713f12;
+  margin-bottom: 12px;
+}
+
+.processing-text {
+  font-size: 14px;
+  color: #78716c;
+  margin-bottom: 8px;
+}
+
+.processing-progress {
+  font-size: 16px;
+  font-weight: 600;
+  color: #eab308;
+}
+
+@media (max-width: 640px) {
+  .image-upload-container {
+    padding: 20px 16px;
+  }
+  
+  .upload-dropzone {
+    padding: 30px 20px;
+  }
+  
+  .upload-icon {
+    font-size: 36px;
+  }
+  
+  .images-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .upload-actions {
+    flex-direction: column;
+  }
+  
+  .upload-action-btn {
+    width: 100%;
+  }
+}
+
 </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
@@ -2704,59 +3042,390 @@ function selectLastFiveYears() {
   console.log('✅ Last 5 years selected');
 }
 
-// Generate comparison report
+// Generate comparison report - NEW VERSION with Image Upload
 function generateComparison() {
   if (selectedYears.length < 2) {
     alert('Please select at least 2 years for comparison');
     return;
   }
   
-  console.log('🚀 Generating comparison for years:', selectedYears);
+  console.log('📸 Generating comparison - showing image upload interface');
+  console.log('   Selected years:', selectedYears);
   console.log('   Question:', currentComparisonQuestion);
   
-  const generateBtn = document.getElementById('generateComparisonBtn');
-  const btnText = document.getElementById('generateBtnText');
+  // Show image upload interface
+  showImageUploadInterface();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// IMAGE UPLOAD FUNCTIONALITY - Step 2 Phase 1
+// ═══════════════════════════════════════════════════════════════════
+
+// Global variables for image upload
+let uploadedImages = [];
+const MAX_IMAGES = 10;
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+
+// Show image upload interface
+function showImageUploadInterface() {
+  console.log('📸 Showing image upload interface');
   
-  if (!generateBtn || !btnText) return;
-  
-  const originalText = btnText.textContent;
-  
-  // Show loading state
-  btnText.textContent = 'Generating Report...';
-  generateBtn.disabled = true;
-  
-  const icon = generateBtn.querySelector('svg');
-  if (icon) {
-    icon.style.animation = 'spin 1s linear infinite';
+  // Hide year selection
+  const yearSelection = document.getElementById('yearSelectionBox');
+  if (yearSelection) {
+    yearSelection.style.display = 'none';
   }
   
-  // TODO: Step 2 - Connect to backend API
-  // This is where we'll add:
-  // 1. Image upload functionality
-  // 2. API call to n8n workflow
-  // 3. Process images with AI
-  // 4. Generate analytical report
+  // Check if upload container already exists
+  let uploadContainer = document.getElementById('imageUploadContainer');
   
-  // For now, show placeholder
+  if (!uploadContainer) {
+    // Create upload interface HTML
+    const uploadHTML = `
+      <div class="image-upload-container visible" id="imageUploadContainer">
+        <div class="image-upload-title">
+          <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          Upload Report Images
+        </div>
+        
+        <div class="selected-years-display">
+          <strong>Selected Years:</strong> <span id="displaySelectedYears">${selectedYears.join(', ')}</span>
+        </div>
+        
+        <div class="upload-dropzone" id="uploadDropzone" onclick="document.getElementById('imageFileInput').click()">
+          <div class="upload-icon">📁</div>
+          <div class="upload-text">Click to Upload Images</div>
+          <div class="upload-subtext">or Drag & Drop Here</div>
+          <div class="upload-specs">Supported: JPG, PNG, PDF | Max 10 images, 5MB each</div>
+        </div>
+        
+        <input type="file" id="imageFileInput" accept="image/jpeg,image/jpg,image/png,application/pdf" 
+               multiple onchange="handleFileSelect(event)">
+        
+        <div class="uploaded-images-section" id="uploadedImagesSection">
+          <div class="uploaded-images-header">
+            Uploaded Images (<span id="imageCount">0</span>):
+          </div>
+          <div class="images-grid" id="imagesGrid"></div>
+          
+          <div class="upload-actions">
+            <button class="upload-action-btn upload-more-btn" onclick="document.getElementById('imageFileInput').click()">
+              <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+              </svg>
+              Upload More
+            </button>
+            <button class="upload-action-btn clear-all-btn" onclick="clearAllImages()">
+              <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+              </svg>
+              Clear All
+            </button>
+            <button class="upload-action-btn process-images-btn" id="processImagesBtn" 
+                    onclick="processImagesAndGenerate()" disabled>
+              <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span id="processButtonText">Process Images (0)</span>
+            </button>
+          </div>
+          
+          <div class="upload-hint">
+            💡 Upload statistical report pages for the years you selected. The AI will extract and compare data automatically.
+          </div>
+        </div>
+      </div>
+    `;
+    
+    // Insert after year selection
+    const yearSelectionParent = yearSelection.parentElement;
+    const uploadDiv = document.createElement('div');
+    uploadDiv.innerHTML = uploadHTML;
+    yearSelectionParent.appendChild(uploadDiv);
+    
+    // Initialize drag & drop
+    initializeDragAndDrop();
+  } else {
+    uploadContainer.classList.add('visible');
+  }
+  
+  console.log('✅ Image upload interface displayed');
+}
+
+// Initialize drag and drop
+function initializeDragAndDrop() {
+  const dropzone = document.getElementById('uploadDropzone');
+  
+  if (!dropzone) return;
+  
+  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropzone.addEventListener(eventName, preventDefaults, false);
+  });
+  
+  function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  
+  ['dragenter', 'dragover'].forEach(eventName => {
+    dropzone.addEventListener(eventName, () => {
+      dropzone.classList.add('dragover');
+    }, false);
+  });
+  
+  ['dragleave', 'drop'].forEach(eventName => {
+    dropzone.addEventListener(eventName, () => {
+      dropzone.classList.remove('dragover');
+    }, false);
+  });
+  
+  dropzone.addEventListener('drop', handleDrop, false);
+  
+  console.log('✅ Drag and drop initialized');
+}
+
+// Handle drag and drop
+function handleDrop(e) {
+  const dt = e.dataTransfer;
+  const files = dt.files;
+  handleFiles(files);
+}
+
+// Handle file selection
+function handleFileSelect(event) {
+  const files = event.target.files;
+  handleFiles(files);
+}
+
+// Handle files
+function handleFiles(files) {
+  console.log(`📁 Processing ${files.length} file(s)`);
+  
+  const validFiles = [];
+  const errors = [];
+  
+  // Check total count
+  if (uploadedImages.length + files.length > MAX_IMAGES) {
+    alert(`⚠️ Maximum ${MAX_IMAGES} images allowed. You have ${uploadedImages.length} images. Can only add ${MAX_IMAGES - uploadedImages.length} more.`);
+    return;
+  }
+  
+  // Validate each file
+  for (let file of files) {
+    // Check file type
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      errors.push(`${file.name}: Invalid file type. Only JPG, PNG, PDF allowed.`);
+      continue;
+    }
+    
+    // Check file size
+    if (file.size > MAX_FILE_SIZE) {
+      errors.push(`${file.name}: File too large. Max 5MB allowed.`);
+      continue;
+    }
+    
+    validFiles.push(file);
+  }
+  
+  // Show errors if any
+  if (errors.length > 0) {
+    alert('⚠️ Some files were rejected:\n\n' + errors.join('\n'));
+  }
+  
+  // Add valid files
+  validFiles.forEach(file => addImageToList(file));
+  
+  // Update UI
+  updateImagesList();
+}
+
+// Add image to list
+function addImageToList(file) {
+  const reader = new FileReader();
+  
+  reader.onload = function(e) {
+    const imageData = {
+      file: file,
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      dataUrl: e.target.result,
+      id: Date.now() + Math.random()
+    };
+    
+    uploadedImages.push(imageData);
+    updateImagesList();
+    
+    console.log(`✅ Added image: ${file.name} (${formatFileSize(file.size)})`);
+  };
+  
+  reader.readAsDataURL(file);
+}
+
+// Update images list display
+function updateImagesList() {
+  const imagesSection = document.getElementById('uploadedImagesSection');
+  const imagesGrid = document.getElementById('imagesGrid');
+  const imageCount = document.getElementById('imageCount');
+  const processBtn = document.getElementById('processImagesBtn');
+  const processBtnText = document.getElementById('processButtonText');
+  
+  if (!imagesSection || !imagesGrid) return;
+  
+  // Update count
+  if (imageCount) {
+    imageCount.textContent = uploadedImages.length;
+  }
+  
+  // Show/hide section
+  if (uploadedImages.length > 0) {
+    imagesSection.classList.add('visible');
+  } else {
+    imagesSection.classList.remove('visible');
+  }
+  
+  // Clear grid
+  imagesGrid.innerHTML = '';
+  
+  // Add image cards
+  uploadedImages.forEach((img, index) => {
+    const card = document.createElement('div');
+    card.className = 'image-preview-card';
+    card.innerHTML = `
+      ${img.type === 'application/pdf' ? 
+        `<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #fef3c7;">
+          <svg style="width: 60px; height: 60px; color: #eab308;" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
+          </svg>
+        </div>` 
+        : 
+        `<img src="${img.dataUrl}" alt="${img.name}">`
+      }
+      <div class="image-preview-overlay">
+        <div>
+          <div class="image-number">Image ${index + 1}</div>
+          <div class="image-size">${formatFileSize(img.size)}</div>
+        </div>
+      </div>
+      <button class="remove-image-btn" onclick="removeImage(${index})" title="Remove">
+        ×
+      </button>
+    `;
+    imagesGrid.appendChild(card);
+  });
+  
+  // Update process button
+  if (processBtn && processBtnText) {
+    if (uploadedImages.length > 0) {
+      processBtn.disabled = false;
+      processBtnText.textContent = `Process Images (${uploadedImages.length})`;
+    } else {
+      processBtn.disabled = true;
+      processBtnText.textContent = 'Process Images (0)';
+    }
+  }
+  
+  console.log(`📊 Updated images list: ${uploadedImages.length} images`);
+}
+
+// Remove image
+function removeImage(index) {
+  console.log(`🗑️ Removing image ${index + 1}`);
+  uploadedImages.splice(index, 1);
+  updateImagesList();
+}
+
+// Clear all images
+function clearAllImages() {
+  if (uploadedImages.length === 0) return;
+  
+  if (confirm(`Are you sure you want to remove all ${uploadedImages.length} images?`)) {
+    uploadedImages = [];
+    updateImagesList();
+    console.log('✅ All images cleared');
+  }
+}
+
+// Format file size
+function formatFileSize(bytes) {
+  if (bytes === 0) return '0 B';
+  const k = 1024;
+  const sizes = ['B', 'KB', 'MB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+}
+
+// Process images and generate report (Step 2 Phase 2 placeholder)
+function processImagesAndGenerate() {
+  if (uploadedImages.length === 0) {
+    alert('Please upload at least one image');
+    return;
+  }
+  
+  console.log('🚀 Processing images and generating report...');
+  console.log(`   Years: ${selectedYears.join(', ')}`);
+  console.log(`   Images: ${uploadedImages.length}`);
+  console.log(`   Question: ${currentComparisonQuestion}`);
+  
+  // Show processing overlay
+  showProcessingOverlay();
+  
+  // TODO: Phase 2 - Send to n8n workflow
+  // For now, simulate processing
   setTimeout(() => {
-    alert(`✅ STEP 1 COMPLETE!\n\n` +
-          `Selected Years: ${selectedYears.join(', ')}\n` +
+    hideProcessingOverlay();
+    
+    alert(`✅ PHASE 1 COMPLETE!\n\n` +
+          `Years Selected: ${selectedYears.join(', ')}\n` +
+          `Images Uploaded: ${uploadedImages.length}\n` +
           `Question: ${currentComparisonQuestion}\n\n` +
-          `Next Steps (Step 2):\n` +
-          `• Add image upload for report pages\n` +
-          `• Connect to n8n workflow\n` +
-          `• Process images with AI vision\n` +
+          `Next Phase (Phase 2):\n` +
+          `• Send images to n8n workflow\n` +
+          `• AI vision extracts data from images\n` +
           `• Generate analytical comparison report\n` +
           `• Display charts and insights`);
-    
-    // Reset button
-    btnText.textContent = originalText;
-    generateBtn.disabled = false;
-    if (icon) {
-      icon.style.animation = '';
-    }
-  }, 2000);
+  }, 3000);
 }
+
+// Show processing overlay
+function showProcessingOverlay() {
+  let overlay = document.getElementById('processingOverlay');
+  
+  if (!overlay) {
+    const overlayHTML = `
+      <div class="processing-overlay" id="processingOverlay">
+        <div class="processing-content">
+          <div class="processing-spinner"></div>
+          <div class="processing-title">Processing Images...</div>
+          <div class="processing-text">Extracting data from images</div>
+          <div class="processing-text">Analyzing statistical information</div>
+          <div class="processing-progress" id="processingProgress">Step 1 of 3</div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', overlayHTML);
+    overlay = document.getElementById('processingOverlay');
+  }
+  
+  overlay.classList.add('visible');
+}
+
+// Hide processing overlay
+function hideProcessingOverlay() {
+  const overlay = document.getElementById('processingOverlay');
+  if (overlay) {
+    overlay.classList.remove('visible');
+  }
+}
+
+console.log('✅ Image upload functionality loaded');
+
 
 console.log('✅ Comparison feature JavaScript loaded');
 document.getElementById('submitBtn').addEventListener('click', async () => {
