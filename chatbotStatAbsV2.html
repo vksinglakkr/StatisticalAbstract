@@ -4021,6 +4021,9 @@ function toggleYearFiles(yearId, checked) {
   }, 10);
 }
 
+// Make it globally accessible
+window.toggleYearFiles = toggleYearFiles;
+
 // Update selection count and button state
 function updateSelectionCount() {
   // Get all YEAR checkboxes that are checked
@@ -4090,6 +4093,9 @@ function updateSelectionCount() {
   }
 }
 
+// Make it globally accessible
+window.updateSelectionCount = updateSelectionCount;
+
 // Select all files
 function selectAllFiles() {
   const checkboxes = document.querySelectorAll('.file-checkbox');
@@ -4108,6 +4114,10 @@ function selectAllYears() {
   console.log('✅ All years selected');
 }
 
+// Make functions globally accessible
+window.selectAllFiles = selectAllFiles;
+window.selectAllYears = selectAllYears;
+
 // Cancel file selection
 function cancelFileSelection() {
   const container = document.getElementById('fileSelectionContainer');
@@ -4116,6 +4126,9 @@ function cancelFileSelection() {
   }
   console.log('❌ File selection cancelled');
 }
+
+// Make it globally accessible
+window.cancelFileSelection = cancelFileSelection;
 
 // Compare selected files
 async function compareSelectedFiles() {
@@ -4148,6 +4161,9 @@ async function compareSelectedFiles() {
   // Send to n8n for comparison
   await sendFilesToN8NForComparison(filesByYear);
 }
+
+// Make it globally accessible
+window.compareSelectedFiles = compareSelectedFiles;
 
 // Send selected files to n8n
 async function sendFilesToN8NForComparison(filesByYear) {
