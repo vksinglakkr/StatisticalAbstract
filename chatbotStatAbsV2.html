@@ -1317,72 +1317,176 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
 
 
 /* ═══════════════════════════════════════════════════════════════════
-   PHASE 2A: COMPARISON CONFIRMATION DIALOG
+   FILE SELECTION INTERFACE - Checkbox List
    ═══════════════════════════════════════════════════════════════════ */
 
-.comparison-confirmation {
-  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-  border: 2px solid #22c55e;
+.file-selection-container {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 2px solid #f59e0b;
   border-radius: 16px;
   padding: 24px;
   margin: 20px 0;
+  max-width: 900px;
   animation: slideDown 0.4s ease-out;
 }
 
-.confirm-title {
-  font-size: 22px;
-  font-weight: 700;
-  color: #14532d;
+.selection-header {
   margin-bottom: 20px;
-  text-align: center;
 }
 
-.confirm-details {
+.selection-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #78350f;
+  margin: 0 0 8px 0;
+}
+
+.selection-subtitle {
+  font-size: 14px;
+  color: #92400e;
+  margin: 0;
+}
+
+.selection-stats {
+  display: flex;
+  gap: 24px;
+  padding: 12px 16px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stat-item {
+  font-size: 14px;
+  color: #78350f;
+}
+
+.stat-item strong {
+  font-size: 18px;
+  color: #f59e0b;
+  font-weight: 700;
+}
+
+.files-container {
   background: white;
   border-radius: 12px;
   padding: 16px;
+  max-height: 400px;
+  overflow-y: auto;
   margin-bottom: 16px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-.detail-row {
+.year-group {
+  margin-bottom: 16px;
+  border: 1px solid #fef3c7;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.year-group:last-child {
+  margin-bottom: 0;
+}
+
+.year-header {
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  padding: 12px 16px;
   display: flex;
-  padding: 12px 0;
-  border-bottom: 1px solid #f0fdf4;
-  align-items: flex-start;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-.detail-row:last-child {
-  border-bottom: none;
+.year-header:hover {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
 }
 
-.detail-label {
-  font-weight: 600;
-  color: #166534;
-  min-width: 140px;
+.year-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.year-label {
+  flex: 1;
+  font-size: 15px;
+  color: #78350f;
+  cursor: pointer;
+  margin: 0;
+}
+
+.files-list {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #fafaf9;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.file-item:hover {
+  background: #fef3c7;
+  transform: translateX(4px);
+}
+
+.file-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.file-label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.file-icon {
+  font-size: 18px;
+}
+
+.file-name {
+  font-size: 13px;
+  color: #44403c;
+  font-family: 'Courier New', monospace;
+  word-break: break-all;
+}
+
+.preview-btn {
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid #f59e0b;
+  border-radius: 6px;
+  color: #f59e0b;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
   flex-shrink: 0;
 }
 
-.detail-value {
-  flex: 1;
-  color: #15803d;
-  font-weight: 500;
+.preview-btn:hover {
+  background: #f59e0b;
+  color: white;
+  transform: scale(1.05);
 }
 
-.confirm-note {
-  background: #fef3c7;
-  border-left: 4px solid #eab308;
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-size: 13px;
-  color: #713f12;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-.confirm-actions {
+.selection-actions {
   display: flex;
   gap: 12px;
+  margin-bottom: 12px;
 }
 
 .action-btn {
@@ -1400,51 +1504,109 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
   gap: 8px;
 }
 
-.cancel-btn {
+.secondary-btn {
   background: white;
-  color: #64748b;
-  border: 2px solid #cbd5e1;
+  color: #78350f;
+  border: 2px solid #fde68a;
 }
 
-.cancel-btn:hover {
-  background: #f1f5f9;
-  border-color: #94a3b8;
+.secondary-btn:hover {
+  background: #fef3c7;
+  border-color: #fbbf24;
   transform: translateY(-1px);
 }
 
-.proceed-btn {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
+.primary-btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
   color: white;
-  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
 }
 
-.proceed-btn:hover {
+.primary-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
-  background: linear-gradient(135deg, #16a34a, #15803d);
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+  background: linear-gradient(135deg, #d97706, #b45309);
 }
 
+.primary-btn:disabled {
+  background: #e7e5e4;
+  color: #a8a29e;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.selection-hint {
+  font-size: 13px;
+  color: #78350f;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Scrollbar styling */
+.files-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.files-container::-webkit-scrollbar-track {
+  background: #fef3c7;
+  border-radius: 4px;
+}
+
+.files-container::-webkit-scrollbar-thumb {
+  background: #fbbf24;
+  border-radius: 4px;
+}
+
+.files-container::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+/* Mobile responsive */
 @media (max-width: 640px) {
-  .confirm-title {
+  .file-selection-container {
+    padding: 16px;
+    margin: 10px 0;
+  }
+  
+  .selection-title {
     font-size: 18px;
   }
   
-  .detail-row {
+  .selection-stats {
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
   }
   
-  .detail-label {
-    min-width: auto;
+  .files-container {
+    max-height: 300px;
   }
   
-  .confirm-actions {
+  .file-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .file-label {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .preview-btn {
+    width: 100%;
+  }
+  
+  .selection-actions {
     flex-direction: column;
   }
   
   .action-btn {
     width: 100%;
   }
+}
+
+/* Checkbox custom styling */
+input[type="checkbox"] {
+  accent-color: #f59e0b;
 }
 </style>
 </head>
@@ -3070,15 +3232,32 @@ function enableComparison() {
     
     setTimeout(() => {
       promptBox.style.display = 'none';
-      
-      // Show year selection
-      const yearBox = document.getElementById('yearSelectionBox');
-      if (yearBox) {
-        yearBox.classList.add('visible');
-        console.log('✅ Year selection displayed');
-      }
     }, 300);
   }
+  
+  // Get the current response text from modalAnswer
+  const modalAnswer = document.getElementById('modalAnswer');
+  if (!modalAnswer) {
+    console.error('❌ modalAnswer not found');
+    alert('Error: Could not find response text');
+    return;
+  }
+  
+  const responseText = modalAnswer.innerHTML || modalAnswer.textContent;
+  
+  console.log('🔍 Searching for Cloudinary files in response...');
+  
+  // Parse Cloudinary files from response
+  const groupedFiles = parseCloudinaryLinksFromResponse(responseText);
+  
+  if (Object.keys(groupedFiles).length === 0) {
+    console.log('⚠️ No Cloudinary files found in response');
+    alert('No report files found in the response. Please try a different query or ensure the response contains Cloudinary image links.');
+    return;
+  }
+  
+  // Show file selection interface
+  showFileSelectionInterface(groupedFiles);
 }
 
 // Skip comparison
@@ -3106,48 +3285,17 @@ function populateYearCheckboxes() {
     return;
   }
   
-  // Define available fiscal years based on your Cloudinary folders
-  // Format: "2023-24" (representing fiscal year 2023-2024)
-  const availableFiscalYears = [
-    '2023-24',
-    '2022-23',
-    '2021-22',
-    '2020-21',
-    '2019-20',
-    '2018-19',
-    '2017-18',
-    '2016-17',
-    '2015-16',
-    '2014-15',
-    '2013-14',
-    '2012-13',
-    '2011-12',
-    '2010-11',
-    '2009-10',
-    '2008-09',
-    '2007-08',
-    '2006-07',
-    '2005-06',
-    '2004-05',
-    '2003-04',
-    '2002-03',
-    '2001-02',
-    '2000-01',
-    '1999-00'
-  ];
+  const currentYear = new Date().getFullYear();
+  const startYear = 2014;
   
   container.innerHTML = '';
   
-  console.log(`📅 Populating ${availableFiscalYears.length} fiscal years`);
+  console.log(`📅 Populating years from ${currentYear} to ${startYear}`);
   
-  availableFiscalYears.forEach(fiscalYear => {
-    // Extract ending year for value (e.g., "2023-24" -> 2024)
-    const endYear = parseInt('20' + fiscalYear.split('-')[1]);
-    
+  for (let year = currentYear; year >= startYear; year--) {
     const wrapper = document.createElement('div');
     wrapper.className = 'year-checkbox-wrapper';
-    wrapper.setAttribute('data-year', endYear);
-    wrapper.setAttribute('data-fiscal-year', fiscalYear);
+    wrapper.setAttribute('data-year', year);
     
     wrapper.onclick = function() {
       const checkbox = this.querySelector('input[type="checkbox"]');
@@ -3156,14 +3304,14 @@ function populateYearCheckboxes() {
     };
     
     wrapper.innerHTML = `
-      <input type="checkbox" id="year_${fiscalYear.replace('-', '_')}" value="${endYear}" data-fiscal-year="${fiscalYear}" onclick="event.stopPropagation(); updateYearSelection();">
-      <label for="year_${fiscalYear.replace('-', '_')}">${fiscalYear}</label>
+      <input type="checkbox" id="year_${year}" value="${year}" onclick="event.stopPropagation(); updateYearSelection();">
+      <label for="year_${year}">${year}</label>
     `;
     
     container.appendChild(wrapper);
-  });
+  }
   
-  console.log('✅ Year checkboxes populated with fiscal years');
+  console.log('✅ Year checkboxes populated');
 }
 
 // Update year selection and button state
@@ -3233,26 +3381,12 @@ function generateComparison() {
     return;
   }
   
-  console.log('🚀 Starting Phase 2A automatic Cloudinary analysis');
+  console.log('📸 Generating comparison - showing image upload interface');
   console.log('   Selected years:', selectedYears);
   console.log('   Question:', currentComparisonQuestion);
   
-  // PHASE 2A: Automatic topic detection and Cloudinary fetching
-  const topic = detectTopic(currentComparisonQuestion);
-  
-  if (topic) {
-    console.log(`✅ Topic detected: ${topic}`);
-    console.log(`📁 Will fetch ${topic} reports for years: ${selectedYears.join(', ')}`);
-  } else {
-    console.log('⚠️ No specific topic detected, will use general approach');
-  }
-  
-  // Build Cloudinary URLs
-  const cloudinaryURLs = buildCloudinaryURLs(topic, selectedYears);
-  console.log('🔗 Built Cloudinary URLs:', cloudinaryURLs);
-  
-  // Show confirmation to user
-  showComparisonConfirmation(topic, cloudinaryURLs);
+  // Show image upload interface
+  showImageUploadInterface();
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -3646,208 +3780,300 @@ function hideProcessingOverlay() {
 }
 
 console.log('✅ Image upload functionality loaded');
-
 // ═══════════════════════════════════════════════════════════════════
-// PHASE 2A: CLOUDINARY AUTOMATIC INTEGRATION
+// PHASE 2A REVISED: CHECKBOX FILE SELECTION FROM SEARCH RESULTS
 // ═══════════════════════════════════════════════════════════════════
 
-// Configuration - UPDATE THESE!
-const CLOUDINARY_CLOUD_NAME = 'd4489tsgw'; // Your Cloudinary cloud name
-const CLOUDINARY_BASE_URL = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/`;
-const N8N_COMPARISON_WEBHOOK = 'https://your-n8n-url.com/webhook/comparison'; // UPDATE THIS!
+// Global variable to store parsed files from response
+let parsedCloudinaryFiles = [];
 
-// Topic detection mapping
-const TOPIC_TO_FILE_MAP = {
-  'agriculture': 'Agriculture',
-  'agricultural': 'Agriculture',
-  'farming': 'Agriculture',
-  'crop': 'Agriculture',
-  'crops': 'Agriculture',
-  'cultivation': 'Agriculture',
-  'industry': 'Industries',
-  'industries': 'Industries',
-  'industrial': 'Industries',
-  'manufacturing': 'Industries',
-  'factory': 'Industries',
-  'population': 'Population',
-  'demographic': 'Population',
-  'census': 'Population',
-  'people': 'Population',
-  'gdp': 'GDP',
-  'economy': 'GDP',
-  'economic': 'GDP',
-  'income': 'GDP',
-  'revenue': 'GDP',
-  'employment': 'Employment',
-  'job': 'Employment',
-  'jobs': 'Employment',
-  'unemployment': 'Employment',
-  'worker': 'Employment',
-  'education': 'Education',
-  'school': 'Education',
-  'literacy': 'Education',
-  'student': 'Education',
-  'health': 'Health',
-  'hospital': 'Health',
-  'medical': 'Health',
-  'disease': 'Health',
-  'infrastructure': 'Infrastructure',
-  'road': 'Infrastructure',
-  'transport': 'Infrastructure',
-  'power': 'Infrastructure',
-  'electricity': 'Infrastructure'
-};
-
-// Detect topic from question
-function detectTopic(question) {
-  const lowerQuestion = question.toLowerCase();
+// Parse Cloudinary URLs from response text
+function parseCloudinaryLinksFromResponse(responseText) {
+  console.log('🔍 Parsing Cloudinary links from response...');
   
-  for (const [keyword, filePrefix] of Object.entries(TOPIC_TO_FILE_MAP)) {
-    if (lowerQuestion.includes(keyword)) {
-      console.log(`🎯 Detected topic: ${filePrefix} (keyword: ${keyword})`);
-      return filePrefix;
-    }
+  // Regex to match Cloudinary URLs
+  const cloudinaryRegex = /https:\/\/res\.cloudinary\.com\/[^\/]+\/image\/upload\/([^"\s<>]+\.(?:jpg|jpeg|png|pdf))/gi;
+  
+  const matches = [];
+  let match;
+  
+  while ((match = cloudinaryRegex.exec(responseText)) !== null) {
+    const fullUrl = match[0];
+    const path = match[1];
+    
+    // Extract year pattern (e.g., "1967-68" from path)
+    const yearMatch = path.match(/(\d{4}-\d{2})/);
+    const year = yearMatch ? yearMatch[1] : 'Unknown';
+    
+    // Extract filename
+    const filename = path.split('/').pop();
+    
+    matches.push({
+      url: fullUrl,
+      year: year,
+      filename: filename,
+      path: path
+    });
   }
   
-  console.log('⚠️ Could not detect specific topic');
-  return null;
-}
-
-// Convert year to folder name (2024 → "2023-24")
-function yearToFolderName(year) {
-  const startYear = year - 1;
-  const endYear = year.toString().slice(-2);
-  return `${startYear}-${endYear}`;
-}
-
-// Build Cloudinary URLs
-function buildCloudinaryURLs(topic, years) {
-  const urls = {};
-  
-  years.forEach(year => {
-    const folder = yearToFolderName(year);
-    
-    if (topic) {
-      urls[year] = `${CLOUDINARY_BASE_URL}${folder}/${topic}`;
-    } else {
-      urls[year] = `${CLOUDINARY_BASE_URL}${folder}/`;
+  // Group by year
+  const groupedByYear = {};
+  matches.forEach(file => {
+    if (!groupedByYear[file.year]) {
+      groupedByYear[file.year] = [];
     }
+    groupedByYear[file.year].push(file);
   });
   
-  return urls;
+  console.log(`✅ Found ${matches.length} files across ${Object.keys(groupedByYear).length} years`);
+  console.log('📊 Files by year:', groupedByYear);
+  
+  return groupedByYear;
 }
 
-// Show comparison confirmation
-function showComparisonConfirmation(topic, urls) {
-  const topicText = topic ? `${topic} reports` : 'Statistical reports';
-  // Show fiscal years in format: 2023-24, 2022-23, 2021-22
-  const yearsList = selectedYears.map(y => yearToFolderName(y)).join(', ');
+// Show file selection interface with checkboxes
+function showFileSelectionInterface(groupedFiles) {
+  console.log('📋 Showing file selection interface');
   
-  const confirmHTML = `
-    <div class="comparison-confirmation" id="comparisonConfirm">
-      <div class="confirm-title">
-        🎯 Ready to Analyze
-      </div>
-      
-      <div class="confirm-details">
-        <div class="detail-row">
-          <span class="detail-label">📊 Report Type:</span>
-          <span class="detail-value">${topicText}</span>
+  if (Object.keys(groupedFiles).length === 0) {
+    alert('No Cloudinary files found in the response. Please try a different query.');
+    return;
+  }
+  
+  // Sort years in descending order
+  const sortedYears = Object.keys(groupedFiles).sort((a, b) => {
+    if (a === 'Unknown') return 1;
+    if (b === 'Unknown') return -1;
+    return b.localeCompare(a);
+  });
+  
+  const fileListHTML = sortedYears.map(year => {
+    const files = groupedFiles[year];
+    const yearId = year.replace('-', '_');
+    
+    return `
+      <div class="year-group">
+        <div class="year-header">
+          <input type="checkbox" 
+                 id="year_${yearId}_all" 
+                 class="year-checkbox"
+                 onchange="toggleYearFiles('${yearId}', this.checked)">
+          <label for="year_${yearId}_all" class="year-label">
+            📅 <strong>${year}</strong> (${files.length} file${files.length > 1 ? 's' : ''})
+          </label>
         </div>
         
-        <div class="detail-row">
-          <span class="detail-label">📅 Years:</span>
-          <span class="detail-value">${yearsList}</span>
+        <div class="files-list" id="files_${yearId}">
+          ${files.map((file, index) => `
+            <div class="file-item">
+              <input type="checkbox" 
+                     id="file_${yearId}_${index}" 
+                     class="file-checkbox year-${yearId}"
+                     data-year="${year}"
+                     data-url="${file.url}"
+                     data-filename="${file.filename}"
+                     onchange="updateSelectionCount()">
+              <label for="file_${yearId}_${index}" class="file-label">
+                <span class="file-icon">📄</span>
+                <span class="file-name">${file.filename}</span>
+              </label>
+              <button class="preview-btn" onclick="window.open('${file.url}', '_blank')" title="Preview">
+                👁️
+              </button>
+            </div>
+          `).join('')}
         </div>
-        
-        <div class="detail-row">
-          <span class="detail-label">❓ Question:</span>
-          <span class="detail-value">${currentComparisonQuestion}</span>
+      </div>
+    `;
+  }).join('');
+  
+  const selectionHTML = `
+    <div class="file-selection-container" id="fileSelectionContainer">
+      <div class="selection-header">
+        <h3 class="selection-title">
+          📸 Select Report Images to Compare
+        </h3>
+        <div class="selection-subtitle">
+          Choose the report pages you want to analyze and compare
         </div>
       </div>
       
-      <div class="confirm-note">
-        💡 The system will automatically fetch the relevant report pages from Cloudinary and analyze them using AI.
+      <div class="selection-stats" id="selectionStats">
+        <span class="stat-item">
+          <strong id="selectedCount">0</strong> files selected
+        </span>
+        <span class="stat-item">
+          <strong id="yearsCount">0</strong> years covered
+        </span>
       </div>
       
-      <div class="confirm-actions">
-        <button class="action-btn cancel-btn" id="cancelComparisonBtn">
+      <div class="files-container">
+        ${fileListHTML}
+      </div>
+      
+      <div class="selection-actions">
+        <button class="action-btn secondary-btn" onclick="cancelFileSelection()">
           Cancel
         </button>
-        <button class="action-btn proceed-btn" id="proceedAnalysisBtn">
-          <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-          </svg>
-          Analyze Now
+        <button class="action-btn secondary-btn" onclick="selectAllFiles()">
+          Select All
         </button>
+        <button class="action-btn primary-btn" id="compareFilesBtn" onclick="compareSelectedFiles()" disabled>
+          <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Compare Selected Files
+        </button>
+      </div>
+      
+      <div class="selection-hint">
+        💡 Select at least 2 files from different years for comparison
       </div>
     </div>
   `;
   
-  const yearSelection = document.getElementById('yearSelectionBox');
-  if (yearSelection) {
-    yearSelection.style.display = 'none';
+  // Hide any existing comparison prompts
+  const existingPrompts = document.querySelectorAll('.comparison-prompt-container, .year-selection-container, .comparison-confirmation');
+  existingPrompts.forEach(el => el.style.display = 'none');
+  
+  // Insert file selection interface
+  const modalAnswer = document.getElementById('modalAnswer');
+  if (modalAnswer && modalAnswer.parentElement) {
+    const selectionDiv = document.createElement('div');
+    selectionDiv.innerHTML = selectionHTML;
+    modalAnswer.parentElement.appendChild(selectionDiv);
   }
   
-  if (yearSelection && yearSelection.parentElement) {
-    const confirmDiv = document.createElement('div');
-    confirmDiv.innerHTML = confirmHTML;
-    yearSelection.parentElement.appendChild(confirmDiv);
+  updateSelectionCount();
+}
+
+// Toggle all files in a year
+function toggleYearFiles(yearId, checked) {
+  const checkboxes = document.querySelectorAll(`.year-${yearId}`);
+  checkboxes.forEach(cb => cb.checked = checked);
+  updateSelectionCount();
+}
+
+// Update selection count and button state
+function updateSelectionCount() {
+  const checkedFiles = document.querySelectorAll('.file-checkbox:checked');
+  const selectedCount = checkedFiles.length;
+  
+  // Get unique years
+  const uniqueYears = new Set();
+  checkedFiles.forEach(cb => {
+    const year = cb.getAttribute('data-year');
+    if (year && year !== 'Unknown') {
+      uniqueYears.add(year);
+    }
+  });
+  
+  const yearsCount = uniqueYears.size;
+  
+  // Update stats
+  const countElement = document.getElementById('selectedCount');
+  const yearsElement = document.getElementById('yearsCount');
+  const compareBtn = document.getElementById('compareFilesBtn');
+  
+  if (countElement) countElement.textContent = selectedCount;
+  if (yearsElement) yearsElement.textContent = yearsCount;
+  
+  // Enable/disable compare button
+  if (compareBtn) {
+    if (selectedCount >= 2 && yearsCount >= 2) {
+      compareBtn.disabled = false;
+      compareBtn.innerHTML = `
+        <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+        </svg>
+        Compare ${selectedCount} Files (${yearsCount} Years)
+      `;
+    } else {
+      compareBtn.disabled = true;
+      compareBtn.innerHTML = `
+        <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+        Select at least 2 files from 2+ years
+      `;
+    }
+  }
+}
+
+// Select all files
+function selectAllFiles() {
+  const checkboxes = document.querySelectorAll('.file-checkbox');
+  checkboxes.forEach(cb => cb.checked = true);
+  
+  const yearCheckboxes = document.querySelectorAll('.year-checkbox');
+  yearCheckboxes.forEach(cb => cb.checked = true);
+  
+  updateSelectionCount();
+  console.log('✅ All files selected');
+}
+
+// Cancel file selection
+function cancelFileSelection() {
+  const container = document.getElementById('fileSelectionContainer');
+  if (container) {
+    container.remove();
+  }
+  console.log('❌ File selection cancelled');
+}
+
+// Compare selected files
+async function compareSelectedFiles() {
+  const checkedFiles = document.querySelectorAll('.file-checkbox:checked');
+  
+  if (checkedFiles.length < 2) {
+    alert('Please select at least 2 files to compare');
+    return;
+  }
+  
+  // Group selected files by year
+  const filesByYear = {};
+  checkedFiles.forEach(cb => {
+    const year = cb.getAttribute('data-year');
+    const url = cb.getAttribute('data-url');
+    const filename = cb.getAttribute('data-filename');
     
-    // Add event listeners
-    setTimeout(() => {
-      const cancelBtn = document.getElementById('cancelComparisonBtn');
-      const proceedBtn = document.getElementById('proceedAnalysisBtn');
-      
-      if (cancelBtn) {
-        cancelBtn.addEventListener('click', cancelComparison);
-      }
-      
-      if (proceedBtn) {
-        proceedBtn.addEventListener('click', () => proceedWithAnalysis(topic, urls));
-      }
-    }, 100);
-  }
-}
-
-function cancelComparison() {
-  const confirm = document.getElementById('comparisonConfirm');
-  if (confirm) {
-    confirm.remove();
-  }
+    if (!filesByYear[year]) {
+      filesByYear[year] = [];
+    }
+    
+    filesByYear[year].push({
+      url: url,
+      filename: filename
+    });
+  });
   
-  const yearSelection = document.getElementById('yearSelectionBox');
-  if (yearSelection) {
-    yearSelection.style.display = 'block';
-  }
-}
-
-async function proceedWithAnalysis(topic, urls) {
-  console.log('🚀 Proceeding with analysis');
-  console.log('   Topic:', topic);
-  console.log('   URLs:', urls);
+  console.log('🚀 Comparing files:', filesByYear);
   
-  await sendToN8NForAnalysis(topic, urls);
+  // Send to n8n for comparison
+  await sendFilesToN8NForComparison(filesByYear);
 }
 
-async function sendToN8NForAnalysis(topic, urls) {
+// Send selected files to n8n
+async function sendFilesToN8NForComparison(filesByYear) {
   showProcessingOverlay();
-  updateProcessingStatus('Preparing analysis...', 1, 5);
+  updateProcessingStatus('Preparing comparison...', 1, 5);
   
   try {
     const payload = {
-      question: currentComparisonQuestion,
-      topic: topic,
-      years: selectedYears,
-      cloudinaryURLs: urls,
+      question: currentComparisonQuestion || 'Statistical data comparison',
+      filesByYear: filesByYear,
+      years: Object.keys(filesByYear),
       language: selectedLanguage || 'English',
-      queryType: 'COMPARISON_ANALYSIS',
+      queryType: 'FILE_COMPARISON_ANALYSIS',
       timestamp: new Date().toISOString()
     };
     
     console.log('📤 Sending to n8n:', payload);
     
-    updateProcessingStatus('Fetching report images...', 2, 5);
+    updateProcessingStatus('Sending files to AI...', 2, 5);
     
     const response = await fetch(N8N_COMPARISON_WEBHOOK, {
       method: 'POST',
@@ -3861,7 +4087,7 @@ async function sendToN8NForAnalysis(topic, urls) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     
-    updateProcessingStatus('AI analyzing data...', 3, 5);
+    updateProcessingStatus('AI analyzing images...', 3, 5);
     
     const result = await response.json();
     
@@ -3882,43 +4108,15 @@ async function sendToN8NForAnalysis(topic, urls) {
     console.error('❌ Error:', error);
     hideProcessingOverlay();
     
-    alert(`❌ Analysis Failed\n\nError: ${error.message}\n\nPlease check:\n• n8n webhook is configured\n• Workflow is active\n• Internet connection is stable`);
+    alert(`❌ Comparison Failed\n\nError: ${error.message}\n\n` +
+          `Please check:\n` +
+          `• n8n webhook is configured\n` +
+          `• Workflow is active\n` +
+          `• Internet connection is stable`);
   }
 }
 
-function displayComparisonReport(data) {
-  console.log('📊 Displaying report:', data);
-  
-  const confirm = document.getElementById('comparisonConfirm');
-  if (confirm) {
-    confirm.remove();
-  }
-  
-  if (data && data.success) {
-    alert(`✅ ANALYSIS COMPLETE!\n\n` +
-          `Question: ${currentComparisonQuestion}\n` +
-          `Years: ${selectedYears.join(', ')}\n\n` +
-          `${data.summary || 'Data extracted and compared successfully!'}\n\n` +
-          `Phase 2C will display beautiful charts and detailed analysis here.`);
-  } else {
-    alert(`⚠️ Analysis completed with issues:\n\n${data?.message || 'Unknown error'}`);
-  }
-}
-
-function updateProcessingStatus(message, step, totalSteps) {
-  const statusElements = document.querySelectorAll('.processing-text');
-  const progressElement = document.querySelector('.processing-progress');
-  
-  if (statusElements.length > 0) {
-    statusElements[0].textContent = message;
-  }
-  
-  if (progressElement) {
-    progressElement.textContent = `Step ${step} of ${totalSteps}`;
-  }
-}
-
-console.log('✅ Phase 2A Cloudinary automatic integration loaded');
+console.log('✅ File selection interface loaded');
 
 
 console.log('✅ Comparison feature JavaScript loaded');
