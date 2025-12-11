@@ -1454,6 +1454,15 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
   margin: 0;
 }
 
+.file-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding-left: 4px;
+}
+
 .file-icon {
   font-size: 18px;
 }
@@ -3923,11 +3932,11 @@ function showFileSelectionInterface(groupedFiles) {
                      data-year="${year}"
                      data-url="${file.url}"
                      data-filename="${file.filename}"
-                     onchange="updateSelectionCount()">
-              <label for="file_${yearId}_${index}" class="file-label">
+                     style="display: none;">
+              <div class="file-info">
                 <span class="file-icon">📄</span>
                 <span class="file-name">${file.filename}</span>
-              </label>
+              </div>
               <button class="preview-btn" onclick="window.open('${file.url}', '_blank')" title="Preview">
                 👁️
               </button>
@@ -4002,8 +4011,14 @@ function showFileSelectionInterface(groupedFiles) {
 // Toggle all files in a year
 function toggleYearFiles(yearId, checked) {
   const checkboxes = document.querySelectorAll(`.year-${yearId}`);
-  checkboxes.forEach(cb => cb.checked = checked);
-  updateSelectionCount();
+  console.log(`📋 Toggling ${checkboxes.length} files for year ${yearId} to ${checked}`);
+  checkboxes.forEach(cb => {
+    cb.checked = checked;
+  });
+  // Force update after a brief delay to ensure DOM is updated
+  setTimeout(() => {
+    updateSelectionCount();
+  }, 10);
 }
 
 // Update selection count and button state
