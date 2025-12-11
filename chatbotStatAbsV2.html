@@ -4023,39 +4023,60 @@ function toggleYearFiles(yearId, checked) {
 
 // Update selection count and button state
 function updateSelectionCount() {
-  const checkedFiles = document.querySelectorAll('.file-checkbox:checked');
-  const selectedCount = checkedFiles.length;
+  // Get all YEAR checkboxes that are checked
+  const checkedYearBoxes = document.querySelectorAll('.year-checkbox:checked');
+  const yearsCount = checkedYearBoxes.length;
   
-  // Get unique years
+  // Count total files from checked years
+  let totalFiles = 0;
   const uniqueYears = new Set();
-  checkedFiles.forEach(cb => {
-    const year = cb.getAttribute('data-year');
-    if (year && year !== 'Unknown') {
-      uniqueYears.add(year);
-    }
+  
+  checkedYearBoxes.forEach(yearCheckbox => {
+    // Get the yearId from the checkbox ID (e.g., "year_1989_90_all" → "1989_90")
+    const yearId = yearCheckbox.id.replace('year_', '').replace('_all', '');
+    
+    // Find all file checkboxes for this year and ensure they're checked
+    const fileCheckboxes = document.querySelectorAll(`.year-${yearId}`);
+    fileCheckboxes.forEach(cb => {
+      cb.checked = true;
+      const year = cb.getAttribute('data-year');
+      if (year && year !== 'Unknown') {
+        uniqueYears.add(year);
+      }
+    });
+    
+    totalFiles += fileCheckboxes.length;
   });
   
-  const yearsCount = uniqueYears.size;
+  console.log(`📊 Update count: ${yearsCount} years checked, ${totalFiles} total files`);
+  console.log(`📅 Unique years:`, Array.from(uniqueYears));
   
   // Update stats
   const countElement = document.getElementById('selectedCount');
   const yearsElement = document.getElementById('yearsCount');
   const compareBtn = document.getElementById('compareFilesBtn');
   
-  if (countElement) countElement.textContent = selectedCount;
-  if (yearsElement) yearsElement.textContent = yearsCount;
+  if (countElement) {
+    countElement.textContent = totalFiles;
+    console.log(`✅ Updated count element to: ${totalFiles}`);
+  }
+  if (yearsElement) {
+    yearsElement.textContent = yearsCount;
+    console.log(`✅ Updated years element to: ${yearsCount}`);
+  }
   
   // Enable/disable compare button
   if (compareBtn) {
-    if (selectedCount >= 2 && yearsCount >= 2) {
+    if (totalFiles >= 2 && yearsCount >= 2) {
       compareBtn.disabled = false;
       compareBtn.innerHTML = `
         <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                 d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
         </svg>
-        Analyze ${yearsCount} Years (${selectedCount} files)
+        Analyze ${yearsCount} Years (${totalFiles} files)
       `;
+      console.log(`✅ Button enabled: Analyze ${yearsCount} Years (${totalFiles} files)`);
     } else {
       compareBtn.disabled = true;
       compareBtn.innerHTML = `
