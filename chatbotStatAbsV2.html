@@ -3791,29 +3791,80 @@ let parsedCloudinaryFiles = [];
 function parseCloudinaryLinksFromResponse(responseText) {
   console.log('🔍 Parsing Cloudinary links from response...');
   
-  // Regex to match Cloudinary URLs
+  // First, try to find year headers in the response (like "**1967-68**" or "1967-68" before file links)
+  const yearHeaderRegex = /\*{0,2}(\d{4}-\d{2}|\d{2}-\d{2})\*{0,2}\s*\(\d+\s+files?\)/gi;
+  
+  // Find all Cloudinary URLs
   const cloudinaryRegex = /https:\/\/res\.cloudinary\.com\/[^\/]+\/image\/upload\/([^"\s<>]+\.(?:jpg|jpeg|png|pdf))/gi;
   
   const matches = [];
-  let match;
   
-  while ((match = cloudinaryRegex.exec(responseText)) !== null) {
-    const fullUrl = match[0];
-    const path = match[1];
+  // Try to match years from context in response
+  const lines = responseText.split(/\n|<br>/);
+  let currentYear = 'Unknown';
+  
+  for (const line of lines) {
+    // Check if this line contains a year header
+    const yearHeaderMatch = line.match(/\*{0,2}(\d{4}-\d{2}|\d{2}-\d{2})\*{0,2}\s*\(\d+\s+files?\)/i);
+    if (yearHeaderMatch) {
+      currentYear = yearHeaderMatch[1];
+      // Normalize year format (if "67-68" convert to "1967-68")
+      if (currentYear.length === 5 && currentYear.includes('-')) {
+        const parts = currentYear.split('-');
+        if (parts[0].length === 2) {
+          currentYear = '19' + parts[0] + '-' + parts[1];
+        }
+      }
+      console.log('📅 Found year header:', currentYear);
+    }
     
-    // Extract year pattern (e.g., "1967-68" from path)
-    const yearMatch = path.match(/(\d{4}-\d{2})/);
-    const year = yearMatch ? yearMatch[1] : 'Unknown';
-    
-    // Extract filename
-    const filename = path.split('/').pop();
-    
-    matches.push({
-      url: fullUrl,
-      year: year,
-      filename: filename,
-      path: path
-    });
+    // Check if this line contains Cloudinary URLs
+    let urlMatch;
+    const lineRegex = /https:\/\/res\.cloudinary\.com\/[^\/]+\/image\/upload\/([^"\s<>]+\.(?:jpg|jpeg|png|pdf))/gi;
+    while ((urlMatch = lineRegex.exec(line)) !== null) {
+      const fullUrl = urlMatch[0];
+      const path = urlMatch[1];
+      
+      // Try to extract year from URL path first
+      const urlYearMatch = path.match(/(\d{4}-\d{2})/);
+      const year = urlYearMatch ? urlYearMatch[1] : currentYear;
+      
+      // Extract filename
+      const filename = path.split('/').pop();
+      
+      matches.push({
+        url: fullUrl,
+        year: year,
+        filename: filename,
+        path: path
+      });
+      
+      console.log(`  📄 ${filename} → Year: ${year}`);
+    }
+  }
+  
+  // Fallback: if no context-based year found, try to parse entire response
+  if (matches.length === 0) {
+    console.log('⚠️ No files found with context, trying global search...');
+    let match;
+    while ((match = cloudinaryRegex.exec(responseText)) !== null) {
+      const fullUrl = match[0];
+      const path = match[1];
+      
+      // Extract year pattern from URL
+      const yearMatch = path.match(/(\d{4}-\d{2})/);
+      const year = yearMatch ? yearMatch[1] : 'Unknown';
+      
+      // Extract filename
+      const filename = path.split('/').pop();
+      
+      matches.push({
+        url: fullUrl,
+        year: year,
+        filename: filename,
+        path: path
+      });
+    }
   }
   
   // Group by year
