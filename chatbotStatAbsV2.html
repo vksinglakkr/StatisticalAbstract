@@ -2584,6 +2584,25 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
       }
     }
     
+    // ═══════════════════════════════════════════════════════════════════
+    // COMPARISON FEATURE - Check if we should offer comparison
+    // ═══════════════════════════════════════════════════════════════════
+    setTimeout(() => {
+      // Store the question for comparison use
+      currentComparisonQuestion = question;
+      
+      // Determine query type
+      const queryType = selectedQueryType === 'statistics' ? 'STATISTICAL_CONCEPT_QUERY' : 'STATISTICAL_DATA_QUERY';
+      
+      // Check if we should offer comparison
+      if (shouldOfferComparison(question, queryType)) {
+        console.log('🎯 Offering comparison for suitable query');
+        showComparisonPrompt();
+      } else {
+        console.log('ℹ️ Not offering comparison - query not suitable');
+      }
+    }, 800);
+    
   } catch (error) {
     console.error('Error:', error);
     let errorMessage = 'Connection failed: ';
@@ -2880,20 +2899,6 @@ async function loadMasterFileData() {
     const response = await fetch(GOOGLE_SHEET_URL);
     console.log('   📡 Response status:', response.status, response.statusText);
     
-    // ═══════════════════════════════════════════════════════════════════
-    // CHECK IF WE SHOULD OFFER COMPARISON (Smart Detection)
-    // ═══════════════════════════════════════════════════════════════════
-    setTimeout(() => {
-      currentComparisonQuestion = question;
-      const queryType = selectedQueryType === 'statistics' ? 'STATISTICAL_CONCEPT_QUERY' : 'STATISTICAL_DATA_QUERY';
-      
-      if (shouldOfferComparison(question, queryType)) {
-        console.log('🎯 Offering comparison for suitable query');
-        showComparisonPrompt();
-      } else {
-        console.log('ℹ️ Not offering comparison - query not suitable');
-      }
-    }, 800);
     
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
