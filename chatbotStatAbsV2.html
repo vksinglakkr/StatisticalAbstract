@@ -1315,6 +1315,137 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
   }
 }
 
+
+/* ═══════════════════════════════════════════════════════════════════
+   PHASE 2A: COMPARISON CONFIRMATION DIALOG
+   ═══════════════════════════════════════════════════════════════════ */
+
+.comparison-confirmation {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border: 2px solid #22c55e;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 20px 0;
+  animation: slideDown 0.4s ease-out;
+}
+
+.confirm-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #14532d;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.confirm-details {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.detail-row {
+  display: flex;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0fdf4;
+  align-items: flex-start;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #166534;
+  min-width: 140px;
+  flex-shrink: 0;
+}
+
+.detail-value {
+  flex: 1;
+  color: #15803d;
+  font-weight: 500;
+}
+
+.confirm-note {
+  background: #fef3c7;
+  border-left: 4px solid #eab308;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #713f12;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cancel-btn {
+  background: white;
+  color: #64748b;
+  border: 2px solid #cbd5e1;
+}
+
+.cancel-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.proceed-btn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.proceed-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+@media (max-width: 640px) {
+  .confirm-title {
+    font-size: 18px;
+  }
+  
+  .detail-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .detail-label {
+    min-width: auto;
+  }
+  
+  .confirm-actions {
+    flex-direction: column;
+  }
+  
+  .action-btn {
+    width: 100%;
+  }
+}
 </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
@@ -3071,12 +3202,26 @@ function generateComparison() {
     return;
   }
   
-  console.log('📸 Generating comparison - showing image upload interface');
+  console.log('🚀 Starting Phase 2A automatic Cloudinary analysis');
   console.log('   Selected years:', selectedYears);
   console.log('   Question:', currentComparisonQuestion);
   
-  // Show image upload interface
-  showImageUploadInterface();
+  // PHASE 2A: Automatic topic detection and Cloudinary fetching
+  const topic = detectTopic(currentComparisonQuestion);
+  
+  if (topic) {
+    console.log(`✅ Topic detected: ${topic}`);
+    console.log(`📁 Will fetch ${topic} reports for years: ${selectedYears.join(', ')}`);
+  } else {
+    console.log('⚠️ No specific topic detected, will use general approach');
+  }
+  
+  // Build Cloudinary URLs
+  const cloudinaryURLs = buildCloudinaryURLs(topic, selectedYears);
+  console.log('🔗 Built Cloudinary URLs:', cloudinaryURLs);
+  
+  // Show confirmation to user
+  showComparisonConfirmation(topic, cloudinaryURLs);
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -3470,6 +3615,278 @@ function hideProcessingOverlay() {
 }
 
 console.log('✅ Image upload functionality loaded');
+
+// ═══════════════════════════════════════════════════════════════════
+// PHASE 2A: CLOUDINARY AUTOMATIC INTEGRATION
+// ═══════════════════════════════════════════════════════════════════
+
+// Configuration - UPDATE THESE!
+const CLOUDINARY_CLOUD_NAME = 'd4489tsgw'; // Your Cloudinary cloud name
+const CLOUDINARY_BASE_URL = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/`;
+const N8N_COMPARISON_WEBHOOK = 'https://your-n8n-url.com/webhook/comparison'; // UPDATE THIS!
+
+// Topic detection mapping
+const TOPIC_TO_FILE_MAP = {
+  'agriculture': 'Agriculture',
+  'agricultural': 'Agriculture',
+  'farming': 'Agriculture',
+  'crop': 'Agriculture',
+  'crops': 'Agriculture',
+  'cultivation': 'Agriculture',
+  'industry': 'Industries',
+  'industries': 'Industries',
+  'industrial': 'Industries',
+  'manufacturing': 'Industries',
+  'factory': 'Industries',
+  'population': 'Population',
+  'demographic': 'Population',
+  'census': 'Population',
+  'people': 'Population',
+  'gdp': 'GDP',
+  'economy': 'GDP',
+  'economic': 'GDP',
+  'income': 'GDP',
+  'revenue': 'GDP',
+  'employment': 'Employment',
+  'job': 'Employment',
+  'jobs': 'Employment',
+  'unemployment': 'Employment',
+  'worker': 'Employment',
+  'education': 'Education',
+  'school': 'Education',
+  'literacy': 'Education',
+  'student': 'Education',
+  'health': 'Health',
+  'hospital': 'Health',
+  'medical': 'Health',
+  'disease': 'Health',
+  'infrastructure': 'Infrastructure',
+  'road': 'Infrastructure',
+  'transport': 'Infrastructure',
+  'power': 'Infrastructure',
+  'electricity': 'Infrastructure'
+};
+
+// Detect topic from question
+function detectTopic(question) {
+  const lowerQuestion = question.toLowerCase();
+  
+  for (const [keyword, filePrefix] of Object.entries(TOPIC_TO_FILE_MAP)) {
+    if (lowerQuestion.includes(keyword)) {
+      console.log(`🎯 Detected topic: ${filePrefix} (keyword: ${keyword})`);
+      return filePrefix;
+    }
+  }
+  
+  console.log('⚠️ Could not detect specific topic');
+  return null;
+}
+
+// Convert year to folder name (2024 → "2023-24")
+function yearToFolderName(year) {
+  const startYear = year - 1;
+  const endYear = year.toString().slice(-2);
+  return `${startYear}-${endYear}`;
+}
+
+// Build Cloudinary URLs
+function buildCloudinaryURLs(topic, years) {
+  const urls = {};
+  
+  years.forEach(year => {
+    const folder = yearToFolderName(year);
+    
+    if (topic) {
+      urls[year] = `${CLOUDINARY_BASE_URL}${folder}/${topic}`;
+    } else {
+      urls[year] = `${CLOUDINARY_BASE_URL}${folder}/`;
+    }
+  });
+  
+  return urls;
+}
+
+// Show comparison confirmation
+function showComparisonConfirmation(topic, urls) {
+  const topicText = topic ? `${topic} reports` : 'Statistical reports';
+  const yearsList = selectedYears.map(y => `${y} (${yearToFolderName(y)})`).join(', ');
+  
+  const confirmHTML = `
+    <div class="comparison-confirmation" id="comparisonConfirm">
+      <div class="confirm-title">
+        🎯 Ready to Analyze
+      </div>
+      
+      <div class="confirm-details">
+        <div class="detail-row">
+          <span class="detail-label">📊 Report Type:</span>
+          <span class="detail-value">${topicText}</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="detail-label">📅 Years:</span>
+          <span class="detail-value">${yearsList}</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="detail-label">❓ Question:</span>
+          <span class="detail-value">${currentComparisonQuestion}</span>
+        </div>
+      </div>
+      
+      <div class="confirm-note">
+        💡 The system will automatically fetch the relevant report pages from Cloudinary and analyze them using AI.
+      </div>
+      
+      <div class="confirm-actions">
+        <button class="action-btn cancel-btn" id="cancelComparisonBtn">
+          Cancel
+        </button>
+        <button class="action-btn proceed-btn" id="proceedAnalysisBtn">
+          <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          Analyze Now
+        </button>
+      </div>
+    </div>
+  `;
+  
+  const yearSelection = document.getElementById('yearSelectionBox');
+  if (yearSelection) {
+    yearSelection.style.display = 'none';
+  }
+  
+  if (yearSelection && yearSelection.parentElement) {
+    const confirmDiv = document.createElement('div');
+    confirmDiv.innerHTML = confirmHTML;
+    yearSelection.parentElement.appendChild(confirmDiv);
+    
+    // Add event listeners
+    setTimeout(() => {
+      const cancelBtn = document.getElementById('cancelComparisonBtn');
+      const proceedBtn = document.getElementById('proceedAnalysisBtn');
+      
+      if (cancelBtn) {
+        cancelBtn.addEventListener('click', cancelComparison);
+      }
+      
+      if (proceedBtn) {
+        proceedBtn.addEventListener('click', () => proceedWithAnalysis(topic, urls));
+      }
+    }, 100);
+  }
+}
+
+function cancelComparison() {
+  const confirm = document.getElementById('comparisonConfirm');
+  if (confirm) {
+    confirm.remove();
+  }
+  
+  const yearSelection = document.getElementById('yearSelectionBox');
+  if (yearSelection) {
+    yearSelection.style.display = 'block';
+  }
+}
+
+async function proceedWithAnalysis(topic, urls) {
+  console.log('🚀 Proceeding with analysis');
+  console.log('   Topic:', topic);
+  console.log('   URLs:', urls);
+  
+  await sendToN8NForAnalysis(topic, urls);
+}
+
+async function sendToN8NForAnalysis(topic, urls) {
+  showProcessingOverlay();
+  updateProcessingStatus('Preparing analysis...', 1, 5);
+  
+  try {
+    const payload = {
+      question: currentComparisonQuestion,
+      topic: topic,
+      years: selectedYears,
+      cloudinaryURLs: urls,
+      language: selectedLanguage || 'English',
+      queryType: 'COMPARISON_ANALYSIS',
+      timestamp: new Date().toISOString()
+    };
+    
+    console.log('📤 Sending to n8n:', payload);
+    
+    updateProcessingStatus('Fetching report images...', 2, 5);
+    
+    const response = await fetch(N8N_COMPARISON_WEBHOOK, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    updateProcessingStatus('AI analyzing data...', 3, 5);
+    
+    const result = await response.json();
+    
+    console.log('✅ Received from n8n:', result);
+    
+    updateProcessingStatus('Generating comparison report...', 4, 5);
+    
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    updateProcessingStatus('Complete!', 5, 5);
+    
+    setTimeout(() => {
+      hideProcessingOverlay();
+      displayComparisonReport(result);
+    }, 500);
+    
+  } catch (error) {
+    console.error('❌ Error:', error);
+    hideProcessingOverlay();
+    
+    alert(`❌ Analysis Failed\n\nError: ${error.message}\n\nPlease check:\n• n8n webhook is configured\n• Workflow is active\n• Internet connection is stable`);
+  }
+}
+
+function displayComparisonReport(data) {
+  console.log('📊 Displaying report:', data);
+  
+  const confirm = document.getElementById('comparisonConfirm');
+  if (confirm) {
+    confirm.remove();
+  }
+  
+  if (data && data.success) {
+    alert(`✅ ANALYSIS COMPLETE!\n\n` +
+          `Question: ${currentComparisonQuestion}\n` +
+          `Years: ${selectedYears.join(', ')}\n\n` +
+          `${data.summary || 'Data extracted and compared successfully!'}\n\n` +
+          `Phase 2C will display beautiful charts and detailed analysis here.`);
+  } else {
+    alert(`⚠️ Analysis completed with issues:\n\n${data?.message || 'Unknown error'}`);
+  }
+}
+
+function updateProcessingStatus(message, step, totalSteps) {
+  const statusElements = document.querySelectorAll('.processing-text');
+  const progressElement = document.querySelector('.processing-progress');
+  
+  if (statusElements.length > 0) {
+    statusElements[0].textContent = message;
+  }
+  
+  if (progressElement) {
+    progressElement.textContent = `Step ${step} of ${totalSteps}`;
+  }
+}
+
+console.log('✅ Phase 2A Cloudinary automatic integration loaded');
 
 
 console.log('✅ Comparison feature JavaScript loaded');
