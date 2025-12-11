@@ -3106,17 +3106,48 @@ function populateYearCheckboxes() {
     return;
   }
   
-  const currentYear = new Date().getFullYear();
-  const startYear = 2014;
+  // Define available fiscal years based on your Cloudinary folders
+  // Format: "2023-24" (representing fiscal year 2023-2024)
+  const availableFiscalYears = [
+    '2023-24',
+    '2022-23',
+    '2021-22',
+    '2020-21',
+    '2019-20',
+    '2018-19',
+    '2017-18',
+    '2016-17',
+    '2015-16',
+    '2014-15',
+    '2013-14',
+    '2012-13',
+    '2011-12',
+    '2010-11',
+    '2009-10',
+    '2008-09',
+    '2007-08',
+    '2006-07',
+    '2005-06',
+    '2004-05',
+    '2003-04',
+    '2002-03',
+    '2001-02',
+    '2000-01',
+    '1999-00'
+  ];
   
   container.innerHTML = '';
   
-  console.log(`📅 Populating years from ${currentYear} to ${startYear}`);
+  console.log(`📅 Populating ${availableFiscalYears.length} fiscal years`);
   
-  for (let year = currentYear; year >= startYear; year--) {
+  availableFiscalYears.forEach(fiscalYear => {
+    // Extract ending year for value (e.g., "2023-24" -> 2024)
+    const endYear = parseInt('20' + fiscalYear.split('-')[1]);
+    
     const wrapper = document.createElement('div');
     wrapper.className = 'year-checkbox-wrapper';
-    wrapper.setAttribute('data-year', year);
+    wrapper.setAttribute('data-year', endYear);
+    wrapper.setAttribute('data-fiscal-year', fiscalYear);
     
     wrapper.onclick = function() {
       const checkbox = this.querySelector('input[type="checkbox"]');
@@ -3125,14 +3156,14 @@ function populateYearCheckboxes() {
     };
     
     wrapper.innerHTML = `
-      <input type="checkbox" id="year_${year}" value="${year}" onclick="event.stopPropagation(); updateYearSelection();">
-      <label for="year_${year}">${year}</label>
+      <input type="checkbox" id="year_${fiscalYear.replace('-', '_')}" value="${endYear}" data-fiscal-year="${fiscalYear}" onclick="event.stopPropagation(); updateYearSelection();">
+      <label for="year_${fiscalYear.replace('-', '_')}">${fiscalYear}</label>
     `;
     
     container.appendChild(wrapper);
-  }
+  });
   
-  console.log('✅ Year checkboxes populated');
+  console.log('✅ Year checkboxes populated with fiscal years');
 }
 
 // Update year selection and button state
@@ -3709,7 +3740,8 @@ function buildCloudinaryURLs(topic, years) {
 // Show comparison confirmation
 function showComparisonConfirmation(topic, urls) {
   const topicText = topic ? `${topic} reports` : 'Statistical reports';
-  const yearsList = selectedYears.map(y => `${y} (${yearToFolderName(y)})`).join(', ');
+  // Show fiscal years in format: 2023-24, 2022-23, 2021-22
+  const yearsList = selectedYears.map(y => yearToFolderName(y)).join(', ');
   
   const confirmHTML = `
     <div class="comparison-confirmation" id="comparisonConfirm">
