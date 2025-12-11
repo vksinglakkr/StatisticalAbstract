@@ -642,6 +642,341 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
   box-shadow: 0 4px 12px rgba(147, 51, 234, 0.15);
 }
    
+
+/* ============================================================================
+   COMPARISON FEATURE STYLES - Smart Contextual Prompting
+   ============================================================================ */
+
+/* Comparison Prompt Container */
+.comparison-prompt-container {
+  background: linear-gradient(135deg, #f0f9ff, #dbeafe);
+  border: 2px solid #0ea5e9;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 24px 0;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.comparison-prompt-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #bae6fd;
+}
+
+.comparison-prompt-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+
+.comparison-prompt-text {
+  flex: 1;
+}
+
+.comparison-prompt-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0c4a6e;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.comparison-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.comparison-prompt-desc {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.comparison-action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.enable-comparison-btn {
+  flex: 1;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: white;
+  font-weight: 700;
+  padding: 14px 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.enable-comparison-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+}
+
+.skip-comparison-btn {
+  padding: 14px 24px;
+  border-radius: 12px;
+  border: 2px solid #cbd5e1;
+  background: white;
+  color: #64748b;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 14px;
+}
+
+.skip-comparison-btn:hover {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+/* Year Selection Container */
+.year-selection-container {
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  border: 2px solid #0ea5e9;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+  display: none;
+  animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    max-height: 2000px;
+    transform: translateY(0);
+  }
+}
+
+.year-selection-container.visible {
+  display: block;
+}
+
+.year-selection-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0c4a6e;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.year-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.year-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid #bae6fd;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.year-checkbox-wrapper:hover {
+  border-color: #0ea5e9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(14, 165, 233, 0.15);
+}
+
+.year-checkbox-wrapper input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  cursor: pointer;
+  accent-color: #0ea5e9;
+}
+
+.year-checkbox-wrapper label {
+  font-weight: 600;
+  color: #0c4a6e;
+  cursor: pointer;
+  user-select: none;
+  flex: 1;
+}
+
+.year-checkbox-wrapper.selected {
+  border-color: #0ea5e9;
+  background: linear-gradient(135deg, #f0f9ff, #dbeafe);
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
+}
+
+.year-selection-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.quick-select-btn {
+  background: white;
+  border: 2px solid #0ea5e9;
+  color: #0c4a6e;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.quick-select-btn:hover {
+  background: #f0f9ff;
+  border-color: #0284c7;
+  transform: translateY(-1px);
+}
+
+.generate-comparison-btn {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: white;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  width: 100%;
+  justify-content: center;
+}
+
+.generate-comparison-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+}
+
+.generate-comparison-btn:disabled {
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+.year-selection-hint {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 12px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .comparison-prompt-container {
+    padding: 20px 16px;
+  }
+  
+  .comparison-prompt-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .comparison-prompt-title {
+    font-size: 17px;
+  }
+  
+  .comparison-prompt-desc {
+    font-size: 13px;
+  }
+  
+  .comparison-action-buttons {
+    flex-direction: column;
+  }
+  
+  .enable-comparison-btn,
+  .skip-comparison-btn {
+    width: 100%;
+    padding: 12px 20px;
+  }
+  
+  .year-checkboxes {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  
+  .year-checkbox-wrapper {
+    padding: 10px;
+  }
+  
+  .year-selection-title {
+    font-size: 16px;
+  }
+  
+  .year-selection-actions {
+    flex-direction: column;
+  }
+  
+  .quick-select-btn {
+    width: 100%;
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
@@ -2545,6 +2880,21 @@ async function loadMasterFileData() {
     const response = await fetch(GOOGLE_SHEET_URL);
     console.log('   📡 Response status:', response.status, response.statusText);
     
+    // ═══════════════════════════════════════════════════════════════════
+    // CHECK IF WE SHOULD OFFER COMPARISON (Smart Detection)
+    // ═══════════════════════════════════════════════════════════════════
+    setTimeout(() => {
+      currentComparisonQuestion = question;
+      const queryType = selectedQueryType === 'statistics' ? 'STATISTICAL_CONCEPT_QUERY' : 'STATISTICAL_DATA_QUERY';
+      
+      if (shouldOfferComparison(question, queryType)) {
+        console.log('🎯 Offering comparison for suitable query');
+        showComparisonPrompt();
+      } else {
+        console.log('ℹ️ Not offering comparison - query not suitable');
+      }
+    }, 800);
+    
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
@@ -2877,6 +3227,338 @@ window.addEventListener('DOMContentLoaded', function() {
     console.error('❌ Element with id="lastModified" not found in HTML!');
   }
   
+
+// ═══════════════════════════════════════════════════════════════════
+// COMPARISON FEATURE - Smart Contextual Year Selection
+// ═══════════════════════════════════════════════════════════════════
+
+// Global variables for comparison feature
+let selectedYears = [];
+let isComparisonActive = false;
+let currentComparisonQuestion = '';
+
+// Function to detect if query is suitable for comparison
+function shouldOfferComparison(question, queryType) {
+  // Only offer for data queries
+  if (queryType !== 'data' && queryType !== 'STATISTICAL_DATA_QUERY') {
+    console.log('❌ Not offering comparison - not a data query');
+    return false;
+  }
+  
+  // Keywords that suggest comparison might be useful
+  const comparisonKeywords = [
+    'year', 'years', 'annual', 'yearly',
+    'trend', 'trends', 'trending',
+    'growth', 'decline', 'change', 'changes', 'changed',
+    'compare', 'comparison', 'comparative', 'versus', 'vs',
+    'over time', 'historical', 'history',
+    'last', 'previous', 'past', 'recent',
+    'decade', 'period', 'from', 'to',
+    'between', 'since', 'during'
+  ];
+  
+  const lowerQuestion = question.toLowerCase();
+  const hasKeyword = comparisonKeywords.some(keyword => lowerQuestion.includes(keyword));
+  
+  console.log('🔍 Checking if comparison should be offered:');
+  console.log('   Query:', question);
+  console.log('   Has comparison keyword:', hasKeyword);
+  
+  return hasKeyword;
+}
+
+// Show comparison prompt in modal (after answer)
+function showComparisonPrompt() {
+  console.log('📊 Showing comparison prompt...');
+  
+  // Check if already exists
+  if (document.getElementById('comparisonPromptBox')) {
+    console.log('⚠️ Comparison prompt already exists, skipping');
+    return;
+  }
+  
+  const promptHTML = `
+    <div class="comparison-prompt-container" id="comparisonPromptBox">
+      <div class="comparison-prompt-header">
+        <div class="comparison-prompt-icon">🔍</div>
+        <div class="comparison-prompt-text">
+          <div class="comparison-prompt-title">
+            Want to Compare Multiple Years?
+            <span class="comparison-badge">✨ Advanced</span>
+          </div>
+          <div class="comparison-prompt-desc">
+            Get a comprehensive analytical report with charts comparing data across different years
+          </div>
+        </div>
+      </div>
+      
+      <div class="comparison-action-buttons">
+        <button class="enable-comparison-btn" onclick="enableComparison()">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Yes, Enable Comparison Analysis
+        </button>
+        <button class="skip-comparison-btn" onclick="skipComparison()">
+          No, Thanks
+        </button>
+      </div>
+    </div>
+    
+    <div class="year-selection-container" id="yearSelectionBox">
+      <div class="year-selection-title">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        Select Years to Compare (minimum 2)
+      </div>
+      
+      <div class="year-selection-actions">
+        <button class="quick-select-btn" onclick="selectAllYears()">
+          Select All Years
+        </button>
+        <button class="quick-select-btn" onclick="clearAllYears()">
+          Clear All
+        </button>
+        <button class="quick-select-btn" onclick="selectLastFiveYears()">
+          Last 5 Years
+        </button>
+      </div>
+      
+      <div class="year-checkboxes" id="yearCheckboxContainer">
+        <!-- Years will be populated here -->
+      </div>
+      
+      <button class="generate-comparison-btn" id="generateComparisonBtn" onclick="generateComparison()" disabled>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+        </svg>
+        <span id="generateBtnText">Select at least 2 years</span>
+      </button>
+      
+      <div class="year-selection-hint">
+        💡 Select at least 2 years to generate a comparative analysis with charts and insights
+      </div>
+    </div>
+  `;
+  
+  // Insert after the answer section in modal
+  const modalAnswerSection = document.querySelector('#modalAnswer');
+  if (!modalAnswerSection) {
+    console.error('❌ modalAnswer element not found!');
+    return;
+  }
+  
+  const answerParent = modalAnswerSection.parentElement;
+  const promptDiv = document.createElement('div');
+  promptDiv.innerHTML = promptHTML;
+  
+  // Insert after the answer section's parent
+  answerParent.parentElement.insertBefore(promptDiv, answerParent.nextSibling);
+  
+  console.log('✅ Comparison prompt displayed');
+  
+  // Populate years
+  populateYearCheckboxes();
+}
+
+// Enable comparison - show year selection
+function enableComparison() {
+  console.log('✅ User enabled comparison mode');
+  isComparisonActive = true;
+  
+  // Hide prompt with animation
+  const promptBox = document.getElementById('comparisonPromptBox');
+  if (promptBox) {
+    promptBox.style.transition = 'all 0.3s ease-out';
+    promptBox.style.opacity = '0';
+    promptBox.style.transform = 'translateY(-10px)';
+    
+    setTimeout(() => {
+      promptBox.style.display = 'none';
+      
+      // Show year selection
+      const yearBox = document.getElementById('yearSelectionBox');
+      if (yearBox) {
+        yearBox.classList.add('visible');
+        console.log('✅ Year selection displayed');
+      }
+    }, 300);
+  }
+}
+
+// Skip comparison
+function skipComparison() {
+  console.log('❌ User skipped comparison');
+  
+  const promptBox = document.getElementById('comparisonPromptBox');
+  if (promptBox) {
+    promptBox.style.transition = 'all 0.3s ease-out';
+    promptBox.style.opacity = '0';
+    promptBox.style.transform = 'translateY(-10px)';
+    
+    setTimeout(() => {
+      promptBox.remove();
+      console.log('✅ Comparison prompt removed');
+    }, 300);
+  }
+}
+
+// Populate year checkboxes (2014-2024)
+function populateYearCheckboxes() {
+  const container = document.getElementById('yearCheckboxContainer');
+  if (!container) {
+    console.error('❌ yearCheckboxContainer not found');
+    return;
+  }
+  
+  const currentYear = new Date().getFullYear();
+  const startYear = 2014;
+  
+  container.innerHTML = '';
+  
+  console.log(`📅 Populating years from ${currentYear} to ${startYear}`);
+  
+  for (let year = currentYear; year >= startYear; year--) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'year-checkbox-wrapper';
+    wrapper.setAttribute('data-year', year);
+    
+    wrapper.onclick = function() {
+      const checkbox = this.querySelector('input[type="checkbox"]');
+      checkbox.checked = !checkbox.checked;
+      updateYearSelection();
+    };
+    
+    wrapper.innerHTML = `
+      <input type="checkbox" id="year_${year}" value="${year}" onclick="event.stopPropagation(); updateYearSelection();">
+      <label for="year_${year}">${year}</label>
+    `;
+    
+    container.appendChild(wrapper);
+  }
+  
+  console.log('✅ Year checkboxes populated');
+}
+
+// Update year selection and button state
+function updateYearSelection() {
+  selectedYears = [];
+  const checkboxes = document.querySelectorAll('.year-checkboxes input[type="checkbox"]');
+  
+  checkboxes.forEach(checkbox => {
+    const wrapper = checkbox.closest('.year-checkbox-wrapper');
+    if (checkbox.checked) {
+      selectedYears.push(checkbox.value);
+      wrapper.classList.add('selected');
+    } else {
+      wrapper.classList.remove('selected');
+    }
+  });
+  
+  // Update button state
+  const generateBtn = document.getElementById('generateComparisonBtn');
+  const btnText = document.getElementById('generateBtnText');
+  
+  if (!generateBtn || !btnText) return;
+  
+  if (selectedYears.length >= 2) {
+    generateBtn.disabled = false;
+    btnText.textContent = `Generate Report for ${selectedYears.length} Years`;
+  } else if (selectedYears.length === 1) {
+    generateBtn.disabled = true;
+    btnText.textContent = 'Select at least 1 more year';
+  } else {
+    generateBtn.disabled = true;
+    btnText.textContent = 'Select at least 2 years';
+  }
+  
+  console.log('📊 Selected years:', selectedYears);
+}
+
+// Quick selection functions
+function selectAllYears() {
+  const checkboxes = document.querySelectorAll('.year-checkboxes input[type="checkbox"]');
+  checkboxes.forEach(cb => cb.checked = true);
+  updateYearSelection();
+  console.log('✅ All years selected');
+}
+
+function clearAllYears() {
+  const checkboxes = document.querySelectorAll('.year-checkboxes input[type="checkbox"]');
+  checkboxes.forEach(cb => cb.checked = false);
+  updateYearSelection();
+  console.log('✅ All years cleared');
+}
+
+function selectLastFiveYears() {
+  clearAllYears();
+  const checkboxes = document.querySelectorAll('.year-checkboxes input[type="checkbox"]');
+  for (let i = 0; i < Math.min(5, checkboxes.length); i++) {
+    checkboxes[i].checked = true;
+  }
+  updateYearSelection();
+  console.log('✅ Last 5 years selected');
+}
+
+// Generate comparison report
+function generateComparison() {
+  if (selectedYears.length < 2) {
+    alert('Please select at least 2 years for comparison');
+    return;
+  }
+  
+  console.log('🚀 Generating comparison for years:', selectedYears);
+  console.log('   Question:', currentComparisonQuestion);
+  
+  const generateBtn = document.getElementById('generateComparisonBtn');
+  const btnText = document.getElementById('generateBtnText');
+  
+  if (!generateBtn || !btnText) return;
+  
+  const originalText = btnText.textContent;
+  
+  // Show loading state
+  btnText.textContent = 'Generating Report...';
+  generateBtn.disabled = true;
+  
+  const icon = generateBtn.querySelector('svg');
+  if (icon) {
+    icon.style.animation = 'spin 1s linear infinite';
+  }
+  
+  // TODO: Step 2 - Connect to backend API
+  // This is where we'll add:
+  // 1. Image upload functionality
+  // 2. API call to n8n workflow
+  // 3. Process images with AI
+  // 4. Generate analytical report
+  
+  // For now, show placeholder
+  setTimeout(() => {
+    alert(`✅ STEP 1 COMPLETE!\n\n` +
+          `Selected Years: ${selectedYears.join(', ')}\n` +
+          `Question: ${currentComparisonQuestion}\n\n` +
+          `Next Steps (Step 2):\n` +
+          `• Add image upload for report pages\n` +
+          `• Connect to n8n workflow\n` +
+          `• Process images with AI vision\n` +
+          `• Generate analytical comparison report\n` +
+          `• Display charts and insights`);
+    
+    // Reset button
+    btnText.textContent = originalText;
+    generateBtn.disabled = false;
+    if (icon) {
+      icon.style.animation = '';
+    }
+  }, 2000);
+}
+
+console.log('✅ Comparison feature JavaScript loaded');
   console.log('🎉 All initialization complete!');
 });</script>
 
