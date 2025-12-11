@@ -2831,14 +2831,14 @@ function showComparisonPrompt() {
       </div>
       
       <div class="comparison-action-buttons">
-        <button class="enable-comparison-btn" onclick="enableComparison()">
+        <button class="enable-comparison-btn" id="enableComparisonBtn">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                   d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
           </svg>
           Yes, Enable Comparison Analysis
         </button>
-        <button class="skip-comparison-btn" onclick="skipComparison()">
+        <button class="skip-comparison-btn" id="skipComparisonBtn">
           No, Thanks
         </button>
       </div>
@@ -2854,13 +2854,13 @@ function showComparisonPrompt() {
       </div>
       
       <div class="year-selection-actions">
-        <button class="quick-select-btn" onclick="selectAllYears()">
+        <button class="quick-select-btn" id="selectAllYearsBtn">
           Select All Years
         </button>
-        <button class="quick-select-btn" onclick="clearAllYears()">
+        <button class="quick-select-btn" id="clearAllYearsBtn">
           Clear All
         </button>
-        <button class="quick-select-btn" onclick="selectLastFiveYears()">
+        <button class="quick-select-btn" id="selectLastFiveYearsBtn">
           Last 5 Years
         </button>
       </div>
@@ -2899,8 +2899,30 @@ function showComparisonPrompt() {
   
   console.log('✅ Comparison prompt displayed');
   
+  // Add event listeners to buttons
+  const enableBtn = document.getElementById('enableComparisonBtn');
+  const skipBtn = document.getElementById('skipComparisonBtn');
+  
+  if (enableBtn) {
+    enableBtn.addEventListener('click', enableComparison);
+  }
+  if (skipBtn) {
+    skipBtn.addEventListener('click', skipComparison);
+  }
+  
   // Populate years
   populateYearCheckboxes();
+  
+  // Add event listeners for year selection buttons after population
+  setTimeout(() => {
+    const selectAllBtn = document.getElementById('selectAllYearsBtn');
+    const clearAllBtn = document.getElementById('clearAllYearsBtn');
+    const lastFiveBtn = document.getElementById('selectLastFiveYearsBtn');
+    
+    if (selectAllBtn) selectAllBtn.addEventListener('click', selectAllYears);
+    if (clearAllBtn) clearAllBtn.addEventListener('click', clearAllYears);
+    if (lastFiveBtn) lastFiveBtn.addEventListener('click', selectLastFiveYears);
+  }, 100);
 }
 
 // Enable comparison - show year selection
@@ -3119,7 +3141,7 @@ function showImageUploadInterface() {
               </svg>
               Upload More
             </button>
-            <button class="upload-action-btn clear-all-btn" onclick="clearAllImages()">
+            <button class="upload-action-btn clear-all-btn" id="clearAllImagesBtn">
               <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                       d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
@@ -3127,7 +3149,7 @@ function showImageUploadInterface() {
               Clear All
             </button>
             <button class="upload-action-btn process-images-btn" id="processImagesBtn" 
-                    onclick="processImagesAndGenerate()" disabled>
+                    id="processImagesBtnClick" disabled>
               <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -3151,6 +3173,19 @@ function showImageUploadInterface() {
     
     // Initialize drag & drop
     initializeDragAndDrop();
+    
+    // Add event listeners for upload buttons
+    setTimeout(() => {
+      const clearAllBtn = document.getElementById('clearAllImagesBtn');
+      const processBtn = document.getElementById('processImagesBtnClick');
+      
+      if (clearAllBtn) {
+        clearAllBtn.addEventListener('click', clearAllImages);
+      }
+      if (processBtn) {
+        processBtn.addEventListener('click', processImagesAndGenerate);
+      }
+    }, 100);
   } else {
     uploadContainer.classList.add('visible');
   }
@@ -3313,10 +3348,20 @@ function updateImagesList() {
           <div class="image-size">${formatFileSize(img.size)}</div>
         </div>
       </div>
-      <button class="remove-image-btn" onclick="removeImage(${index})" title="Remove">
+      <button class="remove-image-btn" data-index="${index}" title="Remove">
         ×
       </button>
     `;
+    
+    // Add event listener to remove button
+    const removeBtn = card.querySelector('.remove-image-btn');
+    if (removeBtn) {
+      removeBtn.addEventListener('click', function() {
+        const idx = parseInt(this.getAttribute('data-index'));
+        removeImage(idx);
+      });
+    }
+    
     imagesGrid.appendChild(card);
   });
   
