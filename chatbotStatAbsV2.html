@@ -1617,6 +1617,283 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
 input[type="checkbox"] {
   accent-color: #f59e0b;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   COPY-PASTE INTERFACE STYLES
+   ═══════════════════════════════════════════════════════════════════ */
+
+.copy-paste-container {
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  border: 2px solid #3b82f6;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 20px 0;
+  max-width: 900px;
+  animation: slideDown 0.4s ease-out;
+}
+
+.copy-paste-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.copy-paste-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e40af;
+  margin: 0 0 8px 0;
+}
+
+.copy-paste-subtitle {
+  font-size: 14px;
+  color: #1e40af;
+  margin: 0;
+}
+
+.copy-paste-stats {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.stat-badge {
+  background: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.prompt-preview-container {
+  background: white;
+  border: 2px solid #bfdbfe;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.prompt-preview-header {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
+.copy-btn-small {
+  background: white;
+  color: #2563eb;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.copy-btn-small:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.prompt-preview {
+  padding: 16px;
+  max-height: 300px;
+  overflow-y: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #374151;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.prompt-preview::-webkit-scrollbar {
+  width: 8px;
+}
+
+.prompt-preview::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 4px;
+}
+
+.prompt-preview::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 4px;
+}
+
+.copy-paste-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ai-links-container {
+  background: #fef3c7;
+  border: 2px solid #fbbf24;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.ai-links-header {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #92400e;
+  margin-bottom: 12px;
+}
+
+.ai-links-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ai-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s;
+  flex: 1;
+  min-width: 150px;
+  justify-content: center;
+}
+
+.chatgpt-btn {
+  background: linear-gradient(135deg, #10a37f, #0d8a6a);
+  color: white;
+  box-shadow: 0 4px 12px rgba(16, 163, 127, 0.3);
+}
+
+.chatgpt-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 163, 127, 0.4);
+}
+
+.claude-btn {
+  background: linear-gradient(135deg, #cc785c, #b86749);
+  color: white;
+  box-shadow: 0 4px 12px rgba(204, 120, 92, 0.3);
+}
+
+.claude-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(204, 120, 92, 0.4);
+}
+
+.gemini-btn {
+  background: linear-gradient(135deg, #4285f4, #1a73e8);
+  color: white;
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+.gemini-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(66, 133, 244, 0.4);
+}
+
+.copy-paste-instructions {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.copy-paste-instructions h4 {
+  margin: 0 0 12px 0;
+  color: #1f2937;
+  font-size: 16px;
+}
+
+.copy-paste-instructions ol {
+  margin: 0 0 16px 0;
+  padding-left: 24px;
+}
+
+.copy-paste-instructions li {
+  margin: 8px 0;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.tip-box {
+  background: #f0fdf4;
+  border-left: 4px solid #10b981;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #065f46;
+}
+
+/* Toast animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .copy-paste-container {
+    padding: 16px;
+    margin: 10px 0;
+  }
+  
+  .copy-paste-title {
+    font-size: 20px;
+  }
+  
+  .copy-paste-stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .prompt-preview {
+    max-height: 200px;
+    font-size: 12px;
+  }
+  
+  .copy-paste-actions {
+    flex-direction: column;
+  }
+  
+  .ai-links-buttons {
+    flex-direction: column;
+  }
+  
+  .ai-link-btn {
+    width: 100%;
+  }
+}
 </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
@@ -4141,26 +4418,254 @@ async function compareSelectedFiles() {
   
   // Group selected files by year
   const filesByYear = {};
-  checkedFiles.forEach(cb => {
-    const year = cb.getAttribute('data-year');
-    const url = cb.getAttribute('data-url');
-    const filename = cb.getAttribute('data-filename');
+  const yearCheckboxes = document.querySelectorAll('.year-checkbox:checked');
+  
+  yearCheckboxes.forEach(yearCheckbox => {
+    const yearId = yearCheckbox.id.replace('year_', '').replace('_all', '');
+    const fileCheckboxes = document.querySelectorAll(`.year-${yearId}`);
     
-    if (!filesByYear[year]) {
-      filesByYear[year] = [];
-    }
-    
-    filesByYear[year].push({
-      url: url,
-      filename: filename
+    fileCheckboxes.forEach(cb => {
+      const year = cb.getAttribute('data-year');
+      const url = cb.getAttribute('data-url');
+      const filename = cb.getAttribute('data-filename');
+      
+      if (!filesByYear[year]) {
+        filesByYear[year] = [];
+      }
+      
+      filesByYear[year].push({
+        url: url,
+        filename: filename
+      });
     });
   });
   
-  console.log('🚀 Comparing files:', filesByYear);
+  console.log('📋 Generating prompt for:', filesByYear);
   
-  // Send to n8n for comparison
-  await sendFilesToN8NForComparison(filesByYear);
+  // Generate prompt and show copy interface
+  showCopyPasteInterface(filesByYear);
 }
+
+// Generate and show copy-paste prompt interface
+function showCopyPasteInterface(filesByYear) {
+  const years = Object.keys(filesByYear).sort().reverse();
+  const question = currentComparisonQuestion || 'Compare the statistical data across these years';
+  
+  // Build the prompt
+  let prompt = `I need help analyzing and comparing Haryana Statistical Abstract data across multiple years.\n\n`;
+  prompt += `Question: ${question}\n\n`;
+  prompt += `Please analyze the following report images and provide a comprehensive comparison:\n\n`;
+  
+  years.forEach((year, index) => {
+    const files = filesByYear[year];
+    prompt += `**Year ${year}** (${files.length} page${files.length > 1 ? 's' : ''}):\n`;
+    files.forEach((file, fileIndex) => {
+      prompt += `${fileIndex + 1}. ${file.url}\n`;
+    });
+    prompt += `\n`;
+  });
+  
+  prompt += `Please:\n`;
+  prompt += `1. Extract all numerical data, statistics, and key metrics from each year\n`;
+  prompt += `2. Compare the data across all ${years.length} years\n`;
+  prompt += `3. Identify trends, growth rates, and significant changes\n`;
+  prompt += `4. Provide insights and analysis\n`;
+  prompt += `5. Present the comparison in a clear, structured format\n\n`;
+  prompt += `Note: The images are pages from official Haryana Statistical Abstract reports. Please analyze them carefully and extract accurate data.`;
+  
+  console.log('✅ Prompt generated');
+  
+  // Build the interface HTML
+  const interfaceHTML = `
+    <div class="copy-paste-container" id="copyPasteContainer">
+      <div class="copy-paste-header">
+        <h3 class="copy-paste-title">
+          📋 Ready to Analyze with AI
+        </h3>
+        <div class="copy-paste-subtitle">
+          Copy the prompt below and paste it into ChatGPT or Claude along with the image links
+        </div>
+      </div>
+      
+      <div class="copy-paste-stats">
+        <span class="stat-badge">
+          📅 ${years.length} Year${years.length > 1 ? 's' : ''}
+        </span>
+        <span class="stat-badge">
+          📄 ${Object.values(filesByYear).reduce((sum, files) => sum + files.length, 0)} Image${Object.values(filesByYear).reduce((sum, files) => sum + files.length, 0) > 1 ? 's' : ''}
+        </span>
+      </div>
+      
+      <div class="prompt-preview-container">
+        <div class="prompt-preview-header">
+          <span>📝 Prompt Preview</span>
+          <button class="copy-btn-small" onclick="copyPromptToClipboard()" title="Copy prompt">
+            📋 Copy
+          </button>
+        </div>
+        <div class="prompt-preview" id="promptPreview">${prompt.replace(/\n/g, '<br>')}</div>
+      </div>
+      
+      <div class="copy-paste-actions">
+        <button class="action-btn secondary-btn" onclick="closeCopyPasteInterface()">
+          ← Back
+        </button>
+        <button class="action-btn primary-btn" onclick="copyPromptToClipboard()">
+          📋 Copy Prompt to Clipboard
+        </button>
+      </div>
+      
+      <div class="ai-links-container">
+        <div class="ai-links-header">
+          Then paste in your preferred AI:
+        </div>
+        <div class="ai-links-buttons">
+          <a href="https://chatgpt.com" target="_blank" class="ai-link-btn chatgpt-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073z"/>
+            </svg>
+            Open ChatGPT
+          </a>
+          <a href="https://claude.ai" target="_blank" class="ai-link-btn claude-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Open Claude
+          </a>
+          <a href="https://gemini.google.com" target="_blank" class="ai-link-btn gemini-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Open Gemini
+          </a>
+        </div>
+      </div>
+      
+      <div class="copy-paste-instructions">
+        <h4>📌 How to use:</h4>
+        <ol>
+          <li><strong>Copy the prompt</strong> using the button above</li>
+          <li><strong>Click on your preferred AI</strong> (ChatGPT, Claude, or Gemini)</li>
+          <li><strong>Paste the prompt</strong> in the chat</li>
+          <li><strong>The AI will analyze</strong> the images from the URLs and provide comparison!</li>
+        </ol>
+        <div class="tip-box">
+          💡 <strong>Tip:</strong> Claude and ChatGPT can directly access images from URLs! Just paste the prompt with the links.
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Hide file selection interface
+  const fileSelectionContainer = document.getElementById('fileSelectionContainer');
+  if (fileSelectionContainer) {
+    fileSelectionContainer.style.display = 'none';
+  }
+  
+  // Insert copy-paste interface
+  const modalAnswer = document.getElementById('modalAnswer');
+  if (modalAnswer && modalAnswer.parentElement) {
+    const copyPasteDiv = document.createElement('div');
+    copyPasteDiv.innerHTML = interfaceHTML;
+    modalAnswer.parentElement.appendChild(copyPasteDiv);
+  }
+  
+  // Store prompt globally for copying
+  window.generatedPrompt = prompt;
+  
+  console.log('✅ Copy-paste interface displayed');
+}
+
+// Copy prompt to clipboard
+function copyPromptToClipboard() {
+  const prompt = window.generatedPrompt;
+  
+  if (!prompt) {
+    alert('No prompt to copy!');
+    return;
+  }
+  
+  // Copy to clipboard
+  navigator.clipboard.writeText(prompt).then(() => {
+    console.log('✅ Prompt copied to clipboard');
+    
+    // Show success feedback
+    const copyBtn = document.querySelector('.copy-paste-actions .primary-btn');
+    if (copyBtn) {
+      const originalText = copyBtn.innerHTML;
+      copyBtn.innerHTML = '✅ Copied to Clipboard!';
+      copyBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+      
+      setTimeout(() => {
+        copyBtn.innerHTML = originalText;
+        copyBtn.style.background = '';
+      }, 2000);
+    }
+    
+    // Also show a toast notification
+    showToast('📋 Prompt copied! Now paste it in your preferred AI.', 'success');
+  }).catch(err => {
+    console.error('❌ Failed to copy:', err);
+    
+    // Fallback: select text
+    const promptPreview = document.getElementById('promptPreview');
+    if (promptPreview) {
+      const range = document.createRange();
+      range.selectNode(promptPreview);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      alert('Prompt selected! Press Ctrl+C (or Cmd+C on Mac) to copy.');
+    }
+  });
+}
+
+// Close copy-paste interface
+function closeCopyPasteInterface() {
+  const container = document.getElementById('copyPasteContainer');
+  if (container) {
+    container.remove();
+  }
+  
+  // Show file selection again
+  const fileSelectionContainer = document.getElementById('fileSelectionContainer');
+  if (fileSelectionContainer) {
+    fileSelectionContainer.style.display = 'block';
+  }
+  
+  console.log('❌ Copy-paste interface closed');
+}
+
+// Show toast notification
+function showToast(message, type = 'info') {
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: ${type === 'success' ? '#10b981' : '#3b82f6'};
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 10000;
+    font-size: 14px;
+    font-weight: 500;
+    animation: slideIn 0.3s ease-out;
+  `;
+  
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.style.animation = 'slideOut 0.3s ease-out';
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+// Make functions globally accessible
+window.copyPromptToClipboard = copyPromptToClipboard;
+window.closeCopyPasteInterface = closeCopyPasteInterface;
 
 // Make it globally accessible
 window.compareSelectedFiles = compareSelectedFiles;
