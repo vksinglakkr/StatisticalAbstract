@@ -1783,28 +1783,6 @@ input[type="checkbox"] {
   box-shadow: 0 6px 16px rgba(16, 163, 127, 0.4);
 }
 
-.claude-btn {
-  background: linear-gradient(135deg, #cc785c, #b86749);
-  color: white;
-  box-shadow: 0 4px 12px rgba(204, 120, 92, 0.3);
-}
-
-.claude-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(204, 120, 92, 0.4);
-}
-
-.gemini-btn {
-  background: linear-gradient(135deg, #4285f4, #1a73e8);
-  color: white;
-  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
-}
-
-.gemini-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(66, 133, 244, 0.4);
-}
-
 .copy-paste-instructions {
   background: white;
   border: 2px solid #e5e7eb;
@@ -5069,18 +5047,6 @@ function showCopyPasteInterface(filesByYear) {
             </svg>
             Open ChatGPT
           </a>
-          <a href="https://claude.ai" target="_blank" class="ai-link-btn claude-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-            Open Claude
-          </a>
-          <a href="https://gemini.google.com" target="_blank" class="ai-link-btn gemini-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-            Open Gemini
-          </a>
         </div>
       </div>
       
@@ -5088,12 +5054,12 @@ function showCopyPasteInterface(filesByYear) {
         <h4>📌 How to use:</h4>
         <ol>
           <li><strong>Copy the prompt</strong> using the button above</li>
-          <li><strong>Click on your preferred AI</strong> (ChatGPT, Claude, or Gemini)</li>
+          <li><strong>Click "Open ChatGPT"</strong> to launch ChatGPT</li>
           <li><strong>Paste the prompt</strong> in the chat</li>
-          <li><strong>The AI will analyze</strong> the images from the URLs and provide comparison!</li>
+          <li><strong>ChatGPT will analyze</strong> the images from the URLs and provide comparison!</li>
         </ol>
         <div class="tip-box">
-          💡 <strong>Tip:</strong> Claude and ChatGPT can directly access images from URLs! Just paste the prompt with the links.
+          💡 <strong>Tip:</strong> ChatGPT can directly access images from URLs! Just paste the prompt with the links.
         </div>
       </div>
     </div>
@@ -6200,7 +6166,8 @@ function updateHistoryBadge() {
   const badge = document.getElementById('historyBadge');
   const count = document.getElementById('historyCount');
   
-  if (window.conversationHistory && window.conversationHistory.length > 0) {
+  // Only show badge for Radio Button 1 (statistics mode)
+  if (selectedQueryType === 'statistics' && window.conversationHistory && window.conversationHistory.length > 0) {
     badge.classList.remove('hidden');
     count.textContent = window.conversationHistory.length;
   } else {
