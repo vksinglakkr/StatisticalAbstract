@@ -1619,6 +1619,180 @@ input[type="checkbox"] {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
+   DUAL ANALYSIS OPTIONS STYLES
+   ═══════════════════════════════════════════════════════════════════ */
+
+.dual-options-container {
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  border: 3px solid #0284c7;
+  border-radius: 20px;
+  padding: 30px;
+  margin: 20px 0;
+  max-width: 1000px;
+  animation: slideDown 0.4s ease-out;
+}
+
+.dual-options-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.dual-options-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0c4a6e;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.dual-options-subtitle {
+  font-size: 16px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.dual-options-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+@media (max-width: 768px) {
+  .dual-options-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dual-option-btn {
+  background: white;
+  border: 3px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dual-option-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.dual-option-btn.primary-option {
+  border-color: #8b5cf6;
+  background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+}
+
+.dual-option-btn.primary-option:hover {
+  border-color: #7c3aed;
+  background: linear-gradient(135deg, #f5edff, #ede9fe);
+}
+
+.dual-option-btn.secondary-option {
+  border-color: #3b82f6;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+}
+
+.dual-option-btn.secondary-option:hover {
+  border-color: #2563eb;
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+}
+
+.option-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.option-content {
+  text-align: center;
+  width: 100%;
+}
+
+.option-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+
+.option-features {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.8;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.option-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
+.option-badge.secondary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.dual-options-footer {
+  text-align: center;
+  padding-top: 15px;
+  border-top: 2px solid #e2e8f0;
+}
+
+.back-btn {
+  background: linear-gradient(135deg, #64748b, #475569);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: linear-gradient(135deg, #475569, #334155);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.loading-spinner {
+  border: 4px solid #e0f2fe;
+  border-top: 4px solid #0284c7;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
    COPY-PASTE INTERFACE STYLES
    ═══════════════════════════════════════════════════════════════════ */
 
@@ -4425,10 +4599,206 @@ async function compareSelectedFiles() {
     });
   });
   
-  console.log('📋 Generating prompt for:', filesByYear);
+  console.log('📋 Files selected:', filesByYear);
   
-  // Generate prompt and show copy interface
+  // ✅ SHOW DUAL OPTIONS: n8n (Groq) OR Copy-Paste (ChatGPT)
+  showDualAnalysisOptions(filesByYear);
+}
+
+
+// ═══════════════════════════════════════════════════════════════════
+// DUAL ANALYSIS OPTIONS: n8n (Groq) OR ChatGPT
+// ═══════════════════════════════════════════════════════════════════
+
+function showDualAnalysisOptions(filesByYear) {
+  const years = Object.keys(filesByYear).sort().reverse();
+  const totalFiles = Object.values(filesByYear).reduce((sum, files) => sum + files.length, 0);
+  
+  const dualOptionsHTML = `
+    <div class="dual-options-container" id="dualOptionsContainer">
+      <div class="dual-options-header">
+        <h3 class="dual-options-title">
+          🎯 Choose Analysis Method
+        </h3>
+        <div class="dual-options-subtitle">
+          You've selected ${years.length} year${years.length > 1 ? 's' : ''} (${totalFiles} files). How would you like to analyze?
+        </div>
+      </div>
+      
+      <div class="dual-options-buttons">
+        <!-- Option 1: n8n Workflow (Groq) -->
+        <button class="dual-option-btn primary-option" onclick="analyzeWithN8N()">
+          <div class="option-icon">🚀</div>
+          <div class="option-content">
+            <div class="option-title">Analyze with n8n (Recommended)</div>
+            <div class="option-features">
+              ✅ Server-side Groq AI processing<br>
+              ✅ Beautiful HTML reports with graphs<br>
+              ✅ Professional insights & metrics<br>
+              ✅ Automatic comparison tables
+            </div>
+            <div class="option-badge">BEST QUALITY</div>
+          </div>
+        </button>
+        
+        <!-- Option 2: Copy-Paste (ChatGPT) -->
+        <button class="dual-option-btn secondary-option" onclick="analyzeWithChatGPT()">
+          <div class="option-icon">📋</div>
+          <div class="option-content">
+            <div class="option-title">Copy for ChatGPT (Alternative)</div>
+            <div class="option-features">
+              ✅ Manual analysis control<br>
+              ✅ Ask follow-up questions<br>
+              ✅ Export/customize results<br>
+              ✅ Works with ChatGPT web interface
+            </div>
+            <div class="option-badge secondary">MANUAL</div>
+          </div>
+        </button>
+      </div>
+      
+      <div class="dual-options-footer">
+        <button class="back-btn" onclick="backToFileSelection()">
+          ← Back to File Selection
+        </button>
+      </div>
+    </div>
+  `;
+  
+  // Hide file selection interface
+  const fileSelectionContainer = document.getElementById('fileSelectionContainer');
+  if (fileSelectionContainer) {
+    fileSelectionContainer.style.display = 'none';
+  }
+  
+  // Insert dual options interface
+  const modalAnswer = document.getElementById('modalAnswer');
+  if (modalAnswer && modalAnswer.parentElement) {
+    const dualOptionsDiv = document.createElement('div');
+    dualOptionsDiv.innerHTML = dualOptionsHTML;
+    modalAnswer.parentElement.appendChild(dualOptionsDiv);
+  }
+  
+  // Store filesByYear globally for use by both options
+  window.selectedFilesData = filesByYear;
+  
+  console.log('✅ Dual options interface displayed');
+}
+
+// Option 1: Analyze with n8n (Groq workflow)
+function analyzeWithN8N() {
+  console.log('🚀 User selected: n8n (Groq) analysis');
+  
+  const filesByYear = window.selectedFilesData;
+  const years = Object.keys(filesByYear);
+  
+  // Prepare payload for n8n webhook
+  const payload = {
+    question: currentComparisonQuestion,
+    filesByYear: filesByYear,
+    years: years,
+    language: selectedLanguage || 'English'
+  };
+  
+  console.log('📤 Sending to n8n webhook:', payload);
+  
+  // Call n8n workflow
+  sendToN8NWorkflow(payload);
+}
+
+// Option 2: Analyze with ChatGPT (copy-paste)
+function analyzeWithChatGPT() {
+  console.log('📋 User selected: ChatGPT copy-paste');
+  
+  const filesByYear = window.selectedFilesData;
+  
+  // Hide dual options
+  const dualOptionsContainer = document.getElementById('dualOptionsContainer');
+  if (dualOptionsContainer) {
+    dualOptionsContainer.style.display = 'none';
+  }
+  
+  // Show copy-paste interface
   showCopyPasteInterface(filesByYear);
+}
+
+// Back to file selection
+function backToFileSelection() {
+  const dualOptionsContainer = document.getElementById('dualOptionsContainer');
+  if (dualOptionsContainer) {
+    dualOptionsContainer.remove();
+  }
+  
+  const fileSelectionContainer = document.getElementById('fileSelectionContainer');
+  if (fileSelectionContainer) {
+    fileSelectionContainer.style.display = 'block';
+  }
+}
+
+// Send to n8n workflow
+async function sendToN8NWorkflow(payload) {
+  // Hide dual options
+  const dualOptionsContainer = document.getElementById('dualOptionsContainer');
+  if (dualOptionsContainer) {
+    dualOptionsContainer.style.display = 'none';
+  }
+  
+  // Show processing message
+  const modalAnswer = document.getElementById('modalAnswer');
+  if (modalAnswer) {
+    modalAnswer.innerHTML = `
+      <div style="text-align: center; padding: 40px;">
+        <div style="font-size: 48px; margin-bottom: 20px;">🚀</div>
+        <h3 style="color: #1e40af; margin-bottom: 10px;">Processing with n8n + Groq AI...</h3>
+        <p style="color: #6b7280;">This may take 10-30 seconds depending on the number of files.</p>
+        <div style="margin-top: 20px;">
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
+    `;
+  }
+  
+  try {
+    const response = await fetch('https://n8n-workflow-test.duckdns.org/webhook/haryana-comparison', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log('✅ n8n response:', data);
+    
+    // Display the report
+    if (data.report) {
+      modalAnswer.innerHTML = data.report;
+    } else if (data.html) {
+      modalAnswer.innerHTML = data.html;
+    } else {
+      modalAnswer.innerHTML = `
+        <div style="padding: 20px;">
+          <h3 style="color: #16a34a;">✅ Analysis Complete!</h3>
+          <pre style="background: #f3f4f6; padding: 15px; border-radius: 8px; overflow-x: auto;">${JSON.stringify(data, null, 2)}</pre>
+        </div>
+      `;
+    }
+  } catch (error) {
+    console.error('❌ n8n workflow error:', error);
+    modalAnswer.innerHTML = `
+      <div style="padding: 20px; color: #dc2626;">
+        <h3>❌ Error Processing Request</h3>
+        <p>${error.message}</p>
+        <button onclick="backToFileSelection()" style="margin-top: 15px; padding: 10px 20px; background: #3b82f6; color: white; border: none; border-radius: 8px; cursor: pointer;">
+          ← Try Again
+        </button>
+      </div>
+    `;
+  }
 }
 
 // Generate and show copy-paste prompt interface
@@ -4692,8 +5062,11 @@ function showToast(message, type = 'info') {
 window.copyPromptToClipboard = copyPromptToClipboard;
 window.closeCopyPasteInterface = closeCopyPasteInterface;
 
-// Make it globally accessible
+// Make functions globally accessible
 window.compareSelectedFiles = compareSelectedFiles;
+window.analyzeWithN8N = analyzeWithN8N;
+window.analyzeWithChatGPT = analyzeWithChatGPT;
+window.backToFileSelection = backToFileSelection;
 
 // Send selected files to n8n
 async function sendFilesToN8NForComparison(filesByYear) {
