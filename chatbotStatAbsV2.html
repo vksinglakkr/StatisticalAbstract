@@ -3422,27 +3422,6 @@ function selectQueryType(type) {
   });
   
   selectedQueryType = type;
-    if (type === 'data') {
-    // Clear any stored comparison data
-    selectedYears = [];
-    uploadedImages = [];
-    parsedCloudinaryFiles = [];
-    selectedFileItem = null;
-    currentComparisonQuestion = '';
-    
-    // Hide any open comparison UI
-    const comparisonPrompt = document.getElementById('comparisonPromptBox');
-    const yearSelection = document.getElementById('yearSelectionBox');
-    const imageUpload = document.getElementById('imageUploadContainer');
-    const fileSelection = document.getElementById('fileSelectionContainer');
-    
-    if (comparisonPrompt) comparisonPrompt.remove();
-    if (yearSelection) yearSelection.style.display = 'none';
-    if (imageUpload) imageUpload.remove();
-    if (fileSelection) fileSelection.remove();
-    
-    console.log('✅ Memory cleared for data mode');
-  }
   console.log('   selectedQueryType set to:', selectedQueryType);
   
   document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
@@ -5771,58 +5750,116 @@ window.exportGroqReport = exportGroqReport;
 function displayComparisonReport(n8nResponse) {
   console.log('📊 Displaying n8n comparison report');
   console.log('Raw response:', n8nResponse);
+  console.log('Response type:', typeof n8nResponse);
+  console.log('Is array?:', Array.isArray(n8nResponse));
   
   try {
-    // Handle array or object response
-    let reportData = Array.isArray(n8nResponse) ? n8nResponse[0] : n8nResponse;
-    
-    if (!reportData || !reportData.htmlReport) {
-      console.error('❌ Invalid response structure:', reportData);
-      throw new Error('No HTML report found in response');
+    // Handle array response [{ htmlReport, ... }] or direct object { htmlReport, ... }
+    let reportData;
+    if (Array.isArray(n8nResponse)) {
+      console.log('Response is array, extracting first element');
+      reportData = n8nResponse[0];
+    } else {
+      console.log('Response is object, using directly');
+      reportData = n8nResponse;
     }
     
+    console.log('Report data:', reportData);
+    console.log('Report data keys:', reportData ? Object.keys(reportData) : 'null');
+    
+    // Validate response structure
+    if (!reportData) {
+      throw new Error('No report data received from n8n (reportData is null/undefined)');
+    }
+    
+    // Extract HTML report
     const htmlReport = reportData.htmlReport;
     
-    // ✅ CRITICAL FIX: Ensure modal is visible and has content
-    console.log('Creating modal...');
+    console.log('HTML report exists?:', !!htmlReport);
+    console.log('HTML report length:', htmlReport ? htmlReport.length : 0);
+    console.log('HTML report preview:', htmlReport ? htmlReport.substring(0, 100) + '...' : 'EMPTY');
     
-    // Remove any existing modals first
-    const existingModal = document.getElementById('n8nReportModal');
-    if (existingModal) {
-      existingModal.remove();
-      console.log('Removed existing modal');
+    if (!htmlReport) {
+      console.error('❌ No htmlReport field found. Available fields:', Object.keys(reportData));
+      throw new Error('No HTML report found in n8n response. Check n8n Step 9 output.');
     }
     
-    // Create modal with GUARANTEED visibility
+    if (typeof htmlReport !== 'string') {
+      throw new Error(`htmlReport is not a string, it's a ${typeof htmlReport}`);
+    }
+    
+    if (htmlReport.length < 100) {
+      throw new Error(`htmlReport is too short (${htmlReport.length} chars). It might be corrupted.`);
+    }
+    
+    console.log('✅ HTML report extracted successfully');
+    console.log('Creating modal...');
+    
+    // Create full-screen modal
     const modal = document.createElement('div');
     modal.id = 'n8nReportModal';
     modal.style.cssText = `
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
-      background: rgba(0, 0, 0, 0.95) !important;
-      z-index: 999999 !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      padding: 20px !important;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 100000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.3s ease-out;
     `;
     
     const container = document.createElement('div');
     container.style.cssText = `
-      width: 100% !important;
-      max-width: 1400px !important;
-      height: 90vh !important;
-      background: white !important;
-      border-radius: 16px !important;
-      overflow: hidden !important;
-      display: flex !important;
-      flex-direction: column !important;
+      width: 100%;
+      max-width: 1400px;
+      height: 90vh;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      position: relative;
     `;
     
-    // Action bar with close button
+    // Close button
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '✕';
+    closeBtn.style.cssText = `
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 45px;
+      height: 45px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      font-weight: 300;
+    `;
+    closeBtn.onmouseover = () => {
+      closeBtn.style.background = '#dc2626';
+      closeBtn.style.transform = 'rotate(90deg) scale(1.1)';
+    };
+    closeBtn.onmouseout = () => {
+      closeBtn.style.background = 'rgba(0, 0, 0, 0.8)';
+      closeBtn.style.transform = 'none';
+    };
+    closeBtn.onclick = () => document.body.removeChild(modal);
+    
+    // Action bar
     const actionBar = document.createElement('div');
     actionBar.style.cssText = `
       padding: 15px 20px;
@@ -5830,64 +5867,137 @@ function displayComparisonReport(n8nResponse) {
       display: flex;
       gap: 10px;
       align-items: center;
+      flex-wrap: wrap;
     `;
     
-    const closeBtn = document.createElement('button');
-    closeBtn.innerHTML = '✕ Close';
-    closeBtn.style.cssText = `
+    // Title
+    const title = document.createElement('div');
+    title.textContent = '📊 AI Budget Analysis Report';
+    title.style.cssText = `
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      flex: 1;
+      min-width: 200px;
+    `;
+    
+    // Download button
+    const downloadBtn = document.createElement('button');
+    downloadBtn.innerHTML = '⬇️ Download';
+    downloadBtn.style.cssText = `
       padding: 10px 20px;
       background: white;
       color: #667eea;
       border: none;
       border-radius: 8px;
-      cursor: pointer;
+      font-size: 14px;
       font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
     `;
-    closeBtn.onclick = () => {
-      document.body.removeChild(modal);
-      console.log('✅ Modal closed');
+    downloadBtn.onmouseover = () => downloadBtn.style.transform = 'translateY(-2px)';
+    downloadBtn.onmouseout = () => downloadBtn.style.transform = 'none';
+    downloadBtn.onclick = () => {
+      const blob = new Blob([htmlReport], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Budget_Analysis_${new Date().toISOString().split('T')[0]}.html`;
+      a.click();
+      URL.revokeObjectURL(url);
+      console.log('✅ Report downloaded');
     };
     
-    actionBar.appendChild(closeBtn);
+    // Print button
+    const printBtn = document.createElement('button');
+    printBtn.innerHTML = '🖨️ Print';
+    printBtn.style.cssText = `
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    `;
+    printBtn.onmouseover = () => printBtn.style.background = 'rgba(255, 255, 255, 0.3)';
+    printBtn.onmouseout = () => printBtn.style.background = 'rgba(255, 255, 255, 0.2)';
+    printBtn.onclick = () => {
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(htmlReport);
+      printWindow.document.close();
+      setTimeout(() => printWindow.print(), 500);
+    };
     
-    // Iframe for report
+    // New Tab button
+    const newTabBtn = document.createElement('button');
+    newTabBtn.innerHTML = '🔗 Open';
+    newTabBtn.style.cssText = `
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    `;
+    newTabBtn.onmouseover = () => newTabBtn.style.background = 'rgba(255, 255, 255, 0.3)';
+    newTabBtn.onmouseout = () => newTabBtn.style.background = 'rgba(255, 255, 255, 0.2)';
+    newTabBtn.onclick = () => {
+      const newWindow = window.open('', '_blank');
+      newWindow.document.write(htmlReport);
+      newWindow.document.close();
+    };
+    
+    actionBar.appendChild(title);
+    actionBar.appendChild(downloadBtn);
+    actionBar.appendChild(printBtn);
+    actionBar.appendChild(newTabBtn);
+    
+    // Report iframe
     const iframe = document.createElement('iframe');
     iframe.style.cssText = `
-      width: 100% !important;
-      flex: 1 !important;
-      border: none !important;
-      background: white !important;
+      width: 100%;
+      flex: 1;
+      border: none;
+      background: white;
     `;
     
+    // Assemble modal
+    container.appendChild(closeBtn);
     container.appendChild(actionBar);
     container.appendChild(iframe);
     modal.appendChild(container);
     
-    // ✅ APPEND BEFORE WRITING (ensures DOM is ready)
+    console.log('Appending modal to body...');
     document.body.appendChild(modal);
-    console.log('✅ Modal appended to body');
     
-    // Write content with delay to ensure DOM is ready
-    setTimeout(() => {
-      try {
-        iframe.contentDocument.open();
-        iframe.contentDocument.write(htmlReport);
-        iframe.contentDocument.close();
-        console.log('✅ HTML written to iframe');
-      } catch (writeError) {
-        console.error('❌ Error writing to iframe:', writeError);
-        alert('Could not display report. Check console for details.');
-      }
-    }, 100);
+    console.log('Writing HTML to iframe...');
+    console.log('Iframe ready?:', !!iframe.contentDocument);
     
-    return true;
+    // Write report to iframe
+    iframe.contentDocument.open();
+    iframe.contentDocument.write(htmlReport);
+    iframe.contentDocument.close();
+    
+    console.log('✅ Report displayed successfully in modal');
+    console.log('Modal element:', modal);
+    console.log('Iframe element:', iframe);
+    
+    return true; // Explicitly return success
     
   } catch (error) {
     console.error('❌ Error displaying report:', error);
-    alert(`Error: ${error.message}`);
+    console.error('Error stack:', error.stack);
+    alert(`❌ Error Displaying Report\n\n${error.message}\n\nPlease check browser console for details.`);
     return false;
   }
-}  
+}
+
 // Send selected files to n8n
 async function sendFilesToN8NForComparison(filesByYear) {
   showProcessingOverlay();
