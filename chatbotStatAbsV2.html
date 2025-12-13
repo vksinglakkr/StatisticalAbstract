@@ -5280,20 +5280,9 @@ async function analyzeWithGroq() {
     // Hide processing overlay
     hideGroqProcessingOverlay();
     
-    // Display the report
-    if (data.report) {
-      showGroqReport(data.report);
-    } else if (data.html) {
-      showGroqReport(data.html);
-    } else {
-      // Fallback: display whatever we got
-      showGroqReport(`
-        <div style="padding: 20px;">
-          <h3 style="color: #16a34a;">✅ Analysis Complete!</h3>
-          <pre style="background: #f3f4f6; padding: 15px; border-radius: 8px; overflow-x: auto;">${JSON.stringify(data, null, 2)}</pre>
-        </div>
-      `);
-    }
+    // Display the report using our new display function
+    console.log('Calling displayComparisonReport with data:', data);
+    displayComparisonReport(data);
     
     console.log('✅ Analysis complete!');
     
@@ -5759,30 +5748,52 @@ window.exportGroqReport = exportGroqReport;
 // DISPLAY N8N + GROQ COMPARISON REPORT
 // ═══════════════════════════════════════════════════════════════════
 function displayComparisonReport(n8nResponse) {
-  console.log('📊 Displaying n8n comparison report:', n8nResponse);
+  console.log('📊 Displaying n8n comparison report');
+  console.log('Raw response:', n8nResponse);
+  console.log('Response type:', typeof n8nResponse);
+  console.log('Is array?:', Array.isArray(n8nResponse));
   
   try {
     // Handle array response [{ htmlReport, ... }] or direct object { htmlReport, ... }
     let reportData;
     if (Array.isArray(n8nResponse)) {
+      console.log('Response is array, extracting first element');
       reportData = n8nResponse[0];
     } else {
+      console.log('Response is object, using directly');
       reportData = n8nResponse;
     }
     
+    console.log('Report data:', reportData);
+    console.log('Report data keys:', reportData ? Object.keys(reportData) : 'null');
+    
     // Validate response structure
     if (!reportData) {
-      throw new Error('No report data received from n8n');
+      throw new Error('No report data received from n8n (reportData is null/undefined)');
     }
     
     // Extract HTML report
     const htmlReport = reportData.htmlReport;
     
+    console.log('HTML report exists?:', !!htmlReport);
+    console.log('HTML report length:', htmlReport ? htmlReport.length : 0);
+    console.log('HTML report preview:', htmlReport ? htmlReport.substring(0, 100) + '...' : 'EMPTY');
+    
     if (!htmlReport) {
-      throw new Error('No HTML report found in n8n response');
+      console.error('❌ No htmlReport field found. Available fields:', Object.keys(reportData));
+      throw new Error('No HTML report found in n8n response. Check n8n Step 9 output.');
+    }
+    
+    if (typeof htmlReport !== 'string') {
+      throw new Error(`htmlReport is not a string, it's a ${typeof htmlReport}`);
+    }
+    
+    if (htmlReport.length < 100) {
+      throw new Error(`htmlReport is too short (${htmlReport.length} chars). It might be corrupted.`);
     }
     
     console.log('✅ HTML report extracted successfully');
+    console.log('Creating modal...');
     
     // Create full-screen modal
     const modal = document.createElement('div');
@@ -5961,7 +5972,12 @@ function displayComparisonReport(n8nResponse) {
     container.appendChild(actionBar);
     container.appendChild(iframe);
     modal.appendChild(container);
+    
+    console.log('Appending modal to body...');
     document.body.appendChild(modal);
+    
+    console.log('Writing HTML to iframe...');
+    console.log('Iframe ready?:', !!iframe.contentDocument);
     
     // Write report to iframe
     iframe.contentDocument.open();
@@ -5969,10 +5985,16 @@ function displayComparisonReport(n8nResponse) {
     iframe.contentDocument.close();
     
     console.log('✅ Report displayed successfully in modal');
+    console.log('Modal element:', modal);
+    console.log('Iframe element:', iframe);
+    
+    return true; // Explicitly return success
     
   } catch (error) {
     console.error('❌ Error displaying report:', error);
+    console.error('Error stack:', error.stack);
     alert(`❌ Error Displaying Report\n\n${error.message}\n\nPlease check browser console for details.`);
+    return false;
   }
 }
 
