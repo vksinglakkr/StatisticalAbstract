@@ -3422,6 +3422,27 @@ function selectQueryType(type) {
   });
   
   selectedQueryType = type;
+    if (type === 'data') {
+    // Clear any stored comparison data
+    selectedYears = [];
+    uploadedImages = [];
+    parsedCloudinaryFiles = [];
+    selectedFileItem = null;
+    currentComparisonQuestion = '';
+    
+    // Hide any open comparison UI
+    const comparisonPrompt = document.getElementById('comparisonPromptBox');
+    const yearSelection = document.getElementById('yearSelectionBox');
+    const imageUpload = document.getElementById('imageUploadContainer');
+    const fileSelection = document.getElementById('fileSelectionContainer');
+    
+    if (comparisonPrompt) comparisonPrompt.remove();
+    if (yearSelection) yearSelection.style.display = 'none';
+    if (imageUpload) imageUpload.remove();
+    if (fileSelection) fileSelection.remove();
+    
+    console.log('✅ Memory cleared for data mode');
+  }
   console.log('   selectedQueryType set to:', selectedQueryType);
   
   document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
