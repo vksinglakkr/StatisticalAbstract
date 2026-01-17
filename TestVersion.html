@@ -141,11 +141,20 @@ body::before {
 
 .query-type-selector {
   background: linear-gradient(135deg, #fef3c7, #fed7aa);
-  border: 3px solid #f59e0b;
-  border-radius: 20px;
-  padding: 20px 16px;
-  margin-bottom: 24px;
-  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+  border: 2px solid #f59e0b;
+  border-radius: 16px;
+  padding: 0 16px 16px 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+  position: relative;
+}
+
+.query-type-selector legend {
+  background: white;
+  border-radius: 8px;
+  padding: 6px 12px;
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.15);
+  margin-left: -8px;
 }
 
 
@@ -545,7 +554,32 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
   body { padding: 8px !important; }
   * { max-width: 100%; }
 }
-
+@media (max-width: 640px) {
+  .query-type-selector { 
+    padding: 0 12px 12px 12px; 
+    margin-bottom: 16px;
+    border-radius: 12px;
+  }
+  
+  .query-type-selector legend {
+    font-size: 14px;
+    padding: 4px 10px;
+  }
+  
+  .query-type-selector legend svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .toggle-btn {
+    padding: 8px 12px !important;
+    font-size: 11px !important;
+  }
+  
+  .toggle-btn span:first-child {
+    font-size: 16px !important;
+  }
+}
 @media (max-width: 640px) {
   .query-type-selector { padding: 16px 12px; }
   .radio-option { padding: 12px 12px; min-height: 85px; }
@@ -2608,30 +2642,50 @@ input:checked + .toggle-slider:before {
 /* ============================================
    TOGGLE BUTTON STYLES - ENHANCED
    ============================================ */
-
 .toggle-btn {
-  background: white;
-  color: #6b7280;
-  border: 2px solid transparent;
+  background: transparent;
+  color: #64748b;
+  border: none;
   cursor: pointer;
   user-select: none;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.toggle-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(245, 158, 11, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.toggle-btn:hover::before {
+  opacity: 1;
 }
 
 .toggle-btn:hover {
-  background: #fef3c7;
-  transform: translateY(-2px);
+  color: #f59e0b;
 }
 
 .toggle-btn.active {
   background: linear-gradient(135deg, #ff6b35, #f59e0b) !important;
   color: white !important;
-  border-color: #ff6b35 !important;
-  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4) !important;
-  transform: scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3) !important;
+}
+
+.toggle-btn.active::before {
+  opacity: 0;
 }
 
 .toggle-btn.active:hover {
   background: linear-gradient(135deg, #f59e0b, #ff6b35) !important;
+  box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4) !important;
 }
 
 /* Mobile Responsive */
@@ -2698,11 +2752,9 @@ input:checked + .toggle-slider:before {
     <span>Area of interest?</span>
   </legend>
   
-  <!-- NyayaMitra Style Compact Toggle -->
   <div class="flex justify-center py-4">
     <div class="inline-flex bg-white rounded-xl border-2 border-orange-300 p-1 shadow-md">
       
-      <!-- Left Toggle: Learn About Statistics -->
       <button type="button" 
               id="toggleStatistics" 
               class="toggle-btn px-5 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
@@ -2710,7 +2762,6 @@ input:checked + .toggle-slider:before {
         <span>Learn About Statistics</span>
       </button>
       
-      <!-- Right Toggle: Find Haryana Data -->
       <button type="button" 
               id="toggleData" 
               class="toggle-btn px-5 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
