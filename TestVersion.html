@@ -2748,6 +2748,94 @@ input:checked + .toggle-slider:before {
 .container-main > div:last-child {
   padding: 24px 32px !important; /* Less padding inside */
 }  
+/* ============================================================================
+   NYAYAMITRA STYLE - INPUT + SUBMIT IN SAME ROW
+   ============================================================================ */
+
+/* Remove the old full-width submit button styles */
+#submitBtn {
+  white-space: nowrap; /* Prevent text wrapping */
+  height: 56px; /* Match input height */
+}
+
+/* Voice button positioning inside input */
+.mic-btn {
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Input box styling */
+#userInput {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #1f2937 !important;
+  line-height: 1.5 !important;
+}
+
+#userInput::placeholder {
+  font-size: 14px !important;
+  color: #9ca3af !important;
+  font-weight: 400 !important;
+}
+
+/* Mobile Responsive - Stack vertically on small screens */
+@media (max-width: 640px) {
+  /* Change flex direction to column on mobile */
+  .flex.gap-2.items-stretch {
+    flex-direction: column !important;
+  }
+  
+  /* Make submit button full width on mobile */
+  #submitBtn {
+    width: 100% !important;
+    min-height: 50px !important;
+  }
+  
+  /* Adjust input height on mobile */
+  #userInput {
+    min-height: 50px !important;
+    max-height: 50px !important;
+    font-size: 14px !important;
+    padding: 12px 60px 12px 16px !important;
+  }
+  
+  /* Smaller voice button on mobile */
+  .mic-btn {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  
+  .mic-btn svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  
+  /* Submit button text smaller on mobile */
+  #submitBtn span {
+    font-size: 15px !important;
+  }
+  
+  #submitBtn svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
+
+/* Tablet - Keep row layout */
+@media (min-width: 641px) and (max-width: 1024px) {
+  #submitBtn {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  
+  #submitBtn span {
+    font-size: 15px !important;
+  }
+}
 </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
@@ -2959,29 +3047,55 @@ input:checked + .toggle-slider:before {
           </div>
         </div>
         <!-- File search section removed - use main chat input only -->
-        <div class="mb-8 slide-fade-enter">
-          <div class="relative autocomplete-container">
-            <textarea
-              id="userInput"
-              rows="3"
-              class="w-full rounded-2xl border-4 border-orange-400 p-4 pb-12 text-gray-900
-                     bg-gradient-to-br from-white to-orange-50 shadow-2xl resize-none
-                     focus:border-orange-500 focus:ring-4 focus:ring-orange-200 focus:shadow-2xl
-                     transition-all duration-300 leading-relaxed"
-              placeholder="Type your question here... (e.g., What is literacy rate? Show district-wise population)"
-            ></textarea>
-            <div id="autocompleteDropdown" class="autocomplete-dropdown" style="display: none;"></div>
-            <button
-              id="voiceBtn"
-              class="mic-btn absolute bottom-3 right-3 text-orange-500 hover:text-orange-700 transition-all duration-300 hover:scale-110 bg-white rounded-full p-3 shadow-lg border-2 border-orange-300"
-              title="Click to speak"
-            >
-              <svg id="micIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
-              </svg>
-            </button>
-          </div>
-        </div>
+<!-- NyayaMitra Style: Input + Voice + Submit in ONE ROW -->
+<div class="mb-8 slide-fade-enter">
+  <div class="relative autocomplete-container">
+    <!-- Autocomplete Dropdown (appears above) -->
+    <div id="autocompleteDropdown" class="autocomplete-dropdown" style="display: none;"></div>
+    
+    <!-- Single Row Container -->
+    <div class="flex gap-2 items-stretch">
+      
+      <!-- Text Input (grows to fill space) -->
+      <div class="flex-1 relative">
+        <textarea
+          id="userInput"
+          rows="1"
+          class="w-full rounded-2xl border-2 border-gray-300 p-4 pr-14 text-gray-900
+                 bg-white shadow-lg resize-none
+                 focus:border-orange-500 focus:ring-2 focus:ring-orange-200
+                 transition-all duration-300 leading-relaxed"
+          placeholder="💬 Ask about Haryana statistics..."
+          style="min-height: 56px; max-height: 56px; overflow: hidden;"
+        ></textarea>
+        
+        <!-- Voice Button (inside input) -->
+        <button
+          id="voiceBtn"
+          class="mic-btn absolute top-1/2 right-2 -translate-y-1/2 text-orange-500 hover:text-orange-700 transition-all duration-300 hover:scale-110 bg-white rounded-xl p-2 shadow-md border-2 border-gray-300 hover:border-orange-400"
+          title="Click to speak"
+        >
+          <svg id="micIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Submit Button (same height as input) -->
+      <button 
+        id="submitBtn" 
+        class="btn-primary flex items-center justify-center gap-2 px-8 shrink-0"
+        style="min-height: 56px; border-radius: 16px;"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+        </svg>
+        <span class="font-bold">Submit</span>
+      </button>
+      
+    </div>
+  </div>
+</div>
         
 
         <button 
