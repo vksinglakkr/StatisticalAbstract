@@ -216,16 +216,25 @@ body::before {
   to { opacity: 1; transform: translateY(0); }
 }
 
-#userInput::placeholder {
-  font-size: 13px; color: #b5b5b5;
-  font-weight: 400; opacity: 0.8;
+#userInput {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #1f2937 !important;
+  line-height: 1.5 !important;
+  min-height: 54px !important; /* Fixed single-line height */
+  max-height: 54px !important;
+  padding: 16px 80px 16px 18px !important;
+  vertical-align: middle !important;
+  border-radius: 16px !important;
+  border-width: 2px !important;
+  overflow: hidden !important; /* Hide overflow */
+  resize: none !important;
 }
 
-#userInput {
-  font-size: 17px !important; font-weight: 600 !important;
-  color: #1f2937 !important; line-height: 1.5;
-  vertical-align: bottom; width: 100% !important;
-  box-sizing: border-box !important; display: block;
+#userInput::placeholder {
+  font-size: 14px !important;
+  color: #9ca3af !important;
+  font-weight: 400 !important;
 }
 
 .icon { display: inline-block; width: 1em; height: 1em; vertical-align: -0.125em; }
