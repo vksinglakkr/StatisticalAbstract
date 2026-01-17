@@ -2686,26 +2686,37 @@ input:checked + .toggle-slider:before {
 
     <div class="p-2">
 <!-- MODE TOGGLE (Simple Chat / Full Features) -->
-<!-- QUERY TYPE SELECTOR (NyayaMitra Exact Style - No Border, No Title) -->
-<div class="flex justify-center mb-6" id="queryTypeSelector">
-  <div class="inline-flex bg-white rounded-xl border-2 border-gray-200 p-1 shadow-md">
-    
-    <!-- Left Toggle: Learn About Statistics -->
-    <button type="button" 
-            id="toggleStatistics" 
-            class="toggle-btn px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
-      <span class="text-xl">📖</span>
-      <span>Learn About Statistics</span>
-    </button>
-    
-    <!-- Right Toggle: Find Haryana Data -->
-    <button type="button" 
-            id="toggleData" 
-            class="toggle-btn px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
-      <span class="text-xl">📊</span>
-      <span>Find Haryana Data</span>
-    </button>
-    
+<!-- QUERY TYPE SELECTOR (NyayaMitra Style - Default Active) -->
+<div class="mb-6">
+  <!-- Toggle Buttons -->
+  <div class="flex justify-center mb-3" id="queryTypeSelector">
+    <div class="inline-flex bg-white rounded-xl border-2 border-gray-200 p-1 shadow-md">
+      
+      <!-- Left Toggle: Learn About Statistics -->
+      <button type="button" 
+              id="toggleStatistics" 
+              class="toggle-btn px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
+        <span class="text-xl">📖</span>
+        <span>Learn About Statistics</span>
+      </button>
+      
+      <!-- Right Toggle: Find Haryana Data (DEFAULT ACTIVE) -->
+      <button type="button" 
+              id="toggleData" 
+              class="toggle-btn active px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
+        <span class="text-xl">📊</span>
+        <span>Find Haryana Data</span>
+      </button>
+      
+    </div>
+  </div>
+  
+  <!-- Description Text (NyayaMitra Style) -->
+  <div class="text-center px-4">
+    <p class="text-sm text-gray-600 leading-relaxed">
+      <span class="font-semibold text-gray-800">Search statistical reports</span> from Haryana's official data repository. 
+      Ask about demographics, economics, districts, and more.
+    </p>
   </div>
 </div>
       <div id="questionSection" style="display: none;">
@@ -3654,9 +3665,7 @@ function selectQueryType(type) {
   selectedQueryType = type;
   console.log('   ✅ selectedQueryType set to:', selectedQueryType);
   
-  // ====================================
-  // UPDATE TOGGLE BUTTON STATES
-  // ====================================
+  // Update toggle buttons
   const toggleStats = document.getElementById('toggleStatistics');
   const toggleData = document.getElementById('toggleData');
   
@@ -3666,26 +3675,14 @@ function selectQueryType(type) {
   });
   
   if (toggleStats && toggleData) {
-    // Remove active class from both
     toggleStats.classList.remove('active');
     toggleData.classList.remove('active');
     
-    console.log('   🧹 Cleared active states');
-    
-    // Add active class to selected button
     if (type === 'statistics') {
       toggleStats.classList.add('active');
-      console.log('   ✅ Statistics toggle activated');
     } else if (type === 'data') {
       toggleData.classList.add('active');
-      console.log('   ✅ Data toggle activated');
     }
-    
-    // Verify active state was applied
-    console.log('   🔍 Final toggle states:', {
-      statsActive: toggleStats.classList.contains('active'),
-      dataActive: toggleData.classList.contains('active')
-    });
   } else {
     console.error('   ❌ Toggle buttons not found in DOM!');
   }
@@ -7219,7 +7216,43 @@ window.addEventListener('DOMContentLoaded', function() {
   }
   
   console.log('🔘 Toggle button initialization complete!\n');
+  // ====================================
+  // 🆕 SET DEFAULT ACTIVE STATE
+  // ====================================
+  console.log('🎯 Setting default active state: Find Haryana Data');
   
+  // Auto-select "Find Haryana Data" on page load
+  setTimeout(() => {
+    const toggleData = document.getElementById('toggleData');
+    if (toggleData && !toggleData.classList.contains('active')) {
+      toggleData.classList.add('active');
+    }
+    
+    // Set default query type
+    selectedQueryType = 'data';
+    console.log('✅ Default query type set to:', selectedQueryType);
+    
+    // Load master file data for data mode
+    if (masterFileData.length === 0) {
+      console.log('📥 Loading master file data...');
+      loadMasterFileData();
+    }
+    
+    // Show question section by default
+    if (questionSection) {
+      questionSection.style.display = 'block';
+      console.log('✅ Question section displayed by default');
+    }
+    
+    // Load categories and build questions list
+    loadCategories();
+    buildAllQuestionsList();
+    
+  }, 100);
+  
+  console.log('🎉 All initialization complete with default state!');
+
+	
 });
 </script>
 <!-- ============================================
