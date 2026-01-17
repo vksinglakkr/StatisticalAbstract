@@ -2697,22 +2697,24 @@ input:checked + .toggle-slider:before {
     Area of interest?
   </h3>
   
-  <div class="radio-option" id="optionStatistics" onclick="selectQueryType('statistics')">
-    <input type="radio" name="queryType" value="statistics" onclick="event.stopPropagation(); selectQueryType('statistics')">
-    <span class="radio-icon">📖</span>
-    <div class="radio-label">
-      <div class="radio-label-title">Learn About Statistics</div>
-      <div class="radio-label-desc">Concepts & Terms</div>
-    </div>
-  </div>
-  
-  <div class="radio-option" id="optionData" onclick="selectQueryType('data')">
-    <input type="radio" name="queryType" value="data" onclick="event.stopPropagation(); selectQueryType('data')">
-    <span class="radio-icon">📊</span>
-    <div class="radio-label">
-      <div class="radio-label-title">Find Haryana Data</div>
-      <div class="radio-label-desc">Search Reports</div>
-    </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+    
+    <button type="button" id="toggleStatistics" onclick="selectQueryType('statistics')" class="nyaya-card-btn">
+      <span class="nyaya-icon">📖</span>
+      <div class="nyaya-text">
+        <span class="nyaya-title">Learn About Statistics</span>
+        <span class="nyaya-desc">Concepts & Terms</span>
+      </div>
+    </button>
+    
+    <button type="button" id="toggleData" onclick="selectQueryType('data')" class="nyaya-card-btn">
+      <span class="nyaya-icon">📊</span>
+      <div class="nyaya-text">
+        <span class="nyaya-title">Find Haryana Data</span>
+        <span class="nyaya-desc">Search Reports</span>
+      </div>
+    </button>
+
   </div>
 </div>
 
