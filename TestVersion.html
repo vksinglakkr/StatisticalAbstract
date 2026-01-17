@@ -491,24 +491,14 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
 
 @media (max-width: 768px) {
   /* Header Compact */
-    .header-glow { 
-    padding: 10px 14px !important; /* More compact */
-  }
-  .header-glow h1 { 
-    font-size: 2.2rem !important; /* Slightly smaller */
-  }
-    /* Add this if it doesn't exist */
-  .header-glow h2 {
-    font-size: 14px !important;
-    line-height: 1.2 !important;
-  }
-  .header-glow p {
-    font-size: 10px !important;
-    line-height: 1.2 !important;
-  }
+  .header-glow { padding: 12px 16px 8px !important; }
+  .header-glow h1 { font-size: 2.5rem !important; margin-bottom: 4px !important; }
+  .header-glow > p { font-size: 11px !important; margin-bottom: 8px !important; }
   .header-glow > div:last-child { padding: 0 8px !important; }
   .header-glow > div:last-child > div { padding: 6px 12px !important; }
   .header-glow > div:last-child h2 { font-size: 10px !important; line-height: 1.3 !important; }
+  .live-telecast-btn { padding: 6px 12px !important; font-size: 11px !important; }
+  .live-telecast-btn svg { width: 16px !important; height: 16px !important; }
 
   /* Text Input Compact */
   #userInput {
@@ -2502,84 +2492,61 @@ input[type="checkbox"] {
   scrollbar-width: thin;
 }
 
-/* iOS-Style Toggle Switch - COMPACT VERSION */
+/* Mode Toggle Switch (iOS Style) */
 .mode-toggle-container {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 3px 10px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  gap: 0.75rem;
 }
 
-.mode-toggle {
+.toggle-switch {
   position: relative;
-  width: 48px;  /* Reduced from 56px */
-  height: 24px; /* Reduced from 28px */
-  background: linear-gradient(135deg, #f59e0b, #ff6b35);
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  display: inline-block;
+  width: 56px;
+  height: 32px;
 }
 
-.mode-toggle.power {
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-.mode-toggle-slider {
+.toggle-slider {
   position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 20px;  /* Reduced from 24px */
-  height: 20px; /* Reduced from 24px */
-  background: white;
-  border-radius: 10px;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #d1d5db;
+  transition: 0.3s;
+  border-radius: 34px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.mode-toggle.power .mode-toggle-slider {
-  transform: translateX(24px); /* Adjusted for smaller toggle */
+input:checked + .toggle-slider {
+  background-color: #fb923c;
 }
 
-.mode-label {
-  font-size: 10px;  /* Smaller text */
-  font-weight: 600;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  white-space: nowrap;
+input:focus + .toggle-slider {
+  box-shadow: 0 0 0 4px rgba(251, 146, 60, 0.2);
 }
 
-.mode-label.active {
-  color: #1f2937;
-}
-
-/* Mobile refinement */
-@media (max-width: 640px) {
-  .mode-toggle-container {
-    gap: 4px;
-    padding: 2px 8px;
-  }
-  
-  .mode-label {
-    font-size: 9px;
-  }
-  
-  .mode-toggle {
-    width: 44px;
-    height: 22px;
-  }
-  
-  .mode-toggle-slider {
-    width: 18px;
-    height: 18px;
-  }
-  
-  .mode-toggle.power .mode-toggle-slider {
-    transform: translateX(22px);
-  }
+input:checked + .toggle-slider:before {
+  transform: translateX(24px);
 }
 
 /* Message Actions */
@@ -2695,34 +2662,31 @@ input[type="checkbox"] {
   <div class="om-symbol om-bottom-left devanagari">ॐ</div>
 
   <div class="container-main w-full max-w-5xl glass-card rounded-3xl shadow-2xl overflow-hidden">
-<div class="bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 shadow-lg" style="border-bottom: 3px solid #fb923c;">
-  <!-- Top Row: Logo + Title + Mode Toggle (Single Line) -->
-  <div class="flex items-center justify-between p-3 md:p-4">
-    
-    <!-- Left: Logo + Title -->
-    <div class="flex items-center gap-2">
-      <div class="w-9 h-9 bg-gradient-to-br from-orange-400 to-amber-500 rounded-full flex items-center justify-center text-xl shadow-md">
-        📊
+    <div class="relative bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 p-6 pb-4 text-center header-glow">
+      <div class="flex justify-between items-start mb-4 w-full">
+ <button onclick="openPDFGuide()" class="live-telecast-btn" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+    </svg>
+    Tutorial Guide
+  </button>
       </div>
-<div class="bg-gradient-to-r from-orange-50 to-amber-50 border-b-2 border-orange-200 px-3 py-1.5">
-  <p class="text-xs text-center font-semibold text-orange-800 leading-tight">
-    <span class="hidden sm:inline">Department of Economic and Statistical Analysis, Haryana</span>
-    <span class="sm:hidden">DESA, Haryana</span>
-  </p>
-</div>
-    </div>
-    
-    <!-- Right: Mode Toggle -->
-    <div class="mode-toggle-container">
-      <span class="mode-label text-xs" id="simpleModeLabel">💬 Chat</span>
-      <div class="mode-toggle power" id="modeToggle" onclick="toggleMode()">
-        <div class="mode-toggle-slider"></div>
+      
+      <div class="floating">
+        <h1 class="text-5xl md:text-6xl font-black gradient-text mb-2 playfair tracking-tight">Haryana DataVista
+</h1>
       </div>
-      <span class="mode-label active text-xs" id="powerModeLabel">⚡ Full</span>
-    </div>
-    
-  </div>
+      <p class="text-sm text-gray-600 font-semibold mb-3 tracking-wide">Statistical Abstract Chatbot</p>
+      
+      <div class="w-full max-w-2xl mx-auto px-4">
+<!-- SOLUTION 2: Conditional nowrap (Better for very small screens) -->
+<div class="bg-white rounded-2xl border-3 border-orange-400 py-2 px-4 shadow-xl transform hover:scale-105 transition-all duration-300">
+  <h2 class="text-xs sm:text-sm md:text-base lg:text-lg font-black text-center bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600 bg-clip-text text-transparent sm:whitespace-nowrap leading-tight">
+    Department of Economic and Statistical Analysis, Haryana
+  </h2>
 </div>
+      </div>
+     </div>
 
     <div class="p-2">
 <!-- MODE TOGGLE (Simple Chat / Full Features) -->
