@@ -2689,24 +2689,23 @@ input:checked + .toggle-slider:before {
 
     <div class="p-2">
 <!-- MODE TOGGLE (Simple Chat / Full Features) -->
-<!-- QUERY TYPE SELECTOR (Toggle Button Version - FULLY FUNCTIONAL) -->
-<!-- QUERY TYPE SELECTOR (NyayaMitra Style - Compact Toggle) -->
-<div class="query-type-selector" id="queryTypeSelector">
-  <h3 class="text-lg font-bold text-gray-900 mb-4 text-center flex items-center justify-center gap-2">
-    <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<!-- QUERY TYPE SELECTOR (NyayaMitra Style - Border Title) -->
+<fieldset class="query-type-selector" id="queryTypeSelector">
+  <legend class="text-base font-bold text-gray-800 px-3 flex items-center gap-2">
+    <svg class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
     </svg>
-    Area of interest?
-  </h3>
+    <span>Area of interest?</span>
+  </legend>
   
   <!-- NyayaMitra Style Compact Toggle -->
-  <div class="flex justify-center mb-4">
-    <div class="inline-flex bg-white rounded-xl border-2 border-orange-300 p-1 shadow-lg">
+  <div class="flex justify-center py-4">
+    <div class="inline-flex bg-white rounded-xl border-2 border-orange-300 p-1 shadow-md">
       
       <!-- Left Toggle: Learn About Statistics -->
       <button type="button" 
               id="toggleStatistics" 
-              class="toggle-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
+              class="toggle-btn px-5 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
         <span class="text-lg">📖</span>
         <span>Learn About Statistics</span>
       </button>
@@ -2714,14 +2713,14 @@ input:checked + .toggle-slider:before {
       <!-- Right Toggle: Find Haryana Data -->
       <button type="button" 
               id="toggleData" 
-              class="toggle-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
+              class="toggle-btn px-5 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
         <span class="text-lg">📊</span>
         <span>Find Haryana Data</span>
       </button>
       
     </div>
   </div>
-</div>
+</fieldset>
       <div id="questionSection" style="display: none;">
         <div class="mb-8 slide-fade-enter">
           <div class="relative autocomplete-container">
