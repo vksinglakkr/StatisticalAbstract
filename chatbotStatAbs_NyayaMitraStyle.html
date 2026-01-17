@@ -139,33 +139,6 @@ body::before {
   transform: scale(1.05);
 }
 
-.query-type-selector {
-  background: linear-gradient(135deg, #fef3c7, #fed7aa);
-  border: 3px solid #f59e0b;
-  border-radius: 20px;
-  padding: 20px 16px;
-  margin-bottom: 24px;
-  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
-}
-
-
-
-.radio-icon {
-  font-size: 28px; min-width: 36px; margin-right: 8px;
-  flex-shrink: 0; line-height: 1; margin-top: 2px;
-}
-
-.radio-label {
-  display: flex; flex-direction: column;
-  flex: 1; min-width: 0; gap: 2px;
-}
-
-.radio-label-title {
-  font-size: 16px; font-weight: 700; color: #1f2937;
-  line-height: 1.3; word-wrap: break-word;
-  overflow-wrap: break-word; hyphens: auto;
-}
-
 /* Styles for links in AI response */
 #modalAnswer a {
   color: #2563eb;
@@ -545,7 +518,32 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
   body { padding: 8px !important; }
   * { max-width: 100%; }
 }
-
+@media (max-width: 640px) {
+  .query-type-selector { 
+    padding: 0 12px 12px 12px; 
+    margin-bottom: 16px;
+    border-radius: 12px;
+  }
+  
+  .query-type-selector legend {
+    font-size: 14px;
+    padding: 4px 10px;
+  }
+  
+  .query-type-selector legend svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .toggle-btn {
+    padding: 8px 12px !important;
+    font-size: 11px !important;
+  }
+  
+  .toggle-btn span:first-child {
+    font-size: 16px !important;
+  }
+}
 @media (max-width: 640px) {
   .query-type-selector { padding: 16px 12px; }
   .radio-option { padding: 12px 12px; min-height: 85px; }
@@ -2606,52 +2604,51 @@ input:checked + .toggle-slider:before {
   }
 }
 /* ============================================
-   TOGGLE BUTTON STYLES - ENHANCED
+   TOGGLE BUTTON STYLES - NyayaMitra Exact
    ============================================ */
 
 .toggle-btn {
-  background: white;
+  background: transparent;
   color: #6b7280;
-  border: 2px solid transparent;
+  border: none;
   cursor: pointer;
   user-select: none;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .toggle-btn:hover {
-  background: #fef3c7;
-  transform: translateY(-2px);
+  color: #374151;
+  background: rgba(249, 115, 22, 0.05);
 }
 
 .toggle-btn.active {
   background: linear-gradient(135deg, #ff6b35, #f59e0b) !important;
   color: white !important;
-  border-color: #ff6b35 !important;
-  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4) !important;
-  transform: scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.25) !important;
 }
 
 .toggle-btn.active:hover {
-  background: linear-gradient(135deg, #f59e0b, #ff6b35) !important;
+  background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+  box-shadow: 0 6px 14px rgba(255, 107, 53, 0.35) !important;
 }
-
-/* Mobile Responsive */
 @media (max-width: 640px) {
+  #queryTypeSelector > div {
+    padding: 0.5px !important;
+    border-width: 1px !important;
+  }
+  
   .toggle-btn {
-    min-width: 140px !important;
-    padding: 12px 16px !important;
-    font-size: 13px !important;
-  }
-  
-  .toggle-btn .text-2xl {
-    font-size: 20px !important;
-  }
-  
-  .toggle-btn .font-bold {
+    padding: 10px 14px !important;
     font-size: 12px !important;
   }
   
-  .toggle-btn .text-xs {
-    font-size: 10px !important;
+  .toggle-btn span:first-child {
+    font-size: 18px !important;
+  }
+  
+  .toggle-btn span:last-child {
+    display: none;
   }
 }
    
@@ -2689,45 +2686,28 @@ input:checked + .toggle-slider:before {
 
     <div class="p-2">
 <!-- MODE TOGGLE (Simple Chat / Full Features) -->
-<!-- QUERY TYPE SELECTOR (Toggle Button Version - FULLY FUNCTIONAL) -->
-<div class="query-type-selector" id="queryTypeSelector">
-  <h3 class="text-xl font-bold text-gray-900 mb-4 text-center flex items-center justify-center gap-2">
-    <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-    </svg>
-    Area of interest?
-  </h3>
-  
-  <!-- Toggle Button Container -->
-  <div class="flex justify-center mb-6">
-    <div class="inline-flex bg-white rounded-2xl border-3 border-orange-400 p-2 shadow-xl">
-      
-      <!-- Left Toggle: Learn About Statistics -->
-      <button type="button" 
-              id="toggleStatistics" 
-              class="toggle-btn px-6 py-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center gap-2 min-w-[200px] justify-center">
-        <span class="text-2xl">📖</span>
-        <div class="text-left">
-          <div class="font-bold text-sm">Learn About Statistics</div>
-          <div class="text-xs opacity-80 font-normal">Concepts & Terms</div>
-        </div>
-      </button>
-      
-      <!-- Right Toggle: Find Haryana Data -->
-      <button type="button" 
-              id="toggleData" 
-              class="toggle-btn px-6 py-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center gap-2 min-w-[200px] justify-center">
-        <span class="text-2xl">📊</span>
-        <div class="text-left">
-          <div class="font-bold text-sm">Find Haryana Data</div>
-          <div class="text-xs opacity-80 font-normal">Search Reports</div>
-        </div>
-      </button>
-      
-    </div>
+<!-- QUERY TYPE SELECTOR (NyayaMitra Exact Style - No Border, No Title) -->
+<div class="flex justify-center mb-6" id="queryTypeSelector">
+  <div class="inline-flex bg-white rounded-xl border-2 border-gray-200 p-1 shadow-md">
+    
+    <!-- Left Toggle: Learn About Statistics -->
+    <button type="button" 
+            id="toggleStatistics" 
+            class="toggle-btn px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
+      <span class="text-xl">📖</span>
+      <span>Learn About Statistics</span>
+    </button>
+    
+    <!-- Right Toggle: Find Haryana Data -->
+    <button type="button" 
+            id="toggleData" 
+            class="toggle-btn px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
+      <span class="text-xl">📊</span>
+      <span>Find Haryana Data</span>
+    </button>
+    
   </div>
 </div>
-
       <div id="questionSection" style="display: none;">
         <div class="mb-8 slide-fade-enter">
           <div class="relative autocomplete-container">
