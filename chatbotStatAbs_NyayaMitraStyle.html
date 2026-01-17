@@ -148,40 +148,7 @@ body::before {
   box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
 }
 
-.radio-option {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  padding: 14px 16px;
-  background: white;
-  border: 3px solid #e5e7eb;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all 0.3s;
-  margin-bottom: 12px;
-  min-height: 80px;
-}
 
-.radio-option:last-child { margin-bottom: 0; }
-
-.radio-option:hover {
-  border-color: #f59e0b;
-  transform: translateX(4px);
-  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.2);
-}
-
-.radio-option input[type="radio"] {
-  width: 22px; height: 22px; min-width: 22px;
-  margin-right: 12px; margin-top: 2px;
-  cursor: pointer; accent-color: #f59e0b; flex-shrink: 0;
-}
-
-.radio-option.selected {
-  border-color: #f59e0b;
-  background: linear-gradient(135deg, #fffbeb, #fef3c7);
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
-  transform: scale(1.02);
-}
 
 .radio-icon {
   font-size: 28px; min-width: 36px; margin-right: 8px;
@@ -2638,6 +2605,54 @@ input:checked + .toggle-slider:before {
     font-size: 0.875rem;
   }
 }
+/* ============================================
+   TOGGLE BUTTON STYLES
+   ============================================ */
+
+.toggle-btn {
+  background: white;
+  color: #6b7280;
+  border: 2px solid transparent;
+}
+
+.toggle-btn:hover {
+  background: #fef3c7;
+  transform: translateY(-2px);
+}
+
+.toggle-btn.active {
+  background: linear-gradient(135deg, #ff6b35, #f59e0b);
+  color: white;
+  border-color: #ff6b35;
+  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4);
+  transform: scale(1.05);
+}
+
+.toggle-btn.active:hover {
+  background: linear-gradient(135deg, #f59e0b, #ff6b35);
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .toggle-btn {
+    min-width: 140px !important;
+    padding: 12px 16px !important;
+    font-size: 13px !important;
+  }
+  
+  .toggle-btn .text-2xl {
+    font-size: 20px !important;
+  }
+  
+  .toggle-btn .font-bold {
+    font-size: 12px !important;
+  }
+  
+  .toggle-btn .text-xs {
+    font-size: 10px !important;
+  }
+}
+   
 </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
@@ -2689,31 +2704,42 @@ input:checked + .toggle-slider:before {
         </p>
       </div>
 
-      <!-- QUERY TYPE SELECTOR (Only visible in Full Features mode) -->
-      <div class="query-type-selector" id="queryTypeSelector">
-        <h3 class="text-xl font-bold text-gray-900 mb-4 text-center flex items-center justify-center gap-2">
-          <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          Area of interest?
-        </h3>
-        
-        <div class="radio-option" onclick="selectQueryType('statistics')">
-          <input type="radio" name="queryType" id="statisticsRadio" value="statistics">
-          <span class="radio-icon">📖</span>
-          <label for="statisticsRadio" class="radio-label cursor-pointer">
-            <span class="radio-label-title">Learn About Statistics</span>
-            <span class="radio-label-desc">Get explanations about statistical terms and concepts</span>
-          </label>
+<!-- QUERY TYPE SELECTOR (Toggle Button Version) -->
+<div class="query-type-selector" id="queryTypeSelector">
+  <h3 class="text-xl font-bold text-gray-900 mb-4 text-center flex items-center justify-center gap-2">
+    <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    Area of interest?
+  </h3>
+  
+  <!-- Toggle Button Container -->
+  <div class="flex justify-center mb-6">
+    <div class="inline-flex bg-white rounded-2xl border-3 border-orange-400 p-2 shadow-xl">
+      
+      <!-- Left Toggle: Learn About Statistics -->
+      <button id="toggleStatistics" 
+              onclick="selectQueryType('statistics')"
+              class="toggle-btn px-6 py-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center gap-2 min-w-[200px] justify-center">
+        <span class="text-2xl">📖</span>
+        <div class="text-left">
+          <div class="font-bold text-sm">Learn About Statistics</div>
+          <div class="text-xs opacity-80 font-normal">Concepts & Terms</div>
         </div>
-        
-        <div class="radio-option" onclick="selectQueryType('data')">
-          <input type="radio" name="queryType" id="dataRadio" value="data">
-          <span class="radio-icon">📊</span>
-          <label for="dataRadio" class="radio-label cursor-pointer">
-            <span class="radio-label-title">Find Haryana Data</span>
-            <span class="radio-label-desc">Search for specific data from Haryana Statistical Abstract</span>
-          </label>
+      </button>
+      
+      <!-- Right Toggle: Find Haryana Data -->
+      <button id="toggleData" 
+              onclick="selectQueryType('data')"
+              class="toggle-btn px-6 py-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center gap-2 min-w-[200px] justify-center">
+        <span class="text-2xl">📊</span>
+        <div class="text-left">
+          <div class="font-bold text-sm">Find Haryana Data</div>
+          <div class="text-xs opacity-80 font-normal">Search Reports</div>
         </div>
-      </div>
+      </button>
+      
+    </div>
+  </div>
+</div>
 
       <div id="questionSection" style="display: none;">
         <div class="mb-8 slide-fade-enter">
@@ -3639,11 +3665,6 @@ function initDOMElements() {
 }
 
 // ============================================================================
-// STATABS CHATBOT - CORRECTED FUNCTION UPDATES
-// ============================================================================
-// Copy your original HTML file and replace these functions with the code below
-// ============================================================================
-
 // FUNCTION 1: selectQueryType (Replace around line 1595)
 // ============================================================================
 function selectQueryType(type) {
@@ -3666,11 +3687,24 @@ function selectQueryType(type) {
   selectedQueryType = type;
   console.log('   selectedQueryType set to:', selectedQueryType);
   
-  document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
-  const clickedOption = type === 'statistics' ? 
-    document.querySelector('.radio-option:first-of-type') : 
-    document.querySelector('.radio-option:last-of-type');
-  clickedOption.classList.add('selected');
+  // ✅ NEW: Update toggle button states
+  const toggleStats = document.getElementById('toggleStatistics');
+  const toggleData = document.getElementById('toggleData');
+  
+  if (toggleStats && toggleData) {
+    // Remove active class from both
+    toggleStats.classList.remove('active');
+    toggleData.classList.remove('active');
+    
+    // Add active class to selected button
+    if (type === 'statistics') {
+      toggleStats.classList.add('active');
+    } else {
+      toggleData.classList.add('active');
+    }
+    
+    console.log('   ✅ Toggle buttons updated');
+  }
   
   // ✅ FIX 1: Clear textbox when switching radio buttons
   userInput.value = '';
