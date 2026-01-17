@@ -2606,13 +2606,15 @@ input:checked + .toggle-slider:before {
   }
 }
 /* ============================================
-   TOGGLE BUTTON STYLES
+   TOGGLE BUTTON STYLES - ENHANCED
    ============================================ */
 
 .toggle-btn {
   background: white;
   color: #6b7280;
   border: 2px solid transparent;
+  cursor: pointer;
+  user-select: none;
 }
 
 .toggle-btn:hover {
@@ -2621,15 +2623,15 @@ input:checked + .toggle-slider:before {
 }
 
 .toggle-btn.active {
-  background: linear-gradient(135deg, #ff6b35, #f59e0b);
-  color: white;
-  border-color: #ff6b35;
-  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4);
-  transform: scale(1.05);
+  background: linear-gradient(135deg, #ff6b35, #f59e0b) !important;
+  color: white !important;
+  border-color: #ff6b35 !important;
+  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4) !important;
+  transform: scale(1.05) !important;
 }
 
 .toggle-btn.active:hover {
-  background: linear-gradient(135deg, #f59e0b, #ff6b35);
+  background: linear-gradient(135deg, #f59e0b, #ff6b35) !important;
 }
 
 /* Mobile Responsive */
@@ -2688,10 +2690,12 @@ input:checked + .toggle-slider:before {
 
     <div class="p-2">
 <!-- MODE TOGGLE (Simple Chat / Full Features) -->
-<!-- QUERY TYPE SELECTOR (Toggle Button Version) -->
+<!-- QUERY TYPE SELECTOR (Toggle Button Version - FULLY FUNCTIONAL) -->
 <div class="query-type-selector" id="queryTypeSelector">
   <h3 class="text-xl font-bold text-gray-900 mb-4 text-center flex items-center justify-center gap-2">
-    <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
     Area of interest?
   </h3>
   
@@ -2700,8 +2704,8 @@ input:checked + .toggle-slider:before {
     <div class="inline-flex bg-white rounded-2xl border-3 border-orange-400 p-2 shadow-xl">
       
       <!-- Left Toggle: Learn About Statistics -->
-      <button id="toggleStatistics" 
-              onclick="selectQueryType('statistics')"
+      <button type="button" 
+              id="toggleStatistics" 
               class="toggle-btn px-6 py-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center gap-2 min-w-[200px] justify-center">
         <span class="text-2xl">📖</span>
         <div class="text-left">
@@ -2711,8 +2715,8 @@ input:checked + .toggle-slider:before {
       </button>
       
       <!-- Right Toggle: Find Haryana Data -->
-      <button id="toggleData" 
-              onclick="selectQueryType('data')"
+      <button type="button" 
+              id="toggleData" 
               class="toggle-btn px-6 py-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center gap-2 min-w-[200px] justify-center">
         <span class="text-2xl">📊</span>
         <div class="text-left">
@@ -3648,19 +3652,18 @@ function initDOMElements() {
   autocompleteDropdown = document.getElementById('autocompleteDropdown');
 }
 
-// ============================================================================
-// FUNCTION 1: selectQueryType (Replace around line 1595)
-// ============================================================================
 function selectQueryType(type) {
-  console.log('🔘 selectQueryType called with:', type);
+  console.log('🔵 ===== selectQueryType CALLED =====');
+  console.log('   📌 Type:', type);
+  console.log('   📌 Timestamp:', new Date().toLocaleTimeString());
   
   // Always ensure DOM elements are initialized
   if (!categorySelect || !questionSection) {
-    console.log('   Initializing DOM elements...');
+    console.log('   ⚠️ DOM elements not initialized, initializing now...');
     initDOMElements();
   }
   
-  console.log('   DOM elements status:', {
+  console.log('   ✅ DOM elements status:', {
     categorySelect: !!categorySelect,
     questionSelect: !!questionSelect,
     questionSection: !!questionSection,
@@ -3668,88 +3671,131 @@ function selectQueryType(type) {
     autocompleteDropdown: !!autocompleteDropdown
   });
   
+  // Set selected query type
   selectedQueryType = type;
-  console.log('   selectedQueryType set to:', selectedQueryType);
+  console.log('   ✅ selectedQueryType set to:', selectedQueryType);
   
-  // ✅ NEW: Update toggle button states
+  // ====================================
+  // UPDATE TOGGLE BUTTON STATES
+  // ====================================
   const toggleStats = document.getElementById('toggleStatistics');
   const toggleData = document.getElementById('toggleData');
+  
+  console.log('   🔍 Toggle button elements:', {
+    toggleStats: !!toggleStats,
+    toggleData: !!toggleData
+  });
   
   if (toggleStats && toggleData) {
     // Remove active class from both
     toggleStats.classList.remove('active');
     toggleData.classList.remove('active');
     
+    console.log('   🧹 Cleared active states');
+    
     // Add active class to selected button
     if (type === 'statistics') {
       toggleStats.classList.add('active');
-    } else {
+      console.log('   ✅ Statistics toggle activated');
+    } else if (type === 'data') {
       toggleData.classList.add('active');
+      console.log('   ✅ Data toggle activated');
     }
     
-    console.log('   ✅ Toggle buttons updated');
+    // Verify active state was applied
+    console.log('   🔍 Final toggle states:', {
+      statsActive: toggleStats.classList.contains('active'),
+      dataActive: toggleData.classList.contains('active')
+    });
+  } else {
+    console.error('   ❌ Toggle buttons not found in DOM!');
   }
   
-  // ✅ FIX 1: Clear textbox when switching radio buttons
-  userInput.value = '';
-  autocompleteDropdown.style.display = 'none';
+  // ====================================
+  // CLEAR INPUT AND AUTOCOMPLETE
+  // ====================================
+  if (userInput) {
+    userInput.value = '';
+    console.log('   🧹 Input cleared');
+  }
   
+  if (autocompleteDropdown) {
+    autocompleteDropdown.style.display = 'none';
+    console.log('   🧹 Autocomplete hidden');
+  }
+  
+  // ====================================
+  // MODE-SPECIFIC CONFIGURATION
+  // ====================================
   if (type === 'statistics') {
-    document.getElementById('statisticsRadio').checked = true;
-    document.getElementById('userInput').placeholder = 'Type your question here...';
+    console.log('   📖 STATISTICS MODE');
     
-    // Make textbox fully editable for statistics mode
-    userInput.readOnly = false;
-    userInput.style.backgroundColor = '';
-    userInput.style.cursor = 'text';
+    if (userInput) {
+      userInput.placeholder = 'Type your question here...';
+      userInput.readOnly = false;
+      userInput.style.backgroundColor = '';
+      userInput.style.cursor = 'text';
+    }
     
     // Show quick questions
-    document.getElementById('quickQuestionsSection').style.display = 'block';
+    const quickSection = document.getElementById('quickQuestionsSection');
+    if (quickSection) {
+      quickSection.style.display = 'block';
+      console.log('   ✅ Quick questions shown');
+    }
     
-  } else {
-    document.getElementById('dataRadio').checked = true;
-    document.getElementById('userInput').placeholder = 'Start typing to search questions...';
+  } else if (type === 'data') {
+    console.log('   📊 DATA MODE');
     
-    // ✅ FIX 2 CORRECTED: Keep textbox editable so dropdown works!
-    // User can type to search, but we'll guide them with placeholder
-    userInput.readOnly = false;
-    userInput.style.backgroundColor = '';
-    userInput.style.cursor = 'text';
+    if (userInput) {
+      userInput.placeholder = 'Start typing to search questions...';
+      userInput.readOnly = false;
+      userInput.style.backgroundColor = '';
+      userInput.style.cursor = 'text';
+    }
     
     // Hide quick questions
-    document.getElementById('quickQuestionsSection').style.display = 'none';
+    const quickSection = document.getElementById('quickQuestionsSection');
+    if (quickSection) {
+      quickSection.style.display = 'none';
+      console.log('   ✅ Quick questions hidden');
+    }
     
     // Load master file data if not loaded
     if (masterFileData.length === 0) {
+      console.log('   📥 Loading master file data...');
       loadMasterFileData();
     }
   }
   
-  console.log('   Loading categories...');
+  // ====================================
+  // LOAD CATEGORIES AND QUESTIONS
+  // ====================================
+  console.log('   📚 Loading categories...');
   loadCategories();
   
-  console.log('   Building questions list...');
+  console.log('   📝 Building questions list...');
   buildAllQuestionsList();
   
-  // Show question section - with safety check
-  console.log('   Showing question section...');
-  console.log('   questionSection exists?', !!questionSection);
-  
+  // ====================================
+  // SHOW QUESTION SECTION
+  // ====================================
   if (questionSection) {
     questionSection.style.display = 'block';
-    console.log('   ✅ Question section displayed!');
+    console.log('   ✅ Question section displayed');
   } else {
-    console.error('   ❌ questionSection not found!');
+    console.error('   ❌ questionSection not found, re-initializing...');
     initDOMElements();
+    
     if (questionSection) {
       questionSection.style.display = 'block';
-      console.log('   ✅ Question section displayed after re-init!');
+      console.log('   ✅ Question section displayed after re-init');
     } else {
-      console.error('   ❌ Still cannot find questionSection');
+      console.error('   ❌ CRITICAL: Still cannot find questionSection');
     }
   }
   
-  console.log('🔘 selectQueryType completed');
+  console.log('🔵 ===== selectQueryType COMPLETED =====\n');
 }
 
 function loadCategories() {
@@ -7149,6 +7195,52 @@ window.addEventListener('DOMContentLoaded', function() {
 
 // ═══════════════════════════════════════════════════════════════════
   console.log('🎉 All initialization complete!');
+ // ====================================
+  // 🆕 ADD THIS SECTION HERE
+  // ====================================
+  
+  // Initialize toggle buttons with event listeners
+  console.log('🔘 Initializing toggle buttons...');
+  
+  const toggleStatistics = document.getElementById('toggleStatistics');
+  const toggleData = document.getElementById('toggleData');
+  
+  if (toggleStatistics && toggleData) {
+    console.log('   ✅ Toggle buttons found in DOM');
+    
+    // Add click event to Statistics toggle
+    toggleStatistics.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('🖱️ Statistics toggle clicked');
+      selectQueryType('statistics');
+    });
+    
+    // Add click event to Data toggle
+    toggleData.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('🖱️ Data toggle clicked');
+      selectQueryType('data');
+    });
+    
+    console.log('   ✅ Toggle button event listeners attached');
+    
+    // Test toggle buttons are clickable
+    console.log('   🧪 Testing toggle button accessibility:', {
+      statsClickable: !toggleStatistics.disabled,
+      dataClickable: !toggleData.disabled,
+      statsVisible: window.getComputedStyle(toggleStatistics).display !== 'none',
+      dataVisible: window.getComputedStyle(toggleData).display !== 'none'
+    });
+    
+  } else {
+    console.error('   ❌ Toggle buttons NOT found!', {
+      toggleStatistics: !!toggleStatistics,
+      toggleData: !!toggleData
+    });
+  }
+  
+  console.log('🔘 Toggle button initialization complete!\n');
+  
 });
 </script>
 <!-- ============================================
