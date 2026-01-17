@@ -2689,7 +2689,6 @@ input:checked + .toggle-slider:before {
 
     <div class="p-2">
 <!-- MODE TOGGLE (Simple Chat / Full Features) -->
-<!-- QUERY TYPE SELECTOR (Toggle Button Version - FULLY FUNCTIONAL) -->
 <div class="query-type-selector" id="queryTypeSelector">
   <h3 class="text-xl font-bold text-gray-900 mb-4 text-center flex items-center justify-center gap-2">
     <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2698,32 +2697,21 @@ input:checked + .toggle-slider:before {
     Area of interest?
   </h3>
   
-  <!-- Toggle Button Container -->
-  <div class="flex justify-center mb-6">
-    <div class="inline-flex bg-white rounded-2xl border-3 border-orange-400 p-2 shadow-xl">
-      
-      <!-- Left Toggle: Learn About Statistics -->
-      <button type="button" 
-              id="toggleStatistics" 
-              class="toggle-btn px-6 py-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center gap-2 min-w-[200px] justify-center">
-        <span class="text-2xl">📖</span>
-        <div class="text-left">
-          <div class="font-bold text-sm">Learn About Statistics</div>
-          <div class="text-xs opacity-80 font-normal">Concepts & Terms</div>
-        </div>
-      </button>
-      
-      <!-- Right Toggle: Find Haryana Data -->
-      <button type="button" 
-              id="toggleData" 
-              class="toggle-btn px-6 py-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center gap-2 min-w-[200px] justify-center">
-        <span class="text-2xl">📊</span>
-        <div class="text-left">
-          <div class="font-bold text-sm">Find Haryana Data</div>
-          <div class="text-xs opacity-80 font-normal">Search Reports</div>
-        </div>
-      </button>
-      
+  <div class="radio-option" id="optionStatistics" onclick="selectQueryType('statistics')">
+    <input type="radio" name="queryType" value="statistics" onclick="event.stopPropagation(); selectQueryType('statistics')">
+    <span class="radio-icon">📖</span>
+    <div class="radio-label">
+      <div class="radio-label-title">Learn About Statistics</div>
+      <div class="radio-label-desc">Concepts & Terms</div>
+    </div>
+  </div>
+  
+  <div class="radio-option" id="optionData" onclick="selectQueryType('data')">
+    <input type="radio" name="queryType" value="data" onclick="event.stopPropagation(); selectQueryType('data')">
+    <span class="radio-icon">📊</span>
+    <div class="radio-label">
+      <div class="radio-label-title">Find Haryana Data</div>
+      <div class="radio-label-desc">Search Reports</div>
     </div>
   </div>
 </div>
