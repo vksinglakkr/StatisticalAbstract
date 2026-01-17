@@ -2939,6 +2939,26 @@ input:checked + .toggle-slider:before {
       </div>
     </div>
       <div id="questionSection" style="display: none;">
+        <div class="mb-8 slide-fade-enter" id="quickQuestionsSection">
+          <div class="flex items-center justify-between mb-4">
+            <label class="text-lg font-bold text-gray-800">Quick help👇</label>
+              <div class="flex justify-end mb-2">
+                <div class="lang-toggle">
+                  <button class="langBtn active" data-lang="English">English</button>
+                  <button class="langBtn" data-lang="Hindi">हिंदी</button>
+                </div>
+              </div>  
+          </div>
+          <div class="space-y-4">
+            <select id="categorySelect" class="block w-full px-5 py-4 text-base border-2 border-gray-200 focus:outline-none focus:ring-3 focus:ring-blue-500 focus:border-blue-500 rounded-2xl bg-white shadow-md transition-all duration-300 font-medium">
+              <option value="" selected disabled>Select Topic</option>
+            </select>
+            <select id="questionSelect" class="block w-full px-5 py-4 text-base border-2 border-gray-200 focus:outline-none focus:ring-3 focus:ring-blue-500 focus:border-blue-500 rounded-2xl bg-white shadow-md transition-all duration-300 font-medium" disabled>
+                <option value="" selected disabled>Select Question</option>
+            </select> 
+          </div>
+        </div>
+        <!-- File search section removed - use main chat input only -->
         <div class="mb-8 slide-fade-enter">
           <div class="relative autocomplete-container">
             <textarea
@@ -2962,28 +2982,6 @@ input:checked + .toggle-slider:before {
             </button>
           </div>
         </div>
-
-        <div class="mb-8 slide-fade-enter" id="quickQuestionsSection">
-          <div class="flex items-center justify-between mb-4">
-            <label class="text-lg font-bold text-gray-800">Quick help👇</label>
-              <div class="flex justify-end mb-2">
-                <div class="lang-toggle">
-                  <button class="langBtn active" data-lang="English">English</button>
-                  <button class="langBtn" data-lang="Hindi">हिंदी</button>
-                </div>
-              </div>  
-          </div>
-          <div class="space-y-4">
-            <select id="categorySelect" class="block w-full px-5 py-4 text-base border-2 border-gray-200 focus:outline-none focus:ring-3 focus:ring-blue-500 focus:border-blue-500 rounded-2xl bg-white shadow-md transition-all duration-300 font-medium">
-              <option value="" selected disabled>Select Topic</option>
-            </select>
-            <select id="questionSelect" class="block w-full px-5 py-4 text-base border-2 border-gray-200 focus:outline-none focus:ring-3 focus:ring-blue-500 focus:border-blue-500 rounded-2xl bg-white shadow-md transition-all duration-300 font-medium" disabled>
-                <option value="" selected disabled>Select Question</option>
-            </select> 
-          </div>
-        </div>
-        <!-- File search section removed - use main chat input only -->
-
         
 
         <button 
