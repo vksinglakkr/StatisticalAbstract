@@ -3262,7 +3262,28 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
     alert('Please enter your question!');
     return;
   }
-
+  // ✅ NEW: Route based on query type
+  if (selectedQueryType === 'data') {
+    // "Find Haryana Data" → Open full-screen chat
+    showChatInterface();
+    
+    // Transfer question to chat input
+    const chatInput = document.getElementById('chatInput');
+    if (chatInput) {
+      chatInput.value = question;
+      autoResizeChatInput();
+    }
+    
+    // Auto-send
+    setTimeout(() => {
+      sendChatMessage();
+    }, 300);
+    
+    // Clear main input
+    userInput.value = '';
+    
+    return; // Exit - don't open modal
+  }
   // ✅ NEW: Save as original question if this is NOT from a related question click
   // (Related questions will have " | " separator)
   if (!question.includes(' | ')) {
@@ -4155,4 +4176,315 @@ window.addEventListener('DOMContentLoaded', function() {
   console.log('🎉 All initialization complete with default state!');
 
 	
+});
+// ============================================================================
+// CHAT INTERFACE FUNCTIONS (NyayaMitra Style)
+// ============================================================================
+
+// Global variables
+let chatMessages = [];
+let isChatMode = false;
+
+// Show chat interface (for "Find Haryana Data" mode)
+function showChatInterface() {
+  const chatInterface = document.getElementById('chatInterface');
+  const mainContainer = document.querySelector('.container-main');
+  
+  if (chatInterface && mainContainer) {
+    chatInterface.classList.add('active');
+    mainContainer.style.display = 'none';
+    isChatMode = true;
+    
+    // Focus on input
+    setTimeout(() => {
+      document.getElementById('chatInput').focus();
+    }, 300);
+  }
+}
+
+// Close chat interface
+function closeChatInterface() {
+  const chatInterface = document.getElementById('chatInterface');
+  const mainContainer = document.querySelector('.container-main');
+  
+  if (chatInterface && mainContainer) {
+    chatInterface.classList.remove('active');
+    mainContainer.style.display = 'block';
+    isChatMode = false;
+  }
+}
+
+// Add message to chat
+function addChatMessage(text, type = 'user') {
+  const messagesContainer = document.getElementById('chatMessages');
+  if (!messagesContainer) return;
+  
+  const messageWrapper = document.createElement('div');
+  messageWrapper.className = `message-wrapper ${type}`;
+  
+  const messageBubble = document.createElement('div');
+  messageBubble.className = 'message-bubble';
+  
+  const messageContent = document.createElement('p');
+  messageContent.className = 'message-content';
+  messageContent.textContent = text;
+  
+  const messageTime = document.createElement('div');
+  messageTime.className = 'message-time';
+  messageTime.textContent = new Date().toLocaleTimeString('en-US', { 
+    hour: '2-digit', 
+    minute: '2-digit' 
+  });
+  
+  messageBubble.appendChild(messageContent);
+  messageBubble.appendChild(messageTime);
+  messageWrapper.appendChild(messageBubble);
+  messagesContainer.appendChild(messageWrapper);
+  
+  // Save to chat history
+  chatMessages.push({ text, type, time: new Date() });
+  
+  // Update message count
+  updateMessageCount();
+  
+  // Scroll to bottom
+  scrollToBottom();
+}
+
+// Add typing indicator
+function showTypingIndicator() {
+  const messagesContainer = document.getElementById('chatMessages');
+  if (!messagesContainer) return;
+  
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'message-wrapper ai';
+  typingDiv.id = 'typingIndicator';
+  typingDiv.innerHTML = `
+    <div class="typing-indicator">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  `;
+  
+  messagesContainer.appendChild(typingDiv);
+  scrollToBottom();
+}
+
+// Remove typing indicator
+function hideTypingIndicator() {
+  const typingIndicator = document.getElementById('typingIndicator');
+  if (typingIndicator) {
+    typingIndicator.remove();
+  }
+}
+
+// Update message count
+function updateMessageCount() {
+  const messageCount = document.getElementById('messageCount');
+  if (messageCount) {
+    const count = chatMessages.length;
+    messageCount.textContent = `${count} message${count !== 1 ? 's' : ''}`;
+  }
+}
+
+// Scroll to bottom of chat
+function scrollToBottom() {
+  const messagesContainer = document.getElementById('chatMessages');
+  if (messagesContainer) {
+    setTimeout(() => {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }, 100);
+  }
+}
+
+// Clear chat history
+function clearChatHistory() {
+  if (chatMessages.length === 0) {
+    alert('Chat is already empty!');
+    return;
+  }
+  
+  if (confirm('Clear all chat messages? This cannot be undone.')) {
+    chatMessages = [];
+    
+    // Remove all messages except welcome
+    const messagesContainer = document.getElementById('chatMessages');
+    if (messagesContainer) {
+      const welcomeMsg = messagesContainer.querySelector('.welcome-message');
+      messagesContainer.innerHTML = '';
+      if (welcomeMsg) {
+        messagesContainer.appendChild(welcomeMsg);
+      }
+    }
+    
+    updateMessageCount();
+    console.log('✅ Chat history cleared');
+  }
+}
+
+// Send chat message
+async function sendChatMessage() {
+  const chatInput = document.getElementById('chatInput');
+  const question = chatInput.value.trim();
+  
+  if (!question) {
+    alert('Please enter a question!');
+    return;
+  }
+  
+  // Add user message
+  addChatMessage(question, 'user');
+  
+  // Clear input
+  chatInput.value = '';
+  autoResizeChatInput();
+  
+  // Show typing indicator
+  showTypingIndicator();
+  
+  // Get device info
+  const deviceType = /Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ? 'Mobile' : 
+                     /Tablet|iPad/i.test(navigator.userAgent) ? 'Tablet' : 'Desktop';
+  const browserMatch = navigator.userAgent.match(/(Firefox|Chrome|Safari|Edge|Opera|OPR)/i);
+  const browser = browserMatch ? browserMatch[0].replace('OPR', 'Opera') : 'Unknown';
+  
+  try {
+    const webhookUrl = 'https://n8n-workflow-test.duckdns.org/webhook/stat-abstract';
+    
+    const payload = {
+      question: question,
+      language: selectedLanguage,
+      queryType: selectedQueryType === 'statistics' ? 'STATISTICAL_CONCEPT_QUERY' : 'STATISTICAL_DATA_QUERY',
+      mobNo: 'anonymous',
+      deviceType: deviceType,
+      browser: browser,
+      timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      userAgent: navigator.userAgent
+    };
+    
+    // Add conversation history if exists
+    if (window.conversationHistory && window.conversationHistory.length > 0) {
+      payload.conversationHistory = window.conversationHistory;
+    }
+    
+    console.log('📤 Sending to webhook:', payload);
+    
+    const response = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const responseText = await response.text();
+    console.log('Raw webhook response:', responseText);
+    
+    let data;
+    try {
+      data = JSON.parse(responseText);
+      console.log('Parsed webhook response:', data);
+    } catch (jsonError) {
+      console.error('JSON Parse Error:', jsonError);
+      throw new Error('Invalid response format from server');
+    }
+    
+    // Hide typing indicator
+    hideTypingIndicator();
+    
+    // Add AI response
+    const aiResponse = data.answer || data.error || 'No response received.';
+    addChatMessage(aiResponse, 'ai');
+    
+    // Add to conversation history
+    if (!window.conversationHistory) {
+      window.conversationHistory = [];
+    }
+    window.conversationHistory.push({
+      question: question,
+      answer: aiResponse
+    });
+    
+    // Keep only last 5 exchanges
+    if (window.conversationHistory.length > 5) {
+      window.conversationHistory.shift();
+    }
+    
+    console.log('Updated conversation history:', window.conversationHistory);
+    
+  } catch (error) {
+    console.error('Error:', error);
+    hideTypingIndicator();
+    addChatMessage('❌ Connection failed: ' + error.message, 'ai');
+  }
+}
+
+// Handle Enter key in chat input
+function handleChatKeydown(event) {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
+    sendChatMessage();
+  }
+}
+
+// Auto-resize chat input
+function autoResizeChatInput() {
+  const input = document.getElementById('chatInput');
+  if (!input) return;
+  
+  input.style.height = 'auto';
+  const newHeight = Math.min(input.scrollHeight, 120);
+  input.style.height = newHeight + 'px';
+}
+
+// Ask sample question (from chips)
+function askSampleQuestion(question) {
+  const chatInput = document.getElementById('chatInput');
+  if (chatInput) {
+    chatInput.value = question;
+    autoResizeChatInput();
+    chatInput.focus();
+  }
+}
+
+// Initialize chat interface event listeners
+document.addEventListener('DOMContentLoaded', function() {
+  // Close chat button
+  const closeChatBtn = document.getElementById('closeChatBtn');
+  if (closeChatBtn) {
+    closeChatBtn.addEventListener('click', closeChatInterface);
+  }
+  
+  // Clear chat button
+  const clearChatBtn = document.getElementById('clearChatBtn');
+  if (clearChatBtn) {
+    clearChatBtn.addEventListener('click', clearChatHistory);
+  }
+  
+  // Send button
+  const chatSendBtn = document.getElementById('chatSendBtn');
+  if (chatSendBtn) {
+    chatSendBtn.addEventListener('click', sendChatMessage);
+  }
+  
+  // Voice button (reuse existing voice recognition)
+  const chatVoiceBtn = document.getElementById('chatVoiceBtn');
+  if (chatVoiceBtn && recognition) {
+    chatVoiceBtn.addEventListener('click', function() {
+      if (isRecording) {
+        recognition.stop();
+      } else {
+        // Change target to chat input
+        recognition.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          document.getElementById('chatInput').value = transcript;
+          autoResizeChatInput();
+        };
+        recognition.start();
+      }
+    });
+  }
 });
