@@ -4457,8 +4457,14 @@ document.addEventListener('DOMContentLoaded', function() {
   if (closeChatBtn) {
     closeChatBtn.addEventListener('click', closeChatInterface);
   }
-   switchMode('data');
- 
+   const dataToggle = document.getElementById('toggleData');
+  const statsToggle = document.getElementById('toggleStatistics');
+  
+  if (dataToggle.classList.contains('active')) {
+    switchMode('data');
+  } else if (statsToggle.classList.contains('active')) {
+    switchMode('statistics');
+  } 
   // Clear chat button
   const clearChatBtn = document.getElementById('clearChatBtn');
   if (clearChatBtn) {
@@ -4489,19 +4495,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+// Your existing switchMode function
 function switchMode(mode) {
-  currentMode = mode;
+  const questionSection = document.getElementById('questionSection');
+  const chatInterface = document.getElementById('chatInterface');
+  const toggleData = document.getElementById('toggleData');
+  const toggleStatistics = document.getElementById('toggleStatistics');
   
-  // Update buttons
-  document.getElementById('toggleStatistics').classList.toggle('active', mode === 'statistics');
-  document.getElementById('toggleData').classList.toggle('active', mode === 'data');
-  
-  // CRITICAL FIX: Use 'flex' not 'block'
   if (mode === 'data') {
-    document.getElementById('questionSection').style.display = 'none';
-    document.getElementById('chatInterface').style.display = 'flex'; // FLEX not block!
+    // Show chat interface
+    chatInterface.style.display = 'flex'; // IMPORTANT: Use 'flex' not 'block'
+    questionSection.style.display = 'none';
+    
+    // Update buttons
+    toggleData.classList.add('active');
+    toggleStatistics.classList.remove('active');
   } else {
-    document.getElementById('questionSection').style.display = 'block';
-    document.getElementById('chatInterface').style.display = 'none';
+    // Show question section
+    chatInterface.style.display = 'none';
+    questionSection.style.display = 'block';
+    
+    // Update buttons
+    toggleStatistics.classList.add('active');
+    toggleData.classList.remove('active');
   }
 }
