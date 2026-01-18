@@ -3938,6 +3938,7 @@ window.addEventListener('DOMContentLoaded', function() {
   initDropdownListeners();
   initLanguageAndTTS();
   initMusicToggle();
+  updateLastModifiedFromSheets(); // ✅ ADD THIS LINE
 
   // 2. Attach Click Listeners directly to the toggle buttons
   const toggleStats = document.getElementById('toggleStatistics');
