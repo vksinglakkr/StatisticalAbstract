@@ -3448,58 +3448,96 @@ function displayRelatedQuestions(questions) {
 }
   
 
-let recognition;
+let recognition = null; // ✅ Initialize as null first
 let isRecording = false;
 
+// ✅ Safe initialization - only if browser supports it
 if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  recognition = new SpeechRecognition();
-  recognition.continuous = false;
-  recognition.interimResults = false;
-  recognition.lang = 'hi-IN';
+  try {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'hi-IN';
 
-  recognition.onstart = () => {
-    isRecording = true;
-    const voiceBtn = document.getElementById('voiceBtn');
-    voiceBtn.classList.add('recording');
-    voiceBtn.title = 'Recording... Click to stop';
-  };
+    recognition.onstart = () => {
+      isRecording = true;
+      const voiceBtn = document.getElementById('voiceBtn');
+      if (voiceBtn) {
+        voiceBtn.classList.add('recording');
+        voiceBtn.title = 'Recording... Click to stop';
+      }
+    };
 
-  recognition.onresult = (event) => {
-    const transcript = event.results[0][0].transcript;
-    userInput.value = transcript;
-    // Trigger autocomplete
-    userInput.dispatchEvent(new Event('input'));
-  };
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      const userInput = document.getElementById('userInput');
+      if (userInput) {
+        userInput.value = transcript;
+        userInput.dispatchEvent(new Event('input'));
+      }
+    };
 
-  recognition.onend = () => {
-    isRecording = false;
-    const voiceBtn = document.getElementById('voiceBtn');
-    voiceBtn.classList.remove('recording');
-    voiceBtn.title = 'Click to speak';
-  };
+    recognition.onend = () => {
+      isRecording = false;
+      const voiceBtn = document.getElementById('voiceBtn');
+      if (voiceBtn) {
+        voiceBtn.classList.remove('recording');
+        voiceBtn.title = 'Click to speak';
+      }
+    };
 
-  recognition.onerror = (event) => {
-    isRecording = false;
-    const voiceBtn = document.getElementById('voiceBtn');
-    voiceBtn.classList.remove('recording');
-    voiceBtn.title = 'Click to speak';
-    if (event.error !== 'no-speech') {
-      alert('Voice recognition failed. Please try again.');
-    }
-  };
+    recognition.onerror = (event) => {
+      isRecording = false;
+      const voiceBtn = document.getElementById('voiceBtn');
+      if (voiceBtn) {
+        voiceBtn.classList.remove('recording');
+        voiceBtn.title = 'Click to speak';
+      }
+      if (event.error !== 'no-speech') {
+        console.warn('Voice recognition error:', event.error);
+      }
+    };
+    
+    console.log('✅ Voice recognition initialized');
+    
+  } catch (error) {
+    console.error('❌ Voice recognition initialization failed:', error);
+    recognition = null;
+  }
+} else {
+  console.warn('⚠️ Voice recognition not supported in this browser');
 }
 
-document.getElementById('voiceBtn').addEventListener('click', (e) => {
-  e.preventDefault();
-  if (recognition) {
-    if (isRecording) {
-      recognition.stop();
-    } else {
-      recognition.start();
-    }
-  } else {
-    alert('Voice recognition is not supported in your browser.');
+// Voice button click handler
+  const chatVoiceBtn = document.getElementById('chatVoiceBtn');
+  if (chatVoiceBtn) {
+    chatVoiceBtn.addEventListener('click', function() {
+      if (!recognition) {
+        alert('Voice recognition is not supported in your browser.');
+        return;
+      }
+      
+      if (isRecording) {
+        recognition.stop();
+      } else {
+        // Change target to chat input
+        recognition.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          const chatInput = document.getElementById('chatInput');
+          if (chatInput) {
+            chatInput.value = transcript;
+            autoResizeChatInput();
+          }
+        };
+        try {
+          recognition.start();
+        } catch (error) {
+          console.error('❌ Failed to start chat voice:', error);
+          alert('Voice recognition failed. Please try again.');
+        }
+      }
+    });
   }
 });
 
@@ -3923,6 +3961,49 @@ document.addEventListener('click', function(e) {
     }
   }
 });
+
+
+function updateLastModifiedDate() {
+  const lastModifiedElement = document.getElementById('lastModified');
+  
+  if (!lastModifiedElement) {
+    console.warn('⚠️ lastModified element not found');
+    return;
+  }
+  
+  try {
+    // Get document's last modified date
+    const lastModified = new Date(document.lastModified);
+    
+    // Check if valid date
+    if (isNaN(lastModified.getTime())) {
+      // Fallback to current date
+      const now = new Date();
+      const formattedDate = now.toLocaleDateString('en-IN', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric'
+      });
+      lastModifiedElement.textContent = formattedDate;
+      console.log('✅ Last Modified (fallback):', formattedDate);
+    } else {
+      // Format the date
+      const formattedDate = lastModified.toLocaleDateString('en-IN', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      lastModifiedElement.textContent = formattedDate;
+      console.log('✅ Last Modified Date:', formattedDate);
+    }
+    
+  } catch (error) {
+    console.error('❌ Error updating last modified:', error);
+    lastModifiedElement.textContent = 'Recently updated';
+  }
+}
 // ================= MENU LOGIC ====================
 
 function toggleMenu() {
@@ -3938,7 +4019,7 @@ window.addEventListener('DOMContentLoaded', function() {
   initDropdownListeners();
   initLanguageAndTTS();
   initMusicToggle();
-  updateLastModifiedFromSheets(); // ✅ ADD THIS LINE
+ updateLastModifiedDate();
 
   // 2. Attach Click Listeners directly to the toggle buttons
   const toggleStats = document.getElementById('toggleStatistics');
