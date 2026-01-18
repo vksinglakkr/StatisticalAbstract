@@ -1,4 +1,3 @@
-<script>
 // ============================================================================
 // COMPREHENSIVE STATISTICAL QUESTIONS - DIRECT REPLACEMENT CODE
 // Copy lines 1527-1600 and replace with this entire code block
@@ -4157,4 +4156,3 @@ window.addEventListener('DOMContentLoaded', function() {
 
 	
 });
-</script>
