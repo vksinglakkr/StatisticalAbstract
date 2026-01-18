@@ -402,6 +402,98 @@
       </div>
     </div>
   </div>
+<!-- ============================================================================
+     FULL-SCREEN CHAT INTERFACE (For "Find Haryana Data" Mode)
+     ============================================================================ -->
+<div id="chatInterface">
+  <div class="chat-container">
+    
+    <!-- Chat Header -->
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-avatar">📊</div>
+        <div class="chat-header-info">
+          <h3>Haryana DataVista</h3>
+          <div class="chat-status">
+            <span id="messageCount">0 messages</span> • Online
+          </div>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button class="chat-action-btn" id="clearChatBtn" title="Clear chat history">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+          </svg>
+        </button>
+        <button class="chat-action-btn" id="closeChatBtn" title="Close chat">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Messages Area -->
+    <div class="chat-messages" id="chatMessages">
+      
+      <!-- Welcome Message -->
+      <div class="welcome-message">
+        <h4>👋 Welcome to Haryana DataVista!</h4>
+        <p>
+          Ask me about Haryana's statistical data, demographics, economics, districts, and more.
+          <br><br>
+          💡 <strong>Try asking:</strong>
+        </p>
+        <div class="related-chips">
+          <div class="chip" onclick="askSampleQuestion('What is the literacy rate in Haryana?')">
+            📚 Literacy rate
+          </div>
+          <div class="chip" onclick="askSampleQuestion('Show district-wise population data')">
+            👥 District population
+          </div>
+          <div class="chip" onclick="askSampleQuestion('Economic indicators of Haryana')">
+            💰 Economic data
+          </div>
+        </div>
+      </div>
+      
+      <!-- Messages will be added here dynamically -->
+      
+    </div>
+    
+    <!-- Chat Input Area -->
+    <div class="chat-input-area">
+      <div class="chat-input-wrapper">
+        <div class="chat-input-container">
+          <textarea 
+            id="chatInput" 
+            rows="1"
+            placeholder="💬 Ask about Haryana statistics..."
+            onkeydown="handleChatKeydown(event)"
+            oninput="autoResizeChatInput()"
+          ></textarea>
+          <button id="chatVoiceBtn" title="Voice input">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+            </svg>
+          </button>
+        </div>
+        <button id="chatSendBtn" title="Send message">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+          </svg>
+        </button>
+      </div>
+      <div class="chat-input-helper">
+        <p>Press Enter to send • Shift+Enter for new line</p>
+        <button class="clear-chat-btn" onclick="clearChatHistory()">
+          🗑️ Clear chat
+        </button>
+      </div>
+    </div>
+    
+  </div>
+</div>
 <script src="js/app.js"></script>
 </body>
 </html>
