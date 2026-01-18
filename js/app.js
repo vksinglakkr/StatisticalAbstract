@@ -4012,170 +4012,133 @@ function toggleMenu() {
 window.addEventListener('DOMContentLoaded', function() {
   console.log('🚀 Page loaded - initializing components...');
   
-  // Initialize DOM elements
+  // 1. Initialize DOM elements
   initDOMElements();
   console.log('✅ DOM elements initialized');
   
-  // DON'T auto-select any radio button - let user choose
-  // questionSection stays hidden until user selects a radio button
-    // Close menu when clicking outside
+  // 2. Close menu when clicking outside
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.menu-wrapper')) {
-      menuDropdown.classList.remove('show');
+      const menuDropdown = document.getElementById('menuDropdown');
+      if (menuDropdown && menuDropdown.classList.contains('show')) {
+        menuDropdown.classList.remove('show');
+      }
     }
   });
-  // Initialize autocomplete listeners
+
+  // 3. Initialize Listeners
   initUserInputListener();
   console.log('✅ User input listener initialized');
   
   initFileSearchListener();
   console.log('✅ File search listener initialized');
   
-  // Initialize dropdown listeners (category/question select)
   initDropdownListeners();
   console.log('✅ Dropdown listeners initialized');
   
-  // Initialize language buttons and TTS
+  // 4. Initialize Features (Language, TTS, Music)
   initLanguageAndTTS();
   console.log('✅ Language and TTS initialized');
   
-  // Initialize music toggle (SAFELY - checks if elements exist)
-  initMusicToggle();
+  initMusicToggle(); // Safe check included inside function
   console.log('✅ Music toggle check completed');
   
-  // Set last modified date - IMPROVED VERSION
+  // 5. Set Last Modified Date (Robust Version)
   const elem = document.getElementById('lastModified');
-  console.log('📅 Setting last modified date...');
-  console.log('   Element found:', elem ? 'YES' : 'NO');
-  
   if (elem) {
     try {
-      // Get the last modified string
       const lastModifiedStr = document.lastModified;
-      console.log('   Raw lastModified string:', lastModifiedStr);
-      
-      // Parse the date
       const lastModifiedDate = new Date(lastModifiedStr);
-      console.log('   Parsed date object:', lastModifiedDate);
-      console.log('   Is valid date?', !isNaN(lastModifiedDate.getTime()));
       
-      // Check if valid date
+      // Check if date is valid
       if (isNaN(lastModifiedDate.getTime())) {
-        // Fallback to current date
-        console.warn('⚠️ Could not parse lastModified, using current date');
-        const now = new Date();
+        const now = new Date(); // Fallback to now
         elem.textContent = now.toLocaleDateString('en-US', {
           year: 'numeric', month: 'long', day: 'numeric'
         }) + ' at ' + now.toLocaleTimeString('en-US', {
           hour: '2-digit', minute: '2-digit', hour12: true
         });
       } else {
-        // Valid date - format it
         elem.textContent = lastModifiedDate.toLocaleDateString('en-US', {
           year: 'numeric', month: 'long', day: 'numeric'
         }) + ' at ' + lastModifiedDate.toLocaleTimeString('en-US', {
           hour: '2-digit', minute: '2-digit', hour12: true
         });
       }
-      
       elem.style.display = 'inline';
-      console.log('✅ Last Modified set to:', elem.textContent);
-      
     } catch (error) {
       console.error('❌ Error setting last modified:', error);
-      // Final fallback
       elem.textContent = 'Recently Updated';
       elem.style.display = 'inline';
     }
-  } else {
-    console.error('❌ Element with id="lastModified" not found in HTML!');
   }
-  
 
-// ═══════════════════════════════════════════════════════════════════
-  console.log('🎉 All initialization complete!');
- // ====================================
-  // 🆕 ADD THIS SECTION HERE
-  // ====================================
-  
-  // Initialize toggle buttons with event listeners
-  console.log('🔘 Initializing toggle buttons...');
-  
+  // 6. Initialize Toggle Buttons (Statistics vs Data)
   const toggleStatistics = document.getElementById('toggleStatistics');
   const toggleData = document.getElementById('toggleData');
   
   if (toggleStatistics && toggleData) {
-    console.log('   ✅ Toggle buttons found in DOM');
-    
-    // Add click event to Statistics toggle
+    // Statistics Click Event
     toggleStatistics.addEventListener('click', function(e) {
       e.preventDefault();
-      console.log('🖱️ Statistics toggle clicked');
       selectQueryType('statistics');
     });
     
-    // Add click event to Data toggle
+    // Data Click Event
     toggleData.addEventListener('click', function(e) {
       e.preventDefault();
-      console.log('🖱️ Data toggle clicked');
       selectQueryType('data');
     });
-    
-    console.log('   ✅ Toggle button event listeners attached');
-    
-    // Test toggle buttons are clickable
-    console.log('   🧪 Testing toggle button accessibility:', {
-      statsClickable: !toggleStatistics.disabled,
-      dataClickable: !toggleData.disabled,
-      statsVisible: window.getComputedStyle(toggleStatistics).display !== 'none',
-      dataVisible: window.getComputedStyle(toggleData).display !== 'none'
-    });
-    
-  } else {
-    console.error('   ❌ Toggle buttons NOT found!', {
-      toggleStatistics: !!toggleStatistics,
-      toggleData: !!toggleData
-    });
+    console.log('✅ Toggle button listeners attached');
   }
-  
-  console.log('🔘 Toggle button initialization complete!\n');
+
   // ====================================
-  // 🆕 SET DEFAULT ACTIVE STATE
+  // 🆕 SET DEFAULT ACTIVE STATE (FIXED)
   // ====================================
   console.log('🎯 Setting default active state: Find Haryana Data');
   
-  // Auto-select "Find Haryana Data" on page load
+  // Auto-select "Find Haryana Data" on page load with delay to ensure DOM is ready
   setTimeout(() => {
+    // A. Set Query Type Variable
+    selectedQueryType = 'data';
+    console.log('✅ Default query type set to:', selectedQueryType);
+
+    // B. Set Button Visual State
     const toggleData = document.getElementById('toggleData');
     if (toggleData && !toggleData.classList.contains('active')) {
       toggleData.classList.add('active');
     }
     
-    // Set default query type
-    selectedQueryType = 'data';
-    console.log('✅ Default query type set to:', selectedQueryType);
+    // C. 🔴 CRITICAL FIX: Hide "Quick Help" (Statistics Feature)
+    const quickSection = document.getElementById('quickQuestionsSection');
+    if (quickSection) {
+      quickSection.style.display = 'none'; // Force hide on startup
+      console.log('✅ Quick questions hidden (Data Mode Startup)');
+    }
+
+    // D. Update Input Placeholder
+    const userInput = document.getElementById('userInput');
+    if (userInput) {
+      userInput.placeholder = 'Start typing to search data files...';
+    }
     
-    // Load master file data for data mode
-    if (masterFileData.length === 0) {
+    // E. Load Data & Show Results Area
+    if (typeof masterFileData !== 'undefined' && masterFileData.length === 0) {
       console.log('📥 Loading master file data...');
       loadMasterFileData();
     }
     
-    // Show question section by default
+    const questionSection = document.getElementById('questionSection');
     if (questionSection) {
-      questionSection.style.display = 'block';
-      console.log('✅ Question section displayed by default');
+      questionSection.style.display = 'block'; // Ensure container is visible
     }
     
-    // Load categories and build questions list
+    // F. Build Lists
     loadCategories();
     buildAllQuestionsList();
     
+    console.log('🎉 Initialization Complete: Data Mode Active, Quick Help Hidden');
   }, 100);
-  
-  console.log('🎉 All initialization complete with default state!');
-
-	
 });
 // ============================================================================
 // CHAT INTERFACE FUNCTIONS (NyayaMitra Style)
