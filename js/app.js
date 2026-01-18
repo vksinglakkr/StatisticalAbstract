@@ -3541,9 +3541,6 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
   }
 });
 
-  // End of TTS listener
-}
-
 // Initialize music toggle (must run after DOM ready)
 function initMusicToggle() {
   const fluteMusic = document.getElementById('fluteMusic');
