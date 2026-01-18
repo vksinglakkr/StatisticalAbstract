@@ -3509,6 +3509,7 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
   console.warn('⚠️ Voice recognition not supported in this browser');
 }
 
+
 // Voice button click handler
   const chatVoiceBtn = document.getElementById('chatVoiceBtn');
   if (chatVoiceBtn) {
@@ -4322,47 +4323,57 @@ function askSampleQuestion(question) {
   }
 }
 
-// Initialize chat interface event listeners
+// ✅ Voice button click handlers (ADD DOMContentLoaded wrapper)
 document.addEventListener('DOMContentLoaded', function() {
-  // Close chat button
-  const closeChatBtn = document.getElementById('closeChatBtn');
-  if (closeChatBtn) {
-    closeChatBtn.addEventListener('click', closeChatInterface);
-  }
-   const dataToggle = document.getElementById('toggleData');
-  const statsToggle = document.getElementById('toggleStatistics');
-  
-  if (dataToggle.classList.contains('active')) {
-    switchMode('data');
-  } else if (statsToggle.classList.contains('active')) {
-    switchMode('statistics');
-  } 
-  // Clear chat button
-  const clearChatBtn = document.getElementById('clearChatBtn');
-  if (clearChatBtn) {
-    clearChatBtn.addEventListener('click', clearChatHistory);
-  }
-  
-  // Send button
-  const chatSendBtn = document.getElementById('chatSendBtn');
-  if (chatSendBtn) {
-    chatSendBtn.addEventListener('click', sendChatMessage);
+  // Main voice button
+  const voiceBtn = document.getElementById('voiceBtn');
+  if (voiceBtn) {
+    voiceBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (recognition) {
+        if (isRecording) {
+          recognition.stop();
+        } else {
+          try {
+            recognition.start();
+          } catch (error) {
+            console.error('❌ Failed to start recognition:', error);
+            alert('Voice recognition failed to start. Please try again.');
+          }
+        }
+      } else {
+        alert('Voice recognition is not supported in your browser.');
+      }
+    });
   }
   
-  // Voice button (reuse existing voice recognition)
+  // Chat voice button
   const chatVoiceBtn = document.getElementById('chatVoiceBtn');
-  if (chatVoiceBtn && recognition) {
+  if (chatVoiceBtn) {
     chatVoiceBtn.addEventListener('click', function() {
+      if (!recognition) {
+        alert('Voice recognition is not supported in your browser.');
+        return;
+      }
+      
       if (isRecording) {
         recognition.stop();
       } else {
         // Change target to chat input
         recognition.onresult = (event) => {
           const transcript = event.results[0][0].transcript;
-          document.getElementById('chatInput').value = transcript;
-          autoResizeChatInput();
+          const chatInput = document.getElementById('chatInput');
+          if (chatInput) {
+            chatInput.value = transcript;
+            autoResizeChatInput();
+          }
         };
-        recognition.start();
+        try {
+          recognition.start();
+        } catch (error) {
+          console.error('❌ Failed to start chat voice:', error);
+          alert('Voice recognition failed. Please try again.');
+        }
       }
     });
   }
