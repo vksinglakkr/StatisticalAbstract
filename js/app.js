@@ -535,12 +535,13 @@ function initDOMElements() {
 }
 
 // ============================================================
-// 🎯 THE FINAL MASTER CONTROL - REPLACES EVERYTHING ELSE
+// 🎯 FIXED MASTER CONTROL - Correct Logic for Quick Help
+// Replace lines ~1468-1520 in app.js with this
 // ============================================================
 function switchMode(mode) {
-  const questionSection = document.getElementById('questionSection'); // Data Search Area
-  const chatInterface = document.getElementById('chatInterface');     // Statistics Chat Area
-  const quickHelp = document.getElementById('quickQuestionsSection'); // Quick Help Buttons
+  const questionSection = document.getElementById('questionSection'); // Contains Quick Help + Input
+  const chatInterface = document.getElementById('chatInterface');     // Full-screen chat
+  const quickHelp = document.getElementById('quickQuestionsSection'); // Quick Help dropdown section
   const toggleData = document.getElementById('toggleData');
   const toggleStatistics = document.getElementById('toggleStatistics');
   const userInput = document.getElementById('userInput');
@@ -548,31 +549,35 @@ function switchMode(mode) {
   console.log("🛠️ Switching UI Mode to:", mode);
 
   if (mode === 'data') {
-    // 1. DATA MODE: Show Search, Hide Chat, Hide Quick Help
+    // ============================================================
+    // DATA MODE: Show input area but HIDE Quick Help dropdowns
+    // ============================================================
     if (questionSection) questionSection.style.display = 'block';
     if (chatInterface)   chatInterface.style.display = 'none';
-    if (quickHelp)       quickHelp.style.display = 'none'; 
+    if (quickHelp)       quickHelp.style.display = 'none'; // Hide dropdowns in data mode
     
-    // 2. Button Visuals
+    // Button visuals
     if (toggleData)       toggleData.classList.add('active');
     if (toggleStatistics) toggleStatistics.classList.remove('active');
 
-    // 3. Update Input Placeholder
+    // Update input placeholder
     if (userInput) userInput.placeholder = "Start typing to search data files...";
     
     selectedQueryType = 'data';
   } 
   else {
-    // 1. STATISTICS MODE: Hide Search, Show Chat, Show Quick Help
-    if (questionSection) questionSection.style.display = 'none';
-    if (chatInterface)   chatInterface.style.display = 'flex'; // Flex is required for chat
-    if (quickHelp)       quickHelp.style.display = 'block';
+    // ============================================================
+    // STATISTICS MODE: Show input area WITH Quick Help dropdowns
+    // ============================================================
+    if (questionSection) questionSection.style.display = 'block'; // ✅ SHOW parent
+    if (chatInterface)   chatInterface.style.display = 'none';    // Hide chat
+    if (quickHelp)       quickHelp.style.display = 'block';       // ✅ SHOW Quick Help
     
-    // 2. Button Visuals
+    // Button visuals
     if (toggleStatistics) toggleStatistics.classList.add('active');
     if (toggleData)       toggleData.classList.remove('active');
 
-    // 3. Update Input Placeholder
+    // Update input placeholder
     if (userInput) userInput.placeholder = "Search statistical questions...";
     
     selectedQueryType = 'statistics';
@@ -583,7 +588,6 @@ function switchMode(mode) {
 function selectQueryType(type) { 
   switchMode(type); 
 }
-
 function loadCategories() {
   if (!categorySelect || !questionSelect) {
     console.error('loadCategories: DOM elements not initialized!');
