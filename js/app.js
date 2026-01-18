@@ -535,50 +535,54 @@ function initDOMElements() {
 }
 
 // ============================================================
-// 🎯 THE UNIFIED UI MASTER CONTROL (REPLACES ALL PREVIOUS TOGGLE CODE)
+// 🎯 THE FINAL MASTER CONTROL - REPLACES EVERYTHING ELSE
 // ============================================================
-function updateUIMode(mode) {
-  selectedQueryType = mode; // Global variable sync
+function switchMode(mode) {
+  const questionSection = document.getElementById('questionSection'); // Data Search Area
+  const chatInterface = document.getElementById('chatInterface');     // Statistics Chat Area
+  const quickHelp = document.getElementById('quickQuestionsSection'); // Quick Help Buttons
+  const toggleData = document.getElementById('toggleData');
+  const toggleStatistics = document.getElementById('toggleStatistics');
+  const userInput = document.getElementById('userInput');
 
-  // 1. Identify all sections
-  const dataSearchSection = document.getElementById('questionSection');
-  const statsChatSection = document.getElementById('chatInterface');
-  const quickHelpButtons = document.getElementById('quickQuestionsSection');
-  
-  // 2. Identify buttons and inputs
-  const btnData = document.getElementById('toggleData');
-  const btnStats = document.getElementById('toggleStatistics');
-  const mainInput = document.getElementById('userInput');
-
-  console.log(`🛠️ Switching UI to: ${mode}`);
+  console.log("🛠️ Switching UI Mode to:", mode);
 
   if (mode === 'data') {
-    // ✅ MODE: FIND HARYANA DATA
-    if (dataSearchSection) dataSearchSection.style.display = 'block'; // Show Search
-    if (statsChatSection)  statsChatSection.style.display = 'none';   // Hide Chat
-    if (quickHelpButtons)  quickHelpButtons.style.display = 'none';   // Hide Quick Help
+    // 1. DATA MODE: Show Search, Hide Chat, Hide Quick Help
+    if (questionSection) questionSection.style.display = 'block';
+    if (chatInterface)   chatInterface.style.display = 'none';
+    if (quickHelp)       quickHelp.style.display = 'none'; 
+    
+    // 2. Button Visuals
+    if (toggleData)       toggleData.classList.add('active');
+    if (toggleStatistics) toggleStatistics.classList.remove('active');
 
-    // Visual Updates
-    if (btnData)  btnData.classList.add('active');
-    if (btnStats) btnStats.classList.remove('active');
-    if (mainInput) mainInput.placeholder = "Start typing to search data files...";
+    // 3. Update Input Placeholder
+    if (userInput) userInput.placeholder = "Start typing to search data files...";
+    
+    selectedQueryType = 'data';
+  } 
+  else {
+    // 1. STATISTICS MODE: Hide Search, Show Chat, Show Quick Help
+    if (questionSection) questionSection.style.display = 'none';
+    if (chatInterface)   chatInterface.style.display = 'flex'; // Flex is required for chat
+    if (quickHelp)       quickHelp.style.display = 'block';
+    
+    // 2. Button Visuals
+    if (toggleStatistics) toggleStatistics.classList.add('active');
+    if (toggleData)       toggleData.classList.remove('active');
 
-  } else {
-    // ✅ MODE: LEARN ABOUT STATISTICS
-    if (dataSearchSection) dataSearchSection.style.display = 'none';   // Hide Search
-    if (statsChatSection)  statsChatSection.style.display = 'flex';   // Show Chat
-    if (quickHelpButtons)  quickHelpButtons.style.display = 'block';  // Show Quick Help
-
-    // Visual Updates
-    if (btnStats) btnStats.classList.add('active');
-    if (btnData)  btnData.classList.remove('active');
-    if (mainInput) mainInput.placeholder = "Search statistical questions...";
+    // 3. Update Input Placeholder
+    if (userInput) userInput.placeholder = "Search statistical questions...";
+    
+    selectedQueryType = 'statistics';
   }
 }
 
-// Ensure old function calls still work by routing them to our new master function
-function selectQueryType(type) { updateUIMode(type); }
-function switchMode(mode) { updateUIMode(mode); }
+// Map the other function name to this one so old links don't break
+function selectQueryType(type) { 
+  switchMode(type); 
+}
 
 function loadCategories() {
   if (!categorySelect || !questionSelect) {
@@ -3921,9 +3925,9 @@ function toggleMenu() {
   menuDropdown.classList.toggle('show');
 }
 window.addEventListener('DOMContentLoaded', function() {
-  console.log('🚀 Initializing Haryana DataVista...');
+  console.log('🚀 Initializing DataVista...');
   
-  // 1. Core Initializations
+  // 1. Run all standard initializations
   initDOMElements();
   initUserInputListener();
   initFileSearchListener();
@@ -3931,35 +3935,35 @@ window.addEventListener('DOMContentLoaded', function() {
   initLanguageAndTTS();
   initMusicToggle();
 
-  // 2. Attach Click Listeners to the actual Toggle Buttons
-  const toggleStatistics = document.getElementById('toggleStatistics');
+  // 2. Attach Click Listeners directly to the toggle buttons
+  const toggleStats = document.getElementById('toggleStatistics');
   const toggleData = document.getElementById('toggleData');
-  
-  if (toggleStatistics) {
-    toggleStatistics.addEventListener('click', (e) => {
+
+  if (toggleStats) {
+    toggleStats.addEventListener('click', (e) => {
       e.preventDefault();
-      updateUIMode('statistics');
+      switchMode('statistics');
     });
   }
-  
   if (toggleData) {
     toggleData.addEventListener('click', (e) => {
       e.preventDefault();
-      updateUIMode('data');
+      switchMode('data');
     });
   }
 
-  // 3. Perfect Startup: Start in DATA mode
+  // 3. 🎯 THE STARTUP FIX: Force Data Mode
+  // We use a small timeout to ensure the HTML is fully ready
   setTimeout(() => {
-    updateUIMode('data'); 
+    switchMode('data'); 
     
-    // Load data for the search lists
+    // Load lists
     if (typeof masterFileData !== 'undefined' && masterFileData.length === 0) {
       loadMasterFileData();
     }
     loadCategories();
     buildAllQuestionsList();
-    console.log('✅ Startup complete: Data Mode active by default.');
+    console.log('✅ Startup complete: Find Haryana Data active, Quick Help hidden.');
   }, 100);
 });
 // ============================================================================
