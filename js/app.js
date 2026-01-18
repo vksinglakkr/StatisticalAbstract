@@ -4006,46 +4006,18 @@ document.addEventListener('click', function(e) {
 function toggleMenu() {
   menuDropdown.classList.toggle('show');
 }
-// ═══════════════════════════════════════════════════════════════════
-// Last Updated Timestamp - DYNAMIC DATE (from IGM)
-// ═══════════════════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', function() {
   console.log('🚀 Page loaded - initializing components...');
   
-  // 1. Initialize DOM elements first
+  // 1. Core Init
   initDOMElements();
-  
-  // 2. Setup Outside Click for Menu
-  document.addEventListener('click', (e) => {
-    const menuDropdown = document.getElementById('menuDropdown');
-    if (menuDropdown && !e.target.closest('.menu-wrapper')) {
-      menuDropdown.classList.remove('show');
-    }
-  });
-
-  // 3. Initialize all core listeners
   initUserInputListener();
   initFileSearchListener();
   initDropdownListeners();
   initLanguageAndTTS();
   initMusicToggle();
-  
-  // 4. Set Last Modified Date logic
-  const elem = document.getElementById('lastModified');
-  if (elem) {
-    const lastModifiedStr = document.lastModified;
-    const lastModifiedDate = new Date(lastModifiedStr);
-    const dateToDisplay = isNaN(lastModifiedDate.getTime()) ? new Date() : lastModifiedDate;
-    
-    elem.textContent = dateToDisplay.toLocaleDateString('en-US', {
-      year: 'numeric', month: 'long', day: 'numeric'
-    }) + ' at ' + dateToDisplay.toLocaleTimeString('en-US', {
-      hour: '2-digit', minute: '2-digit', hour12: true
-    });
-    elem.style.display = 'inline';
-  }
 
-  // 5. Initialize Toggle Button Click Listeners
+  // 2. Setup Toggle Listeners
   const toggleStatistics = document.getElementById('toggleStatistics');
   const toggleData = document.getElementById('toggleData');
   
@@ -4053,35 +4025,58 @@ window.addEventListener('DOMContentLoaded', function() {
     toggleStatistics.addEventListener('click', (e) => {
       e.preventDefault();
       selectQueryType('statistics');
+      if (typeof switchMode === 'function') switchMode('statistics');
     });
     
     toggleData.addEventListener('click', (e) => {
       e.preventDefault();
       selectQueryType('data');
+      if (typeof switchMode === 'function') switchMode('data');
     });
   }
 
+  // 3. Last Modified Date
+  const elem = document.getElementById('lastModified');
+  if (elem) {
+    elem.textContent = new Date().toLocaleDateString('en-US', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    }) + ' at ' + new Date().toLocaleTimeString('en-US', {
+      hour: '2-digit', minute: '2-digit', hour12: true
+    });
+    elem.style.display = 'inline';
+  }
+
   // ============================================================
-  // 🎯 PERFECT STARTUP LOGIC
+  // 🎯 THE "FORCE FIX" FOR STARTUP
   // ============================================================
   setTimeout(() => {
-    console.log('🛠️ Executing perfect startup for: Find Haryana Data');
-    
-    // Instead of manually hiding things, call the function that handles it all
-    // This ensures that placeholder, visibility, and active states are synced 100%
-    selectQueryType('data'); 
+    console.log('🛠️ Forcing "Find Haryana Data" Mode...');
 
-    // Ensure data is loaded
+    // A. Force UI Sections (The Most Important Part)
+    const quickHelp = document.getElementById('quickQuestionsSection');
+    const questionSection = document.getElementById('questionSection');
+    const chatInterface = document.getElementById('chatInterface');
+
+    if (quickHelp) quickHelp.style.display = 'none';      // HIDE Quick Help
+    if (questionSection) questionSection.style.display = 'block'; // SHOW Main Area
+    if (chatInterface) chatInterface.style.display = 'none';      // HIDE Chat
+
+    // B. Force Button Colors
+    if (toggleData) toggleData.classList.add('active');
+    if (toggleStatistics) toggleStatistics.classList.remove('active');
+
+    // C. Force Logic State
+    selectedQueryType = 'data';
+
+    // D. Load Data
     if (typeof masterFileData !== 'undefined' && masterFileData.length === 0) {
       loadMasterFileData();
     }
-    
-    // Build the lists
     loadCategories();
     buildAllQuestionsList();
     
-    console.log('✅ Startup complete. Quick Help is hidden, Data Mode is active.');
-  }, 100);
+    console.log('✅ Force Complete: Quick Help is now HIDDEN.');
+  }, 150); // Increased delay slightly to ensure HTML is fully painted
 });
 // ============================================================================
 // CHAT INTERFACE FUNCTIONS (NyayaMitra Style)
