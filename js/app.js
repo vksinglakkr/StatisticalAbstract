@@ -4012,132 +4012,75 @@ function toggleMenu() {
 window.addEventListener('DOMContentLoaded', function() {
   console.log('🚀 Page loaded - initializing components...');
   
-  // 1. Initialize DOM elements
+  // 1. Initialize DOM elements first
   initDOMElements();
-  console.log('✅ DOM elements initialized');
   
-  // 2. Close menu when clicking outside
+  // 2. Setup Outside Click for Menu
   document.addEventListener('click', (e) => {
-    if (!e.target.closest('.menu-wrapper')) {
-      const menuDropdown = document.getElementById('menuDropdown');
-      if (menuDropdown && menuDropdown.classList.contains('show')) {
-        menuDropdown.classList.remove('show');
-      }
+    const menuDropdown = document.getElementById('menuDropdown');
+    if (menuDropdown && !e.target.closest('.menu-wrapper')) {
+      menuDropdown.classList.remove('show');
     }
   });
 
-  // 3. Initialize Listeners
+  // 3. Initialize all core listeners
   initUserInputListener();
-  console.log('✅ User input listener initialized');
-  
   initFileSearchListener();
-  console.log('✅ File search listener initialized');
-  
   initDropdownListeners();
-  console.log('✅ Dropdown listeners initialized');
-  
-  // 4. Initialize Features (Language, TTS, Music)
   initLanguageAndTTS();
-  console.log('✅ Language and TTS initialized');
+  initMusicToggle();
   
-  initMusicToggle(); // Safe check included inside function
-  console.log('✅ Music toggle check completed');
-  
-  // 5. Set Last Modified Date (Robust Version)
+  // 4. Set Last Modified Date logic
   const elem = document.getElementById('lastModified');
   if (elem) {
-    try {
-      const lastModifiedStr = document.lastModified;
-      const lastModifiedDate = new Date(lastModifiedStr);
-      
-      // Check if date is valid
-      if (isNaN(lastModifiedDate.getTime())) {
-        const now = new Date(); // Fallback to now
-        elem.textContent = now.toLocaleDateString('en-US', {
-          year: 'numeric', month: 'long', day: 'numeric'
-        }) + ' at ' + now.toLocaleTimeString('en-US', {
-          hour: '2-digit', minute: '2-digit', hour12: true
-        });
-      } else {
-        elem.textContent = lastModifiedDate.toLocaleDateString('en-US', {
-          year: 'numeric', month: 'long', day: 'numeric'
-        }) + ' at ' + lastModifiedDate.toLocaleTimeString('en-US', {
-          hour: '2-digit', minute: '2-digit', hour12: true
-        });
-      }
-      elem.style.display = 'inline';
-    } catch (error) {
-      console.error('❌ Error setting last modified:', error);
-      elem.textContent = 'Recently Updated';
-      elem.style.display = 'inline';
-    }
+    const lastModifiedStr = document.lastModified;
+    const lastModifiedDate = new Date(lastModifiedStr);
+    const dateToDisplay = isNaN(lastModifiedDate.getTime()) ? new Date() : lastModifiedDate;
+    
+    elem.textContent = dateToDisplay.toLocaleDateString('en-US', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    }) + ' at ' + dateToDisplay.toLocaleTimeString('en-US', {
+      hour: '2-digit', minute: '2-digit', hour12: true
+    });
+    elem.style.display = 'inline';
   }
 
-  // 6. Initialize Toggle Buttons (Statistics vs Data)
+  // 5. Initialize Toggle Button Click Listeners
   const toggleStatistics = document.getElementById('toggleStatistics');
   const toggleData = document.getElementById('toggleData');
   
   if (toggleStatistics && toggleData) {
-    // Statistics Click Event
-    toggleStatistics.addEventListener('click', function(e) {
+    toggleStatistics.addEventListener('click', (e) => {
       e.preventDefault();
       selectQueryType('statistics');
     });
     
-    // Data Click Event
-    toggleData.addEventListener('click', function(e) {
+    toggleData.addEventListener('click', (e) => {
       e.preventDefault();
       selectQueryType('data');
     });
-    console.log('✅ Toggle button listeners attached');
   }
 
-  // ====================================
-  // 🆕 SET DEFAULT ACTIVE STATE (FIXED)
-  // ====================================
-  console.log('🎯 Setting default active state: Find Haryana Data');
-  
-  // Auto-select "Find Haryana Data" on page load with delay to ensure DOM is ready
+  // ============================================================
+  // 🎯 PERFECT STARTUP LOGIC
+  // ============================================================
   setTimeout(() => {
-    // A. Set Query Type Variable
-    selectedQueryType = 'data';
-    console.log('✅ Default query type set to:', selectedQueryType);
-
-    // B. Set Button Visual State
-    const toggleData = document.getElementById('toggleData');
-    if (toggleData && !toggleData.classList.contains('active')) {
-      toggleData.classList.add('active');
-    }
+    console.log('🛠️ Executing perfect startup for: Find Haryana Data');
     
-    // C. 🔴 CRITICAL FIX: Hide "Quick Help" (Statistics Feature)
-    const quickSection = document.getElementById('quickQuestionsSection');
-    if (quickSection) {
-      quickSection.style.display = 'none'; // Force hide on startup
-      console.log('✅ Quick questions hidden (Data Mode Startup)');
-    }
+    // Instead of manually hiding things, call the function that handles it all
+    // This ensures that placeholder, visibility, and active states are synced 100%
+    selectQueryType('data'); 
 
-    // D. Update Input Placeholder
-    const userInput = document.getElementById('userInput');
-    if (userInput) {
-      userInput.placeholder = 'Start typing to search data files...';
-    }
-    
-    // E. Load Data & Show Results Area
+    // Ensure data is loaded
     if (typeof masterFileData !== 'undefined' && masterFileData.length === 0) {
-      console.log('📥 Loading master file data...');
       loadMasterFileData();
     }
     
-    const questionSection = document.getElementById('questionSection');
-    if (questionSection) {
-      questionSection.style.display = 'block'; // Ensure container is visible
-    }
-    
-    // F. Build Lists
+    // Build the lists
     loadCategories();
     buildAllQuestionsList();
     
-    console.log('🎉 Initialization Complete: Data Mode Active, Quick Help Hidden');
+    console.log('✅ Startup complete. Quick Help is hidden, Data Mode is active.');
   }, 100);
 });
 // ============================================================================
