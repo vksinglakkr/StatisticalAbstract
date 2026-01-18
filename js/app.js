@@ -534,15 +534,16 @@ function initDOMElements() {
   autocompleteDropdown = document.getElementById('autocompleteDropdown');
 }
 
+// 🎯 FINAL CORRECTED TOGGLE LOGIC
 function selectQueryType(type) {
   selectedQueryType = type;
   
   // Get all UI Sections
-  const quickHelp = document.getElementById('quickQuestionsSection');
-  const searchSection = document.getElementById('questionSection');
-  const chatInterface = document.getElementById('chatInterface');
+  const quickHelp = document.getElementById('quickQuestionsSection'); // Quick Help Buttons
+  const searchSection = document.getElementById('questionSection');   // Data Search Area
+  const chatInterface = document.getElementById('chatInterface');     // Statistics Chat Area
   
-  // Get Toggle Buttons
+  // Get Toggle Buttons & Input
   const btnData = document.getElementById('toggleData');
   const btnStats = document.getElementById('toggleStatistics');
   const input = document.getElementById('userInput');
@@ -550,34 +551,34 @@ function selectQueryType(type) {
   console.log(`🔄 Switching to: ${type}`);
 
   if (type === 'data') {
-    // 1. Show Data Search / Hide Statistics Chat
-    if (searchSection) searchSection.style.display = 'block';
-    if (chatInterface) chatInterface.style.display = 'none';
-    if (quickHelp)     quickHelp.style.display = 'none';
+    // ✅ MODE: FIND HARYANA DATA
+    if (searchSection) searchSection.style.display = 'block'; // Show Search
+    if (chatInterface) chatInterface.style.display = 'none';   // Hide Chat
+    if (quickHelp)     quickHelp.style.display = 'none';      // Hide Quick Help Buttons
 
-    // 2. Active Button State
+    // Update Button Visuals
     if (btnData)  btnData.classList.add('active');
     if (btnStats) btnStats.classList.remove('active');
 
-    // 3. Update Input Placeholder
+    // Update Placeholder
     if (input) input.placeholder = "Start typing to search data files...";
 
   } else {
-    // 1. Hide Data Search / Show Statistics Chat
-    if (searchSection) searchSection.style.display = 'none';
-    if (chatInterface) chatInterface.style.display = 'flex'; // Use flex for chat layout
-    if (quickHelp)     quickHelp.style.display = 'block';
+    // ✅ MODE: LEARN ABOUT STATISTICS
+    if (searchSection) searchSection.style.display = 'none';   // Hide Search
+    if (chatInterface) chatInterface.style.display = 'flex';   // Show Chat (flex)
+    if (quickHelp)     quickHelp.style.display = 'block';     // Show Quick Help Buttons
 
-    // 2. Active Button State
+    // Update Button Visuals
     if (btnStats) btnStats.classList.add('active');
     if (btnData)  btnData.classList.remove('active');
 
-    // 3. Update Input Placeholder
+    // Update Placeholder
     if (input) input.placeholder = "Search statistical questions...";
   }
 }
 
-// Map switchMode to selectQueryType to prevent errors if called elsewhere
+// Keep this for compatibility if called elsewhere in your code
 function switchMode(mode) {
   selectQueryType(mode);
 }
