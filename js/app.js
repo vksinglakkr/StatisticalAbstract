@@ -4488,3 +4488,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+function switchMode(mode) {
+  currentMode = mode;
+  
+  // Update buttons
+  document.getElementById('toggleStatistics').classList.toggle('active', mode === 'statistics');
+  document.getElementById('toggleData').classList.toggle('active', mode === 'data');
+  
+  // CRITICAL FIX: Use 'flex' not 'block'
+  if (mode === 'data') {
+    document.getElementById('questionSection').style.display = 'none';
+    document.getElementById('chatInterface').style.display = 'flex'; // FLEX not block!
+  } else {
+    document.getElementById('questionSection').style.display = 'block';
+    document.getElementById('chatInterface').style.display = 'none';
+  }
+}
