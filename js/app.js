@@ -537,42 +537,49 @@ function initDOMElements() {
 function selectQueryType(type) {
   selectedQueryType = type;
   
-  // Get all required elements
-  const toggleStatistics = document.getElementById('toggleStatistics');
-  const toggleData = document.getElementById('toggleData');
-  const quickSection = document.getElementById('quickQuestionsSection');
-  const questionSection = document.getElementById('questionSection'); // Data Search Area
-  const chatInterface = document.getElementById('chatInterface');     // Statistics Chat Area
+  // Get all UI Sections
+  const quickHelp = document.getElementById('quickQuestionsSection');
+  const searchSection = document.getElementById('questionSection');
+  const chatInterface = document.getElementById('chatInterface');
+  
+  // Get Toggle Buttons
+  const btnData = document.getElementById('toggleData');
+  const btnStats = document.getElementById('toggleStatistics');
+  const input = document.getElementById('userInput');
 
-  console.log(`🔄 Switching mode to: ${type}`);
+  console.log(`🔄 Switching to: ${type}`);
 
-  if (type === 'statistics') {
-    // 🔘 Update Buttons
-    toggleStatistics.classList.add('active');
-    toggleData.classList.remove('active');
-    
-    // 👁️ Show Statistics UI
-    if (quickSection) quickSection.style.display = 'block';
-    if (chatInterface) chatInterface.style.display = 'flex';
-    
-    // 🙈 Hide Data UI
-    if (questionSection) questionSection.style.display = 'none';
-    
-  } else {
-    // 🔘 Update Buttons
-    toggleData.classList.add('active');
-    toggleStatistics.classList.remove('active');
-    
-    // 🙈 Hide Statistics UI
-    if (quickSection) quickSection.style.display = 'none';
+  if (type === 'data') {
+    // 1. Show Data Search / Hide Statistics Chat
+    if (searchSection) searchSection.style.display = 'block';
     if (chatInterface) chatInterface.style.display = 'none';
-    
-    // 👁️ Show Data UI
-    if (questionSection) questionSection.style.display = 'block';
-    
-    // Ensure placeholder is correct for search
-    if (userInput) userInput.placeholder = "Start typing to search data files...";
+    if (quickHelp)     quickHelp.style.display = 'none';
+
+    // 2. Active Button State
+    if (btnData)  btnData.classList.add('active');
+    if (btnStats) btnStats.classList.remove('active');
+
+    // 3. Update Input Placeholder
+    if (input) input.placeholder = "Start typing to search data files...";
+
+  } else {
+    // 1. Hide Data Search / Show Statistics Chat
+    if (searchSection) searchSection.style.display = 'none';
+    if (chatInterface) chatInterface.style.display = 'flex'; // Use flex for chat layout
+    if (quickHelp)     quickHelp.style.display = 'block';
+
+    // 2. Active Button State
+    if (btnStats) btnStats.classList.add('active');
+    if (btnData)  btnData.classList.remove('active');
+
+    // 3. Update Input Placeholder
+    if (input) input.placeholder = "Search statistical questions...";
   }
+}
+
+// Map switchMode to selectQueryType to prevent errors if called elsewhere
+function switchMode(mode) {
+  selectQueryType(mode);
 }
 
 function loadCategories() {
@@ -3916,9 +3923,9 @@ function toggleMenu() {
   menuDropdown.classList.toggle('show');
 }
 window.addEventListener('DOMContentLoaded', function() {
-  console.log('🚀 Initializing Haryana DataVista...');
+  console.log('🚀 Page loaded - initializing components...');
   
-  // 1. Initialize all base components
+  // 1. Initialize core elements
   initDOMElements();
   initUserInputListener();
   initFileSearchListener();
@@ -3942,7 +3949,7 @@ window.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 3. Set Date
+  // 3. Set Last Modified Date
   const elem = document.getElementById('lastModified');
   if (elem) {
     elem.textContent = new Date().toLocaleDateString('en-US', {
@@ -3955,17 +3962,16 @@ window.addEventListener('DOMContentLoaded', function() {
 
   // 🎯 STARTUP: Force "Find Haryana Data" Mode
   setTimeout(() => {
-    selectQueryType('data'); // This now handles hiding Quick Help AND showing the search box
+    console.log('🛠️ Applying Startup: Data Mode');
+    selectQueryType('data'); // This calls the function in Step 2
     
-    // Load data for the search lists
+    // Load data
     if (typeof masterFileData !== 'undefined' && masterFileData.length === 0) {
       loadMasterFileData();
     }
     loadCategories();
     buildAllQuestionsList();
-    
-    console.log('✅ Startup complete: Data Search active, Statistics hidden.');
-  }, 100);
+  }, 150);
 });
 // ============================================================================
 // CHAT INTERFACE FUNCTIONS (NyayaMitra Style)
@@ -4285,28 +4291,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
-// Your existing switchMode function
-function switchMode(mode) {
-  const questionSection = document.getElementById('questionSection');
-  const chatInterface = document.getElementById('chatInterface');
-  const toggleData = document.getElementById('toggleData');
-  const toggleStatistics = document.getElementById('toggleStatistics');
-  
-  if (mode === 'data') {
-    // Show chat interface
-    chatInterface.style.display = 'flex'; // IMPORTANT: Use 'flex' not 'block'
-    questionSection.style.display = 'none';
-    
-    // Update buttons
-    toggleData.classList.add('active');
-    toggleStatistics.classList.remove('active');
-  } else {
-    // Show question section
-    chatInterface.style.display = 'none';
-    questionSection.style.display = 'block';
-    
-    // Update buttons
-    toggleStatistics.classList.add('active');
-    toggleData.classList.remove('active');
-  }
-}
