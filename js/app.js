@@ -4457,7 +4457,8 @@ document.addEventListener('DOMContentLoaded', function() {
   if (closeChatBtn) {
     closeChatBtn.addEventListener('click', closeChatInterface);
   }
-  
+   switchMode('data');
+ 
   // Clear chat button
   const clearChatBtn = document.getElementById('clearChatBtn');
   if (clearChatBtn) {
