@@ -534,54 +534,51 @@ function initDOMElements() {
   autocompleteDropdown = document.getElementById('autocompleteDropdown');
 }
 
-// 🎯 FINAL CORRECTED TOGGLE LOGIC
-function selectQueryType(type) {
-  selectedQueryType = type;
+// ============================================================
+// 🎯 THE UNIFIED UI MASTER CONTROL (REPLACES ALL PREVIOUS TOGGLE CODE)
+// ============================================================
+function updateUIMode(mode) {
+  selectedQueryType = mode; // Global variable sync
+
+  // 1. Identify all sections
+  const dataSearchSection = document.getElementById('questionSection');
+  const statsChatSection = document.getElementById('chatInterface');
+  const quickHelpButtons = document.getElementById('quickQuestionsSection');
   
-  // Get all UI Sections
-  const quickHelp = document.getElementById('quickQuestionsSection'); // Quick Help Buttons
-  const searchSection = document.getElementById('questionSection');   // Data Search Area
-  const chatInterface = document.getElementById('chatInterface');     // Statistics Chat Area
-  
-  // Get Toggle Buttons & Input
+  // 2. Identify buttons and inputs
   const btnData = document.getElementById('toggleData');
   const btnStats = document.getElementById('toggleStatistics');
-  const input = document.getElementById('userInput');
+  const mainInput = document.getElementById('userInput');
 
-  console.log(`🔄 Switching to: ${type}`);
+  console.log(`🛠️ Switching UI to: ${mode}`);
 
-  if (type === 'data') {
+  if (mode === 'data') {
     // ✅ MODE: FIND HARYANA DATA
-    if (searchSection) searchSection.style.display = 'block'; // Show Search
-    if (chatInterface) chatInterface.style.display = 'none';   // Hide Chat
-    if (quickHelp)     quickHelp.style.display = 'none';      // Hide Quick Help Buttons
+    if (dataSearchSection) dataSearchSection.style.display = 'block'; // Show Search
+    if (statsChatSection)  statsChatSection.style.display = 'none';   // Hide Chat
+    if (quickHelpButtons)  quickHelpButtons.style.display = 'none';   // Hide Quick Help
 
-    // Update Button Visuals
+    // Visual Updates
     if (btnData)  btnData.classList.add('active');
     if (btnStats) btnStats.classList.remove('active');
-
-    // Update Placeholder
-    if (input) input.placeholder = "Start typing to search data files...";
+    if (mainInput) mainInput.placeholder = "Start typing to search data files...";
 
   } else {
     // ✅ MODE: LEARN ABOUT STATISTICS
-    if (searchSection) searchSection.style.display = 'none';   // Hide Search
-    if (chatInterface) chatInterface.style.display = 'flex';   // Show Chat (flex)
-    if (quickHelp)     quickHelp.style.display = 'block';     // Show Quick Help Buttons
+    if (dataSearchSection) dataSearchSection.style.display = 'none';   // Hide Search
+    if (statsChatSection)  statsChatSection.style.display = 'flex';   // Show Chat
+    if (quickHelpButtons)  quickHelpButtons.style.display = 'block';  // Show Quick Help
 
-    // Update Button Visuals
+    // Visual Updates
     if (btnStats) btnStats.classList.add('active');
     if (btnData)  btnData.classList.remove('active');
-
-    // Update Placeholder
-    if (input) input.placeholder = "Search statistical questions...";
+    if (mainInput) mainInput.placeholder = "Search statistical questions...";
   }
 }
 
-// Keep this for compatibility if called elsewhere in your code
-function switchMode(mode) {
-  selectQueryType(mode);
-}
+// Ensure old function calls still work by routing them to our new master function
+function selectQueryType(type) { updateUIMode(type); }
+function switchMode(mode) { updateUIMode(mode); }
 
 function loadCategories() {
   if (!categorySelect || !questionSelect) {
@@ -3924,9 +3921,9 @@ function toggleMenu() {
   menuDropdown.classList.toggle('show');
 }
 window.addEventListener('DOMContentLoaded', function() {
-  console.log('🚀 Page loaded - initializing components...');
+  console.log('🚀 Initializing Haryana DataVista...');
   
-  // 1. Initialize core elements
+  // 1. Core Initializations
   initDOMElements();
   initUserInputListener();
   initFileSearchListener();
@@ -3934,45 +3931,36 @@ window.addEventListener('DOMContentLoaded', function() {
   initLanguageAndTTS();
   initMusicToggle();
 
-  // 2. Setup Toggle Click Listeners
+  // 2. Attach Click Listeners to the actual Toggle Buttons
   const toggleStatistics = document.getElementById('toggleStatistics');
   const toggleData = document.getElementById('toggleData');
   
-  if (toggleStatistics && toggleData) {
+  if (toggleStatistics) {
     toggleStatistics.addEventListener('click', (e) => {
       e.preventDefault();
-      selectQueryType('statistics');
+      updateUIMode('statistics');
     });
-    
+  }
+  
+  if (toggleData) {
     toggleData.addEventListener('click', (e) => {
       e.preventDefault();
-      selectQueryType('data');
+      updateUIMode('data');
     });
   }
 
-  // 3. Set Last Modified Date
-  const elem = document.getElementById('lastModified');
-  if (elem) {
-    elem.textContent = new Date().toLocaleDateString('en-US', {
-      year: 'numeric', month: 'long', day: 'numeric'
-    }) + ' at ' + new Date().toLocaleTimeString('en-US', {
-      hour: '2-digit', minute: '2-digit', hour12: true
-    });
-    elem.style.display = 'inline';
-  }
-
-  // 🎯 STARTUP: Force "Find Haryana Data" Mode
+  // 3. Perfect Startup: Start in DATA mode
   setTimeout(() => {
-    console.log('🛠️ Applying Startup: Data Mode');
-    selectQueryType('data'); // This calls the function in Step 2
+    updateUIMode('data'); 
     
-    // Load data
+    // Load data for the search lists
     if (typeof masterFileData !== 'undefined' && masterFileData.length === 0) {
       loadMasterFileData();
     }
     loadCategories();
     buildAllQuestionsList();
-  }, 150);
+    console.log('✅ Startup complete: Data Mode active by default.');
+  }, 100);
 });
 // ============================================================================
 // CHAT INTERFACE FUNCTIONS (NyayaMitra Style)
