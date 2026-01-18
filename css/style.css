@@ -2585,6 +2585,8 @@ input[type="checkbox"] {
   max-height: 120px;
   overflow-y: auto;
   scrollbar-width: thin;
+  min-height: 44px; /* Fixed minimum height */
+  height: auto;
 }
 
 /* Mode Toggle Switch (iOS Style) */
@@ -2957,7 +2959,7 @@ input:checked + .toggle-slider:before {
   padding: 20px;
   background: linear-gradient(to bottom, #f9fafb, #ffffff);
   scroll-behavior: smooth;
-}
+ }
 
 .chat-messages::-webkit-scrollbar {
   width: 6px;
@@ -3138,6 +3140,7 @@ input:checked + .toggle-slider:before {
   border-top: 2px solid #e5e7eb;
   background: white;
   padding: 16px;
+   flex-shrink: 0; /* Prevents input from shrinking */
 }
 
 .chat-input-wrapper {
