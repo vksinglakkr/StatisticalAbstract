@@ -475,20 +475,27 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
   color: #1e40af;
 }
   /* --- Three Dot Menu --- */
-  .menu-wrapper { position: relative; }
+.menu-wrapper { 
+  position: relative;
+  z-index: 1000;
+  display: inline-block;
+}
 .menu-btn { 
-  background: white;
-  border: 2px solid #e5e7eb;
-  color: #1f2937;
+  background: linear-gradient(135deg, #ff6b35, #f59e0b) !important;
+  border: none !important;
+  color: white !important;
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
   transition: all 0.3s;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+  position: relative;
+  z-index: 1001;
 }
 .menu-btn:hover { 
   background: #f3f4f6;
