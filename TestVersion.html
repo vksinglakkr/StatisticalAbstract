@@ -116,6 +116,33 @@
           </p>
         </div>
       </div>
+              <!-- Messages Area -->
+        <div class="chat-messages" id="chatMessages">
+          
+          <!-- Welcome Message -->
+          <div class="welcome-message">
+            <h4>👋 Welcome to Haryana DataVista!</h4>
+            <p>
+              Ask me about Haryana's statistical data, demographics, economics, districts, and more.
+              <br><br>
+              💡 <strong>Try asking:</strong>
+            </p>
+            <div class="related-chips">
+              <div class="chip" onclick="askSampleQuestion('What is the literacy rate in Haryana?')">
+                📚 Literacy rate
+              </div>
+              <div class="chip" onclick="askSampleQuestion('Show district-wise population data')">
+                👥 District population
+              </div>
+              <div class="chip" onclick="askSampleQuestion('Economic indicators of Haryana')">
+                💰 Economic data
+              </div>
+            </div>
+          </div>
+          
+          <!-- Messages will be added here dynamically -->
+          
+        </div>
     </div>
     
     <!-- QUESTION SECTION (for Learn About Statistics mode) -->
@@ -192,34 +219,7 @@
     <div id="chatInterface" style="display: flex; flex-direction: column; flex: 1; overflow: hidden;">
       <div class="chat-container">
         
-        <!-- Messages Area -->
-        <div class="chat-messages" id="chatMessages">
-          
-          <!-- Welcome Message -->
-          <div class="welcome-message">
-            <h4>👋 Welcome to Haryana DataVista!</h4>
-            <p>
-              Ask me about Haryana's statistical data, demographics, economics, districts, and more.
-              <br><br>
-              💡 <strong>Try asking:</strong>
-            </p>
-            <div class="related-chips">
-              <div class="chip" onclick="askSampleQuestion('What is the literacy rate in Haryana?')">
-                📚 Literacy rate
-              </div>
-              <div class="chip" onclick="askSampleQuestion('Show district-wise population data')">
-                👥 District population
-              </div>
-              <div class="chip" onclick="askSampleQuestion('Economic indicators of Haryana')">
-                💰 Economic data
-              </div>
-            </div>
-          </div>
-          
-          <!-- Messages will be added here dynamically -->
-          
-        </div>
-        
+       
         <!-- Chat Input Area - FIXED AT BOTTOM -->
         <div class="chat-input-area">
           <div class="chat-input-wrapper">
