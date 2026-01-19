@@ -138,15 +138,33 @@
             <option value="" selected disabled>Select Question</option>
           </select> 
         </div>
-      </div>
-      
+      </div>   
+    </div>
+
+    <!-- CHAT INTERFACE (for Find Haryana Data mode) - INSIDE CONTAINER-MAIN -->
+    <div id="chatInterface" style="display: flex; flex-direction: column; flex: 1; overflow: hidden;">
+      <div class="chat-container">
+        
+       
+        <!-- Chat Input Area - FIXED AT BOTTOM -->
+        <div class="chat-input-area">
       <!-- Input Section for Statistics Mode -->
       <div class="mb-8 slide-fade-enter">
         <div class="relative autocomplete-container">
           <div id="autocompleteDropdown" class="autocomplete-dropdown" style="display: none;"></div>
           
           <div class="flex gap-2 items-stretch">
-            <div class="flex-1 relative">           
+            <div class="flex-1 relative">      
+                      <textarea
+          id="userInput"
+          rows="1"
+          class="w-full rounded-2xl border-2 border-gray-300 p-4 pr-14 text-gray-900
+                 bg-white shadow-lg resize-none
+                 focus:border-orange-500 focus:ring-2 focus:ring-orange-200
+                 transition-all duration-300 leading-relaxed"
+          placeholder="💬 Ask about Haryana statistics..."
+          style="min-height: 56px; max-height: 56px; overflow: hidden;"
+        ></textarea>
               <button
                 id="voiceBtn"
                 class="mic-btn absolute top-1/2 right-2 -translate-y-1/2 text-orange-500 hover:text-orange-700 transition-all duration-300 hover:scale-110 bg-white rounded-xl p-2 shadow-md border-2 border-gray-300 hover:border-orange-400"
@@ -169,48 +187,17 @@
               <span class="font-bold">Submit</span>
             </button>
           </div>
-          
-          <div class="border-t-2 border-gray-200 px-6 py-4 text-center bg-gradient-to-b from-gray-50 to-white">
-            <p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified" style="display: inline;">Loading...</span></p>      
-          </div>	  
-        </div>
-      </div>
-    </div>
-
-    <!-- CHAT INTERFACE (for Find Haryana Data mode) - INSIDE CONTAINER-MAIN -->
-    <div id="chatInterface" style="display: flex; flex-direction: column; flex: 1; overflow: hidden;">
-      <div class="chat-container">
-        
-       
-        <!-- Chat Input Area - FIXED AT BOTTOM -->
-        <div class="chat-input-area">
-          <div class="chat-input-wrapper">
-            <div class="chat-input-container">
-              <textarea 
-                id="chatInput" 
-                rows="1"
-                placeholder="💬 Ask about Haryana statistics..."
-                onkeydown="handleChatKeydown(event)"
-                oninput="autoResizeChatInput()"
-              ></textarea>
-              <button id="chatVoiceBtn" title="Voice input">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
-                </svg>
-              </button>
-            </div>
-            <button id="chatSendBtn" title="Send message">
-              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-              </svg>
-            </button>
-          </div>
-          <div class="chat-input-helper">
+           <div class="chat-input-helper">
             <p>Press Enter to send • Shift+Enter for new line</p>
             <button class="clear-chat-btn" onclick="clearChatHistory()">
               🗑️ Clear chat
             </button>
           </div>
+          <div class="border-t-2 border-gray-200 px-6 py-4 text-center bg-gradient-to-b from-gray-50 to-white">
+            <p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified" style="display: inline;">Loading...</span></p>      
+          </div>	  
+        </div>
+      </div>
         </div>
         
       </div>
