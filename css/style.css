@@ -79,7 +79,12 @@ body::before {
 
 @keyframes shimmer { to { background-position: 200% center; } }
 
-.header-glow { position: relative; }
+.header-glow {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .header-glow::before {
   content: '';
@@ -498,9 +503,14 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
   z-index: 1001;
 }
 .menu-btn:hover { 
-  background: #f3f4f6;
-  border-color: #fb923c;
-  transform: scale(1.05);
+  background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(255, 107, 53, 0.5);
+}
+.menu-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2.5;
 }
 .menu-dropdown {
   position: absolute;
