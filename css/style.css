@@ -2979,7 +2979,9 @@ input:checked + .toggle-slider:before {
   opacity: 0.9;
   margin-top: 2px;
 }
-
+.chat-header {
+  display: none !important;
+}
 .chat-header-actions {
   display: flex;
   gap: 8px;
