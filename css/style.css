@@ -30,8 +30,8 @@ body::before {
   height: 95vh;
   max-height: 850px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .glass-card {
