@@ -480,10 +480,12 @@ input:focus, textarea:focus, select:focus { transform: translateY(-2px); }
   color: #1e40af;
 }
   /* --- Three Dot Menu --- */
-.menu-wrapper { 
-  position: relative;
-  z-index: 1000;
-  display: inline-block;
+.menu-wrapper {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+  display: block !important;
 }
 .menu-btn { 
   background: linear-gradient(135deg, #ff6b35, #f59e0b) !important;
