@@ -25,7 +25,7 @@ body::before {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 480px;
+  max-width: 350px;
   min-height: 100vh;
   height: auto;
   margin: 0 auto;
