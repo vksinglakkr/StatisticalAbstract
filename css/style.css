@@ -3402,3 +3402,12 @@ input:checked + .toggle-slider:before {
   display: flex !important;
   justify-content: center;
 }
+/* FORCE chatInterface to be static - ADD AT END OF FILE */
+#chatInterface {
+  position: static !important;
+  z-index: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+  overflow: hidden !important;
+}
