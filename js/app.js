@@ -3391,7 +3391,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
   }
 });
 
-  // ✅ NEW FUNCTION: Display Related Questions
+// ✅ NEW FUNCTION: Display Related Questions
 function displayRelatedQuestions(questions) {
   const section = document.getElementById('relatedQuestionsSection');
   const listContainer = document.getElementById('relatedQuestionsList');
@@ -3446,7 +3446,6 @@ function displayRelatedQuestions(questions) {
   
   section.style.display = 'block';
 }
-  
 
 let recognition = null; // ✅ Initialize as null first
 let isRecording = false;
@@ -3509,38 +3508,59 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
   console.warn('⚠️ Voice recognition not supported in this browser');
 }
 
-
-// Voice button click handler
-  const chatVoiceBtn = document.getElementById('chatVoiceBtn');
-  if (chatVoiceBtn) {
-    chatVoiceBtn.addEventListener('click', function() {
-      if (!recognition) {
-        alert('Voice recognition is not supported in your browser.');
-        return;
-      }
-      
+// ✅ FIXED: Voice button click handlers (NO DOMContentLoaded wrapper)
+// Main voice button
+const voiceBtn = document.getElementById('voiceBtn');
+if (voiceBtn) {
+  voiceBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (recognition) {
       if (isRecording) {
         recognition.stop();
       } else {
-        // Change target to chat input
-        recognition.onresult = (event) => {
-          const transcript = event.results[0][0].transcript;
-          const chatInput = document.getElementById('chatInput');
-          if (chatInput) {
-            chatInput.value = transcript;
-            autoResizeChatInput();
-          }
-        };
         try {
           recognition.start();
         } catch (error) {
-          console.error('❌ Failed to start chat voice:', error);
-          alert('Voice recognition failed. Please try again.');
+          console.error('❌ Failed to start recognition:', error);
+          alert('Voice recognition failed to start. Please try again.');
         }
       }
-    });
-  }
+    } else {
+      alert('Voice recognition is not supported in your browser.');
+    }
+  });
+}
 
+// Chat voice button
+const chatVoiceBtn = document.getElementById('chatVoiceBtn');
+if (chatVoiceBtn) {
+  chatVoiceBtn.addEventListener('click', function() {
+    if (!recognition) {
+      alert('Voice recognition is not supported in your browser.');
+      return;
+    }
+    
+    if (isRecording) {
+      recognition.stop();
+    } else {
+      // Change target to chat input
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        const chatInput = document.getElementById('chatInput');
+        if (chatInput) {
+          chatInput.value = transcript;
+          autoResizeChatInput();
+        }
+      };
+      try {
+        recognition.start();
+      } catch (error) {
+        console.error('❌ Failed to start chat voice:', error);
+        alert('Voice recognition failed. Please try again.');
+      }
+    }
+  });
+}
 // Initialize music toggle (must run after DOM ready)
 function initMusicToggle() {
   const fluteMusic = document.getElementById('fluteMusic');
