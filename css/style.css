@@ -2908,13 +2908,11 @@ input:checked + .toggle-slider:before {
 
 /* Chat Container (Full-Screen for Data Mode) */
 #chatInterface {
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background: radial-gradient(ellipse at top, #1e3a8a, #0f172a);
-  z-index: 10000;
   display: none;
   transition: opacity 0.3s ease-out;
 }
