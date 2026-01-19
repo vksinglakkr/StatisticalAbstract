@@ -3540,7 +3540,6 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       }
     });
   }
-});
 
 // Initialize music toggle (must run after DOM ready)
 function initMusicToggle() {
