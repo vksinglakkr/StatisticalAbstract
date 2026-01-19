@@ -3,446 +3,275 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Haryana DataVista – Statistical Abstract Chatbot</title>
-  <!-- VERSION: 5.0-NYAYAMITRA - Complete NyayaMitra-style redesign -->
+<title>Haryana DataVista
+ – Statistical Abstract Chatbot</title>
+<!-- VERSION: 4.1-STABLE - Last Modified Date Fixed, Music Toggle Safe Check Added -->
+  <!-- VERSION: 4.0-CLEAN - File search removed, Last Modified fixed, FINAL VERSION -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     // Functions need to be defined before they're called in HTML
     function openPDFGuide() {
       window.open('STATS_SAHAYAK_Tutorial.html', '_blank');
     }
-    
-    function openTutorialVideos() {
-      window.open('https://www.youtube.com/watch?v=YOUR_VIDEO_ID', '_blank');
-    }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+ <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
+  <div class="om-symbol om-top-right devanagari">ॐ</div>
+  <div class="om-symbol om-bottom-left devanagari">ॐ</div>
 
-  <!-- Main Container - NyayaMitra Style -->
-  <div class="container-main glass-card rounded-3xl shadow-2xl overflow-hidden">
-    
-    <!-- Header - Simplified NyayaMitra Style -->
-    <div class="bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 shadow-lg" style="border-bottom: 3px solid #fb923c;">
-      <div class="flex items-center justify-between p-3 md:p-4">
-        <!-- Left: Logo + Title -->
-        <div class="flex items-center gap-2">
-          <div class="w-9 h-9 bg-gradient-to-br from-orange-400 to-amber-500 rounded-full flex items-center justify-center text-xl shadow-md">
-            📊
-          </div>
-          <div>
-            <h2 class="font-bold text-base md:text-lg text-gray-800">Haryana DataVista</h2>
-            <p class="text-xs text-gray-600 font-semibold flex items-center gap-1">
-              <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-              <span id="headerMessageCount">2 messages</span> • Online
-            </p>
-          </div>
-        </div>
-        
-        <!-- Right: Menu Button -->
+  <div class="container-main w-full max-w-5xl glass-card rounded-3xl shadow-2xl overflow-hidden">
+<div class="bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 shadow-lg" style="border-bottom: 3px solid #fb923c;">
+  <!-- Top Row: Logo + Title + Mode Toggle (Single Line) -->
+  <div class="flex items-center justify-between p-3 md:p-4">
+    <!-- Left: Logo + Title -->
+    <div class="flex items-center gap-2">
+      <div class="w-9 h-9 bg-gradient-to-br from-orange-400 to-amber-500 rounded-full flex items-center justify-center text-xl shadow-md">
+        📊
+      </div>
+      <div>
+   	<h2 class="font-bold text-base md:text-lg text-gray-800">Haryana DataVista</h2>
+        <p class="text-xs text-gray-600 font-semibold">Statistical Abstract Chatbot - DESA, Haryana</p>
+      </div>
+    </div>
         <div class="menu-wrapper">
-          <button class="menu-btn" onclick="toggleMenu()" title="Menu">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="1" />
-              <circle cx="12" cy="5" r="1" />
-              <circle cx="12" cy="19" r="1" />
-            </svg>
-          </button>
-          <div class="menu-dropdown" id="menuDropdown">
-            <a href="https://esaharyana.gov.in/statistical-wing-publication-reports/" target="_blank" class="menu-item">
-              <span>📘</span> Statistical Abstract
-            </a>
-            <a href="https://www.mospi.gov.in/publications-reports" target="_blank" class="menu-item">
-              <span>🇮🇳</span> India Statistics
-            </a>
-            <a href="https://censusindia.gov.in/" target="_blank" class="menu-item">
-              <span>👥</span> Census Data
-            </a>
-            <a href="https://data.gov.in/" target="_blank" class="menu-item">
-              <span>🌐</span> Open Data
-            </a>
-            <button onclick="openFeedback()" class="feedback-btn">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-              </svg>
-              Feedback
-            </button>   
-            <button onclick="openPDFGuide()" class="live-telecast-btn" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-              </svg> Tutorial Guide
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Toggle Section - NyayaMitra Style -->
-    <div class="p-3 md:p-4 bg-white" style="border-bottom: 1px solid #e5e7eb;">
-      <div class="flex justify-center mb-3" id="queryTypeSelector">
-        <div class="inline-flex bg-white rounded-xl border-2 border-gray-200 p-1 shadow-md">
-          <!-- Left Toggle: Learn About Statistics -->
-          <button type="button" 
-                  id="toggleStatistics" 
-                  class="toggle-btn px-4 py-2 md:px-6 md:py-3 rounded-lg font-semibold text-xs md:text-sm transition-all duration-300 flex items-center gap-2">
-            <span class="text-lg md:text-xl">📖</span>
-            <span class="hidden sm:inline">Learn About Statistics</span>
-            <span class="sm:hidden">Learn</span>
-          </button>
-          
-          <!-- Right Toggle: Find Haryana Data (DEFAULT ACTIVE) -->
-          <button type="button" 
-                  id="toggleData" 
-                  class="toggle-btn active px-4 py-2 md:px-6 md:py-3 rounded-lg font-semibold text-xs md:text-sm transition-all duration-300 flex items-center gap-2">
-            <span class="text-lg md:text-xl">📊</span>
-            <span class="hidden sm:inline">Find Haryana Data</span>
-            <span class="sm:hidden">Find Data</span>
-          </button>
+
+  
+        <button class="menu-btn" onclick="toggleMenu()" title="Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="1" />
+            <circle cx="12" cy="5" r="1" />
+            <circle cx="12" cy="19" r="1" />
+          </svg>
+        </button>
+        <div class="menu-dropdown" id="menuDropdown">
+          <a href="https://esaharyana.gov.in/statistical-wing-publication-reports/" target="_blank" class="menu-item">
+            <span>📘</span> Statistical Abstract
+          </a>
+          <a href="https://www.mospi.gov.in/publications-reports" target="_blank" class="menu-item">
+            <span>🇮🇳</span> India Statistics
+          </a>
+          <a href="https://censusindia.gov.in/" target="_blank" class="menu-item">
+            <span>👥</span> Census Data
+          </a>
+          <a href="https://data.gov.in/" target="_blank" class="menu-item">
+            <span>🌐</span> Open Data
+          </a>
+		 <button onclick="openFeedback()" class="feedback-btn">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+          </svg>
+          Feedback
+        </button>   
+		<button onclick="openPDFGuide()" class="live-telecast-btn" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+            		<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+		</svg> Tutorial Guide
+		</button>
+			
         </div>
       </div>
+</div>
+                <p class="text-sm text-center text-gray-500 italic">"Without data, you're just another person with an opinion." — W. Edwards Deming</p>
+                <div class="mt-2 flex items-center gap-2 text-xs text-center font-medium text-gray-400 bg-gray-50 px-3 py-1 rounded-full border border-gray-200">
+                    <span class="w-2 h-2 rounded-full text-center bg-green-500 animate-pulse"></span>
+                    AI Chatbot powered by Groq + Llama 3.3
+                </div>  
+</div>
+
+    <div class="p-2">
+<!-- MODE TOGGLE (Simple Chat / Full Features) -->
+<!-- QUERY TYPE SELECTOR (NyayaMitra Style - Default Active) -->
+<div class="mb-6">
+  <!-- Toggle Buttons -->
+  <div class="flex justify-center mb-3" id="queryTypeSelector">
+    <div class="inline-flex bg-white rounded-xl border-2 border-gray-200 p-1 shadow-md">
       
-      <!-- Description Text -->
-      <div class="text-center px-2">
-        <p class="text-xs md:text-sm text-gray-600 leading-relaxed">
-          <span class="font-semibold text-gray-800">Search statistical reports</span> from Haryana's official data repository. 
-          Ask about demographics, economics, districts, and more.
-        </p>
-      </div>
+      <!-- Left Toggle: Learn About Statistics -->
+      <button type="button" 
+              id="toggleStatistics" 
+              class="toggle-btn px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
+        <span class="text-xl">📖</span>
+        <span>Learn About Statistics</span>
+      </button>
+      
+      <!-- Right Toggle: Find Haryana Data (DEFAULT ACTIVE) -->
+      <button type="button" 
+              id="toggleData" 
+              class="toggle-btn active px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center gap-2">
+        <span class="text-xl">📊</span>
+        <span>Find Haryana Data</span>
+      </button>
+      
     </div>
-
-    <!-- Question Section (Hidden by default, shown in statistics mode) -->
-    <div id="questionSection" style="display: none;">
-      <div class="p-4">
-        <div class="mb-6 slide-fade-enter" id="quickQuestionsSection">
+  </div>
+  
+  <!-- Description Text (NyayaMitra Style) -->
+  <div class="text-center px-4">
+    <p class="text-sm text-gray-600 leading-relaxed">
+      <span class="font-semibold text-gray-800">Search statistical reports</span> from Haryana's official data repository. 
+      Ask about demographics, economics, districts, and more.
+    </p>
+  </div>
+</div>
+    </div>
+    
+      <div id="questionSection" style="display: none;">
+        <div class="mb-8 slide-fade-enter" id="quickQuestionsSection">
           <div class="flex items-center justify-between mb-4">
-            <label class="text-base md:text-lg font-bold text-gray-800">Quick help👇</label>
-            <div class="flex justify-end">
-              <div class="lang-toggle">
-                <button class="langBtn active" data-lang="English">English</button>
-                <button class="langBtn" data-lang="Hindi">हिंदी</button>
-              </div>
-            </div>  
+            <label class="text-lg font-bold text-gray-800">Quick help👇</label>
+              <div class="flex justify-end mb-2">
+                <div class="lang-toggle">
+                  <button class="langBtn active" data-lang="English">English</button>
+                  <button class="langBtn" data-lang="Hindi">हिंदी</button>
+                </div>
+              </div>  
           </div>
           <div class="space-y-4">
-            <select id="categorySelect" class="block w-full px-4 py-3 text-sm md:text-base border-2 border-gray-200 focus:outline-none focus:ring-3 focus:ring-blue-500 focus:border-blue-500 rounded-2xl bg-white shadow-md transition-all duration-300 font-medium">
+            <select id="categorySelect" class="block w-full px-5 py-4 text-base border-2 border-gray-200 focus:outline-none focus:ring-3 focus:ring-blue-500 focus:border-blue-500 rounded-2xl bg-white shadow-md transition-all duration-300 font-medium">
               <option value="" selected disabled>Select Topic</option>
             </select>
-            <select id="questionSelect" class="block w-full px-4 py-3 text-sm md:text-base border-2 border-gray-200 focus:outline-none focus:ring-3 focus:ring-blue-500 focus:border-blue-500 rounded-2xl bg-white shadow-md transition-all duration-300 font-medium" disabled>
-              <option value="" selected disabled>Select Question</option>
+            <select id="questionSelect" class="block w-full px-5 py-4 text-base border-2 border-gray-200 focus:outline-none focus:ring-3 focus:ring-blue-500 focus:border-blue-500 rounded-2xl bg-white shadow-md transition-all duration-300 font-medium" disabled>
+                <option value="" selected disabled>Select Question</option>
             </select> 
           </div>
         </div>
-
-        <!-- Input Section for Statistics Mode -->
-        <div class="mb-6 slide-fade-enter">
-          <div class="relative autocomplete-container">
-            <!-- Autocomplete Dropdown -->
-            <div id="autocompleteDropdown" class="autocomplete-dropdown" style="display: none;"></div>
-            
-            <!-- Input Row -->
-            <div class="flex gap-2 items-stretch">
-              <div class="flex-1 relative">
-                <textarea
-                  id="userInput"
-                  rows="1"
-                  class="w-full px-4 py-3 text-sm md:text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-3 focus:ring-orange-500 focus:border-orange-500 bg-white shadow-md resize-none"
-                  placeholder="💬 Type your question here..."
-                  style="min-height: 54px; max-height: 54px; overflow: hidden;"
-                ></textarea>
-                <button
-                  id="voiceBtn"
-                  class="mic-btn absolute"
-                  style="background: linear-gradient(135deg, #ff6b35, #f59e0b); color: white; border: none;"
-                  title="Voice Input (Click & Speak)"
-                >
-                  <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
-                  </svg>
-                </button>
-              </div>
-              <button
-                id="submitBtn"
-                class="btn-primary flex-shrink-0 px-6 md:px-8 py-3 rounded-2xl text-sm md:text-base font-bold"
-                style="margin-top: 0 !important; display: flex; align-items: center; gap: 8px;"
-              >
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-                <span class="hidden sm:inline">Submit</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tutorial Videos Section (for statistics mode) -->
-        <div id="tutorialVideosSection" style="display: none;">
-          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 mb-6 border-2 border-blue-200">
-            <h3 class="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-2">
-              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/>
-              </svg>
-              📚 Tutorial Videos
-            </h3>
-            <p class="text-gray-700 mb-6">Learn how to use Haryana DataVista effectively with these helpful video guides:</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <!-- Video 1 -->
-              <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-5 rounded-xl border-l-4 border-blue-500 hover:shadow-lg transition-all">
-                <h3 class="font-bold text-blue-900 text-lg mb-2 flex items-center gap-2">
-                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
-                  </svg>
-                  Getting Started
-                </h3>
-                <p class="text-gray-700 text-sm mb-3">Quick introduction to the chatbot interface and features</p>
-                <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_1" target="_blank" 
-                   class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-semibold">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
-                  </svg>
-                  Watch Tutorial (5 min)
-                </a>
-              </div>
-
-              <!-- Video 2 -->
-              <div class="bg-gradient-to-r from-green-50 to-green-100 p-5 rounded-xl border-l-4 border-green-500 hover:shadow-lg transition-all">
-                <h3 class="font-bold text-green-900 text-lg mb-2 flex items-center gap-2">
-                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
-                  </svg>
-                  Finding Statistical Data
-                </h3>
-                <p class="text-gray-700 text-sm mb-3">How to search for district-wise data and reports</p>
-                <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_2" target="_blank" 
-                   class="inline-flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-semibold">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
-                  </svg>
-                  Watch Tutorial (7 min)
-                </a>
-              </div>
-
-              <!-- Video 3 -->
-              <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-5 rounded-xl border-l-4 border-purple-500 hover:shadow-lg transition-all">
-                <h3 class="font-bold text-purple-900 text-lg mb-2 flex items-center gap-2">
-                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
-                  </svg>
-                  Advanced Features
-                </h3>
-                <p class="text-gray-700 text-sm mb-3">Voice input, language toggle, and more</p>
-                <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_3" target="_blank" 
-                   class="inline-flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors text-sm font-semibold">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
-                  </svg>
-                  Watch Tutorial (6 min)
-                </a>
-              </div>
-
-              <!-- Video 4 -->
-              <div class="bg-gradient-to-r from-orange-50 to-orange-100 p-5 rounded-xl border-l-4 border-orange-500 hover:shadow-lg transition-all">
-                <h3 class="font-bold text-orange-900 text-lg mb-2 flex items-center gap-2">
-                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
-                  </svg>
-                  Understanding Statistical Reports
-                </h3>
-                <p class="text-gray-700 text-sm mb-3">Learn to interpret data and generate insights</p>
-                <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_4" target="_blank" 
-                   class="inline-flex items-center gap-2 bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors text-sm font-semibold">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
-                  </svg>
-                  Watch Tutorial (8 min)
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- File search section removed - use main chat input only -->
+<!-- NyayaMitra Style: Input + Voice + Submit in ONE ROW -->
+<!-- NyayaMitra Style: Input + Voice + Submit in ONE ROW -->
+<div class="mb-8 slide-fade-enter">
+  <div class="relative autocomplete-container">
+    <!-- Autocomplete Dropdown (appears above) -->
+    <div id="autocompleteDropdown" class="autocomplete-dropdown" style="display: none;"></div>
+    
+    <!-- Single Row Container -->
+    <div class="flex gap-2 items-stretch">
+      
+      <!-- Text Input (grows to fill space) -->
+      <div class="flex-1 relative">
+        <textarea
+          id="userInput"
+          rows="1"
+          class="w-full rounded-2xl border-2 border-gray-300 p-4 pr-14 text-gray-900
+                 bg-white shadow-lg resize-none
+                 focus:border-orange-500 focus:ring-2 focus:ring-orange-200
+                 transition-all duration-300 leading-relaxed"
+          placeholder="💬 Ask about Haryana statistics..."
+          style="min-height: 56px; max-height: 56px; overflow: hidden;"
+        ></textarea>
+        
+        <!-- Voice Button (inside input) -->
+        <button
+          id="voiceBtn"
+          class="mic-btn absolute top-1/2 right-2 -translate-y-1/2 text-orange-500 hover:text-orange-700 transition-all duration-300 hover:scale-110 bg-white rounded-xl p-2 shadow-md border-2 border-gray-300 hover:border-orange-400"
+          title="Click to speak"
+        >
+          <svg id="micIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+          </svg>
+        </button>
       </div>
+      
+      <!-- Submit Button (same height as input) -->
+      <button 
+        id="submitBtn" 
+        class="btn-primary flex items-center justify-center gap-2 px-8 shrink-0"
+        style="min-height: 56px; border-radius: 16px;"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+        </svg>
+        <span class="font-bold">Submit</span>
+      </button>
+      
     </div>
-
-    <!-- Chat Interface (Default view for "Find Haryana Data" mode) -->
-    <div id="chatInterface" style="display: flex; flex-direction: column; flex: 1; overflow: hidden;">
-      <div class="chat-container">
-        
-        <!-- Messages Area -->
-        <div class="chat-messages" id="chatMessages">
-          
-          <!-- Welcome Message -->
-          <div class="welcome-message">
-            <h4>👋 Namaste! Welcome to Haryana DataVista</h4>
-            <p>
-              Your AI statistical assistant for Haryana data.
-              <br><br>
-              💡 <strong>Try asking:</strong>
-            </p>
-            <div class="related-chips" style="margin-top: 16px;">
-              <div class="chip" onclick="askSampleQuestion('What is the literacy rate in Haryana?')">
-                <span style="font-size: 18px;">📚</span>
-                <div style="flex: 1;">
-                  <div style="font-weight: 600;">What is the literacy rate in Haryana?</div>
-                  <div style="font-size: 11px; color: #78716c; margin-top: 2px;">Education statistics</div>
-                </div>
-              </div>
-              <div class="chip" onclick="askSampleQuestion('Show district-wise population data')">
-                <span style="font-size: 18px;">👥</span>
-                <div style="flex: 1;">
-                  <div style="font-weight: 600;">Show district-wise population data</div>
-                  <div style="font-size: 11px; color: #78716c; margin-top: 2px;">Demographics</div>
-                </div>
-              </div>
-              <div class="chip" onclick="askSampleQuestion('Economic indicators of Haryana')">
-                <span style="font-size: 18px;">💰</span>
-                <div style="flex: 1;">
-                  <div style="font-weight: 600;">Economic indicators of Haryana</div>
-                  <div style="font-size: 11px; color: #78716c; margin-top: 2px;">Economy & finance</div>
-                </div>
-              </div>
-              <div class="chip" onclick="askSampleQuestion('Agricultural production statistics')">
-                <span style="font-size: 18px;">🌾</span>
-                <div style="flex: 1;">
-                  <div style="font-weight: 600;">Agricultural production statistics</div>
-                  <div style="font-size: 11px; color: #78716c; margin-top: 2px;">Agriculture data</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Messages will be added here dynamically -->
-          
-        </div>
-        
-        <!-- Chat Input Area - Fixed at Bottom -->
-        <div class="chat-input-area">
-          <div class="chat-input-wrapper">
-            <div class="chat-input-container">
-              <textarea 
-                id="chatInput" 
-                rows="1"
-                placeholder="💬 Ask about Haryana statistics..."
-                onkeydown="handleChatKeydown(event)"
-                oninput="autoResizeChatInput()"
-              ></textarea>
-              <button id="chatVoiceBtn" title="Voice input">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
-                </svg>
-              </button>
-            </div>
-            <button id="chatSendBtn" title="Send message">
-              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-              </svg>
-            </button>
-          </div>
-          <div class="chat-input-helper">
-            <p>Press Enter to send • Shift+Enter for new line</p>
-            <button class="clear-chat-btn" onclick="clearChatHistory()">
-              🗑️ Clear chat
-            </button>
-          </div>
-        </div>
+  <div class="border-t-2 border-gray-200 px-6 py-4 text-center bg-gradient-to-b from-gray-50 to-white">
+<p class="text-gray-500 text-xs mb-3">Last Updated: <span id="lastModified" style="display: inline;">Loading...</span></p>      
+    </div>	  
+  </div>
+</div>
         
       </div>
-    </div>
 
   </div>
 
-  <!-- Response Modal -->
-  <div id="responseModal" class="modal">
-    <div class="modal-content modal-enter">
-      <div class="flex items-center justify-between p-6 border-b-2 border-gray-200 bg-gradient-to-r from-orange-50 to-amber-50">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-gradient-to-br from-orange-400 to-amber-500 rounded-full flex items-center justify-center text-2xl shadow-md">
-            💬
-          </div>
-          <h3 class="text-xl font-bold text-gray-800">Your Question</h3>
-        </div>
-        <button id="closeModal" class="text-gray-500 hover:text-gray-700 transition p-2 rounded-lg hover:bg-gray-100">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
+  <div id="aiModal" class="hidden fixed inset-0 flex items-center justify-center p-2" style="z-index: 9999; background: rgba(0,0,0,0.92);">
+    <div class="bg-white rounded-3xl shadow-2xl w-full mx-2 modal-enter overflow-hidden" style="max-width: 850px; max-height: 92vh;">
+      <div class="flex justify-between items-center px-5 py-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+        <h2 class="text-xl font-bold flex items-center gap-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          AI Response
+        </h2>
+        <button id="closeModal" class="hover:bg-white/20 p-2 rounded-full transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
-      <div class="p-6 space-y-6 max-h-[60vh] overflow-y-auto">
-        <div class="bg-blue-50 rounded-2xl p-5 border-l-4 border-blue-500">
-          <h4 class="font-semibold text-blue-900 mb-2 flex items-center gap-2">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
-            </svg>
-            Question:
-          </h4>
-          <p id="modalQuestion" class="text-blue-800 font-medium text-base"></p>
-        </div>
+<!-- ENHANCED VERSION WITH RELATED QUESTIONS -->
+<div class="p-5 overflow-y-auto bg-gray-50" style="max-height: calc(92vh - 180px);">
+  <div class="mb-5">
+    <div class="flex items-center gap-2 mb-2">
+      <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <p class="font-bold text-gray-900">Question:</p>
+      <span id="historyBadge" class="hidden bg-purple-100 text-purple-700 px-2 py-1 rounded-full text-xs font-bold ml-auto">
+        📚 Conversation: <span id="historyCount">0</span> prev
+      </span>
+    </div>
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-2xl border-l-4 border-blue-500">
+      <pre id="modalQuestion" class="whitespace-pre-wrap text-gray-800 leading-relaxed"></pre> 
+    </div>
+  </div>
 
-        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-5 border-l-4 border-green-500">
-          <div class="flex items-center justify-between mb-3">
-            <h4 class="font-semibold text-green-900 flex items-center gap-2">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
-                <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"/>
-              </svg>
-              Answer:
-            </h4>
-            <div class="flex gap-2">
-              <button id="playBtn" class="tts-btn bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:from-purple-700 hover:to-purple-800">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                </svg>
-                Play
-              </button>
-              <button id="pauseBtn" class="tts-btn bg-gradient-to-r from-orange-600 to-orange-700 text-white hover:from-orange-700 hover:to-orange-800" style="display: none;">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                </svg>
-                Pause
-              </button>
-              <button id="stopBtn" class="tts-btn bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800" style="display: none;">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clip-rule="evenodd"/>
-                </svg>
-                Stop
-              </button>
-            </div>
-          </div>
-          <div id="modalAnswer" class="text-gray-800 leading-relaxed text-base"></div>
-        </div>
-
-        <div id="relatedQuestionsContainer" style="display: none;">
-          <h4 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-            <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
-            </svg>
-            Related Questions:
-          </h4>
-          <div id="relatedQuestionsChips" class="flex flex-wrap gap-2"></div>
-        </div>
+  <div>
+    <div class="flex items-center justify-between mb-2 flex-wrap gap-2">
+      <div class="flex items-center gap-2">
+        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        <p class="font-bold text-gray-900">Answer:</p>
       </div>
+      <button id="ttsToggle" class="tts-btn bg-gradient-to-r from-orange-500 to-orange-600 text-white">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+        <span id="ttsLabel">Listen</span>
+      </button>
+    </div>
+    <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-4 rounded-2xl border-l-4 border-orange-500">
+      <pre id="modalAnswer" class="whitespace-pre-wrap text-gray-800 text-sm leading-loose devanagari"></pre>
+    </div>
+  </div>
 
-      <div class="border-t-2 border-gray-200 p-3 bg-white flex justify-center gap-2 flex-wrap">
-        <button id="whatsappBtn" class="flex items-center gap-1 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-xl transition text-sm font-semibold">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          Share on WhatsApp
-        </button>
+  <!-- ✅ NEW: RELATED QUESTIONS SECTION -->
+  <div id="relatedQuestionsSection" class="mt-6" style="display: none;">
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+      </svg>
+      <p class="font-bold text-gray-900">Related Questions:</p>
+    </div>
+    <div id="relatedQuestionsList" class="space-y-2">
+      <!-- Related questions will be inserted here -->
+    </div>
+  </div>
+</div>
+      <div class="border-t-2 border-gray-200 p-3 bg-white flex justify-center gap-2">
+<button id="whatsappBtn" class="flex items-center gap-1 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-xl transition text-sm font-semibold">
+  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  Share on WhatsApp
+</button>
         <button onclick="openFeedback()" class="feedback-btn feedback-btn-small">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
           </svg>
           Rate Us
         </button>
-        <button id="newTopicBtn" class="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-xl hover:from-blue-700 hover:to-blue-800 transition text-sm font-bold shadow-lg" title="Start a new conversation topic" style="display: none;">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-          </svg>
-          New Topic
-        </button>
+ <button id="newTopicBtn" class="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-xl hover:from-blue-700 hover:to-blue-800 transition text-sm font-bold shadow-lg" title="Start a new conversation topic" style="display: none;">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+  </svg>
+  New Topic
+</button>
         <button id="closeBtn" class="flex items-center gap-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-5 py-2 rounded-xl hover:from-blue-700 hover:to-blue-800 transition text-sm font-bold shadow-lg">
           Close
         </button>
@@ -450,7 +279,6 @@
     </div>
   </div>
 
-  <!-- Feedback Modal -->
   <div id="feedbackModal">
     <div class="feedback-modal-content">
       <div class="feedback-modal-header">
@@ -477,6 +305,98 @@
     </div>
   </div>
 
-  <script type="module" src="js/main.js"></script>
+<!-- ============================================================================
+     FULL-SCREEN CHAT INTERFACE (For "Find Haryana Data" Mode)
+     ============================================================================ -->
+<div id="chatInterface" style="display: flex;">
+	<div class="chat-container">
+    
+    <!-- Chat Header -->
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-avatar">📊</div>
+        <div class="chat-header-info">
+          <h3>Haryana DataVista</h3>
+          <div class="chat-status">
+            <span id="messageCount">0 messages</span> • Online
+          </div>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button class="chat-action-btn" id="clearChatBtn" title="Clear chat history">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+          </svg>
+        </button>
+        <button class="chat-action-btn" id="closeChatBtn" title="Close chat">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Messages Area -->
+    <div class="chat-messages" id="chatMessages">
+      
+      <!-- Welcome Message -->
+      <div class="welcome-message">
+        <h4>👋 Welcome to Haryana DataVista!</h4>
+        <p>
+          Ask me about Haryana's statistical data, demographics, economics, districts, and more.
+          <br><br>
+          💡 <strong>Try asking:</strong>
+        </p>
+        <div class="related-chips">
+          <div class="chip" onclick="askSampleQuestion('What is the literacy rate in Haryana?')">
+            📚 Literacy rate
+          </div>
+          <div class="chip" onclick="askSampleQuestion('Show district-wise population data')">
+            👥 District population
+          </div>
+          <div class="chip" onclick="askSampleQuestion('Economic indicators of Haryana')">
+            💰 Economic data
+          </div>
+        </div>
+      </div>
+      
+      <!-- Messages will be added here dynamically -->
+      
+    </div>
+    
+    <!-- Chat Input Area -->
+    <div class="chat-input-area">
+      <div class="chat-input-wrapper">
+        <div class="chat-input-container">
+          <textarea 
+            id="chatInput" 
+            rows="1"
+            placeholder="💬 Ask about Haryana statistics..."
+            onkeydown="handleChatKeydown(event)"
+            oninput="autoResizeChatInput()"
+          ></textarea>
+          <button id="chatVoiceBtn" title="Voice input">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+            </svg>
+          </button>
+        </div>
+        <button id="chatSendBtn" title="Send message">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+          </svg>
+        </button>
+      </div>
+      <div class="chat-input-helper">
+        <p>Press Enter to send • Shift+Enter for new line</p>
+        <button class="clear-chat-btn" onclick="clearChatHistory()">
+          🗑️ Clear chat
+        </button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
