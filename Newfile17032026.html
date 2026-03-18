@@ -4593,15 +4593,12 @@ console.log('✅ Image upload functionality loaded');
 // Global variable to store parsed files from response
 let parsedCloudinaryFiles = [];
 
-// Parse Cloudinary URLs from response text
+// Parse Local Server URLs from response text (Replaced Cloudinary parser)
 function parseCloudinaryLinksFromResponse(responseText) {
-  console.log('🔍 Parsing Cloudinary links from response...');
+  console.log('🔍 Parsing Local Server links from response...');
   
-  // First, try to find year headers in the response (like "**1967-68**" or "1967-68" before file links)
-  const yearHeaderRegex = /\*{0,2}(\d{4}-\d{2}|\d{2}-\d{2})\*{0,2}\s*\(\d+\s+files?\)/gi;
-  
-  // Find all Cloudinary URLs
-  const cloudinaryRegex = /https:\/\/res\.cloudinary\.com\/[^\/]+\/image\/upload\/([^"\s<>]+\.(?:jpg|jpeg|png|pdf))/gi;
+  // NEW REGEX: Matches your self-hosted IP address and dsofiles folder
+  const fileUrlRegex = /http:\/\/103\.87\.24\.58\/dsofiles\/([^"\s<>]+\.(?:jpg|jpeg|png|pdf))/gi;
   
   const matches = [];
   
@@ -4610,8 +4607,9 @@ function parseCloudinaryLinksFromResponse(responseText) {
   let currentYear = 'Unknown';
   
   for (const line of lines) {
-    // Check if this line contains a year header
-    const yearHeaderMatch = line.match(/\*{0,2}(\d{4}-\d{2}|\d{2}-\d{2})\*{0,2}\s*\(\d+\s+files?\)/i);
+    // Check if this line contains a year header (Matches the new n8n format: **1968-69**)
+    const yearHeaderMatch = line.match(/\*\*(\d{4}-\d{2}|\d{2}-\d{2})\*\*/i);
+    
     if (yearHeaderMatch) {
       currentYear = yearHeaderMatch[1];
       // Normalize year format (if "67-68" convert to "1967-68")
@@ -4624,12 +4622,13 @@ function parseCloudinaryLinksFromResponse(responseText) {
       console.log('📅 Found year header:', currentYear);
     }
     
-    // Check if this line contains Cloudinary URLs
+    // Check if this line contains your local server file URLs
     let urlMatch;
-    const lineRegex = /https:\/\/res\.cloudinary\.com\/[^\/]+\/image\/upload\/([^"\s<>]+\.(?:jpg|jpeg|png|pdf))/gi;
+    const lineRegex = /http:\/\/103\.87\.24\.58\/dsofiles\/([^"\s<>]+\.(?:jpg|jpeg|png|pdf))/gi;
+    
     while ((urlMatch = lineRegex.exec(line)) !== null) {
       const fullUrl = urlMatch[0];
-      const path = urlMatch[1];
+      const path = urlMatch[1]; // e.g., "1968-69/Final/Agricultre320039.jpg"
       
       // Try to extract year from URL path first
       const urlYearMatch = path.match(/(\d{4}-\d{2})/);
@@ -4649,11 +4648,11 @@ function parseCloudinaryLinksFromResponse(responseText) {
     }
   }
   
-  // Fallback: if no context-based year found, try to parse entire response
+  // Fallback: if no context-based year found, try to parse entire response globally
   if (matches.length === 0) {
     console.log('⚠️ No files found with context, trying global search...');
     let match;
-    while ((match = cloudinaryRegex.exec(responseText)) !== null) {
+    while ((match = fileUrlRegex.exec(responseText)) !== null) {
       const fullUrl = match[0];
       const path = match[1];
       
